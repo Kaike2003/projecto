@@ -1,0 +1,33 @@
+import React from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
+
+
+export default function App() {
+
+    return (
+        <>
+            <h1>React Routes</h1>
+            <hr />
+
+            <Routes>
+                <Route path="/" element={<h1>Home</h1>}></Route>
+                <Route path="/servicos" element={<h1>Serviços</h1>}></Route>
+                <Route path="/contatos/*" element={
+                    <>
+                        <h1>Contactos</h1>
+                        <Outlet />
+                    </>
+                }>
+                    <Route path="localizacao" element={<h1>localizacao </h1>}></Route>
+                    <Route path="telefone" element={<h1>telefone</h1>}></Route>
+                    <Route path="email" element={<h1>email</h1>}></Route>
+
+                </Route>
+
+
+            </Routes>
+
+        </>
+    )
+
+}

@@ -1,0 +1,68 @@
+.navbar{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 35px;
+    padding-right: 35px;
+    justify-content: space-between ;
+    align-items: center;
+    flex-flow: nowrap;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgb(29, 28, 28);
+    z-index: 10;
+    border-bottom: 1px solid rgb(25 31 40 / 15%);
+}
+
+.logo_input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_input h1{
+    padding-right: 10px;
+}
+
+.logo_input input{
+    display: flex;
+    flex: 2 1 0%;
+    box-sizing: border-box;
+    height: 48px;
+    transform: translate3d(0px, 0px, 0px);
+    width: 400px;
+    padding: 8px;
+    padding-left: 15px;
+    border-radius: 8px;
+    box-shadow: rgb(25 31 40 / 15%) 0px 1px 2px 0px;
+    border: none;
+    outline-color: white;
+    border: 1px solid rgb(255, 255, 255);
+    transition: border 0.3s ease 0s;
+    background-color: rgb(255, 255, 255);
+}
+
+
+#menu{
+    padding-top: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu li{
+    padding-left: 20px;
+    list-style: none;
+}
+
+#menu a{
+    font-weight: 480;
+    font-size: 13px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a{
+    text-decoration: none;
+}

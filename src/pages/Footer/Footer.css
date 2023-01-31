@@ -1,0 +1,38 @@
+footer {
+    margin-top: 100px;
+    color: white;
+}
+
+#footer {
+    background-color: rgb(75, 75, 75);
+    height: 260px;
+}
+
+.container_filho {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container_filho_1 {
+    text-align: justify;
+    width: 70%;
+}
+
+.container_filho_3 {}
+
+.icone_1 {
+    font-size: 28px;
+    transition: color 0.3s;
+}
+
+.icone_2 {
+    font-size: 35px;
+    transition: color 0.3s;
+
+}
+
+.icone_1:hover, .icone_1:focus, .icone_2:hover, .icone_2:focus {
+    cursor: pointer;
+    color: rgb(0, 151, 255);
+}
