@@ -1,0 +1,7 @@
+.palestrante_div{
+    margin-top: 15px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+

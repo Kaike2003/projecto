@@ -1,98 +1,92 @@
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTicket, faPanorama, faMasksTheater } from '@fortawesome/free-solid-svg-icons'
-import "../../Main_ingresso/Main_ingresso"
-import Section_eventos_alta from "../../section_eventos_alta/Section_eventos_alta"
+/* eslint-disable react/jsx-pascal-case */
+import React, { useState, useEffect } from "react"
+import EventoCardPago_Gratis from "../../card_evento/EventoCardPago_Gratis";
+import Carousel from '../../caroucel/Carousel'
+import Paginacao from "../../Palestrante/components/Paginacao";
 
-export default function Concerto() {
+
+const LIMIT = 12;
+
+
+export default function Concerto(props) {
+
+    const [data, setData] = useState([]);
+    const [itensPerpage, setItensPerpage] = useState(10)
+    const [currentPage, setCurrentPage] = useState(0)
+    const startIndex = currentPage * itensPerpage
+    const endIndex = startIndex + itensPerpage
+    const currentItens = data.slice(startIndex, endIndex)
+
+    const pages = Math.ceil(data.length / itensPerpage) 
+    console.log(pages)
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await
+                fetch('http://localhost:3000/static/eventos.json')
+                    .then((response) => response.json())
+                    .then(setData);
+        }
+        fetchData()
+    }, []);
+
+
+    useEffect(() => {
+        setCurrentPage(0)
+    }, [itensPerpage])
+
 
     return (
         <>
-            <div className="insivivel"></div>
+            <div className="invisivel"></div>
             <div className="container container_fundo">
 
-                <div className="container_eventos_listados">
-                    <div className="container_eventos_listados_div">
-                        <Link to={"/"}>
-                            <FontAwesomeIcon icon={faTicket}
-                                className="bilhete" />
-                            <p className="fw-bold">Todos</p>
-                        </Link>
-                    </div>
+                <Carousel></Carousel>
 
-                    <div className="container_eventos_listados_div">
-                        <Link to={"concertos"}>
-                            <FontAwesomeIcon icon={faMasksTheater}
-                                className="bilhete" />
-                            <p className="fw-bold">Concerto</p>
-                        </Link>
-                    </div>
-
-                    <div className="container_eventos_listados_div">
-                        <Link to={"festas"}>
-                            <FontAwesomeIcon icon={faPanorama}
-                                className="bilhete" />
-                            <p className="fw-bold">Festa</p>
-                        </Link>
-                    </div>
-
-                    <div className="container_eventos_listados_div">
-                        <Link to={"danca"}>
-                            <FontAwesomeIcon icon={faTicket}
-                                className="bilhete" />
-                            <p className="fw-bold">Dança</p>
-                        </Link>
-                    </div>
-
-                    <div className="container_eventos_listados_div">
-                        <Link to={"teatro"}>
-                            <FontAwesomeIcon icon={faTicket}
-                                className="bilhete" />
-                            <p className="fw-bold">Teatro</p>
-                        </Link>
-                    </div>
-
-                    <div className="container_eventos_listados_div">
-                        <Link to={"espetaculos"}>
-                            <FontAwesomeIcon icon={faTicket}
-                                className="bilhete" />
-                            <p className="fw-bold">Espetaculos</p>
-                        </Link>
-                    </div>
-
-                
-                </div>
             </div>
 
             <div className='container'>
-            <div className="container_conteudo">
-                        <div className="conteudo_eventos">
-                            <div className="conteudo_eventos_vermais">
-                                <h4 className="pb-3 pt-2 text-white"> Concertos</h4>
-                            </div>
+                <div className="container_conteudo">
+                    <div className="conteudo_eventos">
+                        <div className="conteudo_eventos_vermais">
+                            <h4 className="pb-3 pt-2 text-dark"> Concertos</h4>
                         </div>
                     </div>
 
+                </div>
 
-                    <div className="container_conteudo">
-                        <div className="section_eventos">
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                            <Section_eventos_alta></Section_eventos_alta>
-                        </div>
+
+                <div className="container_conteudo">
+                    <div className="section_eventos">
+
+
+                        {currentItens.map((item) => {
+                            return (
+                                <>
+                                    <EventoCardPago_Gratis
+                                        id={item.id}
+                                        image={item.image}
+                                        date={item.date}
+                                        name={item.name}
+                                        price={item.price}
+                                    ></EventoCardPago_Gratis>
+                                </>
+                            )
+                        })}
+
+
                     </div>
+
+
+                </div>
+                <Paginacao
+                    setCurrentPage={setCurrentPage}
+                    pages={pages}
+                    currentPage={currentPage}
+                >
+
+                </Paginacao>
             </div>
         </>
     )

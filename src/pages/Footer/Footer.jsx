@@ -4,7 +4,7 @@ import { BsFacebook, BsGithub } from "react-icons/bs";
 import { AiFillInstagram } from "react-icons/ai";
 
 
-export default function Footer() {
+export default function footer() {
 
 
     return (
@@ -21,13 +21,17 @@ export default function Footer() {
 
                     <div className="container_filho_2">
                         <h4>Links</h4>
-                       <BsFacebook className="icone_1 me-3"></BsFacebook>
+                        <BsFacebook className="icone_1 me-3"></BsFacebook>
                         <AiFillInstagram className="icone_2 me-3"></AiFillInstagram>
                         <BsGithub className="icone_1"></BsGithub>
                     </div>
                 </div>
 
+            
             </footer>
+
+           
+
 
         </>
     )

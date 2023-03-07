@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Petit+Formal+Script&family=Sacramento&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+.card_Palestrante {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 35px;
+}
+
+.card_Palestrante img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 150px;
+    width: 135px;
+    object-fit: cover;
+}
+
+
+.div_palestrante {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 135px;
+    font-size: 14px;
+    background-color: blue;
+    height: auto;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.div_palestrante span {
+    color: rgb(255, 255, 255);
+}
+
+
+@media screen and (min-width: 320px) and (max-width:480px) {}
+
+@media screen and (min-width: 481px) and (max-width:769px) {}
+
+@media (min-width: 769px) and (max-width: 1250px) {}

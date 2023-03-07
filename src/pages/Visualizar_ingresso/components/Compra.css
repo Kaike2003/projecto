@@ -1,0 +1,28 @@
+.compra_cartao{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.compra_cartao input{
+    padding: 8px;
+    border-radius: 5px;
+    outline-color: none;
+    border: 1px solid rgb(228, 228, 228);
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.div_aprovar_cancelar{
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}

@@ -1,11 +1,11 @@
 footer {
-    margin-top: 100px;
+    margin-top: 40px;
     color: white;
 }
 
 #footer {
-    background-color: rgb(75, 75, 75);
-    height: 260px;
+    height: auto;
+    background: #747d8c;
 }
 
 .container_filho {
@@ -34,5 +34,64 @@ footer {
 
 .icone_1:hover, .icone_1:focus, .icone_2:hover, .icone_2:focus {
     cursor: pointer;
-    color: rgb(0, 151, 255);
+    color: black;
+}
+
+
+/*Responsivo*/
+/*Mobile*/
+@media screen and (min-width: 320px) and (max-width:480px) {
+
+
+    #footer {
+        height: auto;
+    }
+    
+    .container_filho {
+        padding: 40px 10px;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .container_filho_1{
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .container_filho_2{
+        padding: 0 20px;
+        width: 100%;
+    }
+ 
+   
+}
+
+/*Tablet*/
+@media screen and (min-width: 481px) and (max-width:769px) {
+
+    .container_filho {
+        padding: 60px 20px;
+        flex-direction: column;
+        width: 100%;
+       
+    }
+    
+    .container_filho_1 {
+        width: 100%;
+    }
+
+}
+
+
+/*Laptops*/
+@media (min-width: 769px) and (max-width: 1250px) {
+ 
+    .container_filho {
+        padding: 60px 20px;
+        flex-direction: row;
+        width: 100%;
+    }
+    
+
+
 }

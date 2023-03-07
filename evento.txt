@@ -1,0 +1,64 @@
+ <div className="container_eventos_listados">
+                    <div className="container_eventos_listados_div">
+                        <Link to={"/"}>
+                            {/* <div className={darkMode ? "link_dark" : "link_light"}> */}
+                            <FontAwesomeIcon icon={faTicket}
+                                className="bilhete" />
+                            <p className="fw-bold">Todos</p>
+                            {/* </div> */}
+                        </Link>
+
+                    </div>
+
+                    <div className="container_eventos_listados_div">
+                        <Link to={"/concertos"}>
+                            {/* <div className={darkMode ? "link_dark" : "link_light"}> */}
+                            <FontAwesomeIcon icon={faMasksTheater}
+                                className="bilhete" />
+                            <p className="fw-bold">Concerto</p>
+                            {/* </div> */}
+                        </Link>
+                    </div>
+
+                    <div className="container_eventos_listados_div">
+                        <Link to={"/festas"}>
+                            {/* <div className={darkMode ? "link_dark" : "link_light"}> */}
+                            <FontAwesomeIcon icon={faPanorama}
+                                className="bilhete" />
+                            <p className="fw-bold">Festa</p>
+                            {/* </div> */}
+                        </Link>
+
+                    </div>
+
+                    <div className="container_eventos_listados_div">
+                        <Link to={"/palestra"}>
+                            {/* <div className={darkMode ? "link_dark" : "link_light"}> */}
+                            <FontAwesomeIcon icon={faTicket}
+                                className="bilhete" />
+                            <p className="fw-bold">Palestra</p>
+                            {/* </div> */}
+                        </Link>
+                    </div>
+
+                    <div className="container_eventos_listados_div">
+                        <Link to={"/teatro"}>
+                            {/* <div className={darkMode ? "link_dark" : "link_light"}> */}
+                            <FontAwesomeIcon icon={faTicket}
+                                className="bilhete" />
+                            <p className="fw-bold">Teatro</p>
+                            {/* </div> */}
+                        </Link>
+                    </div>
+
+                    <div className="container_eventos_listados_div">
+                        <Link to={"/espetaculos"}>
+                            {/* <div className={darkMode ? "link_dark" : "link_light"}> */}
+                            <FontAwesomeIcon icon={faTicket}
+                                className="bilhete" />
+                            <p className="fw-bold">Espetaculos</p>
+                            {/* </div> */}
+                        </Link>
+                    </div>
+
+                </div>
