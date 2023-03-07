@@ -21,8 +21,8 @@ export default function CardEventoPago({ id, name, price, image, date }) {
                         <img src={image} alt="Imagem de um evento" className="CardEvento_Img" />
                     </div>
 
-                    <div className="CardEventoBaixo">
-                        <div><h6>{name}</h6></div>
+                    <div className="CardEventoBaixo container">
+                        <div className="titulo_div"><h6>{name}</h6></div>
                         <div>
                             <p className="CardEventoData">{date}</p>
                             <p className="CardEventoTipo_evento">
