@@ -5,7 +5,7 @@ import CriarBilhete from "./CriarBilhete"
 import CriarPalestrante from "./CriarPalestrante"
 import Historico from "./Historico"
 import CriarOrador from "./CriarOrador"
-import { Link, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 import Opcao from "./Opcao/Opcao"
 
 export default function Evento() {
@@ -41,9 +41,9 @@ export default function Evento() {
                 <div className="dashboard_Eventos_div">
                     <div className="dashboard_Eventos_Titulo_Criar">
                         <span>Eventos</span>
-                       <Link to={"/dashboard/historico"}>
+                       <NavLink to={"/dashboard/historico"}>
                        <button className="btn_criar_eventos">Historico</button>
-                       </Link>
+                       </NavLink>
                     </div>
 
                     <div>
@@ -51,7 +51,7 @@ export default function Evento() {
 
                             <div className="informacaoPerfil_org">
                                 <ul id="menuInformacaoPerfil_org" className="container menuPerfil">
-                                    <Link to={"/dashboard/evento/criarEvento"}>
+                                    <NavLink to={"/dashboard/evento/criarEvento"}>
                                         <li><button
                                             onClick={() => {
                                                 return (
@@ -61,8 +61,8 @@ export default function Evento() {
                                                 )
                                             }}
                                         >Criar Evento</button></li>
-                                    </Link>
-                                    <Link to={"/dashboard/evento/criarBilhete"}>
+                                    </NavLink>
+                                    <NavLink to={"/dashboard/evento/criarBilhete"}>
                                         <li><button
                                             onClick={() => {
                                                 return (
@@ -72,8 +72,8 @@ export default function Evento() {
                                                 )
                                             }}
                                         >Criar Bilhete</button></li>
-                                    </Link>
-                                    <Link to={"/dashboard/evento/criarPalestrante"}>
+                                    </NavLink>
+                                    <NavLink to={"/dashboard/evento/criarPalestrante"}>
                                         <li><button
                                             onClick={(e) => {
                                                 return (
@@ -85,9 +85,9 @@ export default function Evento() {
                                                 )
                                             }}
                                         >Criar Palestrante</button></li>
-                                    </Link>
+                                    </NavLink>
 
-                                    <Link to={"/dashboard/evento/criarOrador"}>
+                                    <NavLink to={"/dashboard/evento/criarOrador"}>
                                         <li><button
                                             onClick={() => {
                                                 return (
@@ -97,7 +97,7 @@ export default function Evento() {
                                                 )
                                             }}
                                         >Criar Orador</button></li>
-                                    </Link>
+                                    </NavLink>
 
                                     <li><button
                                         onClick={() => {

@@ -91,6 +91,23 @@
     transition: background-color 1s, color 1s, box-shadow 2s;
 }
 
+#dashboard_LadoEsquerdo_menu a.active li button {
+    width: 195px;
+    color: #fff;
+    background-color: #008cff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 3px;
+    padding: 10px 20px;
+}
+
 
 
 /*Lado direito*/

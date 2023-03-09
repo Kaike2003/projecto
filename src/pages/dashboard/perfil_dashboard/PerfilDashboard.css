@@ -9,6 +9,13 @@
     gap: 15px;
 }
 
+.detalhe_perfilDashboard .nome{
+
+    color: white;
+
+
+}
+
 .detalhe_perfilDashboard {
     min-height: 100%;
     height: auto;
@@ -104,6 +111,24 @@
 }
 
 #menuInformacaoPerfilDashboard li button:hover {
+    width: 225px;
+    color: #fff;
+    background-color: #008cff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 3px;
+    padding: 12px 20px;
+    transition: background-color 1s, color 1s, box-shadow 2s;
+}
+
+
+#menuInformacaoPerfilDashboard a.active li button {
     width: 225px;
     color: #fff;
     background-color: #008cff;

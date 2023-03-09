@@ -1,5 +1,5 @@
 import React from "react"
-import { Outlet, Link } from "react-router-dom"
+import { Outlet, NavLink } from "react-router-dom"
 import "./Dashboard.css"
 
 
@@ -12,35 +12,37 @@ export function Dashboard() {
             <div className="dashboard">
 
                 <div className="dashboard_LadoEsquerdo">
+                    <NavLink to={"/dashboard"}>
                     <h1>Logo</h1>
+                    </NavLink>
                     <div className="dashboard_LadoEsquerdo_ul">
                         <ul id="dashboard_LadoEsquerdo_menu">
 
-                            <Link to={"/dashboard/evento"}>
+                            <NavLink to={"/dashboard/evento"}>
                                 <li>
                                     <button>Eventos</button>
                                 </li>
 
-                            </Link>
+                            </NavLink>
                            
-                           <Link to={""}>
+                           <NavLink to={"/"}>
                            
                            <li>
                                 <button>Estatisticas</button>
                             </li>
 
-                           </Link>
+                           </NavLink>
 
-                            <Link to={"/dashboard/historico"}>
+                            <NavLink to={"/dashboard/historico"}>
                                 <li>
                                     <button>Historico</button>
                                 </li>
-                            </Link>
-                            <Link to={"/dashboard/perfil"}>
+                            </NavLink>
+                            <NavLink to={"/dashboard/perfil"}>
                                 <li>
                                     <button>Perfil</button>
                                 </li>
-                            </Link>
+                            </NavLink>
                         </ul>
                     </div>
                 </div>

@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 import "./PerfilDashboard.css"
 import img from "../../../assets/img/kaike3.png"
-import Editar from "./components/Editar"
+import Editar from "./components/EditarInfo"
 import Historico from "./components/Historico"
+import EditarPrincipal from "./components/EditarPrincipal"
+import { NavLink, Outlet } from "react-router-dom"
+import {Mail, Calendar, Map, Phone} from "lucide-react"
 
 export default function PerfilDashboard() {
 
@@ -32,7 +35,8 @@ export default function PerfilDashboard() {
   function escolha(valor) {
 
     if (valor == 1) {
-      return <Editar></Editar>
+      // return <Editar></Editar>
+      return <EditarPrincipal></EditarPrincipal>
     } else if (valor == 3) {
       return <Historico></Historico>
     }
@@ -54,7 +58,7 @@ export default function PerfilDashboard() {
               <img src={img} alt="" />
             </div>
             <div className="nome">
-              <h2>Kaike Bartolomeu</h2>
+              <h4>Kaike Bartolomeu</h4>
             </div>
           </div>
 
@@ -66,7 +70,7 @@ export default function PerfilDashboard() {
 
             <div>
               <span className="espacomento">Data Nascimento</span>
-              <span>Kaike@gmail.com</span>
+              <span>2003</span>
             </div>
 
             <div>
@@ -89,22 +93,27 @@ export default function PerfilDashboard() {
         </div>
         <div className="informacaoPerfilDashboard">
           <ul id="menuInformacaoPerfilDashboard" className="container">
-            <li><button
 
-              onClick={editarOnclick}>Editar</button></li>
-            <li><button
+            <NavLink to={"/dashboard/perfil/editar"}>
+              <li>
+                <button
+                  onClick={editarOnclick}>Editar</button>
+              </li>
+            </NavLink>
 
-              onClick={eventoOnclick}
-            >Eventos</button></li>
-            <li><button
+            <NavLink to={"/"}>
+              <li>
+                <button
+                  onClick={historicoOnclick}
+                >Sair</button>
+              </li>
+            </NavLink>
 
-              onClick={historicoOnclick}
-            >Historicos</button></li>
           </ul>
           <div className="container conteudo_InformacaoPerfilDashboard">
             {
 
-              escolha(alterar)
+              <Outlet>{escolha(alterar)}</Outlet>
 
             }
             {/* <Editar></Editar> */}
@@ -113,7 +122,7 @@ export default function PerfilDashboard() {
         </div>
 
 
-      </div>
+      </div >
 
 
 

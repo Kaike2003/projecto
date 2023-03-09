@@ -31,6 +31,10 @@ import CriarOrador from "../pages/dashboard/components/CriarOrador";
 import Historico from "../pages/dashboard/components/Historico";
 import DashboardLayout from "../components/Dashboard";
 import PerfilDashboard from "../pages/dashboard/perfil_dashboard/PerfilDashboard";
+import EditarPrincipal from "../pages/dashboard/perfil_dashboard/components/EditarPrincipal";
+import EditarInfo from "../pages/dashboard/perfil_dashboard/components/EditarInfo";
+import EditarSenha from "../pages/dashboard/perfil_dashboard/components/EditarSenha";
+import EditarFoto from "../pages/dashboard/perfil_dashboard/components/EditarFoto";
 
 export default function Rotas() {
 
@@ -77,19 +81,32 @@ export default function Rotas() {
                 <Route>
                     <Route path="/dashboard" element={<DashboardLayout></DashboardLayout>}>
 
+                        <Route index element={<Evento />} />
+
                         <Route path="evento" element={<Evento />} >
-                            <Route index path="criarEvento" element={<CriarEvento />} />
+                            <Route path="criarEvento" element={<CriarEvento />} />
                             <Route path="criarBilhete" element={<CriarBilhete />} />
                             <Route path="criarPalestrante" element={<CriarPalestrante />} />
                             <Route path="criarOrador" element={<CriarOrador />} />
                         </Route>
 
                         <Route path="historico" element={<Historico />} >
-                           
+
                         </Route>
 
                         <Route path="perfil" element={<PerfilDashboard />}>
+                            <Route path="editar" element={<EditarPrincipal />}>
+                                <Route path="InformacaoBasica" element={<EditarInfo />} />
 
+                                <Route path="senha"
+                                    element={<EditarSenha />} />
+
+                                <Route path="foto"
+                                    element={<EditarFoto />} />
+
+
+
+                            </Route>
                         </Route>
 
 

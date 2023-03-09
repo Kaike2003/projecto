@@ -1,8 +1,8 @@
 import React from "react"
-import "./Editar.css"
+import "./EditarInfo.css"
 import { Mail, User, Lock, Map, Phone } from "lucide-react"
 
-export default function Editar() {
+export default function EditarInfo() {
 
     return (
         <>
@@ -74,30 +74,8 @@ export default function Editar() {
 
                         </div>
 
-                        <div>
-                            <i><Lock></Lock></i>
-                            <input
-                                type="password"
-                                name=""
-                                id=""
-                                placeholder="Digite seu nova"
-                            />
-                        </div>
                     </div>
-
-
-                    <div className="editar_perfil_div">
-
-                        <div>
-                            <i><Lock></Lock></i>
-                            <input
-                                type="password"
-                                name=""
-                                id=""
-                                placeholder="Digite seu nova"
-                            />
-                        </div>
-                    </div>
+                    
 
                 </div>
 
