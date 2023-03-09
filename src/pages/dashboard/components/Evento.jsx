@@ -26,7 +26,7 @@ export default function Evento() {
         } else if (valor === 4) {
             return <CriarOrador />
         } else if (valor == 5) {
-            return <Opcao></Opcao>
+            return <Historico></Historico>
         }
 
     }
@@ -41,9 +41,9 @@ export default function Evento() {
                 <div className="dashboard_Eventos_div">
                     <div className="dashboard_Eventos_Titulo_Criar">
                         <span>Eventos</span>
-                       <NavLink to={"/dashboard/historico"}>
-                       <button className="btn_criar_eventos">Historico</button>
-                       </NavLink>
+                        <NavLink to={"/dashboard/evento/historico"}>
+                            <button className="btn_criar_eventos">Historico</button>
+                        </NavLink>
                     </div>
 
                     <div>
@@ -60,7 +60,7 @@ export default function Evento() {
                                                     })
                                                 )
                                             }}
-                                        >Criar Evento</button></li>
+                                        >Evento</button></li>
                                     </NavLink>
                                     <NavLink to={"/dashboard/evento/criarBilhete"}>
                                         <li><button
@@ -71,7 +71,7 @@ export default function Evento() {
                                                     })
                                                 )
                                             }}
-                                        >Criar Bilhete</button></li>
+                                        >Bilhete</button></li>
                                     </NavLink>
                                     <NavLink to={"/dashboard/evento/criarPalestrante"}>
                                         <li><button
@@ -84,7 +84,7 @@ export default function Evento() {
 
                                                 )
                                             }}
-                                        >Criar Palestrante</button></li>
+                                        >Palestrante</button></li>
                                     </NavLink>
 
                                     <NavLink to={"/dashboard/evento/criarOrador"}>
@@ -96,7 +96,20 @@ export default function Evento() {
                                                     })
                                                 )
                                             }}
-                                        >Criar Orador</button></li>
+                                        >Orador</button></li>
+                                    </NavLink>
+
+                                    <NavLink to={"/dashboard/evento/historico"}>
+                                        <li><button
+                                            onClick={() => {
+                                                return (
+                                                    setAltarer((old) => {
+                                                        return old = 5
+                                                    })
+                                                )
+                                            }}
+                                        >Historico</button></li>
+
                                     </NavLink>
 
                                     <li><button

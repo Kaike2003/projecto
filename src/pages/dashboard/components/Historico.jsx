@@ -17,14 +17,14 @@ export default function Historico() {
 
 
                 <div className="dashboard_Eventos_div">
-                    <div className="dashboard_EventosHistorico_Titulo_Criar">
+                    {/* <div className="dashboard_EventosHistorico_Titulo_Criar">
                         <span>Historico</span>
                         <button className="btn_criar_eventos"
                             onClick={() => {
                                 return navigate("/dashboard/evento/criarEvento")
                             }}
                         >Criar evento</button>
-                    </div>
+                    </div> */}
 
                     <div className="dashboard_Eventos_Filtro_div">
                         <div>

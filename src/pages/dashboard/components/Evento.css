@@ -49,7 +49,7 @@
 }
 
 #menuInformacaoPerfil_org li button {
-    width: 195px;
+    width: 145px;
     color: #fff;
     background-color: #ffffff;
     box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
@@ -67,7 +67,7 @@
 
 
 #menuInformacaoPerfil_org a.active li button {
-    width: 195px;
+    width: 145px;
     color: #fff;
     background-color: #008cff;
     box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);

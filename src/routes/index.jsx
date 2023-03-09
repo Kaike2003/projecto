@@ -88,6 +88,7 @@ export default function Rotas() {
                             <Route path="criarBilhete" element={<CriarBilhete />} />
                             <Route path="criarPalestrante" element={<CriarPalestrante />} />
                             <Route path="criarOrador" element={<CriarOrador />} />
+                            <Route path="historico" element={<Historico />} />
                         </Route>
 
                         <Route path="historico" element={<Historico />} >

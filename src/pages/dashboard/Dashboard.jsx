@@ -33,11 +33,6 @@ export function Dashboard() {
 
                            </NavLink>
 
-                            <NavLink to={"/dashboard/historico"}>
-                                <li>
-                                    <button>Historico</button>
-                                </li>
-                            </NavLink>
                             <NavLink to={"/dashboard/perfil"}>
                                 <li>
                                     <button>Perfil</button>

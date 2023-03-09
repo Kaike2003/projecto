@@ -90,7 +90,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     row-gap: 15px;
-    height: 74vh;
+    height: 66vh;
     overflow-y: scroll;
     padding: 16px 20px 50px 20px;
     margin-top: 35px;
