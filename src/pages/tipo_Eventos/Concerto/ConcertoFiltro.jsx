@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react"
 import EventoCardPago_Gratis from "../../card_evento/EventoCardPago_Gratis";
 import Carousel from '../../caroucel/Carousel'
 import Paginacao from "../../Palestrante/components/Paginacao";
+import "./Concerto.css"
+
 
 
 const LIMIT = 12;
@@ -40,7 +42,7 @@ export default function Concerto(props) {
     return (
         <>
 
-            <div className='container'>
+<div className='container'>
                 <div className="container_conteudo">
                     <div className="conteudo_eventos">
                         <div className="conteudo_eventos_vermais">

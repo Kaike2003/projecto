@@ -8,7 +8,6 @@ export default function Layout() {
 
     return (
         <>
-
             <header>
                 <Header></Header>
             </header>
@@ -20,7 +19,6 @@ export default function Layout() {
             <footer>
                 <Footer></Footer>
             </footer>
-
         </>
     )
 

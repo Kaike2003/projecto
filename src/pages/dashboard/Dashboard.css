@@ -1,0 +1,108 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: 15% 85%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/*Lado Esquerdo*/
+
+.dashboard_LadoEsquerdo h1 {
+    min-width: 150px;
+    cursor: pointer;
+    width: 95%;
+    color: #fff;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+    color: #223035;
+    font-size: 26px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 3px;
+    padding: 10px 25px;
+}
+
+.dashboard_LadoEsquerdo h1:hover {
+
+    color: #fff;
+    background-color: #008cff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 140 255 / 50%);
+    transition: background-color 1s, color 1s, box-shadow 2s;
+
+}
+
+
+.dashboard_LadoEsquerdo {
+    background-color: #f3f6fd;
+    width: 100%;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(73, 74, 74, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+}
+
+#dashboard_LadoEsquerdo_menu {
+    margin: 4%;
+    height: 100%;
+    margin-top: 12.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+    padding: 0;
+}
+
+#dashboard_LadoEsquerdo_menu li {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin-top: 50px;
+    padding-bottom: 10px;
+    margin: auto;
+    cursor: pointer;
+}
+
+#dashboard_LadoEsquerdo_menu li button {
+    width: 195px;
+    color: #fff;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+    color: #223035;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 3px;
+    padding: 10px 20px;
+}
+
+#dashboard_LadoEsquerdo_menu li button:hover {
+    color: #fff;
+    background-color: #008cff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 140 255 / 50%);
+    transition: background-color 1s, color 1s, box-shadow 2s;
+}
+
+
+
+/*Lado direito*/
+
+
+.dashboard_LadoDireito {
+    /* background-color: blueviolet; */
+    width: 100%;
+
+    background-color: white;
+
+
+
+
+}

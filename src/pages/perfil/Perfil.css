@@ -1,0 +1,104 @@
+.detalhe_perfil_informacao {
+    height: 100vh;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    display: grid;
+    grid-template-columns: 30% 65%;
+    place-content: center;
+    gap: 15px;
+}
+
+.detalhe_perfil {
+    min-height: 100%;
+    height: auto;
+    /* background-color: aqua; */
+    background-color: white;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 140 255 / 50%);
+    border: none;
+    border-radius: 0.25rem;
+}
+
+
+.detalhe_perfil_foto_info {
+    height: 250px;
+    /* background-color: bisque; */
+    background-color: #008cff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 140 255 / 50%);
+    border: none;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.detalhe_perfil_detalhes {
+    height: 55%;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.detalhe_perfil_detalhes .espacomento {
+    padding-right: 5px;
+}
+
+.detalhe_perfil_foto_info .foto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detalhe_perfil_foto_info .foto img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+
+.informacaoPerfil {
+    height: 550px;
+    /* background-color: blueviolet; */
+    background-color: #fff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(73, 74, 74, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+
+}
+
+#menuInformacaoPerfil {
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    
+}
+
+#menuInformacaoPerfil li {
+    list-style: none;
+    font-size: 20px;
+}
+
+#menuInformacaoPerfil li button {
+    width: 225px;
+    color: #fff;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+    color: #223035;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 3px;
+    padding: 12px 20px;
+}
+

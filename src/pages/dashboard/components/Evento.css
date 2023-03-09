@@ -1,0 +1,75 @@
+.detalhe_perfil_informacao_org {
+    height: 100vh;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    place-content: center;
+    gap: 15px;
+    margin-top: 12px;
+}
+
+
+.informacaoPerfil_org {
+    width: 100%;
+    height: 550px;
+    /* background-color: blueviolet; */
+    /* background-color: #fff; */
+    /* box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(73, 74, 74, 0.5); */
+    border: none;
+    border-radius: 0.25rem;
+
+}
+
+#menuInformacaoPerfil_org {
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+
+}
+
+
+#menuInformacaoPerfil_org li button:hover {
+    color: #fff;
+    background-color: #008cff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 140 255 / 50%);
+    transition: background-color 1s, color 1s, box-shadow 2s;
+}
+
+#menuInformacaoPerfil_org li button :active{
+    color: #fff;
+    background-color: #008cff;
+}
+
+
+#menuInformacaoPerfil_org li {
+    list-style: none;
+    font-size: 20px;
+}
+
+#menuInformacaoPerfil_org li button {
+    width: 195px;
+    color: #fff;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
+    border: none;
+    border-radius: 0.25rem;
+    color: #223035;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 3px;
+    padding: 10px 20px;
+}
+
+.dashboard_Eventos_Titulo_Criar {
+    padding-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+    margin-bottom: 10px;
+}

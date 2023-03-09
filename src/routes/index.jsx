@@ -21,6 +21,16 @@ import Login from "../pages/Login/Login";
 import Palestrante from "../pages/Palestrante/Palestrante";
 
 import Bilhete from "../pages/detalhe_Bilhete/Bilhete";
+import Perfil from "../pages/perfil/Perfil";
+import { Dashboard } from "../pages/dashboard/Dashboard";
+import Evento from "../pages/dashboard/components/Evento";
+import CriarEvento from "../pages/dashboard/components/CriarEvento";
+import CriarBilhete from "../pages/dashboard/components/CriarBilhete";
+import CriarPalestrante from "../pages/dashboard/components/CriarPalestrante";
+import CriarOrador from "../pages/dashboard/components/CriarOrador";
+import Historico from "../pages/dashboard/components/Historico";
+import DashboardLayout from "../components/Dashboard";
+import PerfilDashboard from "../pages/dashboard/perfil_dashboard/PerfilDashboard";
 
 export default function Rotas() {
 
@@ -50,16 +60,48 @@ export default function Rotas() {
 
                 <Route path="concertos/visualizarIngresso/palestrante" element={<Palestrante />} />
 
-                
+
                 <Route path="concertos/visualizarIngresso/palestrante/bilhete" element={<Bilhete />} />
 
 
 
                 <Route path="*" element={<Navigate to={"/"} replace />} />
 
-
+                <Route path="perfil" element={<Perfil />} />
                 <Route path="login" element={<Login />} />
                 <Route path="teste" element={<Section_eventos_Teste />} />
+
+
+                {/*Dashboard*/}
+
+                <Route>
+                    <Route path="/dashboard" element={<DashboardLayout></DashboardLayout>}>
+
+                        <Route path="evento" element={<Evento />} >
+                            <Route index path="criarEvento" element={<CriarEvento />} />
+                            <Route path="criarBilhete" element={<CriarBilhete />} />
+                            <Route path="criarPalestrante" element={<CriarPalestrante />} />
+                            <Route path="criarOrador" element={<CriarOrador />} />
+                        </Route>
+
+                        <Route path="historico" element={<Historico />} >
+                           
+                        </Route>
+
+                        <Route path="perfil" element={<PerfilDashboard />}>
+
+                        </Route>
+
+
+
+
+
+
+
+                    </Route>
+
+                </Route>
+
             </Routes>
 
 

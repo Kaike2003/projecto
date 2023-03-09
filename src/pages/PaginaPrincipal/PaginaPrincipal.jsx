@@ -35,7 +35,7 @@ export default function PaginaPrincipal() {
 
     const filtro = function IfCategoria(valor) {
 
-        if (categoria == "1") {
+        if (categoria === "1") {
             return
         } else if (categoria === "2") {
             return <FestaFiltro></FestaFiltro>
@@ -76,7 +76,7 @@ export default function PaginaPrincipal() {
 
             <div className="container container_fundo ">
 
-            <Carousel></Carousel>
+                <Carousel></Carousel>
                 <div className="container">
                     <div className="conteudo_evento_paragrafos mt-3 mb-2 ">
                         <p className=" sugestao text-dark ">Filtrar por:</p>
@@ -110,8 +110,9 @@ export default function PaginaPrincipal() {
 
 
                 {
-                    filtro(categoria)
-
+                      
+                filtro(categoria)
+                
                 }
 
                 <InformacaoSite></InformacaoSite>
@@ -146,7 +147,7 @@ export default function PaginaPrincipal() {
                         </div>
                     </div>
 
-    
+
 
                     <div className="container_conteudo">
                         <div className="conteudo_eventos">
