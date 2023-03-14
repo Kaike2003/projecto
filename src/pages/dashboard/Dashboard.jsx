@@ -1,3 +1,4 @@
+import { User } from "lucide-react"
 import React from "react"
 import { Outlet, NavLink } from "react-router-dom"
 import "./Dashboard.css"
@@ -12,34 +13,40 @@ export function Dashboard() {
             <div className="dashboard">
 
                 <div className="dashboard_LadoEsquerdo">
-                    <NavLink to={"/dashboard"}>
-                    <h1>Logo</h1>
-                    </NavLink>
-                    <div className="dashboard_LadoEsquerdo_ul">
-                        <ul id="dashboard_LadoEsquerdo_menu">
 
-                            <NavLink to={"/dashboard/evento"}>
-                                <li>
-                                    <button>Eventos</button>
-                                </li>
+                    <div className="dashboard_LadoEsquerdo_h1ul">
+                        <NavLink to={"/dashboard"}>
+                            <h4>Logo</h4>
+                        </NavLink>
+                        <div className="dashboard_LadoEsquerdo_ul">
+                            <ul id="">
 
-                            </NavLink>
-                           
-                           <NavLink to={"/"}>
-                           
-                           <li>
-                                <button>Estatisticas</button>
-                            </li>
+                                <NavLink to={"/dashboard/evento/criarEvento"}>
+                                    <li>
+                                        Eventos
+                                    </li>
 
-                           </NavLink>
+                                </NavLink>
 
-                            <NavLink to={"/dashboard/perfil"}>
-                                <li>
-                                    <button>Perfil</button>
-                                </li>
-                            </NavLink>
-                        </ul>
+                                <NavLink to={"/"}>
+
+                                    <li>
+                                        Estatisticas
+                                    </li>
+
+                                </NavLink>
+
+                                <NavLink to={"/dashboard/evento/perfil"}>
+                                    <li>
+                                        <div className="border_perfil">
+                                            <User className="border_perfil_icon"></User>
+                                        </div>
+                                    </li>
+                                </NavLink>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
 
                 <div className="dashboard_LadoDireito">
@@ -48,7 +55,7 @@ export function Dashboard() {
 
                     </Outlet>
 
-                   
+
                 </div>
 
 

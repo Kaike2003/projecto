@@ -76,7 +76,6 @@ export default function Historico() {
                             <CardEventoOrg></CardEventoOrg>
                             <CardEventoOrg></CardEventoOrg>
                             <CardEventoOrg></CardEventoOrg>
-
                         </div>
                     </div>
 

@@ -1,6 +1,6 @@
 .dashboard {
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-rows: 7% 93%;
     height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -8,104 +8,76 @@
 
 /*Lado Esquerdo*/
 
-.dashboard_LadoEsquerdo h1 {
-    min-width: 150px;
-    cursor: pointer;
-    width: 95%;
-    color: #fff;
-    background-color: #ffffff;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
-    border: none;
-    border-radius: 0.25rem;
-    color: #223035;
-    font-size: 26px;
-    text-align: center;
-    letter-spacing: 1px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin: 3px;
-    padding: 10px 25px;
+.border_perfil{
+    background-color: rgb(119, 119, 119);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
 }
 
-.dashboard_LadoEsquerdo h1:hover {
+.border_perfil_icon{
+    position: relative;
+    left: 15%;
+}
 
-    color: #fff;
-    background-color: #008cff;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 140 255 / 50%);
-    transition: background-color 1s, color 1s, box-shadow 2s;
+.dashboard_LadoEsquerdo_h1ul{
+    height: 100%;
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 50px 0 50px;
+    align-items: center;
+}
 
+.dashboard_LadoEsquerdo_ul ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 20px;
+    font-size: 20px;
+}
+
+
+.dashboard_LadoEsquerdo_ul ul li{
+    list-style: none;
+    padding-top: 12px;
 }
 
 
 .dashboard_LadoEsquerdo {
-    background-color: #f3f6fd;
+    background-color: #092159;
     width: 100%;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(73, 74, 74, 0.5);
-    border: none;
-    border-radius: 0.25rem;
+    height: 100%;
 }
 
 #dashboard_LadoEsquerdo_menu {
-    margin: 4%;
+    padding: 1000px;
+    background-color: #008cff;
+    width: 100%;
     height: 100%;
-    margin-top: 12.5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 20px;
+    margin-top: 30%;
+    font-size: 17px;
     padding: 0;
 }
 
 #dashboard_LadoEsquerdo_menu li {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    margin-top: 50px;
-    padding-bottom: 10px;
-    margin: auto;
-    cursor: pointer;
+  
 }
 
-#dashboard_LadoEsquerdo_menu li button {
-    width: 195px;
-    color: #fff;
-    background-color: #ffffff;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
-    border: none;
-    border-radius: 0.25rem;
-    color: #223035;
-    font-size: 12px;
-    text-align: center;
-    letter-spacing: 1px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin: 3px;
-    padding: 10px 20px;
+#dashboard_LadoEsquerdo_menu li {
+   
 }
 
-#dashboard_LadoEsquerdo_menu li button:hover {
-    color: #fff;
-    background-color: #008cff;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 140 255 / 50%);
-    transition: background-color 1s, color 1s, box-shadow 2s;
+#dashboard_LadoEsquerdo_menu li:hover {}
+
+#dashboard_LadoEsquerdo_menu a {
+    color: black;
 }
 
-#dashboard_LadoEsquerdo_menu a.active li button {
-    width: 195px;
-    color: #fff;
-    background-color: #008cff;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(132, 133, 135, 0.5);
-    border: none;
-    border-radius: 0.25rem;
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    letter-spacing: 1px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin: 3px;
-    padding: 10px 20px;
+#dashboard_LadoEsquerdo_menu a.active li {
+   
 }
 
 

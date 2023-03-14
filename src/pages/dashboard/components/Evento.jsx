@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import "./Evento.css"
-import CriarEvento from "./CriarEvento"
-import CriarBilhete from "./CriarBilhete"
-import CriarPalestrante from "./CriarPalestrante"
+import CriarEvento from "./Criar/evento/CriarEvento"
+import CriarBilhete from "./Criar/bilhete/CriarBilhete"
+import CriarPalestrante from "./Criar/palestrante/CriarPalestrante"
 import Historico from "./Historico"
-import CriarOrador from "./CriarOrador"
+import CriarOrador from "./Criar/orador/CriarOrador"
 import { NavLink, Outlet } from "react-router-dom"
 import Opcao from "./Opcao/Opcao"
 
@@ -129,7 +129,7 @@ export default function Evento() {
 
                                         <Outlet>
 
-                                            {escolha(alterar)}
+                                            {/* {escolha(alterar)} */}
 
                                         </Outlet>
 

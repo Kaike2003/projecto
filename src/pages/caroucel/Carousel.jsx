@@ -1,5 +1,17 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import "./Caroucel.css"
+import Concerto from "../../assets/icons/concerto.png"
+import Teatro from "../../assets/icons/teatro.png"
+import Palestra from "../../assets/icons/palestra.png"
+import Seminario from "../../assets/icons/seminario.png"
+import Festa from "../../assets/icons/festa.png"
+import Todos from "../../assets/icons/todos.png"
+
+
+
+
+
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTicket } from '@fortawesome/free-solid-svg-icons'
@@ -23,8 +35,8 @@ import { useEffect } from "react";
 
 function ParallaxText({ children, baseVelocity = 150 }) {
     const baseX = useMotionValue(0);
-    const { scrollX } = useScroll();
-    const scrollVelocity = useVelocity(scrollX);
+    const { scrollY } = useScroll();
+    const scrollVelocity = useVelocity(scrollY);
     const smoothVelocity = useSpring(scrollVelocity, {
         damping: 50,
         stiffness: 400
@@ -42,7 +54,7 @@ function ParallaxText({ children, baseVelocity = 150 }) {
 
     const directionFactor = useRef(1);
     useAnimationFrame((t, delta) => {
-        let moveBy = directionFactor.current * baseVelocity * (delta / 3000);
+        let moveBy = directionFactor.current * baseVelocity * (delta / 6500);
 
         if (velocityFactor.get() < 0) {
             directionFactor.current = -1;
@@ -61,9 +73,7 @@ function ParallaxText({ children, baseVelocity = 150 }) {
                 <span>{children} </span>
                 <span>{children} </span>
                 <span>{children} </span>
-                <span>{children} </span>
-                <span>{children} </span>
-                <span>{children} </span>
+                <span>{children} </span>    
 
 
             </motion.div>
@@ -88,105 +98,99 @@ export default function Carousel() {
     return (
         <section>
 
-            <ParallaxText baseVelocity={3}>
-                <motion.div className="container_motion_caroucel" >
-                    <motion.div className="caroucel" ref={carousel}
-                        whileTap={{ cursor: "grabbing" }}>
-                        <motion.div className="inner" /*drag={"x"}*/
-                            dragTransition={{ timeConstant: 200 }}
-                            dragConstraints={{ right: 0, left: - width }}
-                        /*initial={{ x: 0 }}
-                        animate={{ x: 0, scale: 1.04}}
-                        transition={
-                            {
-                                times: [0, 0.1, 0.9, 1],
-                                delay: 0.5, x: {
-                                    repeatDelay: 3,
-                                    type: "spring",
-                                    bounce: 0.25,
-                                    velocity: 2,
-                                    repeat: Infinity,
-                                    repeatType: "loop",
-                                    duration: 3,
-                                    ease: ["linear"]
-                                }, mass: 400, stiffness: 20
-                            }} */
-                        >
+            <ParallaxText baseVelocity={5}>
+                <div className="container_motion_caroucel" >
+                    <div className="caroucel" ref={carousel}>
+                        <div className="inner">
 
-                            <motion.div
+                            <div
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
                                     <Link to={"/todosEventos"}>
                                         <div className="link_style">
-                                            <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" />
+                                            <img src={Todos} alt="" 
+                                            className="bilhete"/>
+                                            {/* <FontAwesomeIcon icon={faTicket}
+                                                className="bilhete" /> */}
                                             <p className="">Todos</p>
                                         </div>
                                     </Link>
                                 </div>
-                            </motion.div>
+                            </div>
 
-                            <motion.div
+                            <div
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
                                     <Link to={"/concertos"}>
                                         <div className="link_style">
-                                            <FontAwesomeIcon icon={faMasksTheater}
-                                                className="bilhete" />
+                                            <img
+                                            className="bilhete"
+                                            src={Concerto}></img>
+                                            {/* <FontAwesomeIcon icon={faMasksTheater}
+                                                className="bilhete" /> */}
                                             <p className="">Concerto</p>
                                         </div>
                                     </Link>
                                 </div>
-                            </motion.div>
+                            </div>
 
-                            <motion.div
+                            <div
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
                                     <Link to={"/festas"}>
                                         <div className="link_style">
-                                            <FontAwesomeIcon icon={faPanorama}
-                                                className="bilhete" />
+                                        <img
+                                            className="bilhete"
+                                            src={Festa}></img>
+                                            {/* <FontAwesomeIcon icon={faPanorama}
+                                                className="bilhete" /> */}
                                             <p className="">Shows</p>
                                         </div>
                                     </Link>
 
                                 </div>
-                            </motion.div>
+                            </div>
 
-                            <motion.div
+                            <div
 
                                 className="item" >
 
                                 <div className="container_eventos_listados_div">
                                     <Link to={"/palestra"}>
                                         <div className="link_style">
-                                            <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" />
+                                        <img
+                                            className="bilhete"
+                                            src={Palestra}></img>
+                                            {/* <FontAwesomeIcon icon={faTicket}
+                                                className="bilhete" /> */}
                                             <p className="">Palestra</p>
                                         </div>
                                     </Link>
                                 </div>
 
-                            </motion.div>
+                            </div>
 
-                            <motion.div
+                            <div
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
                                     <Link to={"/teatro"}>
                                         <div className="link_style">
-                                            <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" />
+                                        <img
+                                            className="bilhete"
+                                            src={Teatro}></img>
+                                            {/* <FontAwesomeIcon icon={faTicket}
+                                                className="bilhete" /> */}
                                             <p className="">Teatro</p>
                                         </div>
                                     </Link>
                                 </div>
-                            </motion.div>
+                            </div>
 
-                            <motion.div
+                            {/* <div
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
@@ -198,26 +202,29 @@ export default function Carousel() {
                                         </div>
                                     </Link>
                                 </div>
-                            </motion.div>
+                            </div> */}
 
-                            <motion.div
+                            <div
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
                                     <Link to={"/"}>
                                         <div className="link_style">
-                                            <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" />
-                                            <p className="">Seminários</p>
+                                        <img
+                                            className="bilhete"
+                                            src={Seminario}></img>
+                                            {/* <FontAwesomeIcon icon={faTicket}
+                                                className="bilhete" /> */}
+                                            <p className="">Seminário</p>
                                         </div>
                                     </Link>
                                 </div>
-                            </motion.div>
+                            </div> 
 
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
 
-                </motion.div>
+                </div>
             </ParallaxText>
 
 

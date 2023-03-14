@@ -1,0 +1,71 @@
+table {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th, tfoot td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #008cff;
+  color: white;
+}
+
+.pagination {
+  column-gap: 20px;
+  margin-top: 2%;
+  display: flex;
+  font-size: 17px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.pagination button {
+  padding: 4px;
+  width: 90px;
+  border: 1px solid rgb(216, 213, 213);
+  border: none;
+  border-radius: 0.25rem;
+  margin-left: 1%;
+  font-size: 17px;
+}
+
+.pagination button:hover {
+  background-color: #008cff;
+  color: white;
+  transition: background-color 1s, color 1s;
+  cursor: pointer;
+}
+
+.select_tabela {
+  padding-top: 9px;
+  padding-bottom: 11px;
+  padding-left: 45px;
+  width: 300px;
+  border: 1px solid rgb(216, 213, 213);
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgba(73, 74, 74, 0.5);
+  border: none;
+  border-radius: 0.25rem;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  font-size: 17px;
+
+}

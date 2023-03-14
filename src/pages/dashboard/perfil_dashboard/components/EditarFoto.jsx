@@ -1,6 +1,5 @@
 import React from "react"
-import "./EditarFoto.css"
-import { Lock  } from "lucide-react"
+import "./perfil.css"
 
 export default function EditarFoto() {
 
@@ -9,29 +8,31 @@ export default function EditarFoto() {
 
             <form action="#" method="get">
 
-                <div className="container editar_foto">
+                <div className="container perfil_organizador">
 
-                    <div className="editar_foto_div">
+                    <div className="editar_perfil_organizador container">
 
-                    <div class="foto-upload">
-                                <label for="form-field-field_53c80dc" class="elementor-field-label">
-                                    Clique selecionar sua imagem
-                                </label>
-                                <input type="file" name="form_fields[field_53c80dc]" id="form-field-field_53c80dc" class="elementor-field elementor-size-lg  elementor-upload-field" required="required" aria-required="true" />
-                            </div>
-                                
+                        <div class="foto-upload">
+                            <label for="form-field-field_53c80dc" class="elementor-field-label">
+                                Clique para selecionar uma imagem
+                            </label>
+                            <input type="file" name="" class="input_file" required="required" aria-required="true" />
+                        </div>
+
                     </div>
 
 
+                    <div className="container editar_foto_botao_salvar">
+                        <button className="btn btn-primary">Salvar </button>
+
+                        <button className="btn btn-primary">Salvar </button>
+
+                        <button className="btn btn-primary">Salvar </button>
+                    </div>
+
                 </div>
 
-                <div className="container editar_foto_botao_salvar">
-                    <button className="btn btn-primary">Salvar </button>
 
-                    <button className="btn btn-primary">Salvar </button>
-
-                    <button className="btn btn-primary">Salvar </button>
-                </div>
 
             </form>
 

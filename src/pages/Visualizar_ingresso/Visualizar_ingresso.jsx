@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Visualizar_ingresso.css"
 import { CalendarDays, Timer, Mic, MapPin, Ticket, Info, AlignJustify } from 'lucide-react';
-import Img from "../../assets/img/kaike.png"
+import Img from "../../assets/img/palestra.jpg"
 import { X } from "lucide-react"
 
 import Palestrante from "../Palestrante/Palestrante";
@@ -63,8 +63,8 @@ export default function Visualizar_ingresso() {
                         <div className="ladoInformacaoDiv">
 
                             <div className="ladoInformacaoSpan">
-                                <span>titulo evento</span>
-                                <span>categoria evento</span>
+                                <span>Programação Web</span>
+                                <span>Palestra</span>
                             </div>
 
                             <div>
@@ -74,13 +74,13 @@ export default function Visualizar_ingresso() {
                                     <div className="template_detalhe_2">
                                         <div className="icone_texto">
                                             <Info size={sizeIcone}></Info>
-                                            <p className="texto"> estado do evento</p>
+                                            <p className="texto"> Estado do evento - Desponivel</p>
                                         </div >
 
                                         <div className="icone_texto">
                                             <MapPin size={sizeIcone}>
                                             </MapPin>
-                                            <p className="texto"> Lorem ipsum dolor sit amet consectetur </p>
+                                            <p className="texto">Luanda - Universidade Medotista</p>
                                         </div >
                                     </div>
 
@@ -88,20 +88,20 @@ export default function Visualizar_ingresso() {
                                         <div className="icone_texto">
                                             <CalendarDays size={sizeIcone}>
                                             </CalendarDays>
-                                            <p className="texto"> 22/02/2023 </p>
+                                            <p className="texto"> 14/03/2023 </p>
                                         </div >
 
                                         <div className="icone_texto">
                                             <CalendarDays size={sizeIcone} >
                                             </CalendarDays>
-                                            <p className="texto"> 22/02/2023 </p>
+                                            <p className="texto"> 15/03/2023 </p>
                                         </div >
                                     </div>
 
                                     <div className="template_detalhe_2">
                                         <div className="icone_texto">
                                             <Mic size={sizeIcone}></Mic>
-                                            <p className="texto">orador</p>
+                                            <p className="texto">Kaike Bartolomeu</p>
                                         </div>
 
                                         <div className="icone_texto">
@@ -114,12 +114,12 @@ export default function Visualizar_ingresso() {
                                     <div className="template_detalhe_2">
                                         <div className="icone_texto">
                                             <Ticket size={sizeIcone}></Ticket>
-                                            <p className="texto"> bilhetes desponiveis</p>
+                                            <p className="texto"> bilhetes desponiveis - 100</p>
                                         </div>
 
                                         <div className="icone_texto">
                                             <Ticket size={sizeIcone}></Ticket>
-                                            <p className="texto"> bilhetes</p>
+                                            <p className="texto"> bilhetes - 200</p>
                                         </div>
 
                                     </div>
@@ -128,7 +128,7 @@ export default function Visualizar_ingresso() {
                                     <div className="icone_texto">
                                         <p className="
                                         texto 
-                                            textoParagrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis facilis perferendis error, blanditiis impedit ad et magnam quia accusamus corporis omnis, nisi cum soluta explicabo vitae dolore aliquam saepe libero? Nemo laudantium nobis voluptate non. Animi quis eveniet ex expedita.  </p>
+                                            textoParagrafo">As linguagens de programação web são utilizadas especificamente para o desenvolvimentos das camadas de apresentação e de lógica de negócio de web sites, portais e aplicações web em geral. </p>
                                     </div>
 
                                     <Modal

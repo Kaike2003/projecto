@@ -1,6 +1,5 @@
 import React from "react"
-import "./EditarInfo.css"
-import { Mail, User, Lock, Map, Phone } from "lucide-react"
+import "./perfil.css"
 
 export default function EditarInfo() {
 
@@ -9,35 +8,41 @@ export default function EditarInfo() {
 
             <form action="#" method="get">
 
-                <div className="container editar_perfil">
+                <div className="container perfil_organizador">
 
-                    <div className="editar_perfil_div">
+
+
+                    <div className="editar_perfil_organizador container">
+
+
                         <div>
-                            <i><User></User></i>
+                            <label htmlFor="">Nome<span
+                                className="obrigatorio"
+                            >*</span></label>
                             <input
                                 type="text"
                                 name=""
                                 id=""
-                                placeholder="Digite seu nome"
+                                placeholder="Nome do bilhete"
                             />
                         </div>
 
                         <div>
-                            <i><Map></Map></i>
+                            <label htmlFor="">Endereço<span
+                                className="obrigatorio"
+                            >*</span></label>
                             <input
                                 type="text"
                                 name=""
                                 id=""
-                                placeholder="Digite seu endereço"
+                                placeholder="Nome do bilhete"
                             />
                         </div>
 
-                    </div>
-
-                    <div className="editar_perfil_div">
-
                         <div>
-                            <i><Mail></Mail></i>
+                            <label htmlFor="">Email<span
+                                className="obrigatorio"
+                            >*</span></label>
                             <input
                                 type="email"
                                 name=""
@@ -46,8 +51,11 @@ export default function EditarInfo() {
                             />
                         </div>
 
+
                         <div>
-                            <i><Mail style={{ visibility: "hidden" }}></Mail></i>
+                            <label htmlFor="">Data de nascimento<span
+                                className="obrigatorio"
+                            >*</span></label>
                             <input
                                 type="date"
                                 name=""
@@ -56,15 +64,10 @@ export default function EditarInfo() {
                             />
                         </div>
 
-                    </div>
-
-
-
-
-                    <div className="editar_perfil_div">
                         <div>
-
-                            <i><Phone></Phone></i>
+                            <label htmlFor="">Telefone<span
+                                className="obrigatorio"
+                            >*</span></label>
                             <input
                                 type="number"
                                 name=""
@@ -75,17 +78,19 @@ export default function EditarInfo() {
                         </div>
 
                     </div>
-                    
+
+                    <div className="container editar_perfil_botao_salvar">
+                        <button className="btn btn-primary">Salvar </button>
+
+                        <button className="btn btn-primary">Salvar </button>
+
+                        <button className="btn btn-primary">Salvar </button>
+                    </div>
+
+
 
                 </div>
 
-                <div className="container editar_perfil_botao_salvar">
-                    <button className="btn btn-primary">Salvar </button>
-
-                    <button className="btn btn-primary">Salvar </button>
-
-                    <button className="btn btn-primary">Salvar </button>
-                </div>
 
             </form>
 

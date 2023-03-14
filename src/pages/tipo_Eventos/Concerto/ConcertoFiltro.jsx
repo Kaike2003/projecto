@@ -19,7 +19,7 @@ export default function Concerto(props) {
     const endIndex = startIndex + itensPerpage
     const currentItens = data.slice(startIndex, endIndex)
 
-    const pages = Math.ceil(data.length / itensPerpage) 
+    const pages = Math.ceil(data.length / itensPerpage)
     console.log(pages)
 
 
@@ -41,8 +41,8 @@ export default function Concerto(props) {
 
     return (
         <>
-
-<div className='container'>
+        
+            <div className='container'>
                 <div className="container_conteudo">
                     <div className="conteudo_eventos">
                         <div className="conteudo_eventos_vermais">

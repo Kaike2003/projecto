@@ -121,7 +121,8 @@ export default function PaginaPrincipal() {
                     <div className="conteudo_eventos">
                         <div className="conteudo_eventos_vermais">
                             <h4 className="pb-3 pt-2 text-dark">Eventos top do mês</h4>
-                            <Link to={"/topMes"} className="btn btn-primary">Ver mais</Link>
+                            <Link to={"/topMes"}
+                             className="btn-vermais">Ver mais</Link>
                         </div>
                     </div>
 
@@ -153,7 +154,7 @@ export default function PaginaPrincipal() {
                         <div className="conteudo_eventos">
                             <div className="conteudo_eventos_vermais">
                                 <h4 className="pb-3 pt-2 text-dark">Todos os eventos</h4>
-                                <Link to={"/todosEventos"} className="btn btn-primary">Ver mais</Link>
+                                <Link to={"/todosEventos"} className="btn-vermais">Ver mais</Link>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,5 @@
 import React from "react"
-import "./EditarSenha.css"
-import { Mail, User, Lock, Map, Phone } from "lucide-react"
+import "./perfil.css"
 
 export default function EditarSenha() {
 
@@ -9,12 +8,14 @@ export default function EditarSenha() {
 
             <form action="#" method="get">
 
-                <div className="container editar_senha">
+                <div className="container perfil_organizador">
 
-                    <div className="editar_senha_div">
+                    <div className="editar_perfil_organizador container">
 
                         <div>
-                            <i><Lock></Lock></i>
+                            <label htmlFor="">Senha<span
+                                className="obrigatorio"
+                            >*</span></label>
                             <input
                                 type="password"
                                 name=""
@@ -24,7 +25,9 @@ export default function EditarSenha() {
                         </div>
 
                         <div>
-                            <i><Lock></Lock></i>
+                            <label htmlFor="">Senha<span
+                                className="obrigatorio"
+                            >*</span></label>
                             <input
                                 type="password"
                                 name=""
@@ -34,16 +37,16 @@ export default function EditarSenha() {
                         </div>
                     </div>
 
+                    <div className="container editar_senha_botao_salvar">
+                        <button className="btn btn-primary">Salvar </button>
+
+                        <button className="btn btn-primary">Salvar </button>
+
+                        <button className="btn btn-primary">Salvar </button>
+                    </div>
 
                 </div>
 
-                <div className="container editar_senha_botao_salvar">
-                    <button className="btn btn-primary">Salvar </button>
-
-                    <button className="btn btn-primary">Salvar </button>
-
-                    <button className="btn btn-primary">Salvar </button>
-                </div>
 
             </form>
 

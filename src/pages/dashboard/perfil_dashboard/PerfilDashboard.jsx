@@ -5,53 +5,14 @@ import Editar from "./components/EditarInfo"
 import Historico from "./components/Historico"
 import EditarPrincipal from "./components/EditarPrincipal"
 import { NavLink, Outlet } from "react-router-dom"
-import {Mail, Calendar, Map, Phone} from "lucide-react"
 
 export default function PerfilDashboard() {
 
-  const [alterar, setAlterar] = useState(() => {
-    return 1
-  })
-
-
-  const editarOnclick = (e) => {
-    return setAlterar((old) => {
-      return old = 1
-    })
-  }
-  const historicoOnclick = (e) => {
-    return setAlterar((old) => {
-      return old = 3
-    })
-  }
-  const eventoOnclick = (e) => {
-    return setAlterar((old) => {
-      return old = 2
-    })
-  }
-
-
-
-  function escolha(valor) {
-
-    if (valor == 1) {
-      // return <Editar></Editar>
-      return <EditarPrincipal></EditarPrincipal>
-    } else if (valor == 3) {
-      return <Historico></Historico>
-    }
-
-  }
 
   return (
     <>
-
-      <div className="dashboard_perfilDashboard_Titulo_Criar container">
-        <span>Perfil</span>
-      </div>
+        <h2 className="primeiroHeader">Perfil</h2>
       <div className="container detalhe_perfilDashboard_informacao">
-
-
         <div className="detalhe_perfilDashboard">
           <div className="detalhe_perfilDashboard_foto_info">
             <div className="foto">
@@ -94,17 +55,16 @@ export default function PerfilDashboard() {
         <div className="informacaoPerfilDashboard">
           <ul id="menuInformacaoPerfilDashboard" className="container">
 
-            <NavLink to={"/dashboard/perfil/editar"}>
+            <NavLink to={"/dashboard/evento/perfil/editar"}>
               <li>
                 <button
-                  onClick={editarOnclick}>Editar</button>
+                >Editar</button>
               </li>
             </NavLink>
 
-            <NavLink to={"/"}>
+            <NavLink to={"/login"}>
               <li>
                 <button
-                  onClick={historicoOnclick}
                 >Sair</button>
               </li>
             </NavLink>
@@ -113,11 +73,9 @@ export default function PerfilDashboard() {
           <div className="container conteudo_InformacaoPerfilDashboard">
             {
 
-              <Outlet>{escolha(alterar)}</Outlet>
+              <Outlet></Outlet>
 
             }
-            {/* <Editar></Editar> */}
-            {/* <Historico></Historico> */}
           </div>
         </div>
 
