@@ -3,10 +3,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
 import Layout from "../components/Layout/index"
 import PaginaPrincipal from "../pages/PaginaPrincipal/PaginaPrincipal";
-
-
-
-
 import Concerto from "../pages/tipo_Eventos/Concerto/Concerto"
 import Festa from "../pages/tipo_Eventos/Festa/Festa";
 import Teatro from "../pages/tipo_Eventos/Teatro/Teatro"
@@ -21,41 +17,20 @@ import Login from "../pages/Login/Login";
 import Palestrante from "../pages/Palestrante/Palestrante";
 
 import Bilhete from "../pages/detalhe_Bilhete/Bilhete";
-import Perfil from "../pages/perfil/Perfil";
-import { Dashboard } from "../pages/dashboard/Dashboard";
-import Evento from "../pages/dashboard/components/Evento";
-import CriarEvento from "../pages/dashboard/components/Criar/evento/CriarEvento";
-import CriarBilhete from "../pages/dashboard/components/Criar/bilhete/CriarBilhete";
-import CriarPalestrante from "../pages/dashboard/components/Criar/palestrante/CriarPalestrante";
-import CriarOrador from "../pages/dashboard/components/Criar/orador/CriarOrador";
-import Historico from "../pages/dashboard/components/Historico";
-import DashboardLayout from "../components/Dashboard";
-import PerfilDashboard from "../pages/dashboard/perfil_dashboard/PerfilDashboard";
-import EditarPrincipal from "../pages/dashboard/perfil_dashboard/components/EditarPrincipal";
-import EditarInfo from "../pages/dashboard/perfil_dashboard/components/EditarInfo";
-import EditarSenha from "../pages/dashboard/perfil_dashboard/components/EditarSenha";
-import EditarFoto from "../pages/dashboard/perfil_dashboard/components/EditarFoto";
-import DashboardHome from "../pages/dashboard/components/DashboardHome/DashboardHome";
-import DashboarEvento from "../pages/dashboard/components/DashboardEvento/DashboardEvento";
-import Tabela from "../pages/dashboard/components/Tabela/Tabela";
-import SortingTable from "../pages/dashboard/components/Tabela/SortingTable";
-import GlobalFilterTable from "../pages/dashboard/components/Tabela/GlobalFilterTable";
-import { EventoColuna } from "../pages/dashboard/components/Tabela/components/Coluna";
-import EditarPalestrante from "../pages/dashboard/components/Editar/palestrante/EditarPalestrante";
-import EditarBilhete from "../pages/dashboard/components/Editar/bilhete/EditarBilhete";
-import EditarEvento from "../pages/dashboard/components/Editar/evento/EditarEvento";
-import EditarOrador from "../pages/dashboard/components/Editar/orador/EditarOrador";
-import ApagarEvento from "../pages/dashboard/components/Apagar/evento/ApagarEvento";
-import ApagarBilhete from "../pages/dashboard/components/Apagar/bilhete/ApagarBilhete";
-import ApagarPalestrante from "../pages/dashboard/components/Apagar/palestrante/ApagarPalestrante";
-import ApagarOrador from "../pages/dashboard/components/Apagar/orador/ApagarOrador";
-import Estatistica from "../pages/dashboard/components/Criar/estatistica/Estatistica";
-import EditarPrincipalParticipante from "../pages/perfil/components/EditarPrincipalParticipante";
-import EditarInfoParticipante from "../pages/perfil/components/EditarInfoParticipante";
-import EditarSenhaParticipante from "../pages/perfil/components/EditarSenhaParticipante";
-import EditarFotoParticipante from "../pages/perfil/components/EditarFotoParticipante";
-import AdicionarFoto from "../pages/dashboard/components/Criar/foto/AdicionarFoto";
 
+import Historico from "../pages/dashboard/components/Historico";
+import Dashboard from "../pages/dashboard/components/Dashboard/Dashboard";
+
+import Estrutura from "../pages/dashboard/components/estrutura/Estrutura";
+import Criar from "../pages/dashboard/components/estrutura/Criar";
+import DashboardLayout from "../components/Dashboard/DashboardLayout";
+import Home from "../pages/dashboard/components/estrutura/Home";
+import Perfil from "../pages/dashboard/components/estrutura/Perfil";
+import { ContextDashboard } from "../context/Context";
+
+
+//  Context Dashboard
+// CP - Context proprs ou Context propriedade
 
 export default function Rotas() {
 
@@ -94,155 +69,2774 @@ export default function Rotas() {
 
                 <Route path="*" element={<Navigate to={"/"} replace />} />
 
-                <Route path="perfil" element={<Perfil />} >
-                    <Route path="editar" element={<EditarPrincipalParticipante />}>
-                        <Route path="InformacaoBasica" element={<EditarInfoParticipante />} />
+                <Route path="perfil" element={<h1>Perfil</h1>} >
 
-                        <Route path="senha"
-                            element={<EditarSenhaParticipante />} />
-
-                        <Route path="foto"
-                            element={<EditarFotoParticipante />} />
-                    </Route>
 
                 </Route>
                 <Route path="login" element={<Login />} />
                 <Route path="teste" element={<Section_eventos_Teste />} />
 
 
-                {/*Dashboard*/}
+         
+               {/* Dashboard do organizador */}
+                <Route>
+                    <Route path="organizador"
+                        element={
 
-                <Route path="dashboard/evento" element={<DashboarEvento />} >
+                            <ContextDashboard.Provider
+                                value={{
+                                    CPadmin: false,
+                                    CPli: ""
+                                }} >
+                                <DashboardLayout />
+                            </ContextDashboard.Provider>
 
-                    <Route path="criarEvento" element={<CriarEvento />} />
+                        }>
 
-                    <Route path="adicionarFotoEvento"
-                        element={<AdicionarFoto
-                            titulo={"Adicionar foto do evento"}
-                            visibilidade={"none"}
-                            nome={"Evento"}
-                            selecionar={"evento"}
-                        />}
+                        <Route index
+                            element={
+                                <Home
+                                    titulo="Olá, Nome do usuário"
+                                />}
+                        />
 
-                    />
+                        <Route index path="home"
+                            element={
+                                <Home
+                                    titulo="Olá, Nome do usuário"
+                                />}
+                        />
 
-                    <Route path="editarEvento" element={<EditarEvento />} />
+                        <Route path="evento"
+                            element={
+                                <Estrutura
+                                    titulo="Evento"
+                                    lista1="Criar"
+                                    lista2="Foto"
+                                    // lista3="Editar"
+                                    lista4="Listar"
+                                    // lista5="Excluir"
+                                    rota1="/organizador/evento/criar"
+                                    rota2="/organizador/evento/foto"
+                                    rota3="/organizador/evento/editar"
+                                    rota4="/organizador/evento/listar"
+                                    rota5="/organizador/evento/excluir"
 
-                    <Route path="apagarEvento" element={<ApagarEvento />} />
+                                />}
+                        >
 
-                    <Route path="estatistica" element={<Estatistica />} />
+                            <Route path="criar"
+                                element={
+                                    <Criar
 
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                    Adicione as principais informações do evento."
+                                        PnomeBotao="Criar"
 
-                    <Route path="EventoLista" element={<Tabela
-                        nome={"Lista de evento"}
-                        coluna={EventoColuna}
-                    />} />
-
-
-                    <Route path="criarBilhete" element={<CriarBilhete />} />
-                    <Route path="editarBilhete" element={<EditarBilhete />} />
-
-                    <Route path="apagarBilhete" element={<ApagarBilhete />} />
-
-
-                    <Route path="BilheteLista" element={<Tabela
-                        nome={"Lista de bilhete"}
-                        coluna={EventoColuna}
-
-                    />} />
-
-                    <Route path="criarPalestrante" element={<CriarPalestrante />} />
-
-                    <Route path="adicionarFotoPalestrante"
-                        element={<AdicionarFoto
-                            titulo={"Adicionar foto do palestrante"}
-                            visibilidade={"block"}
-                            nome={"Palestrante"}
-                            selecionar={"palestrante"}
-
-                        />}
-                    />
-
-                    <Route path="editarPalestrante" element={<EditarPalestrante />} />
-
-                    <Route path="apagarPalestrante" element={<ApagarPalestrante />} />
-
-
-
-                    <Route path="PalestranteLista" element={<Tabela
-                        nome={"Lista de palestrante"}
-                        coluna={EventoColuna}
-
-
-                    />} />
-
-
-                    <Route path="criarOrador" element={<CriarOrador />} />
-
-                    <Route path="editarOrador" element={<EditarOrador />} />
-
-                    <Route path="apagarOrador" element={<ApagarOrador />} />
-
-                    <Route path="OradorLista" element={<Tabela
-                        nome={"Lista de orador"}
-                        coluna={EventoColuna}
-
-                    />} />
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1=""
+                                        PselectOption1=""
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Categoria"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
 
 
 
-                    <Route path="historico" element={<Historico />} />
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
 
-                    <Route path="perfil" element={<PerfilDashboard />}>
-                        <Route path="editar" element={<EditarPrincipal />}>
-                            <Route path="InformacaoBasica" element={<EditarInfo />} />
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
 
-                            <Route path="senha"
-                                element={<EditarSenha />} />
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay=""
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display=""
+                                        PInformacao3Display=""
+                                        PInformacao4Display=""
+
+
+                                        //! Display de todas select
+                                        PselectDisplay1="none"
+                                        PselectDisplay2=""
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display=""
+                                        PInput3Display=""
+                                        PInput4Display=""
+                                        PInput5Display=""
+                                        PInput6Display=""
+                                        PInput7Display=""
+                                        PInput8Display=""
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+
+                                    />} />
 
                             <Route path="foto"
-                                element={<EditarFoto />} />
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                        Formato JPEG ou PNG de no máximo 2MB."
+                                        PnomeBotao="Enviar"
 
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1=""
+                                        PselectOption1=""
+                                        Pselect2="Evento"
+                                        PselectOption2="Evento"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+
+                                        //! Display de todas textearea
+                                        PtexteareaDisplay="none"
+
+
+
+
+                                        //! Display de todas select
+                                        PselectDisplay1="none"
+                                        PselectDisplay2=""
+
+                                        //! Display de todas inputs
+                                        PInput1Display="none"
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay=""
+                                        PtabelaDisplay="none"
+
+
+                                    />} />
+
+
+                            <Route path="editar"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                     Adicione as principais informações do evento."
+                                        PnomeBotao="Salvar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1="Evento"
+                                        PselectOption1="Selecionar evento"
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Selecionar categoria"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay=""
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display=""
+                                        PInformacao3Display=""
+                                        PInformacao4Display=""
+
+                                        //! Display de todas select
+                                        PselectDisplay1=""
+                                        PselectDisplay2=""
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display=""
+                                        PInput3Display=""
+                                        PInput4Display=""
+                                        PInput5Display=""
+                                        PInput6Display=""
+                                        PInput7Display=""
+                                        PInput8Display=""
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} /> */
+
+
+                            <Route
+                                path="listar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                      Adicione as principais informações do evento."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display="none"
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2="none"
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay=""
+
+                                />}
+
+                            />
+
+                            <Route path="excluir"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Exclua evento"
+                                        PsubInformacao1="
+                                    Pode excluir evento 2 dias antes de começar."
+                                        PnomeBotao="Excluir"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        PselectDisplay1="none"
+                                        Pselect1=""
+                                        PselectOption1=""
+                                        PselectDisplay2=""
+                                        Pselect2="Eventos"
+                                        PselectOption2="eventos"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+
+
+
+                                        //! Display de todas select
+
+                                        //! Display de todas inputs
+                                        PInput1Display="none"
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />
+
+                        </Route>
+
+
+                        <Route path="bilhete"
+                            element={
+                                <Estrutura
+                                    titulo="Bilhete"
+                                    lista1="Criar"
+                                    lista2="Editar"
+                                    lista3="Listar"
+                                    lista4="Excluir"
+                                    rota1="/organizador/bilhete/criar"
+                                    rota2="/organizador/bilhete/editar"
+                                    rota3="/organizador/bilhete/listar"
+                                    rota4={"/organizador/bilhete/excluir"}
+                                />}
+                        >
+                            <Route path="criar"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                    Adicione as principais informações do bilhete."
+                                        PnomeBotao="Criar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        PselectDisplay1=""
+                                        Pselect1="Evento"
+                                        PselectOption1="Selecionar evento"
+                                        PselectDisplay2=""
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Selecionar categoria"
+                                        PspanNomeInput1="Nome do bilhete"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do bilhete"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Quantidade"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Quantidade de bilhete"
+                                        PtipoInput2="number"
+
+                                        PspanNomeInput3="Preço"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Preço do bilhete"
+                                        PtipoInput3="number"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="3. Data e horário"
+                                        PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display=""
+                                        PInformacao3Display="none"
+                                        PInformacao4Display=""
+
+                                        //! Display de todas select
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display=""
+                                        PInput3Display=""
+                                        PInput4Display="none"
+                                        PInput5Display=""
+                                        PInput6Display=""
+                                        PInput7Display=""
+                                        PInput8Display=""
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />
+
+                            <Route path="editar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                  Adicione as principais informações do bilhete."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    PselectDisplay1=""
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    PselectDisplay2=""
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do bilhete"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do bilhete"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Quantidade"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Quantidade de bilhete"
+                                    PtipoInput2="number"
+
+                                    PspanNomeInput3="Preço"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Preço do bilhete"
+                                    PtipoInput3="number"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="3. Data e horário"
+                                    PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display=""
+                                    PInformacao2Display=""
+                                    PInformacao3Display="none"
+                                    PInformacao4Display=""
+
+                                    //! Display de todas select
+
+                                    //! Display de todas inputs
+                                    PInput1Display=""
+                                    PInput2Display=""
+                                    PInput3Display=""
+                                    PInput4Display="none"
+                                    PInput5Display=""
+                                    PInput6Display=""
+                                    PInput7Display=""
+                                    PInput8Display=""
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay="none"
+                                />}
+                            />
+
+                            <Route
+                                path="listar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                      Adicione as principais informações do evento."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display="none"
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2="none"
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay=""
+
+                                />}
+
+                            />
+
+
+                            <Route path="excluir"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                  Pode excluir bilhete 2 dias antes do evento começar."
+                                    PnomeBotao="Excluir"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    PselectDisplay1=""
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    PselectDisplay2=""
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do bilhete"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do bilhete"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Quantidade"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Quantidade de bilhete"
+                                    PtipoInput2="number"
+
+                                    PspanNomeInput3="Preço"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Preço do bilhete"
+                                    PtipoInput3="number"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="3. Data e horário"
+                                    PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display=""
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay="none"
+                                />}
+                            />
 
 
                         </Route>
+
+
+                        <Route path="orador"
+                            element={
+                                <Estrutura
+                                    titulo="Orador"
+                                    lista1="Criar"
+                                    lista2="Editar"
+                                    lista3={"Listar"}
+                                    lista4="Excluir"
+                                    rota1="/organizador/orador/criar"
+                                    rota2="/organizador/orador/editar"
+                                    rota3="/organizador/orador/listar"
+                                    rota4="/organizador/orador/excluir"
+                                />}
+                        >
+
+                            <Route path="criar"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                    Adicione as principais informações do orador."
+                                        PnomeBotao="Criar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1="Evento"
+                                        PselectOption1="Selecionar evento"
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Selecionar categoria"
+                                        PspanNomeInput1="Nome do orador"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do bilhete"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Quantidade"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Quantidade de bilhete"
+                                        PtipoInput2="number"
+
+                                        PspanNomeInput3="Preço"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Preço do bilhete"
+                                        PtipoInput3="number"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="3. Data e horário"
+                                        PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+                                        //! Display de todas select
+                                        PselectDisplay1=""
+                                        PselectDisplay2="none"
+
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />
+
+                            <Route path="editar"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                    Adicione as principais informações do orador."
+                                        PnomeBotao="Salvar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1="Evento"
+                                        PselectOption1="Selecionar evento"
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Selecionar categoria"
+                                        PspanNomeInput1="Nome do orador"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do bilhete"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Quantidade"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Quantidade de bilhete"
+                                        PtipoInput2="number"
+
+                                        PspanNomeInput3="Preço"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Preço do bilhete"
+                                        PtipoInput3="number"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="3. Data e horário"
+                                        PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+                                        //! Display de todas select
+                                        PselectDisplay1=""
+                                        PselectDisplay2="none"
+
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />
+
+                            <Route
+                                path="listar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                      Adicione as principais informações do evento."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display="none"
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2="none"
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay=""
+
+                                />}
+
+                            />
+
+
+                            <Route path="excluir"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Excluir orador"
+                                    PsubInformacao1="
+                                  Pode excluir orador 2 dias antes de do evento começar."
+                                    PnomeBotao="Excluir"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    PselectDisplay1=""
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    PselectDisplay2=""
+                                    Pselect2="Orador"
+                                    PselectOption2="Selecionar orador"
+                                    PspanNomeInput1="Nome do bilhete"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do bilhete"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Quantidade"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Quantidade de bilhete"
+                                    PtipoInput2="number"
+
+                                    PspanNomeInput3="Preço"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Preço do bilhete"
+                                    PtipoInput3="number"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="3. Data e horário"
+                                    PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display=""
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay="none"
+                                />}
+                            />
+
+                        </Route>
+
+
+                        <Route path="palestrante"
+                            element={
+                                <Estrutura
+                                    titulo="Palestrante"
+                                    lista1="Criar"
+                                    lista2="Foto"
+                                    lista3="Editar"
+                                    lista4="Listar"
+                                    lista5="Excluir"
+
+
+                                    rota1="/organizador/palestrante/criar"
+                                    rota2="/organizador/palestrante/foto"
+                                    rota3="/organizador/palestrante/editar"
+                                    rota4="/organizador/palestrante/listar"
+                                    rota5="/organizador/palestrante/excluir"
+                                />}
+                        >
+                            <Route path="criar"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                    Adicione as principais informações do palestrante."
+                                        PnomeBotao="Criar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1="Evento"
+                                        PselectOption1="Selecionar evento"
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Selecionar categoria"
+                                        PspanNomeInput1="Nome do palestrante"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nome do palestrante"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Facebook"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do facebook"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Instagram"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do instagram"
+                                        PtipoInput3="number"
+
+
+                                        PspanNomeInput4="Youtube"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do canal"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="3. Data e horário"
+                                        PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+                                        //! Display de todas select
+                                        PselectDisplay1=""
+                                        PselectDisplay2="none"
+
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display=""
+                                        PInput3Display=""
+                                        PInput4Display=""
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />
+
+
+                            <Route path="foto"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                        Formato JPEG ou PNG de no máximo 2MB."
+                                        PnomeBotao="Enviar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1=""
+                                        PselectOption1=""
+                                        Pselect2="Palestrante"
+                                        PselectOption2="Selecionar palestrante"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+
+                                        //! Display de todas textearea
+                                        PtexteareaDisplay="none"
+
+
+
+
+                                        //! Display de todas select
+                                        PselectDisplay1="none"
+                                        PselectDisplay2=""
+
+                                        //! Display de todas inputs
+                                        PInput1Display="none"
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay=""
+                                        PtabelaDisplay="none"
+
+
+                                    />} />
+
+
+                            <Route path="editar"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                    Adicione as principais informações do orador."
+                                        PnomeBotao="Salvar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1="Palestrante"
+                                        PselectOption1="Selecionar palestrante"
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Selecionar categoria"
+                                        PspanNomeInput1="Nome do palestrante"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nome do palestrante"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Facebook"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do facebook"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Instagram"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do instagram"
+                                        PtipoInput3="number"
+
+
+                                        PspanNomeInput4="Youtube"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do canal"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="3. Data e horário"
+                                        PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+                                        //! Display de todas select
+                                        PselectDisplay1=""
+                                        PselectDisplay2="none"
+
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display=""
+                                        PInput3Display=""
+                                        PInput4Display=""
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />
+
+                            <Route
+                                path="listar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                      Adicione as principais informações do evento."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display="none"
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2="none"
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay=""
+
+                                />}
+
+                            />
+
+                            <Route path="excluir"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Excluir palestrante"
+                                    PsubInformacao1="
+                                  Pode excluir palestrante 2 dias antes de do evento começar."
+                                    PnomeBotao="Excluir"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    PselectDisplay1=""
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    PselectDisplay2=""
+                                    Pselect2="Palestrante"
+                                    PselectOption2="Selecionar palestrante"
+                                    PspanNomeInput1="Nome do bilhete"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do bilhete"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Quantidade"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Quantidade de bilhete"
+                                    PtipoInput2="number"
+
+                                    PspanNomeInput3="Preço"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Preço do bilhete"
+                                    PtipoInput3="number"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="3. Data e horário"
+                                    PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display=""
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay="none"
+                                />}
+                            />
+
+
+                        </Route>
+
+
+
+                        <Route path="estatistica" />
+
+                        <Route path="perfil"
+                            element={
+                                <Estrutura
+                                    titulo="Informação da conta"
+                                    lista1={"Informações"}
+                                    lista2={"Editar"}
+                                    lista3={"Senha"}
+                                    lista4={"foto"}
+                                    lista5={"Sair"}
+                                    rota1={"/organizador/perfil/informacao"}
+                                    rota2={"/organizador/perfil/editar"}
+                                    rota3={"/organizador/perfil/senha"}
+                                    rota4={"/organizador/perfil/foto"}
+                                    rota5={"/login"}
+                                />
+                            }
+
+
+                        >
+
+                            <Route
+                                path="informacao"
+                                element={<Perfil
+                                    PbotaoNome=""
+                                    Pdivgrupo1Display="none"
+                                    Pinput1="Nome"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Primiro nome"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display="none"
+                                    Pinput2="Apelido"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Último nome"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display="none"
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display="none"
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display="none"
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display="none"
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay="none"
+                                    exbirImagemDisplay=""
+                                    criarInfoCriar="none"
+
+                                />}
+                            />
+
+                            <Route
+                                path="editar"
+                                element={<Perfil
+                                    PbotaoNome="Salvar"
+                                    Pdivgrupo1Display=""
+                                    Pinput1="Nome"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Primiro nome"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display=""
+                                    Pinput2="Apelido"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Último nome"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display=""
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display=""
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display=""
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display=""
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay="none"
+                                    exbirImagemDisplay="none"
+                                    criarInfoCriar=""
+                                />}
+
+                            />
+
+                            <Route
+                                path="senha"
+                                element={<Perfil
+                                    PbotaoNome="Salvar"
+                                    Pdivgrupo1Display=""
+                                    Pinput1="Senha"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Senha antiga"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display=""
+                                    Pinput2="Senha"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Senha nova"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display="none"
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display="none"
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display="none"
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display="none"
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay="none"
+                                    exbirImagemDisplay="none"
+                                    criarInfoCriar=""
+                                />}
+
+                            />
+
+                            <Route
+                                path="foto"
+                                element={<Perfil
+                                    PbotaoNome="Salvar"
+                                    Pdivgrupo1Display="none"
+                                    Pinput1="Senha"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Senha antiga"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display="none"
+                                    Pinput2="Senha"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Senha nova"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display="none"
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display="none"
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display="none"
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display="none"
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay=""
+                                    exbirImagemDisplay="none"
+
+                                />}
+
+                            />
+
+                            <Route
+                                path="sair"
+                                element={<Perfil />}
+
+                            />
+
+
+                        </Route>
+
+
+
+
+
+
                     </Route>
 
                 </Route>
 
 
+
+
+
+
+                {/* Dashboard do Admininstrador */}
                 <Route>
-                    <Route path="dashboard" element={<DashboardLayout></DashboardLayout>}>
+                    <Route path="administrador"
+                        element={
 
-                        <Route index element={<DashboardHome />} />
+                            <ContextDashboard.Provider
+                                value={{
+                                    CPadmin: true,
+                                    CPli: "none"
+                                }}
+                            >
+                                <DashboardLayout />
+                            </ContextDashboard.Provider>
+                        }>
 
-                        {/* <Route path="evento" element={<Evento />} >
-                            <Route path="criarEvento" element={<CriarEvento />} />
-                            <Route path="criarBilhete" element={<CriarBilhete />} />
-                            <Route path="criarPalestrante" element={<CriarPalestrante />} />
-                            <Route path="criarOrador" element={<CriarOrador />} />
-                            <Route path="historico" element={<Historico />} />
-                        </Route> */}
+                        <Route index
+                            element={
+                                <Home
+                                    titulo="Olá, Nome do admin"
+                                />}
+                        />
 
-                        <Route path="historico" element={<Historico />} >
+                        <Route index path="home"
+                            element={
+                                <Home
+                                    titulo="Olá, Nome do admin"
+                                />}
+                        />
+
+                        <Route path="admin"
+                            element={
+                                <Estrutura
+                                    titulo="Administrador"
+                                    lista1="Listar"
+                                    rota1="/administrador/admin/listar"
+                                />}
+                        >
+
+                            <Route
+                                path="listar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                      Adicione as principais informações do evento."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display="none"
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2="none"
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay=""
+
+                                />}
+
+                            />
+
+                            <Route path="excluir"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Exclua evento"
+                                        PsubInformacao1="
+                                    Pode excluir evento 2 dias antes de começar."
+                                        PnomeBotao="Excluir"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        PselectDisplay1="none"
+                                        Pselect1=""
+                                        PselectOption1=""
+                                        PselectDisplay2=""
+                                        Pselect2="Eventos"
+                                        PselectOption2="eventos"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+
+
+
+                                        //! Display de todas select
+
+                                        //! Display de todas inputs
+                                        PInput1Display="none"
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />
 
                         </Route>
 
-                        {/* <Route path="perfil" element={<PerfilDashboard />}>
-                            <Route path="editar" element={<EditarPrincipal />}>
-                                <Route path="InformacaoBasica" element={<EditarInfo />} />
 
-                                <Route path="senha"
-                                    element={<EditarSenha />} />
+                        <Route path="eventos"
+                            element={
+                                <Estrutura
+                                    titulo="Eventos"
+                                    lista1="Listar"
+                                    rota1="/administrador/eventos/listar"
+                                />}
+                        >
 
-                                <Route path="foto"
-                                    element={<EditarFoto />} />
+
+
+                            <Route
+                                path="listar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                      Adicione as principais informações do evento."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
 
 
 
-                            </Route>
-                        </Route> */}
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
 
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display="none"
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2="none"
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay=""
+
+                                />}
+
+                            />
+
+                        </Route>
+
+
+                        <Route path="usuarios"
+                            element={
+                                <Estrutura
+                                    titulo="Usuários"
+                                    lista1="Listar"
+                                    rota1="/administrador/usuarios/listar"
+                                />}
+                        >
+
+                            <Route
+                                path="listar"
+                                element={<Criar
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                      Adicione as principais informações do evento."
+                                    PnomeBotao="Salvar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1="Evento"
+                                    PselectOption1="Selecionar evento"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1=""
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2=""
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3=""
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4=""
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5=""
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6=""
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7=""
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8=""
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display="none"
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2="none"
+
+                                    //! Display de todas inputs
+                                    PInput1Display="none"
+                                    PInput2Display="none"
+                                    PInput3Display="none"
+                                    PInput4Display="none"
+                                    PInput5Display="none"
+                                    PInput6Display="none"
+                                    PInput7Display="none"
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay=""
+
+                                />}
+
+                            />
+
+                        </Route>
+
+
+                        <Route path="estatistica" />
+
+                        <Route path="perfil"
+                            element={
+                                <Estrutura
+                                    titulo="Informação da conta"
+                                    lista1={"Informações"}
+                                    lista2={"Editar"}
+                                    lista3={"Senha"}
+                                    lista4={"Sair"}
+                                    rota1={"/administrador/perfil/informacao"}
+                                    rota2={"/administrador/perfil/editar"}
+                                    rota3={"/administrador/perfil/senha"}
+                                    rota5={"/login"}
+                                />
+                            }
+
+
+                        >
+
+                            <Route
+                                path="informacao"
+                                element={<Perfil
+                                    PbotaoNome=""
+                                    Pdivgrupo1Display="none"
+                                    Pinput1="Nome"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Primiro nome"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display="none"
+                                    Pinput2="Apelido"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Último nome"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display="none"
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display="none"
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display="none"
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display="none"
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay="none"
+                                    exbirImagemDisplay=""
+                                    criarInfoCriar="none"
+
+                                />}
+                            />
+
+                            <Route
+                                path="editar"
+                                element={<Perfil
+                                    PbotaoNome="Salvar"
+                                    Pdivgrupo1Display=""
+                                    Pinput1="Nome"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Primiro nome"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display=""
+                                    Pinput2="Apelido"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Último nome"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display=""
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display=""
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display=""
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display=""
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay="none"
+                                    exbirImagemDisplay="none"
+                                    criarInfoCriar=""
+                                />}
+
+                            />
+
+                            <Route
+                                path="senha"
+                                element={<Perfil
+                                    PbotaoNome="Salvar"
+                                    Pdivgrupo1Display=""
+                                    Pinput1="Senha"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Senha antiga"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display=""
+                                    Pinput2="Senha"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Senha nova"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display="none"
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display="none"
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display="none"
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display="none"
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay="none"
+                                    exbirImagemDisplay="none"
+                                    criarInfoCriar=""
+                                />}
+
+                            />
+
+                            <Route
+                                path="foto"
+                                element={<Perfil
+                                    PbotaoNome="Salvar"
+                                    Pdivgrupo1Display="none"
+                                    Pinput1="Senha"
+                                    PinputNome1=""
+                                    PinputPlaceholder1="Senha antiga"
+                                    PinputTipo1="text"
+
+                                    Pdivgrupo2Display="none"
+                                    Pinput2="Senha"
+                                    PinputNome2=""
+                                    PinputPlaceholder2="Senha nova"
+                                    PinputTipo2="text"
+
+
+                                    Pdivgrupo3Display="none"
+                                    Pinput3="IBAN"
+                                    PinputNome3=""
+                                    PinputPlaceholder3="IBAN"
+                                    PinputTipo3="text"
+
+
+                                    Pdivgrupo4Display="none"
+                                    Pinput4="Telefone"
+                                    PinputNome4=""
+                                    PinputPlaceholder4="9xx xxx- xxx"
+                                    PinputTipo4="number"
+
+
+                                    Pdivgrupo5Display="none"
+                                    Pinput5="Endereço"
+                                    PinputNome5=""
+                                    PinputPlaceholder5="Endereço"
+                                    PinputTipo5="text"
+
+
+                                    Pdivgrupo6Display="none"
+                                    Pinput6="Data nascimento"
+                                    PinputNome6=""
+                                    PinputPlaceholder6=""
+                                    PinputTipo6="date"
+
+                                    PdivgrupoFileDisplay=""
+                                    exbirImagemDisplay="none"
+
+                                />}
+
+                            />
+
+                            <Route
+                                path="sair"
+                                element={<Perfil />}
+
+                            />
+
+
+                        </Route>
 
 
 
@@ -252,6 +2846,7 @@ export default function Rotas() {
                     </Route>
 
                 </Route>
+
 
             </Routes>
 

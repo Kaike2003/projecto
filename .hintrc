@@ -12,5 +12,8 @@
     "not opera <= 92",
     "not safari <= 16.1",
     "not samsung <= 19"
-  ]
+  ],
+  "hints": {
+    "detect-css-reflows/layout": "off"
+  }
 }

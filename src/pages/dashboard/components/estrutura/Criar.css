@@ -1,0 +1,200 @@
+form {
+    width: 100%;
+    height: 100%;
+
+}
+
+.criar {
+    width: 100%;
+    height: 100%;
+}
+
+.criar_info {
+    padding: 20px 0;
+    width: 100%;
+}
+
+.PnomeBotao {
+    color: black
+}
+
+.criar_info span:nth-child(1) {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.criar_info span:nth-child(3) {
+    font-size: 14px;
+    padding: 0 0 0 30px;
+}
+
+.criar_estrutura {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 10px;
+    place-content: center;
+    padding: 0 0 0 20px;
+    margin: 0 0 1% 0;
+}
+
+.criar_date_time {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    place-content: center;
+    padding: 0 0 0 20px;
+    margin: 0 0 2% 0;
+}
+
+
+.criar_info_criar {
+    display: flex;
+    align-items: center;
+}
+
+.criar_info_criar button {
+    border: none;
+    height: 39px;
+    width: 89px;
+    padding: 10px;
+    border-radius: 20px;
+    padding: 8px 0px 8px 0px;
+    background-color: rgb(239, 151, 75);
+    color: black;
+    letter-spacing: 0.3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-weight: 0;
+}
+
+.criar_info_criar button:hover {
+    background-color: rgb(245, 161, 88);
+}
+
+
+.criar_row {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.criar_estrutura div input,
+.criar_estrutura select,
+.criar_date_time input {
+    padding: 10px 10px 10px 10px;
+    height: 40px;
+    border: 1px solid #dfe0df;
+    border-radius: 4px;
+    outline-color: none;
+    outline-style: none;
+    color: black;
+}
+
+#criar_descricao {
+    width: 100%;
+    margin-top: 2%;
+    border-radius: 4px;
+    resize: none;
+    border: 1px solid #dfe0df;
+    height: 230px;
+    outline-color: none;
+    outline-style: none;
+    padding: 10px 10px 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file_image {
+    color: white;
+    padding: 10px 10px 10px 10px;
+    height: 40px;
+    border: 1px solid #dfe0df;
+    border-radius: 4px;
+    outline-color: none;
+    outline-style: none;
+    background-color: #f5af09;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*Mobile*/
+ @media screen and (min-width: 120px) and (max-width:640px ) {
+    
+    .criar_estrutura {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+        place-content: center;
+        padding: 0 0 0 5px;
+        margin: 0 0 1% 0;
+    }
+
+
+    .criar_date_time {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        place-content: center;
+        padding: 0 0 0 20px;
+        margin: 0 0 2% 0;
+    }
+
+}
+
+/*Tablet*/
+@media screen and (min-width: 641px ) and (max-width: 1007px) {
+
+    .criar_estrutura {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        place-content: center;
+        padding: 0 0 0 5px;
+        margin: 0 0 1% 0;
+    }
+
+
+    .criar_date_time {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        place-content: center;
+        padding: 0 0 0 20px;
+        margin: 0 0 2% 0;
+    }
+
+}
+
+/*Laptops*/
+
+@media (min-width: 1008px) and (max-width: 2475px) {
+
+    .criar_estrutura {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        place-content: center;
+        padding: 0 0 0 5px;
+        margin: 0 0 1% 0;
+    }
+
+    .criar_date_time {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        place-content: center;
+        padding: 0 0 0 20px;
+        margin: 0 0 2% 0;
+    }
+
+}

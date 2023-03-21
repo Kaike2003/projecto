@@ -1,7 +1,8 @@
-
-body {
-
+.borderRed{
+    border: 1px solid red;
 }
+
+
 .container_loginCreate {
     display: flex;
     justify-content: center;

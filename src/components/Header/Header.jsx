@@ -2,9 +2,6 @@ import React, { useEffect, useState, } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { X } from "lucide-react"
 import "./Header.css"
-
-
-
 import Modal from "react-modal"
 
 Modal.setAppElement("#root")
@@ -31,95 +28,7 @@ export default function Header() {
         }
     })
 
-    console.log(largura)
-
-    useEffect(() => {
-
-        console.log(largura)
-        if (Number(largura) >= 1258) {
-            setOverlay((old) => {
-                return old = {
-                    top: "1%",
-                    bootom: "25%",
-                    left: "30%",
-                    right: "30%"
-                }
-            })
-
-            setContent((old) => {
-                return old = {
-                    left: "40px",
-                    right: "40px",
-                    background: "white"
-                }
-            })
-
-        } else if (Number(largura) <= 900) {
-
-            setOverlay((old) => {
-                return old = {
-                    top: "1%",
-                    bootom: "15%",
-                    left: "120px",
-                    right: "120px"
-
-                }
-            })
-
-            setContent((old) => {
-                return old = {
-                    left: "10px",
-                    right: "10px",
-                    background: "white"
-                }
-            })
-
-        } else if (Number(largura) <= 550) {
-
-
-            setOverlay((old) => {
-                return old = {
-                    top: "1%",
-                    bootom: "25%",
-                    left: "120px",
-                    right: "120px"
-
-                }
-            })
-
-            setContent((old) => {
-                return old = {
-                    left: "10px",
-                    right: "10px",
-                    background: "white"
-                }
-            })
-
-        } else {
-
-            setOverlay((old) => {
-                return old = {
-                    top: "1%",
-                    bootom: "20%",
-                    left: "30%",
-                    right: "30%"
-
-                }
-            })
-
-            setContent((old) => {
-                return old = {
-                    left: "40px",
-                    right: "40px",
-                    background: "white"
-                }
-            })
-
-        }
-
-    }, [overlary])
-
-
+    
     const [modalIsOpen, setIsOpen] = useState(() => {
         return false
     })

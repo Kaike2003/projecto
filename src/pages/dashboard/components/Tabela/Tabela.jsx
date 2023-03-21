@@ -1,153 +1,130 @@
-import React, { useMemo } from "react"
-import { useTable, usePagination, useSortBy, useGlobalFilter } from "react-table"
-import MOCK_DATA from "./components/MOCK_DATA.json"
-import { COLUMNS, GROUPED_COLUMNS } from "./components/Coluna"
-import "./Tabela.css"
-import GlobalFilter from "./components/GlobalFilter"
+import React, { useState } from "react"
+import MaterialTable from 'material-table'
+// import GetAppIcon from '@material-ui/icons/GetApp';
+// import AddIcon from '@material-ui/icons/Add';
 
-export default function GlobalFilterTable({ nome, coluna }) {
+export default function Tabela() {
 
-    const columns = useMemo(() => {
-        return COLUMNS
-    }, [])
+  const [tableData, setTableData] = useState(() => {
+    return [
+      { nome: "Eugenie", apelido: "Pinks", email: "epinks0@pen.io", "age": "193-226-9349", telefone: "0573-0133", genero: "F", preco: "23424353" },
+      { nome: "Lynn", apelido: "Matyushonok", email: "lmatyushonok1@artisteer.com", "age": "511-763-4062", telefone: "65162-045", genero: "M", preco: "23424353" },
+      { nome: "Jennee", apelido: "Allender", email: "jallender2@lulu.com", "age": "911-621-7563", telefone: "67046-014", genero: "F", preco: "53424353" },
+      { nome: "Delmor", apelido: "Broszkiewicz", email: "dbroszkiewicz3@histats.com", "age": "666-874-8830", telefone: "65162-511", genero: "M", preco: "13424353" },
+      { nome: "Bernardina", apelido: "Lomansey", email: "blomansey4@ucoz.com", "age": "365-850-9653", telefone: null, genero: "F", preco: "23424353" },
+      { nome: "Inglebert", apelido: "Saldler", email: "isaldler5@va.gov", "age": "551-759-0045", telefone: "37808-289", genero: "M", preco: "234353" },
+    ]
+  })
 
-    const data = useMemo(() => {
-        return MOCK_DATA
-    }, [])
-
-    const {
-        getTableBodyProps,
-        getTableProps,
-        headerGroups,
-        page,
-        nextPage,
-        previousPage,
-        canNextPage,
-        canPreviousPage,
-        pageOptions,
-        gotoPage,
-        pageCount,
-        pageSize,
-        setPageSize,
-        rows,
-        prepareRow,
-        state,
-        setGlobalFilter
-    } = useTable({
-        columns: coluna,
-        data,
-    }, useGlobalFilter, useSortBy, usePagination)
-
-    const firstPageRows = rows.slice(0, 10)
-
-    const { pageIndex } = state
-
-    const { globalFilter } = state
-
-    return (
-        <>
-            <h2 className="primeiroHeader">{nome}</h2>
-            <GlobalFilter
-                filter={globalFilter}
-                setFilter={setGlobalFilter}
-            />
-
-            <select
-            className="select_tabela"
-            name="" id="" value={pageSize}
-                onChange={e => setPageSize(Number(e.target.value))}
-            >
-
-                {
-                    [10, 25, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Mostrar {pageSize}
-                        </option>
-                    ))
-                }
-
-            </select>
-
-            <table {...getTableProps}>
-
-                <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {
-                                headerGroup.headers.map((column) => (
-                                    <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                        {column.render("Header")}
-                                        <span>
-                                            {column.isSorted ? (column.isSortedDesc ? "🔽" : "🔼") : ""}
-                                        </span>
-                                    </th>
-
-                                ))
-                            }
-                        </tr>
-                    ))}
-                </thead>
+  const columns = [
+    { title: "Nome", field: "nome" },
+    { title: "Apelido", field: "apelido" },
+    { title: "Genero", field: "genero", lookup: { M: "Masculino", F: "Femenino" } },
+    { title: "Telefone", field: "telefone", emptyValue: () => <em>null</em> },
+    {
+      title: "Preço", field: "preco",
+      type: "currency", currencySetting: { currencyCode: "INR", minimumFractionDigits: 0 }
+    }
+  ]
 
 
-                <tbody {...getTableBodyProps}>
-                    {
-                        page.map(row => {
-                            prepareRow(row)
-                            return (
-                                <tr {...row.getRowProps()}>
-                                    {
-                                        row.cells.map((cell) => {
-                                            return <td {...cell.getCellProps()}>
-                                                {cell.render("Cell")}
-                                            </td>
-                                        })
-                                    }
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
 
-            </table>
+  return (
+    <>
 
-            <div className="pagination">
-                <span>
-                    Página {" "}
-                    <strong>
-                        {pageIndex + 1} de {pageOptions.length}
-                    </strong>
-                </span>
-                <span>
-                    | Ir para página: {" "}
-                    <input type="number" name="" id=""
-                    placeholder="Nº da página"
-                        defaultValue={pageIndex + 1}
-                        onChange={e => {
-                            const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0
-                            gotoPage(pageNumber)
-                        }}
-                        style={{ width: "140px", paddingLeft: "5px" }}
-                    />
-                </span>
+      <div>
+        <MaterialTable
+          editable={{
+            onRowAdd: (newRow) => new Promise((resolve, reject) => {
+              setTableData((old) => {
+                return old = [...tableData, newRow]
+              })
+              setTimeout(() => { resolve() }, 1100)
+            }),
+            onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
-                <button
-                    onClick={() => gotoPage(0)}
-                    disabled={!canPreviousPage}
-                >{"<<"}</button>
-                <button
-                    onClick={() => previousPage()}
-                    disabled={!canPreviousPage}
-                >Anterior</button>
-                <button
-                    onClick={() => nextPage()}
-                    disabled={!canNextPage}
-                >Próxima</button>
-                <button
-                    onClick={() => gotoPage(pageCount - 1)}
-                    disabled={!canNextPage}
-                >{">>"}</button>
-            </div>
-        </>
-    )
+              try {
+                const updateTableData = [...tableData]
+                updateTableData[oldRow.tableData.id] = newRow
+                setTableData((old) => {
+                  return old = updateTableData
+                })
+                setTimeout(() => { resolve() }, 1200)
+              } catch (error) {
+                alert(error)
+              }
+
+            }),
+            onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
+              try {
+                const updateData = [...tableData]
+                updateData.splice(selectedRow.tableData.id, 1)
+                setTableData((old) => {
+                  return old = updateData
+                })
+                console.log(selectedRow)
+                setTimeout(() => { resolve() }, 1500)
+              } catch (error) {
+                alert(error)
+              }
+            })
+          }}
+          actions={
+            [{
+              icon: () => {
+                return ""
+              },
+              tooltip: "Cliar em mim",
+              onClick: (e, data) => console.log(data, e.target.value)
+            }]
+          }
+          localization={{
+            header: {
+              actions: "Ações"
+            },
+            body: {
+              emptyDataSourceMessage: "Não há registros a serem exibidos.",
+              addTooltip: "Adicionar",
+              editTooltip: "Editar",
+              editRow: {
+                cancelTooltip: "Cancelar",
+                saveTooltip: "Confirmar",
+                deleteText: "Tem certeza de excluir esta linha?"
+              }
+            },
+            pagination: {
+              labelRowsSelect: "Linhas",
+              nextTooltip: "Próxima página",
+              previousTooltip: "Página anteriror"
+            },
+            toolbar: {
+              searchTooltip: "Pesquisar",
+              exportTitle: "Exportar tabela",
+
+            }
+          }}
+          title={"Lista de testes"}
+          columns={columns}
+          data={tableData}
+          options={{
+            pageSizeOptions: [15, 25, 50],
+            paginationType: "stepped",
+            exportButton: true,
+            exportAllData: true,
+            exportFileName: "Lista teste",
+            addRowPosition: "first",
+            actionsColumnIndex: -1,
+            selection: false,
+            rowStyle: { background: "#f8f7fa" },
+          }
+          }
+
+        />
+      </div>
+
+
+
+    </>
+  )
 
 }

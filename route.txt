@@ -1,33 +1,95 @@
-import React from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+  <Route path="excluir"
+                                element={
+                                    <Criar
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Exclua evento"
+                                        PsubInformacao1="
+                                    Pode excluir evento 2 dias antes de começar."
+                                        PnomeBotao="Excluir"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        PselectDisplay1="none"
+                                        Pselect1=""
+                                        PselectOption1=""
+                                        PselectDisplay2=""
+                                        Pselect2="Eventos"
+                                        PselectOption2="eventos"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
 
 
-export default function App() {
 
-    return (
-        <>
-            <h1>React Routes</h1>
-            <hr />
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
 
-            <Routes>
-                <Route path="/" element={<h1>Home</h1>}></Route>
-                <Route path="/servicos" element={<h1>Serviços</h1>}></Route>
-                <Route path="/contatos/*" element={
-                    <>
-                        <h1>Contactos</h1>
-                        <Outlet />
-                    </>
-                }>
-                    <Route path="localizacao" element={<h1>localizacao </h1>}></Route>
-                    <Route path="telefone" element={<h1>telefone</h1>}></Route>
-                    <Route path="email" element={<h1>email</h1>}></Route>
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
 
-                </Route>
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
 
 
-            </Routes>
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
 
-        </>
-    )
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
 
-}
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+
+
+
+                                        //! Display de todas select
+
+                                        //! Display de todas inputs
+                                        PInput1Display="none"
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />} />

@@ -1,0 +1,199 @@
+.dashboardevento_Lados {
+    display: grid;
+    grid-template-rows: 5% 90%;
+    height: 100%;
+}
+
+.dashboardevento_LadoEsquerdo {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f7fa;
+    border-bottom: 1px solid rgb(236, 236, 236);
+    z-index: 99;
+}
+
+
+.dashboardevento_LadoDireito {
+    margin-top: 75px;
+}
+
+#menu_dashboard {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px 40px 10px 40px;
+    padding: 0;
+}
+
+
+#menu_dashboard_last {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#menu_dashboard_last li {
+    list-style: none;
+}
+
+
+.button_span_user {
+    background-color: sandybrown;
+    border-radius: 20px;
+    height: 40px;
+    min-width: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 10px;
+}
+
+.button_span_user button {
+    background-color: #f8f7fa;
+    border: none;
+    margin: 0;
+    padding: 0 2px 0 0px;
+}
+
+/* #menu_dashboard li {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 460;
+    margin: 0;
+    padding: 0 50px 8px 50px;
+} */
+
+
+/* #menu_dashboard .active li, #menu_dashboard ul .active li:focus {
+    border-bottom: 3px solid sandybrown;
+    cursor: pointer;
+} */
+
+#main {
+    height: 100%;
+    background-color: white;
+}
+
+a img {
+    width: 34px;
+    height: 34px;
+    color: red;
+}
+
+.home_icones {
+    color: #1e0a3c;
+}
+
+/* 
+@media screen and (min-width: 320px) and (max-width:568px) {
+
+
+    .dashboardevento_LadoEsquerdo {
+        width: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f7fa;
+        border-bottom: 1px solid rgb(236, 236, 236);
+    }
+
+
+    .dashboardevento_LadoEsquerdoDivUl ul li {
+        margin: 0;
+        padding: 5px 15px 8px 15px;
+    }
+
+    .dashboardevento_LadoDireito {
+        margin-top: 110px;
+    }
+
+
+
+}
+
+@media screen and (min-width: 569px) and (max-width:767px) {
+
+
+    .dashboardevento_LadoEsquerdo {
+        width: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f7fa;
+        border-bottom: 1px solid rgb(236, 236, 236);
+    }
+
+
+    .dashboardevento_LadoEsquerdoDivUl ul li {
+        margin: 0;
+        padding: 2px 30px 8px 30px;
+    }
+
+    .dashboardevento_LadoDireito {
+        margin-top: 110px;
+    }
+
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+
+    .dashboardevento_LadoEsquerdo {
+        width: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f7fa;
+        border-bottom: 1px solid rgb(236, 236, 236);
+    }
+
+
+    .dashboardevento_LadoEsquerdoDivUl ul li {
+        margin: 0;
+        padding: 0px 30px 8px 30px;
+    }
+
+    .dashboardevento_LadoDireito {
+        margin-top: 100px;
+    }
+
+
+
+
+
+}
+
+
+@media (min-width: 992px) and (max-width: 1475px) {
+
+
+
+    .dashboardevento_LadoEsquerdo {
+        width: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f7fa;
+        border-bottom: 1px solid rgb(236, 236, 236);
+    }
+
+    
+
+} */

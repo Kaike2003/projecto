@@ -1,8 +1,7 @@
 import { Outlet, Routes, Route } from "react-router-dom";
 import Header from "../Header/Header"
 import Footer from "../../pages/footer/Footer"
-import Concerto from "../../pages/tipo_Eventos/Concerto/Concerto";
-
+import "./Layout.css"
 
 export default function Layout() {
 
@@ -12,7 +11,7 @@ export default function Layout() {
                 <Header></Header>
             </header>
 
-            <main>
+            <main className="main_layout_principal">
                 <Outlet />
             </main>
 

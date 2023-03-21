@@ -1,0 +1,72 @@
+.titulo_evento_lista{
+  width: 100%;
+}
+
+.titulo_evento {
+  font-family: 'Roboto', sem serifa;
+  font-size: 52px;
+  line-height: 40px;
+  letter-spacing: .5px;
+  color: #1e0a3c;
+  font-weight: 900;
+  padding: 2% 0 0 0;
+}
+
+.eventos_lista {
+  width: 100%;
+  padding: 0 0 5px 0;
+  margin-top: 3%;
+  display: flex;
+  border-bottom: 1px solid rgb(210, 210, 210);
+  gap: 20px;
+  color: gainsboro;
+}
+
+.eventos_lista .active span {
+  padding: 0 0 7.4px 0;
+  border-bottom: 3px solid sandybrown;
+  cursor: pointer;
+}
+
+.eventos_lista span {
+  color: #1e0a3c;
+
+}
+
+
+/*Mobile*/
+@media screen and (min-width: 320px) and (max-width:568px) {
+
+
+
+  .titulo_evento {
+    font-family: 'Roboto', sem serifa;
+    font-size: 52px;
+    line-height: 40px;
+    letter-spacing: .5px;
+    color: #1e0a3c;
+    font-weight: 900;
+    padding: 2% 0 0 0;
+  }
+
+  .eventos_lista {
+    width: 100%;
+    padding: 0 0 5px 0;
+    margin-top: 3%;
+    display: flex;
+    border-bottom: 1px solid rgb(210, 210, 210);
+    gap: 10px;
+    color: gainsboro;
+  }
+
+
+}
+
+@media screen and (min-width: 569px) and (max-width:767px) {}
+
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 991px) {}
+
+/*Laptops*/
+
+@media (min-width: 992px) and (max-width: 1475px) {}

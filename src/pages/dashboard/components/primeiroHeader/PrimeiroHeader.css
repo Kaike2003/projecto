@@ -1,10 +1,129 @@
 .primeiroHeader {
-    background-color: #FFF;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+    background-color: #ffffff;
     width: 100%;
+    height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    gap: 20px;
+    padding: 0px 30px 0px 30px;
+    position: fixed;
+    border-bottom: 1px solid rgb(236, 236, 236);
+    z-index: 99;
 }
+
+.header_link {
+    color: black;
+}
+
+.primeiroHeader div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.primeiroHeader .criar_evento_header {
+    border: none;
+    height: 39px;
+    width: 89px;
+    padding: 10px;
+    border-radius: 20px;
+    padding: 8px 16px 8px 10px;
+    background-color: #f8f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.Modal {
+    min-width: 320px;
+    overflow-y: auto;
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid rgb(203, 203, 203);
+    border: none;
+    transform: translateX(0px);
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    background-color: #0f1a34;
+
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
+
+.invisivel_primeiroHeader {
+    height: 45px;
+    visibility: hidden;
+
+}
+
+.button_span_user {
+    background-color: sandybrown;
+    border-radius: 20px;
+    height: 40px;
+    min-width: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 10px;
+}
+
+.button_span_user button {
+    background-color: #f8f7fa;
+    border: none;
+    margin: 0;
+    padding: 0 2px 0 0px;
+}
+
+
+/*Mobile*/
+@media screen and (min-width: 320px) and (max-width:568px) {
+
+
+    .primeiroHeader {
+        background-color: sandybrown;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 0px 5px 0px 5px;
+        position: fixed;
+        border-bottom: 1px solid rgb(236, 236, 236);
+        z-index: 99;
+    }
+
+    .primeiroHeader div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .primeiroHeader .criar_evento_header {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 569px) and (max-width:767px) {}
+
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 991px) {}
+
+/*Laptops*/
+
+@media (min-width: 992px) and (max-width: 1475px) {}

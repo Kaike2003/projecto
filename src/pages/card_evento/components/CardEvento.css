@@ -6,7 +6,7 @@
     flex-direction: column;
     height: 100%;
     flex-wrap: wrap;
-    width: 100%;
+    width: 200px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
     background-color: #F0F2F5;
     cursor: pointer;

@@ -14,8 +14,9 @@ import Visualizar_ingresso from "./pages/Visualizar_ingresso/Visualizar_ingresso
 const root = document.querySelector("#root")
 
 ReactDOM.createRoot(root).render(
-    // <RouterProvider router={router}>
 
-    // </RouterProvider>
-    
-    <BrowserRouter><App/></BrowserRouter>)
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+
+)

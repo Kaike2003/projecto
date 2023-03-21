@@ -5,7 +5,7 @@
     visibility: hidden;
 }
 
-.btn-vermais{
+.btn-vermais {
     text-align: center;
     background-color: #2896ff;
     color: #fff;
@@ -30,8 +30,8 @@
 }
 
 .bilhete {
-    width: 42px;
-    font-size: 43px;
+    height: 50px;
+    width: 50px;
     transition: color 0.5s;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .conteudo_categoria_p select {
-    
+
     padding-left: 15px;
 }
 
