@@ -69,8 +69,13 @@ form {
     font-weight: 0;
 }
 
+.error_Yup{
+    color: red;
+}
+
 .criar_info_criar button:hover {
     background-color: rgb(245, 161, 88);
+
 }
 
 

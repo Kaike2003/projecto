@@ -11,7 +11,7 @@ import "./Criar.css"
 import axios from "axios";
 
 
-export default function Criar({
+export default function Editar({
 
 
     // ! Todas as propriedades dos grupo 1, 2, 3 e 4
@@ -120,41 +120,36 @@ export default function Criar({
 
 }) {
 
-    // let { userId } = useParams()
-    // console.table(userId)
-
-
+    const { userId } = useParams()
     const navigate = useNavigate()
-
     Modal.setAppElement("#root")
-
     const [modalIsOpen, setIsOpen] = useState(() => {
         return false
     })
-
     function handleOpenModal() {
         setIsOpen(true)
     }
-
     function handleCloseModal() {
         setIsOpen(false)
     }
 
-    const [eventos, setEventos] = useState(() => {
-        return []
-    })
-
     const url = "http://localhost:3001/"
 
     async function CarregarDados() {
-        await axios.get(url + "eventos").then(response =>
-            setEventos(console.log(response.data))
+        await axios.get(url + "eventos/" + userId).then(response =>
+            setEventos(response.data)
         )
     }
 
     useEffect(() => {
         CarregarDados()
     }, [])
+
+    const [eventos, setEventos] = useState(() => {
+        return []
+    })
+
+
 
 
     Modal.setAppElement("#root")
@@ -212,27 +207,27 @@ export default function Criar({
         // .required('Nome da categória é obrigatorio.')
     })
 
+
     return (
         <>
             <Formik
                 initialValues={{
-                    id: uuid(),
-                    nomeEvento: "",
-                    nomeLocal: "",
-                    nomeBairro: "",
-                    nomeMunicipio: "",
-                    dataInicio: "",
-                    horaInicio: "",
-                    dataTermino: "",
-                    horaTermino: "",
-                    nomeTextearea: '',
-                    nomeCategoria: ""
+                    nomeEvento: `${eventos.nomeEvento}`,
+                    nomeLocal: `${eventos.nomeLocal}`,
+                    nomeBairro: `${eventos.nomeBairro}`,
+                    nomeMunicipio: `${eventos.nomeMunicipio}`,
+                    dataInicio: `${eventos.dataInicio}`,
+                    horaInicio: `${eventos.horaInicio}`,
+                    dataTermino: `${eventos.dataTermino}`,
+                    horaTermino: `${eventos.horaTermino}`,
+                    nomeTextearea: `${eventos.nomeTextearea}`,
+                    nomeCategoria: `${eventos.nomeCategoria}`
                 }}
                 validationSchema={EstruturaSchema}
                 onSubmit={values => {
 
 
-                    axios.post(url + "eventos", {
+                    axios.put(url + "eventos/" + userId, {
                         id: values.id,
                         nomeEvento: values.nomeEvento,
                         nomeCategoria: values.nomeCategoria,
@@ -257,15 +252,6 @@ export default function Criar({
 
                     console.log(values)
 
-
-                    // setEventos((old) => {
-                    //     return old = [...eventos, values]
-                    // })
-
-
-                    // console.log(eventos)
-
-
                 }}
 
             >
@@ -280,6 +266,8 @@ export default function Criar({
                     isSubmitting, }) => (
 
                     <Form className="container" onSubmit={handleSubmit}>
+
+
 
                         <div className="criar container">
                             <div className="criar_info_criar" style={{ display: `${PInformacao1Display}` }}>
@@ -649,7 +637,10 @@ export default function Criar({
 
                             </div>
 
+
                         </Modal>
+
+
 
                     </Form>
                 )}

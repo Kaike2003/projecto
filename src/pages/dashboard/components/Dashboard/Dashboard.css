@@ -51,9 +51,9 @@
     min-width: 200px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-content: center;
-    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
 }
 
 .button_span_user button {

@@ -27,6 +27,7 @@ import DashboardLayout from "../components/Dashboard/DashboardLayout";
 import Home from "../pages/dashboard/components/estrutura/Home";
 import Perfil from "../pages/dashboard/components/estrutura/Perfil";
 import { ContextDashboard } from "../context/Context";
+import Editar from "../pages/dashboard/components/estrutura/Editar";
 
 
 //  Context Dashboard
@@ -37,6 +38,8 @@ export default function Rotas() {
     return (
         <>
             {/*Página principal*/}
+
+
 
             <Routes>
                 <Route path="/" element={<Layout />}>
@@ -77,8 +80,8 @@ export default function Rotas() {
                 <Route path="teste" element={<Section_eventos_Teste />} />
 
 
-         
-               {/* Dashboard do organizador */}
+
+                {/* Dashboard do organizador */}
                 <Route>
                     <Route path="organizador"
                         element={
@@ -107,12 +110,14 @@ export default function Rotas() {
                                 />}
                         />
 
+
+
                         <Route path="evento"
                             element={
                                 <Estrutura
                                     titulo="Evento"
                                     lista1="Criar"
-                                    lista2="Foto"
+                                    // lista2="Foto"
                                     // lista3="Editar"
                                     lista4="Listar"
                                     // lista5="Excluir"
@@ -138,10 +143,11 @@ export default function Rotas() {
                                         /* Grupo 1 - inputs e select*/
                                         Pselect1=""
                                         PselectOption1=""
+                                        PselectName="nomeCategoria"
                                         Pselect2="Categoria do evento"
-                                        PselectOption2="Categoria"
+                                        PselectOption2="Selecionar a categoria"
                                         PspanNomeInput1="Nome do evento"
-                                        PnameInput1=""
+                                        PnameInput1="nomeEvento"
                                         PplaceholderInput1="Nomo do vento"
                                         PtipoInput1="text"
 
@@ -153,18 +159,18 @@ export default function Rotas() {
 
                                         /* Grupo 2 - inputs e select*/
                                         PspanNomeInput2="Nome do local"
-                                        PnameInput2=""
+                                        PnameInput2="nomeLocal"
                                         PplaceholderInput2="Nome do local"
                                         PtipoInput2="text"
 
                                         PspanNomeInput3="Bairro"
-                                        PnameInput3=""
+                                        PnameInput3="nomeBairro"
                                         PplaceholderInput3="Nome do bairro"
                                         PtipoInput3="text"
 
 
                                         PspanNomeInput4="Munícipio"
-                                        PnameInput4=""
+                                        PnameInput4="nomeMunicipio"
                                         PplaceholderInput4="Nome do munícipio"
                                         PtipoInput4="text"
 
@@ -173,7 +179,7 @@ export default function Rotas() {
                                         PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
                                         /* Grupo 3 - textearea */
                                         PtexteareaDisplay=""
-
+                                        PnameTextearea="nomeTextearea"
                                         /* Grupo 4 - informação 4*/
                                         Pinformacao4="4. Data e horário"
                                         PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
@@ -181,19 +187,19 @@ export default function Rotas() {
                                         /* Grupo 4 - inputs e selects */
 
                                         PspanNomeInput5="Data de Início"
-                                        PnameInput5=""
+                                        PnameInput5="dataInicio"
                                         PtipoInput5="date"
 
                                         PspanNomeInput6="Hora de Início"
-                                        PnameInput6=""
+                                        PnameInput6="horaInicio"
                                         PtipoInput6="time"
 
                                         PspanNomeInput7="Data de Término"
-                                        PnameInput7=""
+                                        PnameInput7="dataTermino"
                                         PtipoInput7="date"
 
                                         PspanNomeInput8="Hora de Término"
-                                        PnameInput8=""
+                                        PnameInput8="horaTermino"
                                         PtipoInput8="time"
 
                                         //! Display de todas informações
@@ -220,6 +226,7 @@ export default function Rotas() {
                                         PtabelaDisplay="none"
 
                                     />} />
+
 
                             <Route path="foto"
                                 element={
@@ -511,7 +518,9 @@ export default function Rotas() {
 
                                 />}
 
-                            />
+                            >
+
+                            </Route>
 
                             <Route path="excluir"
                                 element={
@@ -609,8 +618,127 @@ export default function Rotas() {
                                         PtabelaDisplay="none"
                                     />} />
 
+
+
                         </Route>
 
+
+                        <Route path="detalhe/"
+                            element={
+                                <Estrutura
+                                    titulo="Detalhe"
+                                    lista1="Editar evento"
+                                    lista2="Foto"
+                                    lista3="Bilhete"
+                                    lista4="Orador"
+                                    lista5="Palestrante"
+                                    rota1="/organizador/detalhe/editar/:userId"
+                                    rota2="/organizador/evento/foto"
+                                    rota3="/organizador/evento/editar"
+                                    rota4="/organizador/evento/listar"
+                                    rota5="/organizador/evento/excluir"
+
+                                />} >
+
+
+                            <Route path="editar/:userId"
+                                element={<Editar
+
+
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                 Adicione as principais informações do evento."
+                                    PnomeBotao="Editar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1=""
+                                    PselectOption1=""
+                                    PselectName="nomeCategoria"
+                                    Pselect2="Categoria do evento"
+                                    PselectOption2="Selecionar a categoria"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1="nomeEvento"
+                                    PplaceholderInput1="Nomo do vento"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Nome do local"
+                                    PnameInput2="nomeLocal"
+                                    PplaceholderInput2="Nome do local"
+                                    PtipoInput2="text"
+
+                                    PspanNomeInput3="Bairro"
+                                    PnameInput3="nomeBairro"
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="text"
+
+
+                                    PspanNomeInput4="Munícipio"
+                                    PnameInput4="nomeMunicipio"
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="text"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay=""
+                                    PnameTextearea="nomeTextearea"
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5="dataInicio"
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6="horaInicio"
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7="dataTermino"
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8="horaTermino"
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display=""
+                                    PInformacao2Display=""
+                                    PInformacao3Display=""
+                                    PInformacao4Display=""
+
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2=""
+
+                                    //! Display de todas inputs
+                                    PInput1Display=""
+                                    PInput2Display=""
+                                    PInput3Display=""
+                                    PInput4Display=""
+                                    PInput5Display=""
+                                    PInput6Display=""
+                                    PInput7Display=""
+                                    PInput8Display=""
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay="none"
+                                />}>
+                            </Route>
+
+                        </Route>
 
                         <Route path="bilhete"
                             element={
@@ -2037,13 +2165,13 @@ export default function Rotas() {
                                     Pinput1="Senha"
                                     PinputNome1=""
                                     PinputPlaceholder1="Senha antiga"
-                                    PinputTipo1="text"
+                                    PinputTipo1="password"
 
                                     Pdivgrupo2Display=""
                                     Pinput2="Senha"
                                     PinputNome2=""
                                     PinputPlaceholder2="Senha nova"
-                                    PinputTipo2="text"
+                                    PinputTipo2="password"
 
 
                                     Pdivgrupo3Display="none"

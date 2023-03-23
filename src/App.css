@@ -6,6 +6,15 @@
     box-sizing: border-box;
 }
 
+a{
+    color: #1e0a3c;
+}
+
+a:hover{
+    color: #1e0a3c;
+}
+
+
 body {
     height: 100%;
     width: 100%;

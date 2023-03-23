@@ -12,9 +12,9 @@ export default function Home({ titulo }) {
 
                 <div className="container dashboardHome">
                     <div className="dashboardHome_button_input">
-                        <a herf={"/dashboard/evento/criarEvento"}>
+                        <NavLink to={"/organizador/evento/criar"}>
                             <button>Criar Evento</button>
-                        </a>
+                        </NavLink>
                         <input type="text" name="" id="" placeholder="Pesquisar evento" />
                     </div>
                 </div>

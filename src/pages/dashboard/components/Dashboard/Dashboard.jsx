@@ -28,24 +28,40 @@ export default function Dashboard() {
 
                         <ul id="menu_dashboard">
 
-                            <div>Logo</div>
+                            <div>
+                                <NavLink to={"/organizador"}>
+                                    Logo
+                                </NavLink>
+                            </div>
 
                             <div id="menu_dashboard_last">
-                                <li>evento</li>
-                                <li>estaticas</li>
+                                <li>
+                                    <NavLink to={"/organizador/evento"}>
+                                        Evento
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to={"/organizador/estatistica"}>
+                                        Estatística
+                                    </NavLink>
+                                </li>
 
-                                <div className="button_span_user">
+                                <NavLink to={"/organizador/perfil"}>
+                                    <div className="button_span_user">
 
-                                    <div>
-                                        <User
-                                        >
-                                        </User>
+
+                                        <div>
+                                            <User
+                                            >
+                                            </User>
+                                        </div>
+
+
+                                        <span>Kaike Bartolomeu</span>
+
                                     </div>
+                                </NavLink>
 
-
-                                    <span>nome do usuário</span>
-
-                                </div>
                                 {/* <NavLink to={
                                     CPadmin ?
                                         "/administrador/eventos" :

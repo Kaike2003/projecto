@@ -1,38 +1,90 @@
-import React, { useState } from "react"
+/* eslint-disable no-self-compare */
+import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
-// import GetAppIcon from '@material-ui/icons/GetApp';
-// import AddIcon from '@material-ui/icons/Add';
+import { Edit } from "lucide-react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+
 
 export default function Tabela() {
 
+  const navigate = useNavigate()
+
+
+
+
+
   const [tableData, setTableData] = useState(() => {
-    return [
-      { nome: "Eugenie", apelido: "Pinks", email: "epinks0@pen.io", "age": "193-226-9349", telefone: "0573-0133", genero: "F", preco: "23424353" },
-      { nome: "Lynn", apelido: "Matyushonok", email: "lmatyushonok1@artisteer.com", "age": "511-763-4062", telefone: "65162-045", genero: "M", preco: "23424353" },
-      { nome: "Jennee", apelido: "Allender", email: "jallender2@lulu.com", "age": "911-621-7563", telefone: "67046-014", genero: "F", preco: "53424353" },
-      { nome: "Delmor", apelido: "Broszkiewicz", email: "dbroszkiewicz3@histats.com", "age": "666-874-8830", telefone: "65162-511", genero: "M", preco: "13424353" },
-      { nome: "Bernardina", apelido: "Lomansey", email: "blomansey4@ucoz.com", "age": "365-850-9653", telefone: null, genero: "F", preco: "23424353" },
-      { nome: "Inglebert", apelido: "Saldler", email: "isaldler5@va.gov", "age": "551-759-0045", telefone: "37808-289", genero: "M", preco: "234353" },
-    ]
+    return []
   })
 
+
+
+  const url = "http://localhost:3001/"
+
+  async function CarregarDados() {
+    await axios.get(url + "eventos").then(response =>
+      setTableData(response.data)
+    )
+  }
+
+  useEffect(() => {
+    CarregarDados()
+  }, [])
+
+
+  const CellStyle = { fontSize: "12px", width: "200px" }
+  const CellRender = { fontSize: "16px" }
+
   const columns = [
-    { title: "Nome", field: "nome" },
-    { title: "Apelido", field: "apelido" },
-    { title: "Genero", field: "genero", lookup: { M: "Masculino", F: "Femenino" } },
-    { title: "Telefone", field: "telefone", emptyValue: () => <em>null</em> },
+    { title: "Nome", field: "nomeEvento", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "130px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nomeEvento}</div> },
+    { title: "Local", field: "nomeLocal", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeLocal}</div> },
+    { title: "Bairro", field: "nomeBairro", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeBairro}</div> },
+    { title: "Municipio", field: "nomeMunicipio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeMunicipio}</div> },
+    { title: "Hinicio", field: "horaInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaInicio}</div> },
+    { title: "Dinicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.dataInicio}</div> },
+    { title: "Htermino", field: "horaTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaTermino}</div> },
+    { title: "Categoria", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeCategoria}</div> },
+    { title: "Dtermino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.dataTermino}</div> },
     {
-      title: "Preço", field: "preco",
-      type: "currency", currencySetting: { currencyCode: "INR", minimumFractionDigits: 0 }
+      title: "Descrição", field: "nomeTextearea", cellStyle: CellStyle, render: (rowData) => <div style={{
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        width: "100px", fontSize: "16px"
+      }}>{rowData.nomeTextearea}</div>
     }
+
+    // { title: "Local", field: "nomeLocal" },
+    // { title: "Telefone", field: "telefone", emptyValue: () => <em>null</em>, cellStyle: CellStyle },
+    // {
+    //   title: "Preço", field: "preco",
+    //   type: "currency", currencySetting: { currencyCode: "INR", minimumFractionDigits: 0 }, cellStyle: CellStyle,
+    // },
+
   ]
+
+
+  // const columns = [
+  //   { title: "Nome", field: "nome", cellStyle: CellStyle },
+  //   { title: "Apelido", field: "apelido", cellStyle: CellStyle },
+  //   { title: "Genero", field: "genero", lookup: { M: "Masculino", F: "Femenino" }, cellStyle: CellStyle },
+  //   { title: "Telefone", field: "telefone", emptyValue: () => <em>null</em>, cellStyle: CellStyle },
+  //   {
+  //     title: "Preço", field: "preco",
+  //     type: "currency", currencySetting: { currencyCode: "INR", minimumFractionDigits: 0 }, cellStyle: CellStyle,
+  //   },
+
+  // ]
+
+
 
 
 
   return (
     <>
 
-      <div>
+      <div className="tabela">
         <MaterialTable
           editable={{
             onRowAdd: (newRow) => new Promise((resolve, reject) => {
@@ -41,41 +93,70 @@ export default function Tabela() {
               })
               setTimeout(() => { resolve() }, 1100)
             }),
-            onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
+            // onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
-              try {
-                const updateTableData = [...tableData]
-                updateTableData[oldRow.tableData.id] = newRow
-                setTableData((old) => {
-                  return old = updateTableData
-                })
-                setTimeout(() => { resolve() }, 1200)
-              } catch (error) {
-                alert(error)
-              }
+            //   try {
+            //     const updateTableData = [...tableData]
+            //     updateTableData[oldRow.tableData.id] = newRow
+            //     setTableData((old) => {
+            //       return old = updateTableData
+            //     })
+            //     setTimeout(() => { resolve() }, 1200)
+            //   } catch (error) {
+            //     alert(error)
+            //   }
 
-            }),
+            // }),
             onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
-              try {
-                const updateData = [...tableData]
-                updateData.splice(selectedRow.tableData.id, 1)
-                setTableData((old) => {
-                  return old = updateData
-                })
-                console.log(selectedRow)
-                setTimeout(() => { resolve() }, 1500)
-              } catch (error) {
-                alert(error)
-              }
+
+              console.log(selectedRow.id)
+
+              // const eliminar = tableData.filter(ct => ct.id !== selectedRow.id)
+              // console.log("Item ilimnado: ", eliminar)
+              // const updateData = [...eliminar]
+              // updateData.splice(selectedRow.tableData.id, 1)
+              // setTableData((old) => {
+              //   return old = updateData
+              // })
+              // console.log(selectedRow)
+
+              axios.delete(url + "eventos/" + selectedRow.id,
+              ).then(sucess => {
+                console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+              }).catch(error => {
+                console.log(error)
+              })
+
+              setTimeout(() => { resolve() }, 1500)
+
             })
           }}
           actions={
             [{
               icon: () => {
-                return ""
+                return <Edit></Edit>
               },
-              tooltip: "Cliar em mim",
-              onClick: (e, data) => console.log(data, e.target.value)
+              tooltip: "Editar",
+              onClick: (e, data) => {
+                console.log(data, e.target.value)
+
+                let valor
+                const id = tableData.forEach((value) => {
+                  if (value.id === data.id) {
+                    valor = value.id
+                  }
+                })
+
+                console.log(valor)
+
+                navigate(`/organizador/detalhe/editar/${valor}`)
+
+                // console.log(tableData.forEach((value) => {
+                //   if (parseInt(value.tableData.id) === Number(data.tableData.id)) {
+                //     alert("Iguais")
+                //   } 
+                // }))
+              }
             }]
           }
           localization={{
@@ -95,7 +176,7 @@ export default function Tabela() {
             pagination: {
               labelRowsSelect: "Linhas",
               nextTooltip: "Próxima página",
-              previousTooltip: "Página anteriror"
+              previousTooltip: "Página anteriror",
             },
             toolbar: {
               searchTooltip: "Pesquisar",
@@ -103,10 +184,11 @@ export default function Tabela() {
 
             }
           }}
-          title={"Lista de testes"}
+          title={"Eventos"}
           columns={columns}
           data={tableData}
           options={{
+            pageSize: 4,
             pageSizeOptions: [15, 25, 50],
             paginationType: "stepped",
             exportButton: true,
@@ -115,7 +197,12 @@ export default function Tabela() {
             addRowPosition: "first",
             actionsColumnIndex: -1,
             selection: false,
-            rowStyle: { background: "#f8f7fa" },
+            rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
+            headerStyle: {
+              background: "sandybrown",
+              color: "#fff", fontSize: "14px",
+            }
+
           }
           }
 
