@@ -41,7 +41,7 @@ export default function Concerto(props) {
 
     return (
         <>
-        
+
             <div className='container'>
                 <div className="container_conteudo">
                     <div className="conteudo_eventos">
@@ -60,13 +60,15 @@ export default function Concerto(props) {
                         {currentItens.map((item) => {
                             return (
                                 <>
-                                    <EventoCardPago_Gratis
-                                        id={item.id}
-                                        image={item.image}
-                                        date={item.date}
-                                        name={item.name}
-                                        price={item.price}
-                                    ></EventoCardPago_Gratis>
+                                    <div key={item.id}>
+                                        <EventoCardPago_Gratis
+                                            id={item.id}
+                                            image={item.image}
+                                            date={item.date}
+                                            name={item.name}
+                                            price={item.price}
+                                        ></EventoCardPago_Gratis>
+                                    </div>
                                 </>
                             )
                         })}

@@ -110,9 +110,9 @@ export default function PaginaPrincipal() {
 
 
                 {
-                      
-                filtro(categoria)
-                
+
+                    filtro(categoria)
+
                 }
 
                 <InformacaoSite></InformacaoSite>
@@ -122,7 +122,7 @@ export default function PaginaPrincipal() {
                         <div className="conteudo_eventos_vermais">
                             <h4 className="pb-3 pt-2 text-dark">Eventos top do mês</h4>
                             <Link to={"/topMes"}
-                             className="btn-vermais">Ver mais</Link>
+                                className="btn-vermais">Ver mais</Link>
                         </div>
                     </div>
 
@@ -132,14 +132,16 @@ export default function PaginaPrincipal() {
                             {data.slice(1, 5).map((item) => {
                                 return (
                                     <>
-                                        <EventoCardPago_Gratis
-                                            key={item.id}
-                                            id={item.id}
-                                            image={item.image}
-                                            date={item.date}
-                                            name={item.name}
-                                            price={item.price}
-                                        ></EventoCardPago_Gratis>
+                                        <div key={item.id}>
+                                            <EventoCardPago_Gratis
+                                                key={item.id}
+                                                id={item.id}
+                                                image={item.image}
+                                                date={item.date}
+                                                name={item.name}
+                                                price={item.price}
+                                            ></EventoCardPago_Gratis>
+                                        </div>
                                     </>
                                 )
                             })}
@@ -164,17 +166,19 @@ export default function PaginaPrincipal() {
                     <div className="container_conteudo">
                         <div className="section_eventos">
 
-                            {data.slice(1, 9).map((item) => {
+                        {data.slice(1, 9).map((item) => {
                                 return (
                                     <>
-                                        <EventoCardPago_Gratis
-                                            key={item.id}
-                                            id={item.id}
-                                            image={item.image}
-                                            date={item.date}
-                                            name={item.name}
-                                            price={item.price}
-                                        ></EventoCardPago_Gratis>
+                                        <div key={item.id}>
+                                            <EventoCardPago_Gratis
+                                                key={item.id}
+                                                id={item.id}
+                                                image={item.image}
+                                                date={item.date}
+                                                name={item.name}
+                                                price={item.price}
+                                            ></EventoCardPago_Gratis>
+                                        </div>
                                     </>
                                 )
                             })}

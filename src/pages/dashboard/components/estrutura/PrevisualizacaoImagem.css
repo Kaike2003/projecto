@@ -1,0 +1,10 @@
+.PrevisualizacaoImagem{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 2px;
+}
+
+.PrevisualizacaoImagem img{
+    border-radius: 10%;
+
+}

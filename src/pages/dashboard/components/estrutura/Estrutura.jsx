@@ -14,14 +14,15 @@ export default function Estrutura(
         rota2,
         rota3,
         rota4,
-        rota5
+        rota5,
+        infoGeral
 
     }
 ) {
 
     return (
         <>
-            <div className="titulo_evento_lista container">
+            <div className="titulo_evento_lista container" style={{ display: `${infoGeral}` }}>
                 <div className="titulo_evento container">{titulo}</div>
                 <div className="eventos_lista container">
                     <NavLink

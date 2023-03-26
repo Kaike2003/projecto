@@ -110,9 +110,9 @@ form {
     padding: 10px 10px 10px;
 }
 
-input[type="file"] {
+/* input[type="file"] {
     display: none;
-}
+} */
 
 .file_image {
     color: white;

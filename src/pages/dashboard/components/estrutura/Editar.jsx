@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Tabela from "../Tabela/Tabela";
-import Modal from "react-modal"
-import { X } from "lucide-react";
-import { useParams, Navigate, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, NavLink, } from "react-router-dom"
 import { Formik, Form } from "formik";
 import * as Yup from "yup"
 import { v4 as uuid } from 'uuid';
 
 import "./Criar.css"
 import axios from "axios";
+import Rotas from "../../../../routes";
+
+
+
 
 
 export default function Editar({
-
 
     // ! Todas as propriedades dos grupo 1, 2, 3 e 4
     /* Grupo 1 - informações */
@@ -102,57 +102,31 @@ export default function Editar({
     PInformacao3Display,
     PInformacao4Display,
 
-    PtabelaDisplay
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    PtabelaDisplay,
 }) {
-
-    const { userId } = useParams()
+    const { id } = useParams()
     const navigate = useNavigate()
-    Modal.setAppElement("#root")
-    const [modalIsOpen, setIsOpen] = useState(() => {
-        return false
-    })
-    function handleOpenModal() {
-        setIsOpen(true)
-    }
-    function handleCloseModal() {
-        setIsOpen(false)
-    }
+
+    console.log(typeof (id))
 
     const url = "http://localhost:3001/"
 
-    async function CarregarDados() {
-        await axios.get(url + "eventos/" + userId).then(response =>
-            setEventos(response.data)
-        )
-    }
-
-    useEffect(() => {
-        CarregarDados()
-    }, [])
 
     const [eventos, setEventos] = useState(() => {
         return []
     })
 
 
+    async function CarregarDados() {
+        await axios.get(url + "eventos/" + id).then(response =>
+            setEventos(response.data)
+        )
+    }
 
+    useEffect(() => {
 
-    Modal.setAppElement("#root")
+        CarregarDados()
+    }, [])
 
 
     const EstruturaSchema = Yup.object().shape({
@@ -207,27 +181,111 @@ export default function Editar({
         // .required('Nome da categória é obrigatorio.')
     })
 
+    const valoresInicias = {
+        nomeEvento: "kaike",
+        nomeLocal: "",
+        nomeBairro: "",
+        nomeMunicipio: "",
+        dataInicio: "",
+        horaInicio: "",
+        dataTermino: "",
+        horaTermino: "",
+        nomeTextearea: "",
+        nomeCategoria: ""
+    }
+
+
+    const valoresSalvos = {
+        nomeEvento: eventos.nomeEvento,
+        nomeLocal: eventos.nomeLocal,
+        nomeBairro: eventos.nomeBairro,
+        nomeMunicipio: eventos.nomeMunicipio,
+        dataInicio: eventos.dataInicio,
+        horaInicio: eventos.horaInicio,
+        dataTermino: eventos.dataTermino,
+        horaTermino: eventos.horaTermino,
+        nomeTextearea: eventos.nomeTextearea,
+        nomeCategoria: eventos.nomeCategoria
+    }
+
+    // console.log("Valores salvos: ", valoresSalvos)
 
     return (
         <>
+
+            <h5>{id}</h5>
+
+            {/* <div>
+                <NavLink to={`/organizador/detalhe/editar/${id}`}>Editar</NavLink>
+                <NavLink to={`/organizador/detalhe/foto/${id}`}>Foto</NavLink>
+
+
+
+            </div> */}
+
+
+            <div className="titulo_evento_lista container" >
+                <div className="titulo_evento container">Detalhe</div>
+                <div className="eventos_lista container">
+                    <NavLink
+                        to={`/organizador/detalhe/editar/${id}`}
+                    >
+
+                        <span>Editar Evento</span>
+
+                    </NavLink>
+
+
+                    <NavLink
+                        to={`/organizador/detalhe/foto/${id}`}
+                    >
+
+                        <span>Foto</span>
+
+                    </NavLink>
+
+                    {/* <NavLink
+                        to={`${rota3}`}
+                    >
+
+                        <span>{lista3}</span>
+
+                    </NavLink>
+
+
+
+                    <NavLink
+                        to={`${rota4}`}
+                    >
+
+                        <span>{lista4}</span>
+
+                    </NavLink>
+
+                    <NavLink
+                        to={`${rota5}`}
+                    >
+
+                        <span>{lista5}</span>
+
+                    </NavLink> */}
+                </div>
+            </div>
+
+
             <Formik
-                initialValues={{
-                    nomeEvento: `${eventos.nomeEvento}`,
-                    nomeLocal: `${eventos.nomeLocal}`,
-                    nomeBairro: `${eventos.nomeBairro}`,
-                    nomeMunicipio: `${eventos.nomeMunicipio}`,
-                    dataInicio: `${eventos.dataInicio}`,
-                    horaInicio: `${eventos.horaInicio}`,
-                    dataTermino: `${eventos.dataTermino}`,
-                    horaTermino: `${eventos.horaTermino}`,
-                    nomeTextearea: `${eventos.nomeTextearea}`,
-                    nomeCategoria: `${eventos.nomeCategoria}`
-                }}
+
+
+                initialValues={valoresSalvos || valoresInicias}
+
+                enableReinitialize
                 validationSchema={EstruturaSchema}
                 onSubmit={values => {
 
 
-                    axios.put(url + "eventos/" + userId, {
+
+
+                    axios.put(url + "eventos/" + id, {
                         id: values.id,
                         nomeEvento: values.nomeEvento,
                         nomeCategoria: values.nomeCategoria,
@@ -241,7 +299,7 @@ export default function Editar({
                         nomeMunicipio: values.nomeMunicipio
                     }).then((response) => {
                         setTimeout(() => {
-                            console.log(response)
+                            // console.log(response)
                             navigate('/organizador/evento/listar')
                             // handleOpenModal()
                             // alert("olá mundo")
@@ -250,7 +308,7 @@ export default function Editar({
                         console.log(error)
                     })
 
-                    console.log(values)
+                    // console.log(values)
 
                 }}
 
@@ -264,7 +322,6 @@ export default function Editar({
                     handleBlur,
                     handleSubmit,
                     isSubmitting, }) => (
-
                     <Form className="container" onSubmit={handleSubmit}>
 
 
@@ -329,7 +386,7 @@ export default function Editar({
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                             >
-                                                <option value={""}>{PselectOption2}</option>
+
                                                 <option value={"teatro"}>Teatro</option>
                                                 <option value={"concerto"}>Concerto</option>
                                                 <option value={"seminário"}>Seminário</option>
@@ -478,7 +535,7 @@ export default function Editar({
                                         rows="10"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values.nomeTextearea}
+                                        value={values.nomeTextearea || eventos.nomeTextearea}
 
                                     ></textarea>
                                     {errors.nomeTextearea && touched.nomeTextearea ? (
@@ -589,66 +646,16 @@ export default function Editar({
                             </div>
                         </div>
 
-                        <div style={{ display: `${PtabelaDisplay}` }}>
-                            <Tabela />
-                        </div>
-
-                        <Modal
-                            isOpen={modalIsOpen}
-                            onRequestClose={handleCloseModal}
-                            style={{
-                                overlay: {
-                                    position: 'fixed',
-                                    top: "7%",
-                                    left: "30%",
-                                    right: "30%",
-                                    bottom: "0%",
-                                    backgroundColor: 'none'
-                                },
-                                content: {
-                                    position: 'absolute',
-                                    top: '40px',
-                                    left: '40px',
-                                    right: '40px',
-                                    bottom: '40px',
-                                    border: '1px solid #ccc',
-                                    background: '#fff',
-                                    overflow: 'auto',
-                                    WebkitOverflowScrolling: 'touch',
-                                    borderRadius: '15px',
-                                    outline: 'none',
-                                    padding: '0px'
-                                }
-                            }}
-                        >
-
-                            <div
-                                className="compra container">
-                                <X
-                                    size={35}
-                                    onClick={handleCloseModal} className="btn_fechar_hidden ">Fechar</X>
-                                <span>Compra de bilhetes</span>
-                                <X
-                                    size={35}
-                                    onClick={handleCloseModal} className="btn_fechar ">Fechar</X>
-                            </div>
-
-                            <div className="visualizar_compra container">
-
-                            </div>
-
-
-                        </Modal>
-
 
 
                     </Form>
                 )}
             </Formik>
 
+
+
         </>
 
     )
 
 }
-

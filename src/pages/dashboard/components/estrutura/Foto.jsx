@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Tabela from "../Tabela/Tabela";
-import Modal from "react-modal"
-import { X } from "lucide-react";
-import { useParams, Navigate, useNavigate } from "react-router-dom"
+import React, { useEffect, useRef, useState } from "react";
+import { useParams, useNavigate, NavLink, } from "react-router-dom"
 import { Formik, Form } from "formik";
 import * as Yup from "yup"
 import { v4 as uuid } from 'uuid';
 
 import "./Criar.css"
 import axios from "axios";
+import PrevisualizacaoImagem from "./PrevisualizacaoImagem";
 
 
-export default function Criar({
 
+
+
+export default function Foto({
 
     // ! Todas as propriedades dos grupo 1, 2, 3 e 4
     /* Grupo 1 - informações */
@@ -102,61 +102,50 @@ export default function Criar({
     PInformacao3Display,
     PInformacao4Display,
 
-    PtabelaDisplay
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    PtabelaDisplay,
 }) {
-
+    const { id } = useParams()
     const navigate = useNavigate()
+    const fileRef = useRef(null)
 
-    Modal.setAppElement("#root")
+    // Formatos suportados
+    const FORMATOSUPORTADO = ["image/jpg", "image/jpeg", "image/png"]
 
-    const [modalIsOpen, setIsOpen] = useState(() => {
-        return false
-    })
+    console.log(typeof (id))
 
-    function handleOpenModal() {
-        setIsOpen(true)
-    }
+    const url = "http://localhost:3001/"
 
-    function handleCloseModal() {
-        setIsOpen(false)
-    }
 
     const [eventos, setEventos] = useState(() => {
         return []
     })
 
-    const url = "http://localhost:3001/"
 
     async function CarregarDados() {
-        await axios.get(url + "eventos").then(response =>
-            setEventos(console.log(response.data))
+        await axios.get(url + "eventos/" + id).then(response =>
+            setEventos(response.data)
         )
     }
 
     useEffect(() => {
+
         CarregarDados()
     }, [])
 
 
-    Modal.setAppElement("#root")
-
-
     const EstruturaSchema = Yup.object().shape({
+        file: Yup.string()
+        // Yup.mixed().test(
+        //     "FILE_SIZE",
+        //     "Imagem muito grande para fazer upload",
+        //     (valor) => !valor || (valor && console.log(valor.size) >= 1024 * 1024)
+        // ).test(
+        //     "FILE_FORMAT",
+        //     "Uploaded file is has unsupported format",
+        //     (valor) => !valor || (valor && FORMATOSUPORTADO.includes(valor?.types))
+        // .required("Nome do evento é obrigatorio.")
+        ,
         nomeEvento: Yup.string()
             .min(5, "O nome do evento. Precisa ter menos de 5 caracteres")
             .max(50, "O nome do evento. Precisa ter mais de 50 caracteres")
@@ -208,65 +197,134 @@ export default function Criar({
         // .required('Nome da categória é obrigatorio.')
     })
 
+    const valoresInicias = {
+        file: "",
+        // nomeEvento: "kaike",
+        // nomeLocal: "",
+        // nomeBairro: "",
+        // nomeMunicipio: "",
+        // dataInicio: "",
+        // horaInicio: "",
+        // dataTermino: "",
+        // horaTermino: "",
+        // nomeTextearea: "",
+        // nomeCategoria: ""
+    }
+
+
+    const valoresSalvos = {
+        file: "",
+        nomeEvento: eventos.nomeEvento,
+        nomeLocal: eventos.nomeLocal,
+        nomeBairro: eventos.nomeBairro,
+        nomeMunicipio: eventos.nomeMunicipio,
+        dataInicio: eventos.dataInicio,
+        horaInicio: eventos.horaInicio,
+        dataTermino: eventos.dataTermino,
+        horaTermino: eventos.horaTermino,
+        nomeTextearea: eventos.nomeTextearea,
+        nomeCategoria: eventos.nomeCategoria
+    }
+
+    // console.log("Valores salvos: ", valoresSalvos)
+
     return (
         <>
+
+            <h5>{id}</h5>
+
+            {/* <div>
+                <NavLink to={`/organizador/detalhe/editar/${id}`}>Editar</NavLink>
+                <NavLink to={`/organizador/detalhe/foto/${id}`}>Foto</NavLink>
+
+
+
+            </div> */}
+
+
+            <div className="titulo_evento_lista container" >
+                <div className="titulo_evento container">Detalhe</div>
+                <div className="eventos_lista container">
+                    <NavLink
+                        to={`/organizador/detalhe/editar/${id}`}
+                    >
+
+                        <span>Editar Evento</span>
+
+                    </NavLink>
+
+
+                    <NavLink
+                        to={`/organizador/detalhe/foto/${id}`}
+                    >
+
+                        <span>Foto</span>
+
+                    </NavLink>
+
+                    {/* <NavLink
+                        to={`${rota3}`}
+                    >
+
+                        <span>{lista3}</span>
+
+                    </NavLink>
+
+
+
+                    <NavLink
+                        to={`${rota4}`}
+                    >
+
+                        <span>{lista4}</span>
+
+                    </NavLink>
+
+                    <NavLink
+                        to={`${rota5}`}
+                    >
+
+                        <span>{lista5}</span>
+
+                    </NavLink> */}
+                </div>
+            </div>
+
+
             <Formik
-                initialValues={{
-                    id: uuid(),
-                    nomeEvento: "",
-                    nomeLocal: "",
-                    nomeBairro: "",
-                    nomeMunicipio: "",
-                    dataInicio: "",
-                    horaInicio: "",
-                    dataTermino: "",
-                    horaTermino: "",
-                    nomeTextearea: '',
-                    nomeCategoria: ""
-                }}
+
+
+                initialValues={valoresSalvos || valoresInicias}
+
+
+                enableReinitialize
                 validationSchema={EstruturaSchema}
                 onSubmit={values => {
 
+                    console.log(values)
 
-                    if (values.dataInicio === values.dataTermino) {
-
-                        axios.post(url + "eventos", {
-                            id: values.id,
-                            nomeEvento: values.nomeEvento,
-                            nomeCategoria: values.nomeCategoria,
-                            nomeTextearea: values.nomeTextearea,
-                            dataInicio: values.dataInicio,
-                            dataTermino: values.dataTermino,
-                            horaInicio: values.horaInicio,
-                            horaTermino: values.horaTermino,
-                            nomeBairro: values.nomeBairro,
-                            nomeLocal: values.nomeBairro,
-                            nomeMunicipio: values.nomeMunicipio,
-                            foto: ""
-                        }).then((response) => {
-                            setTimeout(() => {
-                                navigate('/organizador/evento/listar')
-
-                                // handleOpenModal()
-                            }, 1200)
-
-
-                        }).catch((error) => {
-                            console.log(error)
-                        })
-
-
-                    } else {
-                        alert("A data de inicio e termino deve ser no mesmo dia")
-                    }
-
-
-                    // setEventos((old) => {
-                    //     return old = [...eventos, values]
+                    // axios.put(url + "eventos/" + id, {
+                    //     id: values.id,
+                    //     nomeEvento: values.nomeEvento,
+                    //     nomeCategoria: values.nomeCategoria,
+                    //     nomeTextearea: values.nomeTextearea,
+                    //     dataInicio: values.dataInicio,
+                    //     dataTermino: values.dataTermino,
+                    //     horaInicio: values.horaInicio,
+                    //     horaTermino: values.horaTermino,
+                    //     nomeBairro: values.nomeBairro,
+                    //     nomeLocal: values.nomeBairro,
+                    //     nomeMunicipio: values.nomeMunicipio
+                    // }).then((response) => {
+                    //     setTimeout(() => {
+                    //         // console.log(response)
+                    //         // navigate('/organizador/evento/listar')
+                    //         // handleOpenModal()
+                    //         // alert("olá mundo")
+                    //     }, 1200)
+                    // }).catch((error) => {
+                    //     console.log(error)
                     // })
-
-
-                    // console.log(eventos)
 
 
                 }}
@@ -280,9 +338,12 @@ export default function Criar({
                     handleChange,
                     handleBlur,
                     handleSubmit,
-                    isSubmitting, }) => (
-
+                    isSubmitting,
+                    setFieldValue
+                }) => (
                     <Form className="container" onSubmit={handleSubmit}>
+
+
 
                         <div className="criar container">
                             <div className="criar_info_criar" style={{ display: `${PInformacao1Display}` }}>
@@ -344,7 +405,7 @@ export default function Criar({
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                             >
-                                                <option value={""}>{PselectOption2}</option>
+
                                                 <option value={"teatro"}>Teatro</option>
                                                 <option value={"concerto"}>Concerto</option>
                                                 <option value={"seminário"}>Seminário</option>
@@ -363,8 +424,28 @@ export default function Criar({
                                     >
                                         <div className="criar_row">
                                             <span>Imagem</span>
-                                            <input type="file" name="" id="file" />
-                                            <label htmlFor="file" className="file_image">
+                                            {errors.file && touched.file ? (
+                                                <div className="error_Yup">{errors.file}</div>
+                                            ) : null}
+                                            {values.file && <PrevisualizacaoImagem
+                                                file={values.file} />}
+                                            <input
+                                                ref={fileRef}
+                                                hidden
+                                                type="file"
+                                                onChange={(e) => {
+                                                    setFieldValue("file", e.target.files[0])
+                                                }}
+
+                                            />
+                                            {/* <button
+
+                                            >Upload</button> */}
+                                            <label
+                                                onClick={() => {
+                                                    fileRef.current.click()
+                                                }}
+                                                htmlFor="file" className="file_image">
                                                 Adicionar foto
                                             </label>
                                         </div>
@@ -493,7 +574,7 @@ export default function Criar({
                                         rows="10"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values.nomeTextearea}
+                                        value={values.nomeTextearea || eventos.nomeTextearea}
 
                                     ></textarea>
                                     {errors.nomeTextearea && touched.nomeTextearea ? (
@@ -604,63 +685,16 @@ export default function Criar({
                             </div>
                         </div>
 
-                        <div style={{ display: `${PtabelaDisplay}` }}>
-                            <Tabela />
-                        </div>
 
-                        <Modal
-                            isOpen={modalIsOpen}
-                            onRequestClose={handleCloseModal}
-                            style={{
-                                overlay: {
-                                    position: 'fixed',
-                                    top: "7%",
-                                    left: "30%",
-                                    right: "30%",
-                                    bottom: "0%",
-                                    backgroundColor: 'none'
-                                },
-                                content: {
-                                    position: 'absolute',
-                                    top: '40px',
-                                    left: '40px',
-                                    right: '40px',
-                                    bottom: '40px',
-                                    border: '1px solid #ccc',
-                                    background: '#fff',
-                                    overflow: 'auto',
-                                    WebkitOverflowScrolling: 'touch',
-                                    borderRadius: '15px',
-                                    outline: 'none',
-                                    padding: '0px'
-                                }
-                            }}
-                        >
-
-                            <div
-                                className="compra container">
-                                <X
-                                    size={35}
-                                    onClick={handleCloseModal} className="btn_fechar_hidden ">Fechar</X>
-                                <span>Compra de bilhetes</span>
-                                <X
-                                    size={35}
-                                    onClick={handleCloseModal} className="btn_fechar ">Fechar</X>
-                            </div>
-
-                            <div className="visualizar_compra container">
-
-                            </div>
-
-                        </Modal>
 
                     </Form>
                 )}
             </Formik>
+
+
 
         </>
 
     )
 
 }
-

@@ -62,7 +62,7 @@ export default function Concerto(props) {
                     <div className="section_eventos">
 
 
-                        {currentItens.map((item) => {
+                        {currentItens((item) => {
                             return (
                                 <>
                                     <EventoCardPago_Gratis

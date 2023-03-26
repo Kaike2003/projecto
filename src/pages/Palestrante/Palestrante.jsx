@@ -16,7 +16,7 @@ export default function Palestrante() {
     const endIndex = startIndex + itensPerpage
     const currentItens = data.slice(startIndex, endIndex)
 
-    const pages = Math.ceil(data.length / itensPerpage) 
+    const pages = Math.ceil(data.length / itensPerpage)
 
 
     useEffect(() => {
@@ -46,11 +46,13 @@ export default function Palestrante() {
                     const { id, name, image } = item
                     return (
                         <>
-                            <Card_Palestrante
-                                id={id}
-                                name={name}
-                                image={image}
-                            ></Card_Palestrante>
+                            <div key={id}>
+                                <Card_Palestrante
+                                    id={id}
+                                    name={name}
+                                    image={image}
+                                ></Card_Palestrante>
+                            </div>
                         </>
                     )
                 })}

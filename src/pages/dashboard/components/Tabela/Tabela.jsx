@@ -4,15 +4,11 @@ import MaterialTable from 'material-table'
 import { Edit } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-
+import Rotas from "../../../../routes"
 
 export default function Tabela() {
 
   const navigate = useNavigate()
-
-
-
-
 
   const [tableData, setTableData] = useState(() => {
     return []
@@ -38,22 +34,23 @@ export default function Tabela() {
 
   const columns = [
     { title: "Nome", field: "nomeEvento", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "130px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nomeEvento}</div> },
-    { title: "Local", field: "nomeLocal", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeLocal}</div> },
-    { title: "Bairro", field: "nomeBairro", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeBairro}</div> },
-    { title: "Municipio", field: "nomeMunicipio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeMunicipio}</div> },
-    { title: "Hinicio", field: "horaInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaInicio}</div> },
-    { title: "Dinicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.dataInicio}</div> },
-    { title: "Htermino", field: "horaTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaTermino}</div> },
     { title: "Categoria", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeCategoria}</div> },
+    // { title: "Local", field: "nomeLocal", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeLocal}</div> },
+    // { title: "Bairro", field: "nomeBairro", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeBairro}</div> },
+    // { title: "Municipio", field: "nomeMunicipio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeMunicipio}</div> },
+    // { title: "Hinicio", field: "horaInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaInicio}</div> },
+    { title: "Dinicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.dataInicio}</div> },
+    // { title: "Htermino", field: "horaTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaTermino}</div> },
     { title: "Dtermino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.dataTermino}</div> },
-    {
-      title: "Descrição", field: "nomeTextearea", cellStyle: CellStyle, render: (rowData) => <div style={{
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        width: "100px", fontSize: "16px"
-      }}>{rowData.nomeTextearea}</div>
-    }
+
+    // {
+    //   title: "Descrição", field: "nomeTextearea", cellStyle: CellStyle, render: (rowData) => <div style={{
+    //     textOverflow: "ellipsis",
+    //     whiteSpace: "nowrap",
+    //     overflow: "hidden",
+    //     width: "100px", fontSize: "16px"
+    //   }}>{rowData.nomeTextearea}</div>
+    // }
 
     // { title: "Local", field: "nomeLocal" },
     // { title: "Telefone", field: "telefone", emptyValue: () => <em>null</em>, cellStyle: CellStyle },
@@ -87,12 +84,37 @@ export default function Tabela() {
       <div className="tabela">
         <MaterialTable
           editable={{
-            onRowAdd: (newRow) => new Promise((resolve, reject) => {
-              setTableData((old) => {
-                return old = [...tableData, newRow]
-              })
-              setTimeout(() => { resolve() }, 1100)
-            }),
+            // onRowAdd: (newRow) => new Promise((resolve, reject) => {
+
+            //   // axios.post(url + "eventos", {
+            //   //   // id: values.id,
+            //   //   // nomeEvento: values.nomeEvento,
+            //   //   // nomeCategoria: values.nomeCategoria,
+            //   //   // nomeTextearea: values.nomeTextearea,
+            //   //   // dataInicio: values.dataInicio,
+            //   //   // dataTermino: values.dataTermino,
+            //   //   // horaInicio: values.horaInicio,
+            //   //   // horaTermino: values.horaTermino,
+            //   //   // nomeBairro: values.nomeBairro,
+            //   //   // nomeLocal: values.nomeBairro,
+            //   //   // nomeMunicipio: values.nomeMunicipio
+            //   // }).then((response) => {
+            //   //   setTimeout(() => {
+            //   //     console.log(response)
+            //   //     navigate('/organizador/evento/listar')
+
+            //   //   }, 1200)
+            //   // }).catch((error) => {
+            //   //   console.log(error)
+            //   // })
+
+
+
+            //   // setTableData((old) => {
+            //   //   return old = [...tableData, newRow]
+            //   // })
+            //   setTimeout(() => { resolve() }, 1100)
+            // }),
             // onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
             //   try {
@@ -109,7 +131,7 @@ export default function Tabela() {
             // }),
             onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
 
-              console.log(selectedRow.id)
+              // console.log(selectedRow.id)
 
               // const eliminar = tableData.filter(ct => ct.id !== selectedRow.id)
               // console.log("Item ilimnado: ", eliminar)
@@ -132,33 +154,37 @@ export default function Tabela() {
             })
           }}
           actions={
-            [{
-              icon: () => {
-                return <Edit></Edit>
-              },
-              tooltip: "Editar",
-              onClick: (e, data) => {
-                console.log(data, e.target.value)
+            [
+              {
+                icon: () => {
+                  return <Edit></Edit>
+                },
+                tooltip: "Editar",
+                onClick: (e, data) => {
+                  // console.log(data, e.target.value)
 
-                let valor
-                const id = tableData.forEach((value) => {
-                  if (value.id === data.id) {
-                    valor = value.id
-                  }
-                })
+                  let valor
+                  const id = tableData.find((value) => {
+                    if (value.id === data.id) {
+                      valor = value.id
+                      console.log(typeof (value.id))
+                    }
+                  })
+                  console.log("Verificando o tipo do valor: " + typeof (valor))
 
-                console.log(valor)
 
-                navigate(`/organizador/detalhe/editar/${valor}`)
+                  navigate(`/organizador/detalhe/editar/${valor}`)
 
-                // console.log(tableData.forEach((value) => {
-                //   if (parseInt(value.tableData.id) === Number(data.tableData.id)) {
-                //     alert("Iguais")
-                //   } 
-                // }))
-              }
-            }]
+
+
+
+
+                }
+
+              }]
           }
+
+
           localization={{
             header: {
               actions: "Ações"
@@ -205,8 +231,8 @@ export default function Tabela() {
 
           }
           }
-
         />
+
       </div>
 
 
@@ -215,3 +241,4 @@ export default function Tabela() {
   )
 
 }
+

@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
-import { Route, Routes, Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 import Layout from "../components/Layout/index"
 import PaginaPrincipal from "../pages/PaginaPrincipal/PaginaPrincipal";
@@ -9,7 +11,7 @@ import Teatro from "../pages/tipo_Eventos/Teatro/Teatro"
 import Espetaculo from "../pages/tipo_Eventos/Espetaculo/Espetaculo";
 import Visualizar_ingresso from "../pages/Visualizar_ingresso/Visualizar_ingresso";
 import Palestra from "../pages/tipo_Eventos/Palestra/Palestra";
-import Section_eventos_Teste from "../pages/section_eventos/Section_eventos_teste";
+
 
 import TopMes from "../pages/tipo_Eventos/TopMes/TopMes";
 import TodosEvento from "../pages/tipo_Eventos/TodosEvento/TodosEvento";
@@ -23,11 +25,15 @@ import Dashboard from "../pages/dashboard/components/Dashboard/Dashboard";
 
 import Estrutura from "../pages/dashboard/components/estrutura/Estrutura";
 import Criar from "../pages/dashboard/components/estrutura/Criar";
+import Editar from "../pages/dashboard/components/estrutura/Editar"
 import DashboardLayout from "../components/Dashboard/DashboardLayout";
 import Home from "../pages/dashboard/components/estrutura/Home";
 import Perfil from "../pages/dashboard/components/estrutura/Perfil";
-import { ContextDashboard } from "../context/Context";
-import Editar from "../pages/dashboard/components/estrutura/Editar";
+import { ContextDashboard, ContextUserId } from "../context/Context";
+
+
+import { useContext } from "react";
+import Foto from "../pages/dashboard/components/estrutura/Foto";
 
 
 //  Context Dashboard
@@ -35,6 +41,7 @@ import Editar from "../pages/dashboard/components/estrutura/Editar";
 
 export default function Rotas() {
 
+   
     return (
         <>
             {/*Página principal*/}
@@ -77,8 +84,6 @@ export default function Rotas() {
 
                 </Route>
                 <Route path="login" element={<Login />} />
-                <Route path="teste" element={<Section_eventos_Teste />} />
-
 
 
                 {/* Dashboard do organizador */}
@@ -115,6 +120,7 @@ export default function Rotas() {
                         <Route path="evento"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Evento"
                                     lista1="Criar"
                                     // lista2="Foto"
@@ -623,17 +629,19 @@ export default function Rotas() {
                         </Route>
 
 
+
                         <Route path="detalhe/"
                             element={
                                 <Estrutura
+                                    infoGeral={"none"}
                                     titulo="Detalhe"
                                     lista1="Editar evento"
                                     lista2="Foto"
                                     lista3="Bilhete"
                                     lista4="Orador"
                                     lista5="Palestrante"
-                                    rota1="/organizador/detalhe/editar/:userId"
-                                    rota2="/organizador/evento/foto"
+                                    rota1="/organizador/detalhe/editar/1234"
+                                    rota2={`/organizador/detalhe/foto/123`}
                                     rota3="/organizador/evento/editar"
                                     rota4="/organizador/evento/listar"
                                     rota5="/organizador/evento/excluir"
@@ -641,9 +649,118 @@ export default function Rotas() {
                                 />} >
 
 
-                            <Route path="editar/:userId"
-                                element={<Editar
+                            <Route path={`foto/:id`}
 
+
+                                element={
+                                    <Foto
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                        Formato JPEG ou PNG de no máximo 2MB."
+                                        PnomeBotao="Enviar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1=""
+                                        PselectOption1=""
+                                        Pselect2="Palestrante"
+                                        PselectOption2="Selecionar palestrante"
+                                        PspanNomeInput1="Nome do evento"
+                                        PnameInput1=""
+                                        PplaceholderInput1="Nomo do vento"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Nome do local"
+                                        PnameInput2=""
+                                        PplaceholderInput2="Nome do local"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Bairro"
+                                        PnameInput3=""
+                                        PplaceholderInput3="Nome do bairro"
+                                        PtipoInput3="text"
+
+
+                                        PspanNomeInput4="Munícipio"
+                                        PnameInput4=""
+                                        PplaceholderInput4="Nome do munícipio"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="4. Data e horário"
+                                        PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+
+                                        //! Display de todas textearea
+                                        PtexteareaDisplay="none"
+
+
+
+
+                                        //! Display de todas select
+                                        PselectDisplay1="none"
+                                        PselectDisplay2="none"
+
+                                        //! Display de todas inputs
+                                        PInput1Display="none"
+                                        PInput2Display="none"
+                                        PInput3Display="none"
+                                        PInput4Display="none"
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay=""
+                                        PtabelaDisplay="none"
+
+
+                                    />}
+
+
+
+                            >
+
+                            </Route>
+
+                            <Route path="editar/:id"
+
+                                element={<Editar
 
                                     /* Grupo 1 - informação 1 */
                                     Pinformacao1="1. Informações básicas"
@@ -738,11 +855,14 @@ export default function Rotas() {
                                 />}>
                             </Route>
 
+
+
                         </Route>
 
                         <Route path="bilhete"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Bilhete"
                                     lista1="Criar"
                                     lista2="Editar"
@@ -1137,6 +1257,7 @@ export default function Rotas() {
                         <Route path="orador"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Orador"
                                     lista1="Criar"
                                     lista2="Editar"
@@ -1533,6 +1654,7 @@ export default function Rotas() {
                         <Route path="palestrante"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Palestrante"
                                     lista1="Criar"
                                     lista2="Foto"
@@ -2038,6 +2160,7 @@ export default function Rotas() {
                         <Route path="perfil"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Informação da conta"
                                     lista1={"Informações"}
                                     lista2={"Editar"}
@@ -2314,6 +2437,7 @@ export default function Rotas() {
                         <Route path="admin"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Administrador"
                                     lista1="Listar"
                                     rota1="/administrador/admin/listar"
@@ -2518,6 +2642,7 @@ export default function Rotas() {
                         <Route path="eventos"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Eventos"
                                     lista1="Listar"
                                     rota1="/administrador/eventos/listar"
@@ -2628,6 +2753,7 @@ export default function Rotas() {
                         <Route path="usuarios"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Usuários"
                                     lista1="Listar"
                                     rota1="/administrador/usuarios/listar"
@@ -2738,6 +2864,7 @@ export default function Rotas() {
                         <Route path="perfil"
                             element={
                                 <Estrutura
+                                    infoGeral={""}
                                     titulo="Informação da conta"
                                     lista1={"Informações"}
                                     lista2={"Editar"}

@@ -56,7 +56,7 @@ export default function Teatro() {
                 <div className="container_conteudo">
                     <div className="section_eventos">
 
-                        {currentItens.map((item) => {
+                        {currentItens((item) => {
                             return (
                                 <>
                                     <EventoCardPago_Gratis

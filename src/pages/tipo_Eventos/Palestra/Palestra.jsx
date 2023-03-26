@@ -58,13 +58,15 @@ export default function Palestra() {
                         {currentItens.map((item) => {
                             return (
                                 <>
-                                    <EventoCardPago_Gratis
-                                        id={item.id}
-                                        image={item.image}
-                                        date={item.date}
-                                        name={item.name}
-                                        price={item.price}
-                                    ></EventoCardPago_Gratis>
+                                    <div key={item.id}>
+                                        <EventoCardPago_Gratis
+                                            id={item.id}
+                                            image={item.image}
+                                            date={item.date}
+                                            name={item.name}
+                                            price={item.price}
+                                        ></EventoCardPago_Gratis>
+                                    </div>
                                 </>
                             )
                         })}
