@@ -245,7 +245,7 @@ export default function Foto({
             <div className="titulo_evento_lista container" >
                 <div className="titulo_evento container">Detalhe</div>
                 <div className="eventos_lista container">
-                    <NavLink
+                <NavLink
                         to={`/organizador/detalhe/editar/${id}`}
                     >
 
@@ -262,31 +262,42 @@ export default function Foto({
 
                     </NavLink>
 
-                    {/* <NavLink
-                        to={`${rota3}`}
+                    <NavLink
+                        to={`/organizador/detalhe/bilhete/${id}`}
                     >
 
-                        <span>{lista3}</span>
+                        <span>Bilhete</span>
+
+                    </NavLink>
+
+                    <NavLink
+                        to={`/organizador/detalhe/orador/${id}`}
+                    >
+
+                        <span>Orador</span>
 
                     </NavLink>
 
 
 
                     <NavLink
-                        to={`${rota4}`}
+                        to={`/organizador/detalhe/orador/${id}`}
+
                     >
 
-                        <span>{lista4}</span>
+                        <span>Palestrante</span>
 
                     </NavLink>
 
+
                     <NavLink
-                        to={`${rota5}`}
+                        to={`/organizador/detalhe/listar/${id}`}
+
                     >
 
-                        <span>{lista5}</span>
+                        <span>Listar</span>
 
-                    </NavLink> */}
+                    </NavLink>
                 </div>
             </div>
 

@@ -242,7 +242,7 @@ export default function Criar({
                             nomeBairro: values.nomeBairro,
                             nomeLocal: values.nomeBairro,
                             nomeMunicipio: values.nomeMunicipio,
-                            foto: ""
+                            foto: "",
                         }).then((response) => {
                             setTimeout(() => {
                                 navigate('/organizador/evento/listar')
@@ -608,52 +608,7 @@ export default function Criar({
                             <Tabela />
                         </div>
 
-                        <Modal
-                            isOpen={modalIsOpen}
-                            onRequestClose={handleCloseModal}
-                            style={{
-                                overlay: {
-                                    position: 'fixed',
-                                    top: "7%",
-                                    left: "30%",
-                                    right: "30%",
-                                    bottom: "0%",
-                                    backgroundColor: 'none'
-                                },
-                                content: {
-                                    position: 'absolute',
-                                    top: '40px',
-                                    left: '40px',
-                                    right: '40px',
-                                    bottom: '40px',
-                                    border: '1px solid #ccc',
-                                    background: '#fff',
-                                    overflow: 'auto',
-                                    WebkitOverflowScrolling: 'touch',
-                                    borderRadius: '15px',
-                                    outline: 'none',
-                                    padding: '0px'
-                                }
-                            }}
-                        >
-
-                            <div
-                                className="compra container">
-                                <X
-                                    size={35}
-                                    onClick={handleCloseModal} className="btn_fechar_hidden ">Fechar</X>
-                                <span>Compra de bilhetes</span>
-                                <X
-                                    size={35}
-                                    onClick={handleCloseModal} className="btn_fechar ">Fechar</X>
-                            </div>
-
-                            <div className="visualizar_compra container">
-
-                            </div>
-
-                        </Modal>
-
+                  
                     </Form>
                 )}
             </Formik>

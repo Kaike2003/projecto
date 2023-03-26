@@ -34,6 +34,10 @@ import { ContextDashboard, ContextUserId } from "../context/Context";
 
 import { useContext } from "react";
 import Foto from "../pages/dashboard/components/estrutura/Foto";
+import BilheteEstrutura from "../pages/dashboard/components/estrutura/BilheteEstrutura";
+import Orador from "../pages/dashboard/components/estrutura/Orador";
+import PalestranteEstrutura from "../pages/dashboard/components/estrutura/Palestrante";
+import TabelaOrador from "../pages/dashboard/components/Tabela/components/TabelaOrador";
 
 
 //  Context Dashboard
@@ -41,7 +45,7 @@ import Foto from "../pages/dashboard/components/estrutura/Foto";
 
 export default function Rotas() {
 
-   
+
     return (
         <>
             {/*Página principal*/}
@@ -645,8 +649,254 @@ export default function Rotas() {
                                     rota3="/organizador/evento/editar"
                                     rota4="/organizador/evento/listar"
                                     rota5="/organizador/evento/excluir"
-
                                 />} >
+
+                            <Route path="listar/:id"
+                            element={
+                                <TabelaOrador></TabelaOrador>
+
+                            }
+                            >
+
+                            </Route>
+
+                            <Route path="bilhete/:id"
+
+
+                                element={<BilheteEstrutura
+
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                                 Adicione as principais informações do bilhete."
+                                    PnomeBotao="Criar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1=""
+                                    PselectOption1=""
+                                    PselectName="tipoBilhete"
+                                    Pselect2="Tipo de bilhete"
+                                    PselectOption2="Selecionar tipo de bilhete"
+                                    PspanNomeInput1="Nome do evento"
+                                    PnameInput1="nomeBilhete"
+                                    PplaceholderInput1="Nome do bilhete"
+                                    PtipoInput1="text"
+
+
+
+                                    /* Grupo 2 - informação 2 */
+                                    Pinformacao2="2. Informe o endereço ou o nome do local do evento"
+                                    PsubInformacao2="Adicione os principais endereço do evento"
+
+                                    /* Grupo 2 - inputs e select*/
+                                    PspanNomeInput2="Quantidade de bilhetes"
+                                    PnameInput2="quantidadeBilhete"
+                                    PplaceholderInput2="Quantidade de bilhete"
+                                    PtipoInput2="number"
+
+                                    PspanNomeInput3="Data de inicio"
+                                    PnameInput3="dataInicioBilhete"
+                                    PplaceholderInput3="Nome do bairro"
+                                    PtipoInput3="date"
+
+
+                                    PspanNomeInput4="Data de termino"
+                                    PnameInput4="dataTerminoBilhete"
+                                    PplaceholderInput4="Nome do munícipio"
+                                    PtipoInput4="date"
+
+                                    /* Grupo 3 - informação 3 */
+                                    Pinformacao3="3. Descriçao do evento"
+                                    PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                    /* Grupo 3 - textearea */
+                                    PtexteareaDisplay="none"
+                                    PnameTextearea="nomeTextearea"
+                                    /* Grupo 4 - informação 4*/
+                                    Pinformacao4="4. Data e horário"
+                                    PsubInformacao4="Informe aos participantes quando seu evento vai acontecer."
+
+                                    /* Grupo 4 - inputs e selects */
+
+                                    PspanNomeInput5="Data de Início"
+                                    PnameInput5="dataInicio"
+                                    PtipoInput5="date"
+
+                                    PspanNomeInput6="Hora de Início"
+                                    PnameInput6="horaInicio"
+                                    PtipoInput6="time"
+
+                                    PspanNomeInput7="Data de Término"
+                                    PnameInput7="dataTermino"
+                                    PtipoInput7="date"
+
+                                    PspanNomeInput8="Hora de Término"
+                                    PnameInput8="horaTermino"
+                                    PtipoInput8="time"
+
+                                    //! Display de todas informações
+                                    PInformacao1Display=""
+                                    PInformacao2Display="none"
+                                    PInformacao3Display="none"
+                                    PInformacao4Display="none"
+
+
+                                    //! Display de todas select
+                                    PselectDisplay1="none"
+                                    PselectDisplay2=""
+
+                                    //! Display de todas inputs
+                                    PInput1Display=""
+                                    PInput2Display=""
+                                    PInput3Display=""
+                                    PInput4Display=""
+                                    PInput5Display="none"
+                                    PInput6Display=""
+                                    PInput7Display=""
+                                    PInput8Display="none"
+                                    PinputFileDisplay="none"
+                                    PtabelaDisplay="none"
+                                />}>
+
+
+
+
+
+
+
+
+                            </Route>
+
+
+                            <Route path="orador/:id"
+
+
+                                element={<Orador
+
+                                    /* Grupo 1 - informação 1 */
+                                    Pinformacao1="1. Informações básicas"
+                                    PsubInformacao1="
+                     Adicione as principais informações do orador."
+                                    PnomeBotao="Criar"
+
+                                    /* Grupo 1 - inputs e select*/
+                                    Pselect1=""
+                                    PselectOption1=""
+                                    PselectName="tipoBilhete"
+                                    Pselect2="Tipo de bilhete"
+                                    PselectOption2="Selecionar tipo de bilhete"
+                                    PspanNomeInput1="Nome do orador"
+                                    PnameInput1="nomeOrador"
+                                    PplaceholderInput1="Nome do orador"
+                                    PtipoInput1="text"
+
+                                />}
+
+                            >
+                            </Route>
+
+                            <Route path="palestrante/:id"
+                                element={
+                                    <PalestranteEstrutura
+                                        /* Grupo 1 - informação 1 */
+                                        Pinformacao1="1. Informações básicas"
+                                        PsubInformacao1="
+                                Adicione as principais informações do palestrante."
+                                        PnomeBotao="Criar"
+
+                                        /* Grupo 1 - inputs e select*/
+                                        Pselect1="Evento"
+                                        PselectOption1="Selecionar evento"
+                                        Pselect2="Categoria do evento"
+                                        PselectOption2="Selecionar categoria"
+                                        PspanNomeInput1="Nome do palestrante"
+                                        PnameInput1="nomePalestrante"
+                                        PplaceholderInput1="Nome do palestrante"
+                                        PtipoInput1="text"
+
+
+
+                                        /* Grupo 2 - informação 2 */
+                                        Pinformacao2="2. Informe a quantidade e o preço do bilhete"
+                                        PsubInformacao2="Adicione os principais endereço do evento"
+
+                                        /* Grupo 2 - inputs e select*/
+                                        PspanNomeInput2="Facebook"
+                                        PnameInput2="facebookPalestrante"
+                                        PplaceholderInput2="Nome do facebook"
+                                        PtipoInput2="text"
+
+                                        PspanNomeInput3="Instagram"
+                                        PnameInput3="instagramPalestrante"
+                                        PplaceholderInput3="Nome do instagram"
+                                        PtipoInput3="texte"
+
+
+                                        PspanNomeInput4="Youtube"
+                                        PnameInput4="youtubePalestrante"
+                                        PplaceholderInput4="Nome do canal"
+                                        PtipoInput4="text"
+
+                                        /* Grupo 3 - informação 3 */
+                                        Pinformacao3="3. Descriçao do evento"
+                                        PsubInformacao3="Conte todos os detalhes do seu evento, como a programação e os diferenciais da sua produção!"
+                                        /* Grupo 3 - textearea */
+                                        PtexteareaDisplay="none"
+
+                                        /* Grupo 4 - informação 4*/
+                                        Pinformacao4="3. Data e horário"
+                                        PsubInformacao4="Informe aos participantes os bilhetes estão desponiveis."
+
+                                        /* Grupo 4 - inputs e selects */
+
+                                        PspanNomeInput5="Data de Início"
+                                        PnameInput5=""
+                                        PtipoInput5="date"
+
+                                        PspanNomeInput6="Hora de Início"
+                                        PnameInput6=""
+                                        PtipoInput6="time"
+
+                                        PspanNomeInput7="Data de Término"
+                                        PnameInput7=""
+                                        PtipoInput7="date"
+
+                                        PspanNomeInput8="Hora de Término"
+                                        PnameInput8=""
+                                        PtipoInput8="time"
+
+                                        //! Display de todas informações
+                                        PInformacao1Display=""
+                                        PInformacao2Display="none"
+                                        PInformacao3Display="none"
+                                        PInformacao4Display="none"
+
+                                        //! Display de todas select
+                                        PselectDisplay1=""
+                                        PselectDisplay2="none"
+
+
+                                        //! Display de todas inputs
+                                        PInput1Display=""
+                                        PInput2Display=""
+                                        PInput3Display=""
+                                        PInput4Display=""
+                                        PInput5Display="none"
+                                        PInput6Display="none"
+                                        PInput7Display="none"
+                                        PInput8Display="none"
+                                        PinputFileDisplay="none"
+                                        PtabelaDisplay="none"
+                                    />}
+
+
+
+
+
+
+                            >
+                            </Route>
+
+
 
 
                             <Route path={`foto/:id`}

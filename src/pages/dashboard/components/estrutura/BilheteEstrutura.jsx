@@ -12,7 +12,7 @@ import Rotas from "../../../../routes";
 
 
 
-export default function Editar({
+export default function BilheteEstrutura({
 
     // ! Todas as propriedades dos grupo 1, 2, 3 e 4
     /* Grupo 1 - informações */
@@ -181,32 +181,6 @@ export default function Editar({
         // .required('Nome da categória é obrigatorio.')
     })
 
-    const valoresInicias = {
-        nomeEvento: "kaike",
-        nomeLocal: "",
-        nomeBairro: "",
-        nomeMunicipio: "",
-        dataInicio: "",
-        horaInicio: "",
-        dataTermino: "",
-        horaTermino: "",
-        nomeTextearea: "",
-        nomeCategoria: ""
-    }
-
-
-    const valoresSalvos = {
-        nomeEvento: eventos.nomeEvento,
-        nomeLocal: eventos.nomeLocal,
-        nomeBairro: eventos.nomeBairro,
-        nomeMunicipio: eventos.nomeMunicipio,
-        dataInicio: eventos.dataInicio,
-        horaInicio: eventos.horaInicio,
-        dataTermino: eventos.dataTermino,
-        horaTermino: eventos.horaTermino,
-        nomeTextearea: eventos.nomeTextearea,
-        nomeCategoria: eventos.nomeCategoria
-    }
 
     // console.log("Valores salvos: ", valoresSalvos)
 
@@ -263,14 +237,13 @@ export default function Editar({
 
 
                     <NavLink
-                        to={`/organizador/detalhe/orador/${id}`}
+                        to={`/organizador/detalhe/palestrante/${id}`}
 
                     >
 
                         <span>Palestrante</span>
 
                     </NavLink>
-
 
                     <NavLink
                         to={`/organizador/detalhe/listar/${id}`}
@@ -281,7 +254,14 @@ export default function Editar({
 
                     </NavLink>
 
-                    
+                    {/*
+                    <NavLink
+                        to={`${rota5}`}
+                    >
+
+                        <span>{lista5}</span>
+
+                    </NavLink> */}
                 </div>
             </div>
 
@@ -289,31 +269,33 @@ export default function Editar({
             <Formik
 
 
-                initialValues={valoresSalvos || valoresInicias}
+                initialValues={{
+                    nomeBilhete: "",
+                    tipoBilhete: "",
+                    quantidadeBilhete: "",
+                    dataInicioBilhete: "",
+                    dataTerminoBilhete: ""
+                }}
 
-                enableReinitialize
-                validationSchema={EstruturaSchema}
+                // enableReinitialize
+                // validationSchema={EstruturaSchema}
                 onSubmit={values => {
 
+                    console.log(values)
 
 
-
-                    axios.put(url + "eventos/" + id, {
-                        id: values.id,
-                        nomeEvento: values.nomeEvento,
-                        nomeCategoria: values.nomeCategoria,
-                        nomeTextearea: values.nomeTextearea,
-                        dataInicio: values.dataInicio,
-                        dataTermino: values.dataTermino,
-                        horaInicio: values.horaInicio,
-                        horaTermino: values.horaTermino,
-                        nomeBairro: values.nomeBairro,
-                        nomeLocal: values.nomeBairro,
-                        nomeMunicipio: values.nomeMunicipio
+                    axios.post(url + "bilhete", {
+                        id: uuid(),
+                        idEvento: eventos.id,
+                        nomeBilhete: values.nomeBilhete,
+                        tipoBilhete: values.tipoBilhete,
+                        quantidadeBilhete: values.quantidadeBilhete,
+                        dataInicioBilhete: values.dataInicioBilhete,
+                        dataTerminoBilhete: values.dataTerminoBilhete
                     }).then((response) => {
                         setTimeout(() => {
-                            // console.log(response)
-                            navigate('/organizador/evento/listar')
+                            console.log(response)
+                            // navigate('/organizador/evento/listar')
                             // handleOpenModal()
                             // alert("olá mundo")
                         }, 1200)
@@ -321,7 +303,6 @@ export default function Editar({
                         console.log(error)
                     })
 
-                    // console.log(values)
 
                 }}
 
@@ -339,7 +320,8 @@ export default function Editar({
 
 
 
-                        <div className="criar container">
+                        <div className="criar container"
+                        >
                             <div className="criar_info_criar" style={{ display: `${PInformacao1Display}` }}>
                                 <div
 
@@ -351,7 +333,7 @@ export default function Editar({
                                     className="PnomeBotao"
                                     type="submit">{PnomeBotao}</button>
                             </div>
-                            <div className="criar_main ">
+                            <div className="criar_main " style={{ display: "none" }}>
 
                                 <div className="criar_estrutura container">
 
@@ -378,7 +360,7 @@ export default function Editar({
                                                 placeholder={PplaceholderInput1}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeEvento}
+                                                value={values.nomeBilhete}
                                             />
                                             {errors.nomeEvento && touched.nomeEvento ? (
                                                 <div className="error_Yup">{errors.nomeEvento}</div>
@@ -405,8 +387,8 @@ export default function Editar({
                                                 <option value={"seminário"}>Seminário</option>
                                             </select>
 
-                                            {errors.nomeCategoria && touched.nomeCategoria ? (
-                                                <div className="error_Yup">{errors.nomeCategoria}</div>
+                                            {errors.quantidadeBilhete && touched.quantidadeBilhete ? (
+                                                <div className="error_Yup">{errors.quantidadeBilhete}</div>
                                             ) : null}
                                         </div>
 
@@ -457,10 +439,10 @@ export default function Editar({
                                                 type={PtipoInput2}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeLocal}
+                                                value={values.quantidadeBilhete}
                                                 placeholder={PplaceholderInput2} />
-                                            {errors.nomeLocal && touched.nomeLocal ? (
-                                                <div className="error_Yup">{errors.nomeLocal}</div>
+                                            {errors.quantidadeBilhete && touched.quantidadeBilhete ? (
+                                                <div className="error_Yup">{errors.quantidadeBilhete}</div>
                                             ) : null}
                                         </div>
 
@@ -479,10 +461,10 @@ export default function Editar({
                                                 type={PtipoInput3}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeBairro}
+                                                value={values.dataInicioBilhete}
                                                 placeholder={PplaceholderInput3} />
-                                            {errors.nomeBairro && touched.nomeBairro ? (
-                                                <div className="error_Yup">{errors.nomeBairro}</div>
+                                            {errors.dataInicioBilhete && touched.dataInicioBilhete ? (
+                                                <div className="error_Yup">{errors.dataInicioBilhete}</div>
                                             ) : null}
                                         </div>
                                     </div>
@@ -507,10 +489,10 @@ export default function Editar({
                                                 type={PtipoInput4}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeMunicipio}
+                                                value={values.dataTerminoBilhete}
                                                 placeholder={PplaceholderInput4} />
-                                            {errors.nomeMunicipio && touched.nomeMunicipio ? (
-                                                <div className="error_Yup">{errors.nomeMunicipio}</div>
+                                            {errors.dataTerminoBilhete && touched.dataTerminoBilhete ? (
+                                                <div className="error_Yup">{errors.dataTerminoBilhete}</div>
                                             ) : null}
                                         </div>
 
@@ -656,6 +638,184 @@ export default function Editar({
                                 </div>
                                 <div>
                                 </div>
+                            </div>
+
+
+
+
+                            <div className="criar_main " style={{ display: "" }}>
+
+                                <div className="criar_estrutura container">
+
+                                    <div
+                                        style={{ display: `${PselectDisplay1}` }}>
+                                        <div className="criar_row">
+                                            <span>{Pselect1}</span>
+                                            <select name="" id="">
+                                                <option>{PselectOption1}</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div
+                                        style={{ display: `${PInput1Display}` }}
+                                    >
+
+                                        <div className="criar_row">
+                                            <span>{PspanNomeInput1}</span>
+                                            <input
+                                                name={"nomeBilhete"}
+                                                type={PtipoInput1}
+                                                placeholder={PplaceholderInput1}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.nomeBilhete}
+                                            />
+                                            {errors.nomeBilhete && touched.nomeBilhete ? (
+                                                <div className="error_Yup">{errors.nomeBilhete}</div>
+                                            ) : null}
+                                        </div>
+
+                                    </div>
+
+                                    <div
+                                        style={{
+                                            display: `${PselectDisplay2}`
+                                        }}>
+                                        <div className="criar_row">
+                                            <span>{Pselect2}</span>
+                                            <select
+                                                name={PselectName}
+                                                id=""
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                            >
+
+                                                <option value={"pago"}>Pago</option>
+                                                <option value={"grátis"}>Grátis</option>
+
+                                            </select>
+
+                                            {errors.tipoBilhete && touched.tipoBilhete ? (
+                                                <div className="error_Yup">{errors.tipoBilhete}</div>
+                                            ) : null}
+                                        </div>
+
+                                    </div>
+
+
+                                    <div
+                                        style={{ display: `${PinputFileDisplay}` }}
+                                    >
+                                        <div className="criar_row">
+                                            <span>Imagem</span>
+                                            <input type="file" name="" id="file" />
+                                            <label htmlFor="file" className="file_image">
+                                                Adicionar foto
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div
+                                    style={{
+                                        display: `${PInformacao2Display}`
+                                    }}
+                                    className="criar_info">
+                                    <span>{Pinformacao2}</span> <br />
+                                    <span>{PsubInformacao2}</span>
+
+                                </div>
+
+                                <div
+
+                                    className="criar_estrutura container">
+                                    <div>
+
+                                        <div
+                                            style={{
+                                                display: `${PInput2Display}`
+                                            }}
+
+                                            className="criar_row">
+                                            <span>{PspanNomeInput2}</span>
+                                            <input
+                                                name={PnameInput2}
+                                                type={PtipoInput2}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.quantidadeBilhete}
+                                                placeholder={PplaceholderInput2} />
+                                            {errors.quantidadeBilhete && touched.quantidadeBilhete ? (
+                                                <div className="error_Yup">{errors.quantidadeBilhete}</div>
+                                            ) : null}
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            style={{
+                                                display: `${PInput3Display}`
+                                            }}
+
+                                            className="criar_row">
+                                            <span>{PspanNomeInput3}</span>
+                                            <input
+                                                name={PnameInput3}
+                                                type={PtipoInput3}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.dataInicioBilhete}
+                                                placeholder={PplaceholderInput3} />
+                                            {errors.dataInicioBilhete && touched.dataInicioBilhete ? (
+                                                <div className="error_Yup">{errors.dataInicioBilhete}</div>
+                                            ) : null}
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div
+
+                                    className="criar_estrutura container">
+                                    <div>
+
+                                        <div
+                                            style={{
+                                                display: `${PInput4Display}`
+                                            }}
+                                            className="criar_row">
+                                            <span>{PspanNomeInput4}</span>
+                                            <input
+                                                name={PnameInput4}
+                                                type={PtipoInput4}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.dataTerminoBilhete}
+                                                placeholder={PplaceholderInput4} />
+                                            {errors.dataTerminoBilhete && touched.dataTerminoBilhete ? (
+                                                <div className="error_Yup">{errors.dataTerminoBilhete}</div>
+                                            ) : null}
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+
+
+
+
                             </div>
                         </div>
 

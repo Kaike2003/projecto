@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate, NavLink, } from "react-router-dom"
 import { Formik, Form } from "formik";
 import * as Yup from "yup"
@@ -7,12 +7,13 @@ import { v4 as uuid } from 'uuid';
 import "./Criar.css"
 import axios from "axios";
 import Rotas from "../../../../routes";
+import PrevisualizacaoImagem from "./PrevisualizacaoImagem";
 
 
 
 
 
-export default function Editar({
+export default function PalestranteEstrutura({
 
     // ! Todas as propriedades dos grupo 1, 2, 3 e 4
     /* Grupo 1 - informações */
@@ -117,6 +118,9 @@ export default function Editar({
     })
 
 
+    const fileRef = useRef(null)
+
+
     async function CarregarDados() {
         await axios.get(url + "eventos/" + id).then(response =>
             setEventos(response.data)
@@ -181,32 +185,6 @@ export default function Editar({
         // .required('Nome da categória é obrigatorio.')
     })
 
-    const valoresInicias = {
-        nomeEvento: "kaike",
-        nomeLocal: "",
-        nomeBairro: "",
-        nomeMunicipio: "",
-        dataInicio: "",
-        horaInicio: "",
-        dataTermino: "",
-        horaTermino: "",
-        nomeTextearea: "",
-        nomeCategoria: ""
-    }
-
-
-    const valoresSalvos = {
-        nomeEvento: eventos.nomeEvento,
-        nomeLocal: eventos.nomeLocal,
-        nomeBairro: eventos.nomeBairro,
-        nomeMunicipio: eventos.nomeMunicipio,
-        dataInicio: eventos.dataInicio,
-        horaInicio: eventos.horaInicio,
-        dataTermino: eventos.dataTermino,
-        horaTermino: eventos.horaTermino,
-        nomeTextearea: eventos.nomeTextearea,
-        nomeCategoria: eventos.nomeCategoria
-    }
 
     // console.log("Valores salvos: ", valoresSalvos)
 
@@ -263,14 +241,13 @@ export default function Editar({
 
 
                     <NavLink
-                        to={`/organizador/detalhe/orador/${id}`}
+                        to={`/organizador/detalhe/palestrante/${id}`}
 
                     >
 
                         <span>Palestrante</span>
 
                     </NavLink>
-
 
                     <NavLink
                         to={`/organizador/detalhe/listar/${id}`}
@@ -281,7 +258,14 @@ export default function Editar({
 
                     </NavLink>
 
-                    
+                    {/*
+                    <NavLink
+                        to={`${rota5}`}
+                    >
+
+                        <span>{lista5}</span>
+
+                    </NavLink> */}
                 </div>
             </div>
 
@@ -289,31 +273,34 @@ export default function Editar({
             <Formik
 
 
-                initialValues={valoresSalvos || valoresInicias}
+                initialValues={{
+                    nomePalestrante: "",
+                    file: "",
+                    facebookPalestrante: "",
+                    instagramPalestrante: "",
+                    youtubePalestrante: ""
+                }}
 
-                enableReinitialize
-                validationSchema={EstruturaSchema}
+                // enableReinitialize
+                // validationSchema={EstruturaSchema}
                 onSubmit={values => {
 
 
 
 
-                    axios.put(url + "eventos/" + id, {
-                        id: values.id,
-                        nomeEvento: values.nomeEvento,
-                        nomeCategoria: values.nomeCategoria,
-                        nomeTextearea: values.nomeTextearea,
-                        dataInicio: values.dataInicio,
-                        dataTermino: values.dataTermino,
-                        horaInicio: values.horaInicio,
-                        horaTermino: values.horaTermino,
-                        nomeBairro: values.nomeBairro,
-                        nomeLocal: values.nomeBairro,
-                        nomeMunicipio: values.nomeMunicipio
+                    axios.post(url + "palestrante", {
+                        id: uuid(),
+                        idEvento: eventos.id,
+                        nomePalestrante: values.nomePalestrante,
+                        file: values.file,
+                        facebookPalestrante: values.facebookPalestrante,
+                        instagramPalestrante: values.instagramPalestrante,
+                        youtubePalestrante: values.instagramPalestrante
                     }).then((response) => {
                         setTimeout(() => {
-                            // console.log(response)
-                            navigate('/organizador/evento/listar')
+                            console.log("Valores:", values)
+
+                            // navigate('/organizador/evento/listar')
                             // handleOpenModal()
                             // alert("olá mundo")
                         }, 1200)
@@ -321,7 +308,6 @@ export default function Editar({
                         console.log(error)
                     })
 
-                    // console.log(values)
 
                 }}
 
@@ -334,7 +320,8 @@ export default function Editar({
                     handleChange,
                     handleBlur,
                     handleSubmit,
-                    isSubmitting, }) => (
+                    isSubmitting,
+                    setFieldValue }) => (
                     <Form className="container" onSubmit={handleSubmit}>
 
 
@@ -355,16 +342,6 @@ export default function Editar({
 
                                 <div className="criar_estrutura container">
 
-                                    <div
-                                        style={{ display: `${PselectDisplay1}` }}>
-                                        <div className="criar_row">
-                                            <span>{Pselect1}</span>
-                                            <select name="" id="">
-                                                <option>{PselectOption1}</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
 
                                     <div
                                         style={{ display: `${PInput1Display}` }}
@@ -378,65 +355,49 @@ export default function Editar({
                                                 placeholder={PplaceholderInput1}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeEvento}
+                                                value={values.nomePalestrante}
                                             />
-                                            {errors.nomeEvento && touched.nomeEvento ? (
-                                                <div className="error_Yup">{errors.nomeEvento}</div>
-                                            ) : null}
-                                        </div>
-
-                                    </div>
-
-                                    <div
-                                        style={{
-                                            display: `${PselectDisplay2}`
-                                        }}>
-                                        <div className="criar_row">
-                                            <span>{Pselect2}</span>
-                                            <select
-                                                name={PselectName}
-                                                id=""
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            >
-
-                                                <option value={"teatro"}>Teatro</option>
-                                                <option value={"concerto"}>Concerto</option>
-                                                <option value={"seminário"}>Seminário</option>
-                                            </select>
-
-                                            {errors.nomeCategoria && touched.nomeCategoria ? (
-                                                <div className="error_Yup">{errors.nomeCategoria}</div>
+                                            {errors.nomePalestrante && touched.nomePalestrante ? (
+                                                <div className="error_Yup">{errors.nomePalestrante}</div>
                                             ) : null}
                                         </div>
 
                                     </div>
 
 
-                                    <div
-                                        style={{ display: `${PinputFileDisplay}` }}
-                                    >
+
+
+                                    <div>
                                         <div className="criar_row">
-                                            <span>Imagem</span>
-                                            <input type="file" name="" id="file" />
-                                            <label htmlFor="file" className="file_image">
+                                            <span>Foto</span>
+                                            {errors.file && touched.file ? (
+                                                <div className="error_Yup">{errors.file}</div>
+                                            ) : null}
+                                            {values.file &&
+
+                                                <PrevisualizacaoImagem
+                                                    file={values.file} />}
+                                            <input
+                                                ref={fileRef}
+                                                hidden
+                                                type="file"
+                                                onChange={(e) => {
+                                                    setFieldValue("file", e.target.files[0])
+                                                }}
+
+                                            />
+                                            {/* <button
+
+                                            >Upload</button> */}
+                                            <label
+                                                onClick={() => {
+                                                    fileRef.current.click()
+                                                }}
+                                                htmlFor="file" className="file_image">
                                                 Adicionar foto
                                             </label>
                                         </div>
                                     </div>
-
-                                </div>
-
-
-
-
-                                <div
-                                    style={{
-                                        display: `${PInformacao2Display}`
-                                    }}
-                                    className="criar_info">
-                                    <span>{Pinformacao2}</span> <br />
-                                    <span>{PsubInformacao2}</span>
 
                                 </div>
 
@@ -457,10 +418,10 @@ export default function Editar({
                                                 type={PtipoInput2}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeLocal}
+                                                value={values.facebookPalestrante}
                                                 placeholder={PplaceholderInput2} />
-                                            {errors.nomeLocal && touched.nomeLocal ? (
-                                                <div className="error_Yup">{errors.nomeLocal}</div>
+                                            {errors.facebookPalestrante && touched.facebookPalestrante ? (
+                                                <div className="error_Yup">{errors.facebookPalestrante}</div>
                                             ) : null}
                                         </div>
 
@@ -479,10 +440,10 @@ export default function Editar({
                                                 type={PtipoInput3}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeBairro}
+                                                value={values.instagramPalestrante}
                                                 placeholder={PplaceholderInput3} />
-                                            {errors.nomeBairro && touched.nomeBairro ? (
-                                                <div className="error_Yup">{errors.nomeBairro}</div>
+                                            {errors.instagramPalestrante && touched.instagramPalestrante ? (
+                                                <div className="error_Yup">{errors.instagramPalestrante}</div>
                                             ) : null}
                                         </div>
                                     </div>
@@ -507,21 +468,11 @@ export default function Editar({
                                                 type={PtipoInput4}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.nomeMunicipio}
+                                                value={values.youtubePalestrante}
                                                 placeholder={PplaceholderInput4} />
-                                            {errors.nomeMunicipio && touched.nomeMunicipio ? (
-                                                <div className="error_Yup">{errors.nomeMunicipio}</div>
+                                            {errors.youtubePalestrante && touched.youtubePalestrante ? (
+                                                <div className="error_Yup">{errors.youtubePalestrante}</div>
                                             ) : null}
-                                        </div>
-
-                                    </div>
-
-                                    <div style={{ display: "none" }}>
-                                        <div className="criar_row">
-                                            <span>Bairro</span>
-                                            <input type="text"
-                                                name={PnameTextearea}
-                                                placeholder="Nome do evento" />
                                         </div>
 
                                     </div>
@@ -530,130 +481,6 @@ export default function Editar({
 
                                 </div>
 
-                                <div
-                                    style={{
-                                        display: `${PInformacao3Display}`
-                                    }}
-                                    className="criar_info">
-                                    <span>{Pinformacao3}</span> <br />
-                                    <span>{PsubInformacao3}</span>
-                                </div>
-
-                                <div>
-                                    <textarea
-                                        style={{ display: `${PtexteareaDisplay}` }}
-                                        name={PnameTextearea}
-                                        id="criar_descricao"
-                                        cols="30"
-                                        rows="10"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.nomeTextearea || eventos.nomeTextearea}
-
-                                    ></textarea>
-                                    {errors.nomeTextearea && touched.nomeTextearea ? (
-                                        <div className="error_Yup">{errors.nomeTextearea}</div>
-                                    ) : null}
-                                </div>
-
-                                <div
-                                    style={{ display: `${PInformacao4Display}` }}
-                                    className="criar_info">
-                                    <span>{Pinformacao4}</span> <br />
-                                    <span>{PsubInformacao4}</span>
-                                </div>
-
-                                <div
-                                    style={{ display: `${PInput5Display}` }}
-                                    className="criar_date_time">
-                                    <div
-
-                                    >
-                                        <div className="criar_row">
-                                            <span>{PspanNomeInput5}</span>
-                                            <input
-                                                type={PtipoInput5}
-                                                name={PnameInput5}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.dataInicio}
-
-                                            />
-
-                                            {errors.dataInicio && touched.dataInicio ? (
-                                                <div className="error_Yup">{errors.dataInicio}</div>
-                                            ) : null}
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-
-                                        <div
-                                            style={{ display: `${PInput6Display}` }}
-
-                                            className="criar_row">
-                                            <span>{PspanNomeInput6}</span>
-                                            <input
-                                                type={PtipoInput6}
-                                                name={PnameInput6}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.horaInicio}
-
-                                            />
-
-                                            {errors.horaInicio && touched.horaInicio ? (
-                                                <div className="error_Yup">{errors.horaInicio}</div>
-                                            ) : null}
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-
-                                        <div
-                                            style={{ display: `${PInput7Display}` }}
-
-                                            className="criar_row">
-                                            <span>{PspanNomeInput7}</span>
-                                            <input
-                                                type={PtipoInput7}
-                                                name={PnameInput7}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.dataTermino}
-
-                                            />
-                                            {errors.dataTermino && touched.dataTermino ? (
-                                                <div className="error_Yup">{errors.dataTermino}</div>
-                                            ) : null}
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-
-                                        <div
-                                            style={{ display: `${PInput8Display}` }}
-
-                                            className="criar_row">
-                                            <span>{PspanNomeInput8}</span>
-                                            <input
-                                                type={PtipoInput8}
-                                                name={PnameInput8}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.horaTermino}
-                                            />
-                                            {errors.horaTermino && touched.horaTermino ? (
-                                                <div className="error_Yup">{errors.horaTermino}</div>
-                                            ) : null}
-                                        </div>
-
-                                    </div>
-
-                                </div>
                                 <div>
                                 </div>
                             </div>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Rotas from "../../../../routes"
 
-export default function Tabela() {
+export default function TabelaOrador() {
 
   const navigate = useNavigate()
 

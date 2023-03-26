@@ -1,17 +1,47 @@
 {
   "eventos": [
     {
-      "nomeEvento": "kaike bartolo",
+      "id": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
+      "nomeEvento": "kaike bartolomeu",
       "nomeCategoria": "concerto",
-      "nomeTextearea": "pkow3meçmelwnmwj ekl,ne wliknjrioneklhjilhnerjlkwenjklwe",
+      "nomeTextearea": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
       "dataInicio": "2023-03-31",
       "dataTermino": "2023-03-31",
-      "horaInicio": "23:31",
-      "horaTermino": "23:31",
+      "horaInicio": "18:57",
+      "horaTermino": "18:57",
       "nomeBairro": "Cazenga",
       "nomeLocal": "Cazenga",
       "nomeMunicipio": "paraiso",
-      "id": "254ba6bf-5700-4d11-a3b9-e248999ebbd0"
+      "foto": ""
+    }
+  ],
+  "bilhete": [
+    {
+      "id": "47af08b7-181d-4fd6-8bc2-87574ffd8cd8",
+      "idEvento": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
+      "nomeBilhete": "lmkeolde",
+      "tipoBilhete": "",
+      "quantidadeBilhete": 300,
+      "dataInicioBilhete": "2023-03-31",
+      "dataTerminoBilhete": "2023-03-31"
+    }
+  ],
+  "orador": [
+    {
+      "id": "f4ee274a-9884-48bc-9524-fdc56e9ad2d3",
+      "idEvento": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
+      "nomeOrador": "Kaike Bartolomeu"
+    }
+  ],
+  "palestrante": [
+    {
+      "id": "56d5a88d-92c9-4cfc-a5d3-6c497f7c4731",
+      "idEvento": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
+      "nomePalestrante": "dad",
+      "file": {},
+      "facebookPalestrante": "KaikeBartolomeu",
+      "instagramPalestrante": "KaikeBartolomeu",
+      "youtubePalestrante": "KaikeBartolomeu"
     }
   ]
 }
