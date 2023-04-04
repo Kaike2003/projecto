@@ -213,7 +213,7 @@ export default function Editar({
     return (
         <>
 
-            <h5>{id}</h5>
+            {/* <h5>{id}</h5> */}
 
             {/* <div>
                 <NavLink to={`/organizador/detalhe/editar/${id}`}>Editar</NavLink>

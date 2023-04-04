@@ -13,6 +13,20 @@
       "nomeLocal": "Cazenga",
       "nomeMunicipio": "paraiso",
       "foto": ""
+    },
+    {
+      "id": "d549f070-a553-4a00-9b6b-f081746a4b82",
+      "nomeEvento": "kimgjnuyjrhndftbhvdnrfhytyjf jgnvuyjgyh",
+      "nomeCategoria": "concerto",
+      "nomeTextearea": "jy,hyukvujyh d rfgtsrytytrrdtyfiohipk,lkjbjcfxfvxhfgchfd",
+      "dataInicio": "2023-04-06",
+      "dataTermino": "2023-04-06",
+      "horaInicio": "13:52",
+      "horaTermino": "13:52",
+      "nomeBairro": "lmjkhjuhn",
+      "nomeLocal": "lmjkhjuhn",
+      "nomeMunicipio": "mkgnhyhrdfchgfgdxgfcsrdthge",
+      "foto": ""
     }
   ],
   "bilhete": [
@@ -24,6 +38,24 @@
       "quantidadeBilhete": 300,
       "dataInicioBilhete": "2023-03-31",
       "dataTerminoBilhete": "2023-03-31"
+    },
+    {
+      "id": "3cd7a292-2b14-4f54-a845-457af1524e78",
+      "idEvento": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
+      "nomeBilhete": "kaike",
+      "tipoBilhete": "grátis",
+      "quantidadeBilhete": 20,
+      "dataInicioBilhete": "2023-03-31",
+      "dataTerminoBilhete": "2023-03-31"
+    },
+    {
+      "id": "072c7851-fd77-413d-9210-a0edbb863143",
+      "idEvento": "d549f070-a553-4a00-9b6b-f081746a4b82",
+      "nomeBilhete": "iptrtyfltduçgçfog",
+      "tipoBilhete": "grátis",
+      "quantidadeBilhete": 60,
+      "dataInicioBilhete": "2023-03-30",
+      "dataTerminoBilhete": "2023-03-30"
     }
   ],
   "orador": [
@@ -31,17 +63,27 @@
       "id": "f4ee274a-9884-48bc-9524-fdc56e9ad2d3",
       "idEvento": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
       "nomeOrador": "Kaike Bartolomeu"
+    },
+    {
+      "id": "430d001d-1610-4ec1-9832-0ea1a7102a4d",
+      "idEvento": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
+      "nomeOrador": "Fulano"
+    },
+    {
+      "id": "f24f5412-cfa4-4f67-9715-e5621276f1c4",
+      "idEvento": "d549f070-a553-4a00-9b6b-f081746a4b82",
+      "nomeOrador": "kaike bonito e gostoso e ainda amoroso"
     }
   ],
   "palestrante": [
     {
-      "id": "56d5a88d-92c9-4cfc-a5d3-6c497f7c4731",
-      "idEvento": "a0df305d-2fe9-4b2a-b281-6d20c248d2fb",
-      "nomePalestrante": "dad",
+      "id": "edfc81b6-50d9-4259-8b3f-9da3e5c31e98",
+      "idEvento": "d549f070-a553-4a00-9b6b-f081746a4b82",
+      "nomePalestrante": "myujthry6hbgerdyfy",
       "file": {},
-      "facebookPalestrante": "KaikeBartolomeu",
-      "instagramPalestrante": "KaikeBartolomeu",
-      "youtubePalestrante": "KaikeBartolomeu"
+      "facebookPalestrante": ".kb,utbgvnfdzxghfh,mfgh",
+      "instagramPalestrante": "çlkygfgkcgli",
+      "youtubePalestrante": "çlkygfgkcgli"
     }
   ]
 }

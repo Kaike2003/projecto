@@ -4,7 +4,6 @@ import MaterialTable from 'material-table'
 import { Edit } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import Rotas from "../../../../routes"
 
 export default function TabelaOrador() {
 
@@ -19,7 +18,7 @@ export default function TabelaOrador() {
   const url = "http://localhost:3001/"
 
   async function CarregarDados() {
-    await axios.get(url + "eventos").then(response =>
+    await axios.get(url + "orador").then(response =>
       setTableData(response.data)
     )
   }
@@ -33,47 +32,13 @@ export default function TabelaOrador() {
   const CellRender = { fontSize: "16px" }
 
   const columns = [
-    { title: "Nome", field: "nomeEvento", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "130px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nomeEvento}</div> },
-    { title: "Categoria", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeCategoria}</div> },
-    // { title: "Local", field: "nomeLocal", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeLocal}</div> },
-    // { title: "Bairro", field: "nomeBairro", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeBairro}</div> },
-    // { title: "Municipio", field: "nomeMunicipio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.nomeMunicipio}</div> },
-    // { title: "Hinicio", field: "horaInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaInicio}</div> },
-    { title: "Dinicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.dataInicio}</div> },
-    // { title: "Htermino", field: "horaTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.horaTermino}</div> },
-    { title: "Dtermino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "100px", fontSize: CellRender.fontSize }}>{rowData.dataTermino}</div> },
-
-    // {
-    //   title: "Descrição", field: "nomeTextearea", cellStyle: CellStyle, render: (rowData) => <div style={{
-    //     textOverflow: "ellipsis",
-    //     whiteSpace: "nowrap",
-    //     overflow: "hidden",
-    //     width: "100px", fontSize: "16px"
-    //   }}>{rowData.nomeTextearea}</div>
-    // }
-
-    // { title: "Local", field: "nomeLocal" },
-    // { title: "Telefone", field: "telefone", emptyValue: () => <em>null</em>, cellStyle: CellStyle },
-    // {
-    //   title: "Preço", field: "preco",
-    //   type: "currency", currencySetting: { currencyCode: "INR", minimumFractionDigits: 0 }, cellStyle: CellStyle,
-    // },
+    { title: "Nome", field: "nomeOrador", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "130px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nomeOrador}</div> },
+    // Essas linhas são falsas para ajudar a ficar bonito a tabela orador
+    { title: "", field: "", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "130px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.aa}</div> },
+    { title: "", field: "", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "130px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.aa}</div> },
+    { title: "", field: "", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "130px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.aa}</div> }
 
   ]
-
-
-  // const columns = [
-  //   { title: "Nome", field: "nome", cellStyle: CellStyle },
-  //   { title: "Apelido", field: "apelido", cellStyle: CellStyle },
-  //   { title: "Genero", field: "genero", lookup: { M: "Masculino", F: "Femenino" }, cellStyle: CellStyle },
-  //   { title: "Telefone", field: "telefone", emptyValue: () => <em>null</em>, cellStyle: CellStyle },
-  //   {
-  //     title: "Preço", field: "preco",
-  //     type: "currency", currencySetting: { currencyCode: "INR", minimumFractionDigits: 0 }, cellStyle: CellStyle,
-  //   },
-
-  // ]
-
 
 
 
@@ -142,7 +107,7 @@ export default function TabelaOrador() {
               // })
               // console.log(selectedRow)
 
-              axios.delete(url + "eventos/" + selectedRow.id,
+              axios.delete(url + "orador/" + selectedRow.id,
               ).then(sucess => {
                 console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
               }).catch(error => {
@@ -170,7 +135,7 @@ export default function TabelaOrador() {
                       console.log(typeof (value.id))
                     }
                   })
-                  
+
                   navigate(`/organizador/detalhe/editar/${valor}`)
 
 
@@ -208,7 +173,7 @@ export default function TabelaOrador() {
 
             }
           }}
-          title={"Eventos"}
+          title={"Oradores"}
           columns={columns}
           data={tableData}
           options={{

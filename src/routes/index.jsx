@@ -37,7 +37,14 @@ import Foto from "../pages/dashboard/components/estrutura/Foto";
 import BilheteEstrutura from "../pages/dashboard/components/estrutura/BilheteEstrutura";
 import Orador from "../pages/dashboard/components/estrutura/Orador";
 import PalestranteEstrutura from "../pages/dashboard/components/estrutura/Palestrante";
-import TabelaOrador from "../pages/dashboard/components/Tabela/components/TabelaOrador";
+import TabelaEstrutura from "../pages/dashboard/components/estrutura/TabelaEstrutura";
+import TabelaPalestrante from "../pages/dashboard/components/estrutura/Tabelas/TabelaPalestrante";
+import TabelaOrador from "../pages/dashboard/components/estrutura/Tabelas/TabelaOrador";
+import TabelaBilhete from "../pages/dashboard/components/estrutura/Tabelas/TabelaBilhete";
+import { CriarParticipante } from "../pages/Participante/CriarParticipante";
+import AutenticarParticipante from "../pages/Participante/AutenticarParticipante";
+import { LoginParticipante } from "../pages/Participante/LoginParticipante";
+
 
 
 //  Context Dashboard
@@ -48,6 +55,11 @@ export default function Rotas() {
 
     return (
         <>
+
+
+
+
+
             {/*Página principal*/}
 
 
@@ -652,11 +664,30 @@ export default function Rotas() {
                                 />} >
 
                             <Route path="listar/:id"
-                            element={
-                                <TabelaOrador></TabelaOrador>
-
-                            }
+                                element={
+                                    <TabelaEstrutura></TabelaEstrutura>
+                                }
                             >
+
+                                <Route
+                                    path="palestrante"
+                                    element={
+                                        <TabelaPalestrante></TabelaPalestrante>
+                                    }
+                                ></Route>
+
+                                <Route
+                                    path="orador"
+                                    element={
+                                        <TabelaOrador></TabelaOrador>
+                                    }
+                                ></Route>
+
+                                <Route
+                                    path="bilhete"
+                                    element={<TabelaBilhete></TabelaBilhete>}
+                                ></Route>
+
 
                             </Route>
 
@@ -3344,13 +3375,25 @@ export default function Rotas() {
                         </Route>
 
 
-
-
-
-
                     </Route>
 
                 </Route>
+
+                { /* Participante*/}
+                <Route
+                    path="palestrante/criarContaParticipante"
+                    element={<CriarParticipante />}
+                />
+
+                <Route
+                    path="palestrante/verificarContaPalestrante"
+                    element={<AutenticarParticipante />}
+                />
+
+                <Route
+                    path="palestrante/loginPalestrante"
+                    element={<LoginParticipante />}
+                />
 
 
             </Routes>

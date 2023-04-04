@@ -187,7 +187,7 @@ export default function BilheteEstrutura({
     return (
         <>
 
-            <h5>{id}</h5>
+            {/* <h5>{id}</h5> */}
 
             {/* <div>
                 <NavLink to={`/organizador/detalhe/editar/${id}`}>Editar</NavLink>
@@ -254,14 +254,7 @@ export default function BilheteEstrutura({
 
                     </NavLink>
 
-                    {/*
-                    <NavLink
-                        to={`${rota5}`}
-                    >
-
-                        <span>{lista5}</span>
-
-                    </NavLink> */}
+                
                 </div>
             </div>
 
