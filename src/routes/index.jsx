@@ -44,6 +44,7 @@ import TabelaBilhete from "../pages/dashboard/components/estrutura/Tabelas/Tabel
 import { CriarParticipante } from "../pages/Participante/CriarParticipante";
 import AutenticarParticipante from "../pages/Participante/AutenticarParticipante";
 import { LoginParticipante } from "../pages/Participante/LoginParticipante";
+import RecuperarSenhaParticipante from "../pages/Participante/RecuperarSenhaParticipante";
 
 
 
@@ -65,6 +66,7 @@ export default function Rotas() {
 
 
             <Routes>
+                
                 <Route path="/" element={<Layout />}>
                     <Route index element={<PaginaPrincipal />} />
                     <Route path="concertos" element={<Concerto />} />
@@ -3381,19 +3383,24 @@ export default function Rotas() {
 
                 { /* Participante*/}
                 <Route
-                    path="palestrante/criarContaParticipante"
+                    path="participante/criarContaParticipante"
                     element={<CriarParticipante />}
                 />
 
                 <Route
-                    path="palestrante/verificarContaPalestrante"
+                    path="participante/verificarContaPalestrante"
                     element={<AutenticarParticipante />}
                 />
 
                 <Route
-                    path="palestrante/loginPalestrante"
+                    path="participante/loginParticipante"
                     element={<LoginParticipante />}
                 />
+
+                    <Route
+                        path="participante/recuperarSenha"
+                        element={<RecuperarSenhaParticipante />}
+                    />
 
 
             </Routes>

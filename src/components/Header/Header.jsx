@@ -3,10 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { X } from "lucide-react"
 import "./Header.css"
 import Modal from "react-modal"
+import { useContext } from "react";
+import { AuthContext } from "../../context/Autenticacao";
 
 Modal.setAppElement("#root")
 
 export default function Header() {
+
+    const {singOut} = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -58,6 +62,11 @@ export default function Header() {
                 </div>
 
                 <ul id="menu">
+                <li className="text-white"
+                onClick={()=>{
+                    singOut()
+                }}
+                ><Link to={"/"}>Sair</Link></li>
                     <li className="text-white"><Link to={"/"}>Home</Link></li>
                     <li className="text-white"><Link to={"/"}>Sobre</Link></li>
                     <li className="text-white me-3">

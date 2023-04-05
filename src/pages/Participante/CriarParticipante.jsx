@@ -3,6 +3,7 @@ import "./css/main.css"
 import "./css/util.css"
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
+
 import * as Yup from 'yup';
 import axios from "axios";
 import Modal from "react-modal"
@@ -46,17 +47,17 @@ export const CriarParticipante = () => {
 	// Validações com o yup
 	const CriarContaSchema = Yup.object().shape({
 		nome: Yup.string("Nome inválido")
-		// .min(3, "Nome muito curto")
-		// .max(50, "Nome muito longo")
-		// .required("Nome é obrigátorio")
+			.min(3, "Nome muito curto")
+			.max(50, "Nome muito longo")
+			.required("Nome é obrigátorio")
 		,
 		email: Yup.string().email('Email inválido')
-		// .required('Email é obrigátorio')
+			.required('Email é obrigátorio')
 		,
 		password: Yup.string("Passowrd obrigátorio")
-		// .min(3, "Senha muito curta")
-		// .max(100, "Senha muito longa")
-		// .required("Senha é obrigatoria")
+			.min(3, "Senha muito curta")
+			.max(100, "Senha muito longa")
+			.required("Senha é obrigatoria")
 		,
 		dataNascimento: Yup.date("Data de nascimento obrigátoria")
 			.max(new Date())
@@ -103,7 +104,7 @@ export const CriarParticipante = () => {
 					<p className="mb-3 mt-3">Sua conta foi criada com sucesso. Verifique seu email. Enviamos para você um codigo de autenticação para ativar a sua conta.</p>
 
 					<p>
-						<Link to={"/palestrante/verificarContaPalestrante"}
+						<Link to={"/participante/verificarContaPalestrante"}
 							target="_blank"
 							style={{ color: "white" }}>
 							Click aqui para poder ativar sua conta.
@@ -128,38 +129,35 @@ export const CriarParticipante = () => {
 				onSubmit={(values, { setSubmitting }) => {
 
 
-
 					data.map(item => {
+
 						if (item.email === values.email) {
-							console.log("Já existe um usuário cadastrado com este mesmo email. Use outro email.")
-						} else {
-							setTimeout(() => {
-								handleOpenModal()
-							}, 600)
+							return console.log("Já existe um usuário cadastrado com este mesmo email. Use outro email.")
+							
 						}
 					})
 
+					axios.post("http://localhost:3456/participante/create",
+						{
+							nome: values.nome,
+							palavraPasse: values.password,
+							email: values.email,
+							localizacao: "Bengad3uela",
+							telefone: "943164154",
+							dataNascimento: values.dataNascimento
+						}).then((sucesso) => {
+							console.log(sucesso)
+							setTimeout(() => {
+								alert(JSON.stringify(values, null, 2));
+								setSubmitting(false);
+
+								
+							}, 400);
+						}).catch((error) => {
+							console.log(error)
+						})
 
 
-
-
-					// axios.post(url + "participante/create",
-					// 	{
-					// 		nome: values.nome,
-					// 		palavraPasse: values.password,
-					// 		email: values.email,
-					// 		localizacao: "Benguela",
-					// 		telefone: "943162154",
-					// 		dataNascimento: values.dataNascimento
-					// 	}).then((sucesso) => {
-					// 		console.log(sucesso)
-					// 		setTimeout(() => {
-					// 			alert(JSON.stringify(values, null, 2));
-					// 			setSubmitting(false);
-					// 		}, 400);
-					// 	}).catch((error) => {
-					// 		console.log(error)
-					// 	})
 
 
 
@@ -202,6 +200,15 @@ export const CriarParticipante = () => {
 												onBlur={handleBlur}
 												value={values.nome}
 											/>
+											{data.map(item => {
+												if (item.nome === values.nome) {
+													return (
+														<div key={item.id} >
+															<p className="container" style={{ color: "red" }}>Já existe um usuário cadastrado com este mesmo nome. Use outro nome.</p>
+														</div>
+													)
+												}
+											})}
 											{errors.nome && touched.nome ? (
 												<div className="container"
 													style={{ color: "red" }}
@@ -303,7 +310,8 @@ export const CriarParticipante = () => {
 												<button
 
 													className="login100-form-btn"
-													type="submit" disabled={isSubmitting}
+													type="submit"
+													 disabled={isSubmitting}
 												>
 													Criar
 												</button>
@@ -314,8 +322,8 @@ export const CriarParticipante = () => {
 
 										<div className="txt1 text-center p-t-25 p-b-0">
 											<span>
-												<Link to={"#"} >
-													Sign Up
+												<Link to={"/participante/loginParticipante"} >
+													Iniciar sessão
 												</Link>
 											</span>
 										</div>

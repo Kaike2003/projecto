@@ -13,7 +13,7 @@ import { X } from "lucide-react";
 
 Modal.setAppElement("#root")
 
-export default function AutenticarParticipante() {
+export default function RecuperarSenhaParticipante() {
     const navigate = useNavigate ()
 
     const [data, setData] = useState([]);
@@ -45,10 +45,9 @@ export default function AutenticarParticipante() {
 
     // Validações com o yup
     const CriarContaSchema = Yup.object().shape({
-        codigo: Yup.string("Nome inválido")
-            .min(1, "O código de verificação é muito curto")
-            .required("O código de verificação obrigátorio")
-        ,
+        email: Yup.string().email('Email inválido')
+		.required('Email é obrigátorio')
+		,
 
     })
 
@@ -97,7 +96,7 @@ export default function AutenticarParticipante() {
 
             <Formik
                 initialValues={{
-                    codigo: ""
+                    email: ""
                 }}
 
                 validationSchema={CriarContaSchema}
@@ -105,30 +104,30 @@ export default function AutenticarParticipante() {
 
 
 
-                    // data.map(item => {
-                    //     if (item.id === values.codigo) {
-                    //         console.log("Já existe um usuário cadastrado com este mesmo email. Use outro email.")
-                    //     } else {
-                    //         console.log(values.codigo)
-                    //         // setTimeout(() => {
-                    //         //     handleOpenModal()
-                    //         // }, 600)
-                    //     }
-                    // })
+                    data.map(item => {
+                        if (item.email === values.email) {
+                            console.log("Já existe um usuário cadastrado com este mesmo email. Use outro email.")
+                        } else {
+                            console.log(values.email)
+                            // setTimeout(() => {
+                            //     handleOpenModal()
+                            // }, 600)
+                        }
+                    })
 
 
 
 
 
-                    axios.put( 'http://localhost:3456/participante/verificarContaPalestrante',
+                    axios.put('http://localhost:3456/participante/recuperarSenha',
                     	{
-                    		codigoVerificacao : values.codigo
+                    		email : values.email
                     	}).then((sucesso) => {
                     		console.log(sucesso)
                     		setTimeout(() => {
+                                navigate("/participante/loginParticipante")
                     			alert(JSON.stringify(values, null, 2));
                     			setSubmitting(false);
-                                   navigate("/participante/loginParticipante")
                     		}, 400);
                     	}).catch((error) => {
                     		console.log(error)
@@ -161,45 +160,34 @@ export default function AutenticarParticipante() {
                                         className="login100-form validate-form">
                                         <span className
                                             ="login100-form-title p-b-15">
-                                            Validar conta
+                                            Recuperar senha
                                         </span>
 
                                         <div className
                                             ="wrap-input100 validate-input m-b-15" data-validate="Username is reauired">
                                             <span className
-                                                ="label-input100">Introduzir código de verificação</span>
+                                                ="label-input100">Email</span>
                                             <input className
-                                                ="input100" type="text" name="codigo" placeholder="Código de verificação"
+                                                ="input100" type="text" name="email" placeholder="Email"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.codigo}
+                                                value={values.email}
                                             />
-            {data.map(item =>{
-                if(item.codigo === values.codigo){
-                    return (<div key={item.id} >
-                <p className="container" style={{ color: "green" }}>Código de confirmação válido.</p>
-                    </div>
-             ) 
-                }
-            }
-            //  {
-            //  if (item.codigo === values.codigo && item.utilizador === "PARTICIPANTE") {
-            //  return (<div key={item.id} >
-            //      <p className="container" style={{ color: "green" }}>Código de confirmação válido.</p>
-            //              </div>
-            //      )
-            // } 
+            {data.map(item => {
+             if (item.email === values.email && item.utilizador === "PARTICIPANTE") {
+             return (<div key={item.id} >
+                 <p className="container" style={{ color: "green" }}>Email válido.</p>
+                         </div>
+                 )
+            } 
 
-            // // hl/scGSa
-
-            //                                 }
-                                            )}
-                                            {errors.codigo && touched.codigo ? (
+                                            })}
+                                            {errors.email && touched.email ? (
                                                 <div className="container"
                                                     style={{ color: "red" }}
                                                 >
 
-                                                    {errors.codigo}
+                                                    {errors.email}
                                                 </div>
                                             ) : null}
 
@@ -208,11 +196,19 @@ export default function AutenticarParticipante() {
                                             </span>
                                         </div>
 
+                                    
 
+                                        <div className="text-right p-t-4 p-b-15">
 
-                                        <div className="text-right p-t-8 p-b-15">
+                                        <div className="text-right p-t-4 p-b-4">
+											<Link to={"/participante/loginParticipante"}>
+												Iniciar sessão?
+											</Link>
+										</div>
 
                                         </div>
+
+                                       
 
                                         <div className="container-login100-form-btn">
                                             <div className="wrap-login100-form-btn">
@@ -222,7 +218,7 @@ export default function AutenticarParticipante() {
                                                     className="login100-form-btn"
                                                     type="submit" disabled={isSubmitting}
                                                 >
-                                                    Verificar
+                                                    Recuperar
                                                 </button>
                                             </div>
                                         </div>
