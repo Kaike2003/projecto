@@ -47,81 +47,73 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*---------------------------------------------*/
-input {
+.input_logar_criar {
   outline: none;
   border: none;
 }
 
-textarea {
-  outline: none;
-  border: none;
-}
 
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
-
-input:focus::-webkit-input-placeholder {
+.input_logar_criar:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
-input:focus:-moz-placeholder {
+.input_logar_criar:focus:-moz-placeholder {
   color: transparent;
 }
 
-input:focus::-moz-placeholder {
+.input_logar_criar:focus::-moz-placeholder {
   color: transparent;
 }
 
-input:focus:-ms-input-placeholder {
+.input_logar_criar:focus:-ms-input-placeholder {
   color: transparent;
 }
 
-textarea:focus::-webkit-input-placeholder {
+.input_logar_criar:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
-textarea:focus:-moz-placeholder {
+.input_logar_criar:focus:-moz-placeholder {
   color: transparent;
 }
 
-textarea:focus::-moz-placeholder {
+.input_logar_criar:focus::-moz-placeholder {
   color: transparent;
 }
 
-textarea:focus:-ms-input-placeholder {
+.input_logar_criar:focus:-ms-input-placeholder {
   color: transparent;
 }
 
-input::-webkit-input-placeholder {
+.input_logar_criar::-webkit-input-placeholder {
   color: #adadad;
 }
 
-input:-moz-placeholder {
+.input_logar_criar:-moz-placeholder {
   color: #adadad;
 }
 
-input::-moz-placeholder {
+.input_logar_criar::-moz-placeholder {
   color: #adadad;
 }
 
-input:-ms-input-placeholder {
+.input_logar_criar:-ms-input-placeholder {
   color: #adadad;
 }
 
-textarea::-webkit-input-placeholder {
+.input_logar_criar::-webkit-input-placeholder {
   color: #adadad;
 }
 
-textarea:-moz-placeholder {
+.input_logar_criar:-moz-placeholder {
   color: #adadad;
 }
 
-textarea::-moz-placeholder {
+.input_logar_criar::-moz-placeholder {
   color: #adadad;
 }
 
-textarea:-ms-input-placeholder {
+.input_logar_criar:-ms-input-placeholder {
   color: #adadad;
 }
 

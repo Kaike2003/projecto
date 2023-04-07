@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup"
 import { v4 as uuid } from 'uuid';
 
-import "./Criar.css"
+// import "./Criar.css"
 import axios from "axios";
 import PrevisualizacaoImagem from "./PrevisualizacaoImagem";
 

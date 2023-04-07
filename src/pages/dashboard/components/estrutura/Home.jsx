@@ -12,7 +12,7 @@ export default function Home({ titulo }) {
 
                 <div className="container dashboardHome">
                     <div className="dashboardHome_button_input">
-                        <NavLink to={"/organizador/evento/criar"}>
+                        <NavLink to={"/reservaOnline/dashboard/evento"}>
                             <button>Criar Evento</button>
                         </NavLink>
                         <input type="text" name="" id="" placeholder="Pesquisar evento" />

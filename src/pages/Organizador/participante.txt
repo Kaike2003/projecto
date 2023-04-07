@@ -1,121 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Formik } from "formik";
-
-import * as Yup from 'yup';
-import axios from "axios";
-import Modal from "react-modal"
-import { X } from "lucide-react";
-
-
-
-
-Modal.setAppElement("#root")
-
-export const CriarParticipante = () => {
-	const navigate = useNavigate()
-
-	const [data, setData] = useState([]);
-
-	const [modalIsOpen, setIsOpen] = useState(() => {
-		return false
-	})
-
-	function handleOpenModal() {
-		setIsOpen(true)
-	}
-
-	function handleCloseModal() {
-		setIsOpen(false)
-	}
-
-
-
-
-	useEffect(() => {
-		async function fetchData() {
-			const response = await axios.get('http://localhost:3456/participante/listarParticipante');
-			const newData = response.data;
-			setData(newData);
-		}
-		fetchData();
-	}, []);
-
-
-	// Validações com o yup
-	const CriarContaSchema = Yup.object().shape({
-		nome: Yup.string("Nome inválido")
-			.min(3, "Nome muito curto")
-			.max(50, "Nome muito longo")
-			.required("Nome é obrigátorio")
-		,
-		email: Yup.string().email('Email inválido')
-			.required('Email é obrigátorio')
-		,
-		password: Yup.string("Passowrd obrigátorio")
-			.min(3, "Senha muito curta")
-			.max(100, "Senha muito longa")
-			.required("Senha é obrigatoria")
-		,
-		dataNascimento: Yup.date("Data de nascimento obrigátoria")
-			.max(new Date())
-		// .required("Data de nascimento é obrigátoria"),
-	})
-
-
-
-
-	return (
-		<>
-
-			{/* <div>
-				<ul>
-					{data.map(item => (
-						<li key={item.id}>{item.email}</li>
-					))}
-				</ul>
-			</div> */}
-
-
-			<Modal
-				className={"modalsucesso"}
-				overlayClassName={"Overlay"}
-				isOpen={modalIsOpen}
-				onRequestClose={handleCloseModal}
-
-			>
-
-				<div
-					className="contasucesso container">
-					<X
-						size={28}
-						onClick={handleCloseModal} className="btn_fechar_hidden ">Fechar</X>
-					<span
-						style={{ fontSize: "20px" }}
-					>Conta criada com sucesso</span>
-					<X
-						size={28}
-						onClick={handleCloseModal} className="btn_fechar ">Fechar</X>
-				</div>
-
-				<div>
-					<p className="mb-3 mt-3">Sua conta foi criada com sucesso. Verifique seu email. Enviamos para você um codigo de autenticação para ativar a sua conta.</p>
-
-					<p>
-						<Link to={"/participante/verificarContaPalestrante"}
-							target="_blank"
-							style={{ color: "white" }}>
-							Click aqui para poder ativar sua conta.
-						</Link>
-					</p>
-
-				</div>
-
-
-
-			</Modal>
-
-			<Formik
+	<Formik
 				initialValues={{
 					nome: "",
 					email: "",
@@ -127,35 +10,26 @@ export const CriarParticipante = () => {
 				onSubmit={(values, { setSubmitting }) => {
 
 
-					data.map(item => {
-
-						if (item.email === values.email) {
-							return console.log("Já existe um usuário cadastrado com este mesmo email. Use outro email.")
-							
-						}
-					})
-
-					axios.post("http://localhost:3456/participante/create",
-						{
-							nome: values.nome,
-							palavraPasse: values.password,
-							email: values.email,
-							localizacao: "Bengad3uela",
-							telefone: "943164154",
-							dataNascimento: values.dataNascimento
-						}).then((sucesso) => {
-							console.log(sucesso)
-							setTimeout(() => {
-								alert(JSON.stringify(values, null, 2));
-								setSubmitting(false);
-
-								navigate("/participante/verificarContaPalestrante")
-							}, 400);
-						}).catch((error) => {
-							console.log(error)
-						})
 
 
+
+					// axios.post(url + "participante/create",
+					// 	{
+					// 		nome: values.nome,
+					// 		palavraPasse: values.password,
+					// 		email: values.email,
+					// 		localizacao: "Benguela",
+					// 		telefone: "943162154",
+					// 		dataNascimento: values.dataNascimento
+					// 	}).then((sucesso) => {
+					// 		console.log(sucesso)
+					// 		setTimeout(() => {
+					// 			alert(JSON.stringify(values, null, 2));
+					// 			setSubmitting(false);
+					// 		}, 400);
+					// 	}).catch((error) => {
+					// 		console.log(error)
+					// 	})
 
 
 
@@ -173,7 +47,7 @@ export const CriarParticipante = () => {
 					/* and other goodies */
 				}) => (
 					<form onSubmit={handleSubmit} >
-
+					
 						<div className
 							="limiter">
 							<div className
@@ -198,15 +72,6 @@ export const CriarParticipante = () => {
 												onBlur={handleBlur}
 												value={values.nome}
 											/>
-											{data.map(item => {
-												if (item.nome === values.nome) {
-													return (
-														<div key={item.id} >
-															<p className="container" style={{ color: "red" }}>Já existe um usuário cadastrado com este mesmo nome. Use outro nome.</p>
-														</div>
-													)
-												}
-											})}
 											{errors.nome && touched.nome ? (
 												<div className="container"
 													style={{ color: "red" }}
@@ -232,15 +97,6 @@ export const CriarParticipante = () => {
 												value={values.email} />
 											<span className
 												="focus-input100" ></span>
-											{data.map(item => {
-												if (item.email === values.email) {
-													return (
-														<div key={item.id} >
-															<p className="container" style={{ color: "red" }}>Já existe um usuário cadastrado com este mesmo email. Use outro email.</p>
-														</div>
-													)
-												}
-											})}
 											{errors.email && touched.email ? (
 												<div className="container"
 													style={{ color: "red" }}
@@ -306,10 +162,8 @@ export const CriarParticipante = () => {
 											<div className="wrap-login100-form-btn">
 												<div className="login100-form-bgbtn"></div>
 												<button
-
 													className="login100-form-btn"
-													type="submit"
-													 disabled={isSubmitting}
+													type="submit" disabled={isSubmitting}
 												>
 													Criar
 												</button>
@@ -320,8 +174,8 @@ export const CriarParticipante = () => {
 
 										<div className="txt1 text-center p-t-25 p-b-0">
 											<span>
-												<Link to={"/participante/loginParticipante"} >
-													Iniciar sessão
+												<Link to={"#"} >
+													Sign Up
 												</Link>
 											</span>
 										</div>
@@ -336,10 +190,3 @@ export const CriarParticipante = () => {
 					</form>
 				)}
 			</Formik>
-
-
-
-		</>
-	)
-
-}

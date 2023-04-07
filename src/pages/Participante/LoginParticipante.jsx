@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import "./css/main.css"
-import "./css/util.css"
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from 'yup';
@@ -8,6 +6,9 @@ import axios from "axios";
 import Modal from "react-modal"
 import { X } from "lucide-react";
 import { AuthContext } from "../../context/Autenticacao";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 Modal.setAppElement("#root")
 
@@ -72,45 +73,7 @@ export const LoginParticipante = () => {
 					</ul>
 				</div> */}
 	
-	
-				<Modal
-					className={"modalsucesso"}
-					overlayClassName={"Overlay"}
-					isOpen={modalIsOpen}
-					onRequestClose={handleCloseModal}
-	
-				>
-	
-					<div
-						className="contasucesso container">
-						<X
-							size={28}
-							onClick={handleCloseModal} className="btn_fechar_hidden ">Fechar</X>
-						<span
-							style={{ fontSize: "20px" }}
-						>Conta criada com sucesso</span>
-						<X
-							size={28}
-							onClick={handleCloseModal} className="btn_fechar ">Fechar</X>
-					</div>
-	
-					<div>
-						<p className="mb-3 mt-3">Sua conta foi criada com sucesso. Verifique seu email. Enviamos para você um codigo de autenticação para ativar a sua conta.</p>
-	
-						<p>
-							<Link to={"/palestrante/verificarContaPalestrante"}
-								target="_blank"
-								style={{ color: "white" }}>
-								Click aqui para poder ativar sua conta.
-							</Link>
-						</p>
-	
-					</div>
-	
-	
-	
-				</Modal>
-	
+				
 	
 	
 				<Formik
@@ -127,8 +90,9 @@ export const LoginParticipante = () => {
 						
 						data.map(item => {
 							
-							if (item.email === values.email) {
+							if (item.email === values.email ) {
 	
+								
 								// console.log(item)
 	
 								const email = values.email
@@ -139,48 +103,12 @@ export const LoginParticipante = () => {
 	
 								signIn(data)
 	
-								
-								// setTimeout(() => {
-								// 	axios.post("http://localhost:3456/participante/loginParticipante",
-								// 		{
-								// 			palavraPasse: values.password,
-								// 			email: values.email,
-								// 		}).then(async (sucesso) => {
-								// 			await login(data)
-								// 			setTimeout(() => {
-								// 				console.log(sucesso)
-	
-								// 			}, 400);
-	
-								// 		}).catch((error) => {
-								// 			console.log(error)
-								// 		})
-	
-								// }, 200)
+						
 							} 
 							
 						})
 	
 	
-	
-	
-						// axios.post(url + "participante/create",
-						// 	{
-						// 		nome: values.nome,
-						// 		palavraPasse: values.password,
-						// 		email: values.email,
-						// 		localizacao: "Benguela",
-						// 		telefone: "943162154",
-						// 		dataNascimento: values.dataNascimento
-						// 	}).then((sucesso) => {
-						// 		console.log(sucesso)
-						// 		setTimeout(() => {
-						// 			alert(JSON.stringify(values, null, 2));
-						// 			setSubmitting(false);
-						// 		}, 400);
-						// 	}).catch((error) => {
-						// 		console.log(error)
-						// 	})
 	
 	
 	
@@ -196,10 +124,13 @@ export const LoginParticipante = () => {
 						handleSubmit,
 						isSubmitting,
 						/* and other goodies */
-					}) => (
-						<form onSubmit={handleSubmit} >
+					}) => (	
+				<form onSubmit={handleSubmit} >
+
 	
+
 							<div className="limiter">
+	
 								<div className="container-login100"
 								>
 									<div className="wrap-login100 p-l-55 p-r-55 p-t-20 p-b-54">

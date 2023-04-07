@@ -6,132 +6,134 @@ export const AuthContext = createContext()
 
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const navigate = useNavigate()
-  
-    useEffect(() => {
-      const loadingStoreData = () => {
-        const storageToken = localStorage.getItem("@Auth:token");
-  
-        if (storageToken) {
-          setUser(storageToken);
-        }
-      };
-      loadingStoreData();
-    }, []);
-  
-    const signIn = async ({ email, palavraPasse }) => {
-      try {
-        const response = await axios.post("http://localhost:3456/participante/loginParticipante",
-                        {
-                            palavraPasse: palavraPasse,
-                            email: email,
-                        })
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate()
 
-        if (response.data.error) {
-          alert(response.data.error);
-        } else {
-          setUser(response.data);
-          axios.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer ${response.data.token}`;
-        console.log(response.data.token)
-          localStorage.setItem("@Auth:token", response.data.token);
-        }
-      } catch (error) {
-        console.log(error);
+  useEffect(() => {
+    const loadingStoreData = () => {
+      const storageToken = localStorage.getItem("@Auth:token");
+      const storageEmail = localStorage.getItem("@Auth:email");
+
+
+      if (storageToken && storageEmail) {
+        setUser(storageToken);
       }
     };
-  
-    const singOut = () => {
-      localStorage.clear();
-      setUser(null);
-      return navigate("/participante/criarContaParticipante")
-    };
-  
-    return (
-      <AuthContext.Provider
-        value={{
-          user,
-          signIn,
-          singOut,
-          signed: !!user,
-        }}
-      >
-        {children}
-      </AuthContext.Provider>
-    );
+    loadingStoreData();
+  }, []);
+
+  const signIn = async ({ email, palavraPasse }) => {
+    try {
+      const response = await axios.post("http://localhost:3456/participante/loginParticipante",
+        {
+          palavraPasse: palavraPasse,
+          email: email,
+        })
+
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        setUser(response.data);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
+        console.log(response.data.token)
+        localStorage.setItem("@Auth:token", response.data.token);
+        localStorage.setItem("@Auth:email", JSON.stringify(response.data.usuario.email));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const signInOrganizador = async ({ email, palavraPasse }) => {
+    try {
+      const response = await axios.post("http://localhost:3456/organizador/loginOrganizador",
+        {
+          palavraPasse: palavraPasse,
+          email: email,
+        })
+
+      console.log(response)
+      console.log(response.data.usuario.email)
+
+
+
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        setUser(response.data);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
+        console.log(response.data.token)
+        localStorage.setItem("@Auth:token", response.data.token);
+        localStorage.setItem("@Auth:email", response.data.usuario.email);
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const signInAdmin = async ({ email, palavraPasse }) => {
+    try {
+      const response = await axios.post("http://localhost:3456/admin/loginAdmin",
+        {
+          palavraPasse: palavraPasse,
+          email: email,
+        })
+
+      console.log(response)
+      console.log(response.data.usuario.email)
+
+
+
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        setUser(response.data);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
+        console.log(response.data.token)
+        localStorage.setItem("@Auth:token", response.data.token);
+        localStorage.setItem("@Auth:email", response.data.usuario.email);
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const singOut = () => {
+    localStorage.clear();
+    setUser(null);
+    return navigate("/reservaOnline/admin/login")
+  };
+
+  const singOutAdmin = () => {
+    localStorage.clear();
+    setUser(null);
+    return navigate("/reservaOnline/admin/login")
   };
 
 
-// export const AutenticacaoProvider = ({ children }) => {
-
-//     const [utilizador, setUtilizador] = useState(null)
-
-
-
-//     const [data, setData] = useState([]);
-
-//     useEffect(() => {
-//         async function fetchData() {
-//             const response = await axios.get('http://localhost:3456/participante/listarParticipante');
-//             const newData = response.data;
-//             setData(newData);
-//         }
-//         fetchData();
-//     }, []);
-
-
-//     useEffect(() => {
-//         const loadingStoreData = () => {
-//             const storageToken = localStorage.getItem("@Autenticaco:token");
-
-//             if (storageToken) {
-//                 setUtilizador(storageToken);
-//             }
-//         };
-//         loadingStoreData();
-//     }, []);
-
-//     const login = async ({ email, palavraPasse }) => {
-//         try {
-            
-//             const response = await axios.post("http://localhost:3456/participante/loginParticipante",
-//                 {
-//                     palavraPasse: palavraPasse,
-//                     email: email,
-//                 })
-
-//             console.log(response.data.token)
-//             console.log(response)
-
-//             if (response.data.error) {
-//                 alert(response.data.error);
-//             } else {
-//                 setUtilizador(response.data);
-//                 axios.defaults.headers.common[
-//                     "Authorization"
-//                 ] = `Bearer ${response.data.token}`;
-//                 localStorage.setItem("@Autenticaco:token", response.data.token);
-//             }
-
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     };
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        signIn,
+        signInOrganizador,
+        signInAdmin,
+        singOut,
+        singOutAdmin,
+        signed: !!user,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 
-
-//     return (
-//         <AutenticacaoContext.Provider value={{
-//             utilizador,
-//             logado: !!utilizador,
-//             login,
-//         }}>
-//             {children}
-//         </AutenticacaoContext.Provider>
-//     )
-
-
-
-// } 

@@ -10,11 +10,13 @@ export default function Estrutura(
         lista3,
         lista4,
         lista5,
+        lista6,
         rota1,
         rota2,
         rota3,
         rota4,
         rota5,
+        rota6,
         infoGeral
 
     }
@@ -68,12 +70,20 @@ export default function Estrutura(
 
                     </NavLink>
 
-                    
+                    <NavLink
+                        to={`${rota6}`}
+                    >
+
+                        <span>{lista6}</span>
+
+                    </NavLink>
+                  
                 </div>
             </div>
 
             <div className="container">
                 <Outlet />
+
             </div>
 
 
