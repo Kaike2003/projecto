@@ -4,6 +4,8 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
+import swal from 'sweetalert';
+
 
 
 export default function AlterarSenha() {
@@ -11,8 +13,11 @@ export default function AlterarSenha() {
     const navigate = useNavigate()
 
 
-    const [data, setData] = useState([]);
 
+    const [data, setData] = useState([]);
+    const [nomeUtilizador, setNomeUtilizador] = useState(() => {
+        return ""
+    })
 
     useEffect(() => {
         async function fetchData() {
@@ -20,62 +25,26 @@ export default function AlterarSenha() {
             const newData = response.data;
             setData(newData);
         }
+
+        if (localStorage.getItem("@Auth:email") !== null) {
+            setNomeUtilizador(localStorage.getItem("@Auth:email"))
+        }
         fetchData();
     }, []);
 
+    console.log(nomeUtilizador)
 
+    const EstruturaAlterarSenha = Yup.object().shape({
+        palavraPasseAntiga: Yup.string("Palavra antiga inválida")
+            .min(3, "Palavra passe  antiga é curta")
+            .max(50, "Palavra passe antiga nova é muito longa")
+            .required("Palavra passe antiga é obrigátorio"),
+        palavraPasse: Yup.string("Palavra nova inválida")
+            .min(3, "Palavra passe  nova é curta")
+            .max(50, "Palavra passe nova nova é muito longa")
+            .required("Palavra passe nova é obrigátorio"),
 
-    // const EstruturaSchema = Yup.object().shape({
-    //     nomeEvento: Yup.string()
-    //         .min(5, "O nome do evento. Precisa ter menos de 5 caracteres")
-    //         .max(50, "O nome do evento. Precisa ter mais de 50 caracteres")
-    //     // .required("Nome do evento é obrigatorio.")
-    //     ,
-    //     nomeLocal: Yup.string()
-    //         .min(5, "O nome do local. Precisa ter menos de 5 caracteres")
-    //         .max(50, "O nome do local. Precisa ter mais de 50 caracteres")
-    //     // .required('Nome do local é obrigatorio.')
-    //     ,
-    //     nomeBairro: Yup.string()
-    //         .min(5, "O nome do bairro. Precisa ter menos de 5 caracteres")
-    //         .max(50, "O nome do bairro. Precisa ter mais de 50 caracteres")
-    //     // .required('Nome do bairro é obrigatorio.')
-    //     ,
-    //     nomeMunicipio: Yup.string()
-    //         .min(5, "O nome do municipio. Precisa ter menos de 5 caracteres")
-    //         .max(50, "O nome do municipio. Precisa ter mais de 50 caracteres")
-    //     // .required('Nome do municipio é obrigatorio.')
-    //     ,
-    //     dataInicio: Yup.date()
-    //         .min(new Date(), `O eventos devem ser marcados depois ${new Date()}`)
-    //         .max(new Date("2023-12-31"), `Os eventos devem ser marcados no ano de ${new Date().getFullYear()}.`)
-    //     // .required('Data de início do evento é obrigatorio.')
-    //     ,
-    //     horaInicio: Yup.string()
-    //         .min(5, 'Os eventos só são marcados depois das 7h:00')
-    //         .max(5, 'Os eventos só devem ser marcados até as 22h:00')
-    //     // .required('Hora de início do evento é obrigatorio.')
-    //     ,
-    //     dataTermino: Yup.date()
-    //         .min(new Date(), `O eventos devem ser marcados depois ${new Date()}`)
-    //         .max(new Date("2023-12-31"), `Os eventos devem ser marcados no ano de ${new Date().getFullYear()}.`)
-    //     // .required('Data de termino do evento é obrigatorio.')
-    //     ,
-    //     horaTermino: Yup.string()
-    //         .min(5, 'Os eventos só são marcados depois das 7h:00')
-    //         .max(5, 'Os eventos só devem ser marcados até as 22h:00')
-    //     // .required('Hora de termino do evento é obrigatorio.')
-    //     ,
-    //     nomeTextearea: Yup.string()
-    //         .min(30, "A descrição. Precisa ter menos de 5 caracteres")
-    //         .max(900, "A descrição. Precisa ter mais de 500 caracteres")
-    //     // .required('Descricação do evento é obrigatorio.')
-    //     ,
-    //     nomeCategoria: Yup.string()
-    //         .min(4, "A categoria. Precisa ter menos de 5 caracteres")
-    //         .max(80, "A categoria. Precisa ter mais de 50 caracteres")
-    //     // .required('Nome da categória é obrigatorio.')
-    // })
+    })
 
     return (
         <>
@@ -86,51 +55,41 @@ export default function AlterarSenha() {
 
 
                 <Formik
-                    validationSchema={"CriarContaSchema"}
+                    validationSchema={EstruturaAlterarSenha}
                     initialValues={{
-                        nome: "",
-                        email: "",
-                        password: "",
-                        dataNascimento: ""
+                        palavraPasseAntiga: "",
+                        palavraPasse: ""
                     }}
                     enableReinitialize
                     onSubmit={async (values) => {
-                        alert("Dados correctos")
 
-                        // data.map(item => {
-                        //     if (item.email === values.email) {
-                        //         alert("Já existe um nome e ou email cadastrado.");
-                        //         return;
-                        //     } else if (item.nome === values.nome) {
-                        //         alert("Já existe um nome e ou nome cadastrado.");
-                        //         return;
-                        //     } else {
+                        console.log(values)
 
-                        //         axios.post("http://localhost:3456/organizador/create",
-                        //             {
-                        //                 nome: values.nome,
-                        //                 palavraPasse: values.password,
-                        //                 email: values.email,
-                        //                 localizacao: "Zango",
-                        //                 telefone: "953164154",
-                        //                 dataNascimento: values.dataNascimento
-                        //             }).then((sucesso) => {
-                        //                 console.log(sucesso)
-                        //                 alert(JSON.stringify(values, null, 2));
-                        //                 navigate("/reservaOnline/organizador/autenticarConta")
+                        data.map(item => {
+                            if (item.email === nomeUtilizador) {
+                                axios.put(`http://localhost:3456/admin/perfil/${item.id}/atualizarPalavraPasse`,
+                                    {
+                                        palavraPasseAntiga: values.palavraPasseAntiga,
+                                        palavraPasse: values.palavraPasse
+                                    }).then((sucesso) => {
+                                        console.log(sucesso)
 
-                        //             }).catch((error) => {
-                        //                 console.log(error)
-                        //             })
+                                        console.log(sucesso.status === "400")
 
 
+                                        swal("Senha alterada", "Agora podes sempre iniciar sessão com a tua senha nova.", "success").then(() => {
+                                            navigate("/reservaOnline/dashboard/admin/perfil/informacao")
+                                        })
 
-                        //     }
-                        // })
+                                    }).catch((error) => {
+                                        swal("Senha não alterada", "Verifique sua senha antiga ou podes pedir uma senha nova por email.", "warning").then(() => {
+                                            navigate("/reservaOnline/dashboard/admin/perfil/senha")
+                                        })
+                                    })
 
 
-
-
+                            }
+                        })
 
                     }}
                 >
@@ -160,10 +119,20 @@ export default function AlterarSenha() {
                                             <div className="criar_row">
                                                 <span>Senha antiga</span>
                                                 <Field
-                                                    type="text"
-                                                    name="passwordAntiga"
+                                                    type="password"
+                                                    name="palavraPasseAntiga"
                                                     placeholder="Senha antiga"
                                                 />
+
+                                                {errors.palavraPasseAntiga && touched.palavraPasseAntiga ? (
+                                                    <div className="container"
+                                                        style={{ color: "red" }}
+                                                    >
+
+                                                        {errors.palavraPasseAntiga}
+                                                    </div>
+                                                ) : null}
+
                                             </div>
 
                                         </div>
@@ -173,10 +142,19 @@ export default function AlterarSenha() {
                                             <div className="criar_row">
                                                 <span>Senha nova</span>
                                                 <Field
-                                                    type="number"
-                                                    name="passworNova"
+                                                    type="password"
+                                                    name="palavraPasse"
                                                     placeholder="Senha nova"
                                                 />
+
+                                                {errors.palavraPasse && touched.palavraPasse ? (
+                                                    <div className="container"
+                                                        style={{ color: "red" }}
+                                                    >
+
+                                                        {errors.palavraPasse}
+                                                    </div>
+                                                ) : null}
                                             </div>
 
 

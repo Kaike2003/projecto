@@ -18,9 +18,10 @@ export default function PrevisualizacaoImagem({ file }) {
         <>
             <div className="PrevisualizacaoImagem">
                 <img src={previsualizar}
-                    alt="imagem de ume vento"
-                    width={"200px"}
-                    height={"200px"}
+                    alt="imagem"
+                    style={{objectFit: "cover"}}
+                    width={"260px"}
+                    height={"260px"}
                 ></img>
             </div>
         </>

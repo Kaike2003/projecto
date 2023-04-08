@@ -26,11 +26,11 @@ export default function TabelaCategoria() {
 
 
 
-    const CellStyle = { fontSize: "12px", width: "600px" }
+    const CellStyle = { fontSize: "12px", width: "700px" }
     const CellRender = { fontSize: "16px" }
 
     const columns = [
-        { title: "Nome", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
+        { title: "Nome", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "400px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
 
     ]
 

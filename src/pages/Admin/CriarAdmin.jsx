@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import swal from 'sweetalert';
+
 
 
 
@@ -24,11 +26,6 @@ export const CriarAdmin = () => {
 
 	// Validações com o yup
 	const CriarContaSchema = Yup.object().shape({
-		nome: Yup.string("Nome inválido")
-			.min(3, "Nome muito curto")
-			.max(50, "Nome muito longo")
-			.required("Nome é obrigátorio")
-		,
 		email: Yup.string().email('Email inválido')
 			.required('Email é obrigátorio')
 		,
@@ -36,10 +33,6 @@ export const CriarAdmin = () => {
 			.min(3, "Senha muito curta")
 			.max(100, "Senha muito longa")
 			.required("Senha é obrigatoria")
-		,
-		dataNascimento: Yup.date("Data de nascimento obrigátoria")
-			.max(new Date())
-			.required("Data de nascimento é obrigátoria"),
 	})
 
 
@@ -52,58 +45,26 @@ export const CriarAdmin = () => {
 				<Formik
 					validationSchema={CriarContaSchema}
 					initialValues={{
-						nome: "",
 						email: "",
 						password: "",
-						dataNascimento: ""
 					}}
 					onSubmit={async (values) => {
-						alert("Dados correctos")
-
-						data.map(item => {
-							if (item.email === values.email) {
-								alert("Já existe um nome e ou email cadastrado.");
-								return;
-							} else if (item.nome === values.nome) {
-								alert("Já existe um nome e ou nome cadastrado.");
-								return;
-							} else {
-
-								axios.post("http://localhost:3456/admin/create",
-									{
-										nome: values.nome,
-										palavraPasse: values.password,
-										email: values.email,
-										localizacao: "Zango",
-										telefone: "953164154",
-										dataNascimento: values.dataNascimento
-									}).then((sucesso) => {
-										console.log(sucesso)
-										alert(JSON.stringify(values, null, 2));
-										navigate("/reservaOnline/admin/autenticarConta")
-
-									}).catch((error) => {
-										console.log(error)
-									})
-
-
-
-							}
-						})
 
 
 						axios.post("http://localhost:3456/admin/create",
 							{
-								nome: values.nome,
 								palavraPasse: values.password,
 								email: values.email,
-								localizacao: "Zango",
-								telefone: "953164154",
-								dataNascimento: values.dataNascimento
-							}).then((sucesso) => {
+							}).then(async (sucesso) => {
 								console.log(sucesso)
-								alert(JSON.stringify(values, null, 2));
-								navigate("/reservaOnline/admin/autenticarConta")
+
+								setTimeout(async () => {
+									await swal("Conta criada", `Enivamos para você um código para autenticar sua conta na nossa aplicação.`, "success").then(async () => {
+										navigate("/reservaOnline/admin/autenticarConta")
+									})
+
+								}, 800);
+
 
 							}).catch((error) => {
 								console.log(error)
@@ -130,36 +91,7 @@ export const CriarAdmin = () => {
 												Criar conta
 											</span>
 
-											<div className
-												="wrap-input100 validate-input m-b-15" data-validate="Username is reauired">
-												<span className
-													="label-input100">Nome</span>
-												<Field
-													className="input100 input_logar_criar" type="text" name="nome" placeholder="Nome"
 
-												/>
-												{data.map(item => {
-													if (item.nome === values.nome) {
-														return (
-															<div key={item.id} >
-																<p className="container" style={{ color: "red" }}>Já existe um usuário cadastrado com este mesmo nome. Use outro nome.</p>
-															</div>
-														)
-													}
-												})}
-												{errors.nome && touched.nome ? (
-													<div className="container"
-														style={{ color: "red" }}
-													>
-
-														{errors.nome}
-													</div>
-												) : null}
-
-												<span className
-													="focus-input100">
-												</span>
-											</div>
 
 											<div className
 												="wrap-input100 validate-input m-b-15" data-validate="Email é obrigátorio">
@@ -198,7 +130,7 @@ export const CriarAdmin = () => {
 													className="input100 input_logar_criar"
 													type="password"
 													name="password"
-													 placeholder="Senha"
+													placeholder="Senha"
 												/>
 												{errors.password && touched.password ? (
 													<div className="container"
@@ -210,23 +142,6 @@ export const CriarAdmin = () => {
 												) : null}
 												<span className
 													="focus-input100"></span>
-											</div>
-
-											<div className
-												="wrap-input100 validate-input m-b-15" data-validate="Username is reauired">
-												<span className
-													="label-input100">Data de nascimento</span>
-												<Field className="input100 input_logar_criar" type="date" name="dataNascimento" placeholder="Nome"
-												/>
-												{errors.dataNascimento && touched.dataNascimento ? (
-													<div className="container"
-														style={{ color: "red" }}
-													>
-
-														{errors.dataNascimento}
-													</div>
-												) : null}
-
 											</div>
 
 
@@ -254,7 +169,7 @@ export const CriarAdmin = () => {
 
 											<div className="txt1 text-center p-t-25 p-b-0">
 												<span>
-													<Link to={"/reservaOnline/organizador/login"} >
+													<Link to={"/reservaOnline/admin/login"} >
 														Iniciar sessão
 													</Link>
 												</span>

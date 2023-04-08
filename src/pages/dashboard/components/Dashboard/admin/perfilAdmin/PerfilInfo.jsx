@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Perfil.css"
 import Imagem from "../../../../../../assets/img/palestrante.jpg"
 import axios from "axios";
+import { format } from "date-fns";
+
 
 export default function PerfilInfo() {
 
@@ -29,9 +31,9 @@ export default function PerfilInfo() {
         <>
 
             <div className="criar mt-5">
-                <div className="exibir_imagem">
+                {/* <div className="exibir_imagem">
                     <img src={Imagem} alt="" />
-                </div>
+                </div> */}
                 {
 
                     data.map(item => {
@@ -40,14 +42,14 @@ export default function PerfilInfo() {
                             return (
                                 <>
 
-                                    <div key={item.id}>
+                                    <div key={item.id + 1}>
 
                                         <div className="criar_estrutura container">
                                             <div>
                                                 <div className="criar_row">
 
                                                     <span>Nome</span>
-                                                    <div> {item.nome} </div>
+                                                    <div> {item.nome || "ADMIN" } </div>
 
 
                                                 </div>
@@ -79,10 +81,21 @@ export default function PerfilInfo() {
                                                 </div>
                                             </div>
 
+                                             <div>
+                                                <div className="criar_row">
+
+
+                                                    <span>Email</span>
+                                                    <div> {item.email} </div>
+
+
+                                                </div>
+                                            </div>
+
                                             <div>
                                                 <div className="criar_row">
                                                     <span>Data de nascimento</span>
-                                                    <div> {item.dataNascimento} </div>
+                                                    <div> {"Sem data de nascimento"} </div>
 
                                                 </div>
 

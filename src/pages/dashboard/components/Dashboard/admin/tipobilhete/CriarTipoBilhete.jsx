@@ -4,6 +4,8 @@ import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 
 export default function CriarTipoBilhete() {
@@ -44,28 +46,22 @@ export default function CriarTipoBilhete() {
                         nome: "",
                     }}
                     onSubmit={async (values) => {
-                        alert("Dados correctos")
-
-                        // data.map(item => {
-                        //     if (item.nome !== values.nome) {
-                            
-                        //     } else {
-                        //         alert("Esse tipo de bilhebte já foi registrado.");
-                        //         return;
-                        //     }
-                        // })
 
 
                         axios.post("http://localhost:3456/admin/tipoBilhete",
-                        {
-                            nome: values.nome,
-                        }).then((sucesso) => {
-                            console.log(sucesso)
-                            alert(JSON.stringify(values, null, 2));
-                            navigate("/reservaOnline/dashboard/admin/bilhete/listar")
-                        }).catch((error) => {
-                            console.log(error)
-                        })
+                            {
+                                nome: values.nome,
+                            }).then((sucesso) => {
+                                console.log(sucesso)
+
+                                swal(`Bilhete ${values.nome}`, "Criado com sucesso.", "success").then(() => {
+                                    navigate("/reservaOnline/dashboard/admin/bilhete/listar")
+                                })
+
+
+                            }).catch((error) => {
+                                swal(`Categoria ${values.nome}`, "Já foi cadastrada na aplicação.", "warning")
+                            })
                     }}
                 >
                     {({ isSubmitting, errors, touched, values }) => (
@@ -104,7 +100,7 @@ export default function CriarTipoBilhete() {
                                                     if (item.nome === values.nome) {
                                                         return (
                                                             <div key={item.id} >
-                                                                <p className="container" style={{ color: "red" }}>Esse tipo de bilehte já foi registrado.</p>
+                                                                <p className="container" style={{ color: "red" }}>Esse tipo de bilehte já foi cadastrado.</p>
                                                             </div>
                                                         )
                                                     }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./css/main.css"
 import "./css/util.css"
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import axios from "axios";
-import Modal from "react-modal"
-import { X } from "lucide-react";
 import { Formik, Field, Form } from "formik";
+import swal from 'sweetalert';
+
 
 
 
@@ -70,16 +70,22 @@ export default function AutenticarOrganizador() {
                                         codigoVerificacao: values.codigo
                                     }).then((sucesso) => {
                                         console.log(sucesso)
-                                        setTimeout(() => {
-                                            navigate("/reservaOnline/organizador/login")
-                                            // alert(JSON.stringify(values, null, 2));
-                                        }, 400);
+
+                                        setTimeout(async () => {
+                                            await swal("Conta autenticada", `Já pode fazer login na aplicação.`, "success").then(async () => {
+                                                navigate("/reservaOnline/organizador/login")
+                                            })
+
+                                        }, 800);
+
+                                      
                                     }).catch((error) => {
                                         console.log(error)
+                                        swal("Erro de autenticação", `Codigo está errado ou conta de participante e de administrador não podem ser autenticadas aqui.`, "warning")
                                     })
 
                             } else {
-                                alert("Não pode autenticar sua conta.")
+                                swal("Erro de autenticação", `Codigo está errado ou conta de participante e de administrador não podem ser autenticadas aqui.`, "warning")
                             }
                         })
 

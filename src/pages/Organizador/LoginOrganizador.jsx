@@ -17,7 +17,7 @@ export const LoginOrganizador = () => {
 
 	const [data, setData] = useState([]);
 
-
+	const utilizador = "ORGANIZADOR"
 
 
 	console.log(data)
@@ -49,7 +49,7 @@ export const LoginOrganizador = () => {
 
 
 	if (signed) {
-		navigate("/reservaOnline/dashboard")
+		navigate("/reservaOnline/dashboard/organizador")
 	} else {
 		return (
 			<>
@@ -66,19 +66,16 @@ export const LoginOrganizador = () => {
 						onSubmit={async (values) => {
 
 							data.map(item => {
-								if (item.email === values.email) {
+								if (item.email === values.email && item.utilizador === utilizador) {
 									const email = values.email
 									const palavraPasse = values.password
+									
 									const data = {
 										email, palavraPasse
 									}
 
 									signInOrganizador(data)
 
-								} else {
-									alert("Não pode fazer login")
-
-									// alert(JSON.stringify(values, null, 2));
 								}
 							})
 

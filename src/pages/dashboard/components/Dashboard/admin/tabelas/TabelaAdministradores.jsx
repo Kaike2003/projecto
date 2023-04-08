@@ -30,12 +30,8 @@ export default function TabelaAdministradores() {
     const CellRender = { fontSize: "16px" }
 
     const columns = [
-        { title: "Nome", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "500px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
-
+        { title: "Email", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "500px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.email}</div> },
     ]
-
-
-
 
     return (
         <>

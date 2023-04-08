@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import axios from "axios";
-import Modal from "react-modal"
-import { X } from "lucide-react";
 import { Formik, Field, Form } from "formik";
+import swal from 'sweetalert';
 
 
 
@@ -49,7 +48,6 @@ export default function AutenticarAdmin() {
                         codigo: ""
                     }}
                     onSubmit={async (values) => {
-
                         data.map(item => {
                             if (
                                 item.utilizador === utilizador
@@ -64,18 +62,27 @@ export default function AutenticarAdmin() {
                                 axios.put('http://localhost:3456/organizador/verificarContaOrganizador',
                                     {
                                         codigoVerificacao: values.codigo
-                                    }).then((sucesso) => {
+                                    }).then(async (sucesso) => {
                                         console.log(sucesso)
-                                        setTimeout(() => {
-                                            navigate("/reservaOnline/organizador/login")
-                                            // alert(JSON.stringify(values, null, 2));
-                                        }, 400);
+
+                                        setTimeout(async () => {
+                                            await swal("Conta autenticada", `Já pode fazer login na aplicação.`, "success").then(async () => {
+                                                navigate("/reservaOnline/admin/login")
+                                            })
+
+                                        }, 800);
+
+                                        // setTimeout(() => {
+                                        //     navigate("/reservaOnline/organizador/login")
+                                        //     // alert(JSON.stringify(values, null, 2));
+                                        // }, 400);
                                     }).catch((error) => {
                                         console.log(error)
+                                        swal("Erro de autenticação", `Conta de participante e de organizador não podem ser autenticadas aqui.`, "warning")
                                     })
 
                             } else {
-                                alert("Não pode autenticar sua conta.")
+                                swal("Erro de autenticação", `Conta de participante e de organizador não podem ser autenticadas aqui.`, "warning")
                             }
                         })
 
@@ -106,8 +113,8 @@ export default function AutenticarAdmin() {
                                                 <span className
                                                     ="label-input100">Introduzir código de autenticação</span>
                                                 <Field
-                                                    className="input100 input_logar_criar" type="text" 
-                                                    name="codigo" 
+                                                    className="input100 input_logar_criar" type="text"
+                                                    name="codigo"
                                                     placeholder="Código de autenticação"
                                                 />
 

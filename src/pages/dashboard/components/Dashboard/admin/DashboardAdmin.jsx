@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import 'animate.css';
 import "../css/Dashboard.css"
 import { Outlet, NavLink, Link } from "react-router-dom"
@@ -47,7 +47,8 @@ export default function DashboardAdmin() {
 
                             <div>
                                 <NavLink to={"/reservaOnline/dashboard/admin"}>
-                                    Logo
+                                    <h2 style={{ fontFamily: "Roboto, sem serifa" }}
+                                    >Reserva online</h2>
                                 </NavLink>
                             </div>
 
@@ -59,60 +60,60 @@ export default function DashboardAdmin() {
                                 </li>
                                 <li>
                                     <NavLink to={url + "estatistica"}>
-                                    Estatística
-                                </NavLink>
-                            </li>
+                                        Estatística
+                                    </NavLink>
+                                </li>
 
-                            <NavLink to={url + "perfil"}>
-                                <div className="button_span_user">
+                                <NavLink to={url + "perfil"}>
+                                    <div className="button_span_user">
 
 
-                                    {/* <div>
+                                        {/* <div>
                                         <User
                                         >
                                         </User>
                                     </div> */}
 
 
-                                    {data.map(item => {
-                                        console.log(nomeUtilizador)
-                                        if (item.email === nomeUtilizador) {
-                                            return (
-                                                <div key={item.id} >
-                                                    <span>{item.nome}</span>
-                                                </div>
-                                            )
-                                        }
-                                    })}
+                                        {data.map(item => {
+                                            console.log(nomeUtilizador)
+                                            if (item.email === nomeUtilizador) {
+                                                return (
+                                                    <div key={item.id} >
+                                                        <span>{item.email}</span>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
 
-                                </div>
-                            </NavLink>
+                                    </div>
+                                </NavLink>
+
+
+                            </div>
+
+
+
+
+                        </ul>
+
+
+                    </div>
+
+                    <div className="dashboardevento_LadoDireito">
+
+                        <Outlet>
+
+
+
+
+                        </Outlet>
 
 
                     </div>
 
 
-
-
-                </ul>
-
-
-            </div>
-
-            <div className="dashboardevento_LadoDireito">
-
-                <Outlet>
-
-
-
-
-                </Outlet>
-
-
-            </div>
-
-
-        </div >
+                </div >
             </main >
 
         </>

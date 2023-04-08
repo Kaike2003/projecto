@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import Modal from "react-modal"
-import { X } from "lucide-react";
+import swal from 'sweetalert';
 
 
 
@@ -15,7 +14,7 @@ export default function RecuperarSenhaAdmin() {
 
     const [data, setData] = useState([]);
 
-    const utilizador = "ORGANIZADOR"
+    const utilizador = "ADMIN"
     const banido = false
 
 
@@ -56,22 +55,38 @@ export default function RecuperarSenhaAdmin() {
                                 &&
                                 item.email === values.email) {
 
-                                axios.put('http://localhost:3456/organizador/recuperarSenha',
+
+                                axios.put('http://localhost:3456/admin/recuperarSenha',
                                     {
                                         email: values.email
                                     }).then((sucesso) => {
                                         console.log(sucesso)
-                                        setTimeout(() => {
-                                            // alert(JSON.stringify(values, null, 2));
-                                            navigate("/reservaOnline/organizador/login")
-                                        }, 400);
+
+
+                                        setTimeout(async () => {
+                                            await swal("Senha alterada", `Enviamos para o seu email a sua palavra passe nova.`, "success").then(async () => {
+                                                navigate("/reservaOnline/admin/login")
+                                            })
+
+                                        }, 800);
+
                                     }).catch((error) => {
                                         console.log(error)
                                     })
+
+
                             } else {
-                                return 
+                                setTimeout(async () => {
+                                    await swal("Email errado", `Aqui só autentica-se email que foram cadastrado para conta de Administrador.`, "warning").then(async () => {
+                                        navigate("/reservaOnline/admin/recuperarSenha")
+                                    })
+
+                                }, 800);
                             }
                         })
+
+
+
 
 
                     }}
@@ -99,11 +114,11 @@ export default function RecuperarSenhaAdmin() {
                                                 ="wrap-input100 validate-input m-b-15" data-validate="Username is reauired">
                                                 <span className
                                                     ="label-input100">Email</span>
-                                                <Field 
-                                                className="input100 input_logar_criar" 
-                                                type="text" 
-                                                name="email" 
-                                                placeholder="Reserva@gmail.com"
+                                                <Field
+                                                    className="input100 input_logar_criar"
+                                                    type="text"
+                                                    name="email"
+                                                    placeholder="Reserva@gmail.com"
                                                 />
 
                                                 {data.map(item => {
@@ -138,7 +153,7 @@ export default function RecuperarSenhaAdmin() {
 
 
                                             <div className="text-right p-t-8 p-b-15">
-                                                <Link to={"/reservaOnline/organizador/login"}>
+                                                <Link to={"/reservaOnline/admin/login"}>
                                                     Iniciar sessão?
                                                 </Link>
                                             </div>

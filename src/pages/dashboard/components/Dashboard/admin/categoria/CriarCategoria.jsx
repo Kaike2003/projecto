@@ -3,10 +3,12 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
+import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
 
 
 export default function CriarCategoria() {
-
+    const navigate = useNavigate()
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -18,7 +20,7 @@ export default function CriarCategoria() {
         fetchData();
     }, []);
 
-    console.log("Categorias registradas", data)
+    // console.log("Categorias registradas", data)
 
 
     const CriarCategoria = Yup.object().shape({
@@ -42,25 +44,22 @@ export default function CriarCategoria() {
                         nome: "",
                     }}
                     onSubmit={async (values) => {
-                        alert("Dados correctos")
 
-                        data.map(item => {
-                            if (item.nome !== values.nome) {
-                                axios.post("http://localhost:3456/admin/categoria",
-                                    {
-                                        nome: values.nome,
-                                    }).then((sucesso) => {
-                                        console.log(sucesso)
-                                        alert(JSON.stringify(values, null, 2));
-                                        // navigate("/reservaOnline/organizador/autenticarConta")
-                                    }).catch((error) => {
-                                        console.log(error)
-                                    })
-                            } else {
-                                alert("Essa categoria já foi registrada.");
-                                return;
-                            }
-                        })
+                        console.log(values)
+
+                        axios.post("http://localhost:3456/admin/categoria",
+                            {
+                                nome: values.nome,
+                            }).then((sucesso) => {
+                                console.log(sucesso)
+
+                                swal(`Categoria ${values.nome}`, "Criada com sucesso.", "success").then(() => {
+                                    navigate("/reservaOnline/dashboard/admin/categoria/listar")
+                                })
+
+                            }).catch((error) => {
+                                swal(`Categoria ${values.nome}`, "Já foi cadastrada na aplicação.", "warning")
+                            })
 
                     }}
                 >
@@ -100,7 +99,7 @@ export default function CriarCategoria() {
                                                     if (item.nome === values.nome) {
                                                         return (
                                                             <div key={item.id} >
-                                                                <p className="container" style={{ color: "red" }}>Essa categoria já foi registrada.</p>
+                                                                <p className="container" style={{ color: "red" }}>Essa categoria já foi cadastrada.</p>
                                                             </div>
                                                         )
                                                     }

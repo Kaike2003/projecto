@@ -82,7 +82,7 @@ export default function TabelaOrganizador() {
 
                         }
                     }}
-                    title={"Participantes"}
+                    title={"Organizadores"}
                     columns={columns}
                     data={data}
                     options={{

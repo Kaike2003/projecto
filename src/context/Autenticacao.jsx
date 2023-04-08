@@ -1,6 +1,8 @@
 import axios from "axios"
 import React, { createContext, useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 export const AuthContext = createContext()
 
@@ -54,6 +56,9 @@ export const AuthProvider = ({ children }) => {
           email: email,
         })
 
+      swal("Login confirmado", "Seja bem vindo a reserva online de bilhete", "success");
+
+
       console.log(response)
       console.log(response.data.usuario.email)
 
@@ -73,6 +78,7 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
+      swal("Senha errada", "Verifique sua senha ou certifica-se que sua conta está autenticada.", "warning");
     }
   };
 
@@ -84,6 +90,8 @@ export const AuthProvider = ({ children }) => {
           email: email,
         })
 
+      swal("Login confirmado", "Seja bem vindo a reserva online de bilhete", "success");
+
       console.log(response)
       console.log(response.data.usuario.email)
 
@@ -102,7 +110,9 @@ export const AuthProvider = ({ children }) => {
 
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      swal("Senha errada", "Verifique sua senha ou certifica-se que sua conta está autenticada.", "warning");
+      // alert("Senha incorreta")
     }
   };
 
@@ -115,7 +125,10 @@ export const AuthProvider = ({ children }) => {
   const singOutAdmin = () => {
     localStorage.clear();
     setUser(null);
-    return navigate("/reservaOnline/admin/login")
+    return setTimeout(() => {
+      swal("Sessão terminada", "Muito obrigado por usar a aplicação. Volte sempre.", "success");
+    }, 1);
+    // navigate("/reservaOnline/admin/login")
   };
 
 

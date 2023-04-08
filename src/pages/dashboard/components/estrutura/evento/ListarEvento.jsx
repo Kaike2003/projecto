@@ -44,27 +44,6 @@ export default function ListarEvento() {
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </>
 
     )

@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import { X } from "lucide-react";
 import { AuthContext } from "../../context/Autenticacao";
+import swal from 'sweetalert';
 
 
 
@@ -14,11 +14,8 @@ export const LoginAdmin = () => {
 
 
 	const [data, setData] = useState([]);
+	const utilizador = "ADMIN"
 
-
-
-
-	console.log(data)
 
 
 
@@ -64,7 +61,7 @@ export const LoginAdmin = () => {
 						onSubmit={async (values) => {
 
 							data.map(item => {
-								if (item.email === values.email) {
+								if (item.email === values.email && item.utilizador === utilizador) {
 									const email = values.email
 									const palavraPasse = values.password
 									const data = {
@@ -73,11 +70,7 @@ export const LoginAdmin = () => {
 
 									signInAdmin(data)
 
-								} else {
-									alert("Não pode fazer login")
-
-									// alert(JSON.stringify(values, null, 2));
-								}
+								} 
 							})
 
 
@@ -115,7 +108,7 @@ export const LoginAdmin = () => {
 													<span className
 														="focus-input100" ></span>
 													{data.map(item => {
-														if (item.email === values.email) {
+														if (item.email === values.email && item.utilizador === utilizador) {
 															return (
 																<div key={item.id} >
 																	<p className="container" style={{ color: "green" }}>Email correcto</p>
@@ -160,7 +153,7 @@ export const LoginAdmin = () => {
 
 
 												<div className="text-right p-t-8 p-b-15">
-													<Link to={"/reservaOnline/organizador/recuperarSenha"}>
+													<Link to={"/reservaOnline/admin/recuperarSenha"}>
 														Esqueceu palavra passe?
 													</Link>
 												</div>
@@ -183,7 +176,7 @@ export const LoginAdmin = () => {
 
 												<div className="txt1 text-center p-t-25 p-b-0">
 													<span>
-														<Link to={"/reservaOnline/organizador/criarConta"} >
+														<Link to={"/reservaOnline/admin/criarConta"} >
 															Criar conta
 														</Link>
 													</span>

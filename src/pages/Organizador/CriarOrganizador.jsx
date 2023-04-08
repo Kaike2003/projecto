@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import swal from 'sweetalert';
+
 
 
 
@@ -60,52 +62,26 @@ export const CriarOrganizador = () => {
 						dataNascimento: ""
 					}}
 					onSubmit={async (values) => {
-						alert("Dados correctos")
 
-						data.map(item => {
-							if (item.email === values.email) {
-								alert("Já existe um nome e ou email cadastrado.");
-								return;
-							} else if (item.nome === values.nome) {
-								alert("Já existe um nome e ou nome cadastrado.");
-								return;
-							} else {
-
-								axios.post("http://localhost:3456/organizador/create",
-									{
-										nome: values.nome,
-										palavraPasse: values.password,
-										email: values.email,
-										localizacao: "Zango",
-										telefone: "953164154",
-										dataNascimento: values.dataNascimento
-									}).then((sucesso) => {
-										console.log(sucesso)
-										alert(JSON.stringify(values, null, 2));
-										navigate("/reservaOnline/organizador/autenticarConta")
-
-									}).catch((error) => {
-										console.log(error)
-									})
-
-
-
-							}
-						})
-
+						console.log(values)
 
 						axios.post("http://localhost:3456/organizador/create",
 							{
 								nome: values.nome,
 								palavraPasse: values.password,
 								email: values.email,
-								localizacao: "Zango",
-								telefone: "953164154",
+								localizacao: "Angola-Luanda",
+								telefone: "9xx-xxx-xxx",
 								dataNascimento: values.dataNascimento
 							}).then((sucesso) => {
 								console.log(sucesso)
-								alert(JSON.stringify(values, null, 2));
-								navigate("/reservaOnline/organizador/autenticarConta")
+
+								setTimeout(async () => {
+									await swal("Conta criada", `Enivamos para você um código para autenticar sua conta na nossa aplicação.`, "success").then(async () => {
+										navigate("/reservaOnline/organizador/autenticarConta")
+									})
+
+								}, 800);
 
 							}).catch((error) => {
 								console.log(error)
@@ -200,7 +176,7 @@ export const CriarOrganizador = () => {
 													className="input100 input_logar_criar"
 													type="password"
 													name="password"
-													 placeholder="Senha"
+													placeholder="Senha"
 												/>
 												{errors.password && touched.password ? (
 													<div className="container"
@@ -220,6 +196,7 @@ export const CriarOrganizador = () => {
 													="label-input100">Data de nascimento</span>
 												<Field className="input100 input_logar_criar" type="date" name="dataNascimento" placeholder="Nome"
 												/>
+
 												{errors.dataNascimento && touched.dataNascimento ? (
 													<div className="container"
 														style={{ color: "red" }}
@@ -272,7 +249,7 @@ export const CriarOrganizador = () => {
 						</Form>
 					)}
 				</Formik>
-			</div>
+			</div >
 
 
 		</>

@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 import Layout from "../components/Layout/index"
 import PaginaPrincipal from "../pages/PaginaPrincipal/PaginaPrincipal";
@@ -46,7 +48,7 @@ import { LoginOrganizador } from "../pages/Organizador/LoginOrganizador";
 import { RotasPrivadasAdmin, RotasPrivadasOrganizador } from "./RotasPrivadas";
 import AutenticarOrganizador from "../pages/Organizador/AutenticarOrganizador";
 import RecuperarSenhaOrganizador from "../pages/Organizador/RecuperarSenhaOrganizador";
-import CriarEvento from "../pages/dashboard/components/estrutura/evento/CriarEvento";
+
 import ListarEvento from "../pages/dashboard/components/estrutura/evento/ListarEvento";
 import { LoginAdmin } from "../pages/Admin/LoginAdmin";
 import AutenticarAdmin from "../pages/Admin/AutenticarAdmin";
@@ -68,6 +70,10 @@ import PerfilEditar from "../pages/dashboard/components/Dashboard/admin/perfilAd
 import AlterarSenha from "../pages/dashboard/components/Dashboard/admin/perfilAdmin/AlterarSenha";
 import AdicionarFotoPerfil from "../pages/dashboard/components/Dashboard/admin/perfilAdmin/AdicionarFotoPerfil";
 import SairAdmin from "../pages/dashboard/components/Dashboard/admin/perfilAdmin/SairAdmin";
+import TabelaEvento from "../pages/dashboard/components/Dashboard/organizador/tabelas/TabelaEvento";
+import EstruturaEvento from "../pages/dashboard/components/Dashboard/organizador/evento/EstruturaEvento";
+import CriarEvento from "../pages/dashboard/components/Dashboard/organizador/evento/CriarEvento";
+import EstruturaEventoEditar from "../pages/dashboard/components/Dashboard/organizador/evento/EstruturaEventoEditar";
 
 
 
@@ -77,7 +83,7 @@ import SairAdmin from "../pages/dashboard/components/Dashboard/admin/perfilAdmin
 export default function Rotas() {
 
     const url = "reservaOnline/"
-    const urlPrivadaOrganizador = "/reservaOnline/dashboard"
+    const urlPrivadaOrganizador = "/reservaOnline/dashboard/organizador"
     const urlPrivadaAdmin = "/reservaOnline/dashboard/admin"
 
     return (
@@ -204,21 +210,8 @@ export default function Rotas() {
 
                         <Route path="evento"
                             element={
-                                <Estrutura
-                                    infoGeral={""}
-                                    titulo="Evento"
-                                    lista1="Criar"
-                                    // lista2="Foto"
-                                    // lista3="Editar"
-                                    lista4="Listar"
-                                    // lista5="Excluir"
-                                    rota1={urlPrivadaOrganizador + "/evento/criar"}
-                                    rota2={urlPrivadaOrganizador + "/evento/foto"}
-                                    rota3={urlPrivadaOrganizador + "/evento/editar"}
-                                    rota4={urlPrivadaOrganizador + "/evento/listar"}
-                                    rota5={urlPrivadaOrganizador + "/evento/excluir"}
-
-                                />}
+                                <EstruturaEvento />
+                            }
                         >
 
                             <Route path="criar" element={
@@ -227,12 +220,17 @@ export default function Rotas() {
 
                             </Route>
 
-                            <Route path="listar" element={
-                                <ListarEvento />
+                            <Route path="listar/:idUtilizador" element={
+                                <TabelaEvento />
                             }>
 
                             </Route>
 
+                        </Route>
+
+                        <Route path="evento/listar/:idUtilizador/editar"
+                            element={<EstruturaEventoEditar />}
+                        >
 
                         </Route>
 
@@ -434,7 +432,7 @@ export default function Rotas() {
                             element={
                                 <Estrutura
                                     infoGeral={""}
-                                    titulo="Participantes"
+                                    titulo="Organizadores"
                                     lista1="Listar"
                                     // lista2="Editar"
                                     // lista3="Listar"
@@ -503,12 +501,12 @@ export default function Rotas() {
                                     lista1={"Informações"}
                                     lista2={"Editar"}
                                     lista3={"Senha"}
-                                    lista4={"foto"}
+                                    // lista4={"foto"}
                                     lista5={"Sair"}
                                     rota1={urlPrivadaAdmin + "/perfil/informacao"}
                                     rota2={urlPrivadaAdmin + "/perfil/editar"}
                                     rota3={urlPrivadaAdmin + "/perfil/senha"}
-                                    rota4={urlPrivadaAdmin + "/perfil/foto"}
+                                    // rota4={urlPrivadaAdmin + "/perfil/foto"}
                                     rota5={urlPrivadaAdmin + "/perfil/sair"}
                                 />
                             }
@@ -531,15 +529,17 @@ export default function Rotas() {
 
                             />
 
-                            <Route
+                            {/* <Route
                                 path="foto"
                                 element={<AdicionarFotoPerfil />}
 
-                            />
+                            /> */}
 
                             <Route
                                 path="sair"
-                                element={<SairAdmin />}
+                                element={
+                                    <SairAdmin />
+                                }
 
                             />
 
