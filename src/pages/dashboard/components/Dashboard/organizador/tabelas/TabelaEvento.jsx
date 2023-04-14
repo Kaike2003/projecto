@@ -4,7 +4,7 @@ import MaterialTable from 'material-table'
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { format } from "date-fns";
-import { Edit } from "lucide-react";
+import { Edit, MoreHorizontal } from "lucide-react";
 import swal from 'sweetalert';
 
 
@@ -56,13 +56,13 @@ export default function TabelaEvento() {
 
         {
             title: "Data inicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "200px", padding: "0", fontSize: CellRender.fontSize }}>{
-                format(new Date(rowData.dataInicio), 'MM/dd/yyyy')
+                format(new Date(rowData.dataInicio), 'dd/MM/yyyy')
             }</div>
         },
 
         {
             title: "Data termino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "200px", padding: "0", fontSize: CellRender.fontSize }}>{
-                format(new Date(rowData.dataTermino), 'MM/dd/yyyy')}</div>
+                format(new Date(rowData.dataTermino), 'dd/MM/yyyy')}</div>
         },
 
         // { title: "Banido", field: "banido", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.banido}</div> },
@@ -105,6 +105,32 @@ export default function TabelaEvento() {
 
                     actions={
                         [
+
+
+                            {
+                                icon: () => {
+                                    return <MoreHorizontal></MoreHorizontal>
+                                },
+                                tooltip: "Informações do evento",
+                                onClick: (e, data) => {
+
+                                    //   console.log(data, e.target.value)
+                                    console.log(data)
+
+
+
+                                    swal("Evento selecionado", `Agora poderás ver as informações do evento ${data.nome}`, "success")
+
+                                    setTimeout(() => {
+
+                                        navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.utilizadorId}/editar/${data.id}/informacao`)
+
+                                    }, 100)
+
+                                }
+
+                            },
+
                             {
                                 icon: () => {
                                     return <Edit></Edit>
@@ -120,7 +146,7 @@ export default function TabelaEvento() {
 
                                         swal("Evento selecionado", `Adicione detalhes ao evento ${data.nome}`, "success");
 
-                                        navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.id}/editar`)
+                                        navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.utilizadorId}/editar/${data.id}`)
 
                                     }, 440)
 
@@ -130,36 +156,6 @@ export default function TabelaEvento() {
 
                             },
 
-                            // {
-                            //     icon: () => {
-                            //         return <></>
-                            //     },
-                            //     tooltip: "Editar",
-                            //     onClick: (e, data) => {
-
-                            //         //   console.log(data, e.target.value)
-                            //         console.log(data)
-
-
-                            //         setTimeout(() => {
-
-
-                            //             axios.put(`http://localhost:3456/admin/eventos/banido/${data.id}`
-                            //             ).then(sucesso => {
-                            //                 navigate("/reservaOnline/dashboard/admin/evento/banidos")
-                            //                 console.log(`Evento banido com sucesso. Id: ${data.id}`)
-                            //                 console.log(sucesso)
-                            //             }).catch(error => {
-                            //                 console.log(error)
-                            //             })
-
-                            //         }, 1540)
-
-
-
-                            //     }
-
-                            // }
 
 
 

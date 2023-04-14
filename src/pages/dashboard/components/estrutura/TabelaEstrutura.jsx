@@ -68,7 +68,7 @@ export default function TabelaEstrutura() {
                         to={`/organizador/detalhe/editar/${id}`}
                     >
 
-                        <span>Editar Evento</span>
+                        <span>Editar</span>
 
                     </NavLink>
 

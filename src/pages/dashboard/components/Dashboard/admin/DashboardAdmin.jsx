@@ -80,7 +80,9 @@ export default function DashboardAdmin() {
                                             if (item.email === nomeUtilizador) {
                                                 return (
                                                     <div key={item.id} >
-                                                        <span>{item.email}</span>
+                                                        <span
+                                                            style={{ color: "#FFF" }}
+                                                        >{item.email}</span>
                                                     </div>
                                                 )
                                             }

@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { Check } from "lucide-react"
+import Swal from 'sweetalert2'
+import { MoreHorizontal } from "lucide-react"
 
 export default function TabelaEventoBanido() {
 
@@ -32,7 +33,7 @@ export default function TabelaEventoBanido() {
     const columns = [
         { title: "Nome", field: "nomeEventoPublicado", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "240px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
 
-    
+
 
     ]
 
@@ -44,6 +45,55 @@ export default function TabelaEventoBanido() {
 
             <div className="tabela mt-3 mb-3">
                 <MaterialTable
+
+                    actions={
+                        [
+                            {
+                                icon: () => {
+                                    return <MoreHorizontal></MoreHorizontal>
+                                },
+                                tooltip: "Informações do evento",
+                                onClick: (e, data) => {
+
+                                    //   console.log(data, e.target.value)
+                                    console.log(data)
+                                    console.log("Id do utilizador", data.utilizadorId)
+
+
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Evento selecionado',
+                                        html: `Agora poderás ver as informações do evento ${data.nome} `,
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    }).then(() => {
+                                        setTimeout(() => {
+
+                                            navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
+
+
+                                        }, 400)
+                                    }).catch((error) => {
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Erro',
+                                            html: `${error}`,
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        })
+                                    })
+
+
+
+                                }
+
+                            }
+                        ]
+                    }
+
+
+
+
                     editable={{
                     }}
 

@@ -2,6 +2,7 @@ import { Outlet, Routes, Route } from "react-router-dom";
 import Header from "../Header/Header"
 import Footer from "../../pages/footer/Footer"
 import "./Layout.css"
+import PaginaPrincipal from "../../pages/PaginaPrincipal/PaginaPrincipal";
 
 export default function Layout() {
 
@@ -13,11 +14,12 @@ export default function Layout() {
 
             <main className="main_layout_principal">
                 <Outlet />
+                {/* <PaginaPrincipal ></PaginaPrincipal> */}
             </main>
 
-            <footer>
+            {/* <footer>
                 <Footer></Footer>
-            </footer>
+            </footer> */}
         </>
     )
 

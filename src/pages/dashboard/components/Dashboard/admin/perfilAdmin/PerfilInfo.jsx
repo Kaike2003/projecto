@@ -42,14 +42,14 @@ export default function PerfilInfo() {
                             return (
                                 <>
 
-                                    <div key={item.id + 1}>
+                                    <div key={Math.random().toString(36).substring(2)}>
 
-                                        <div className="criar_estrutura container">
+                                        <div className="criar_estrutura_InformacaoEvento container">
                                             <div>
                                                 <div className="criar_row">
 
                                                     <span>Nome</span>
-                                                    <div> {item.nome || "ADMIN" } </div>
+                                                    <div> {item.nome || "ADMIN"} </div>
 
 
                                                 </div>
@@ -64,32 +64,23 @@ export default function PerfilInfo() {
 
                                             </div>
 
-
-                                        </div>
-
-
-                                        <div className="criar_estrutura container">
-
-                                            <div>
-                                                <div className="criar_row">
+                                            <div className="criar_row">
 
 
-                                                    <span>Endereço</span>
-                                                    <div> {item.localizacao || "Sem endereço"} </div>
+                                                <span>Endereço</span>
+                                                <div> {item.localizacao || "Sem endereço"} </div>
 
 
-                                                </div>
                                             </div>
 
-                                             <div>
-                                                <div className="criar_row">
+
+                                            <div className="criar_row">
 
 
-                                                    <span>Email</span>
-                                                    <div> {item.email} </div>
+                                                <span>Email</span>
+                                                <div> {item.email} </div>
 
 
-                                                </div>
                                             </div>
 
                                             <div>
@@ -101,7 +92,13 @@ export default function PerfilInfo() {
 
                                             </div>
 
+
+
+
+
                                         </div>
+
+
 
                                     </div>
 

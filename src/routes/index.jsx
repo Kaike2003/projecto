@@ -10,7 +10,6 @@ import Concerto from "../pages/tipo_Eventos/Concerto/Concerto"
 import Festa from "../pages/tipo_Eventos/Festa/Festa";
 import Teatro from "../pages/tipo_Eventos/Teatro/Teatro"
 import Espetaculo from "../pages/tipo_Eventos/Espetaculo/Espetaculo";
-import Visualizar_ingresso from "../pages/Visualizar_ingresso/Visualizar_ingresso";
 import Palestra from "../pages/tipo_Eventos/Palestra/Palestra";
 
 
@@ -26,7 +25,6 @@ import Dashboard from "../pages/dashboard/components/Dashboard/organizador/Dashb
 import Estrutura from "../pages/dashboard/components/estrutura/Estrutura";
 import Editar from "../pages/dashboard/components/estrutura/Editar"
 import DashboardLayout from "../components/Dashboard/DashboardLayoutOrganizador";
-import Home from "../pages/dashboard/components/estrutura/Home";
 import Perfil from "../pages/dashboard/components/estrutura/Perfil";
 import { ContextDashboard } from "../context/Context";
 
@@ -36,16 +34,14 @@ import BilheteEstrutura from "../pages/dashboard/components/estrutura/BilheteEst
 import Orador from "../pages/dashboard/components/estrutura/Orador";
 import PalestranteEstrutura from "../pages/dashboard/components/estrutura/Palestrante";
 import TabelaEstrutura from "../pages/dashboard/components/estrutura/TabelaEstrutura";
-import TabelaPalestrante from "../pages/dashboard/components/estrutura/Tabelas/TabelaPalestrante";
-import TabelaOrador from "../pages/dashboard/components/estrutura/Tabelas/TabelaOrador";
-import TabelaBilhete from "../pages/dashboard/components/estrutura/Tabelas/TabelaBilhete";
+
 import { CriarParticipante } from "../pages/Participante/CriarParticipante";
 import AutenticarParticipante from "../pages/Participante/AutenticarParticipante";
 import { LoginParticipante } from "../pages/Participante/LoginParticipante";
 import RecuperarSenhaParticipante from "../pages/Participante/RecuperarSenhaParticipante";
 import { CriarOrganizador } from "../pages/Organizador/CriarOrganizador";
 import { LoginOrganizador } from "../pages/Organizador/LoginOrganizador";
-import { RotasPrivadasAdmin, RotasPrivadasOrganizador } from "./RotasPrivadas";
+import { RotasPrivadasAdmin, RotasPrivadasOrganizador, RotasPrivadasParticipante } from "./RotasPrivadas";
 import AutenticarOrganizador from "../pages/Organizador/AutenticarOrganizador";
 import RecuperarSenhaOrganizador from "../pages/Organizador/RecuperarSenhaOrganizador";
 
@@ -74,7 +70,34 @@ import TabelaEvento from "../pages/dashboard/components/Dashboard/organizador/ta
 import EstruturaEvento from "../pages/dashboard/components/Dashboard/organizador/evento/EstruturaEvento";
 import CriarEvento from "../pages/dashboard/components/Dashboard/organizador/evento/CriarEvento";
 import EstruturaEventoEditar from "../pages/dashboard/components/Dashboard/organizador/evento/EstruturaEventoEditar";
-
+import EditarEvento from "../pages/dashboard/components/Dashboard/organizador/evento/EditarEvento";
+import AdicionarFotoEvento from "../pages/dashboard/components/Dashboard/organizador/evento/AdicionarFotoEvento";
+import EstruturaBilhete from "../pages/dashboard/components/Dashboard/organizador/evento/bilhete/EstruturaBilhete";
+import CriarBilhete from "../pages/dashboard/components/Dashboard/organizador/evento/bilhete/CriarBilhete";
+import TabelaBilhete from "../pages/dashboard/components/Dashboard/organizador/tabelas/TabelaBilhete";
+import EditarBilhete from "../pages/dashboard/components/Dashboard/organizador/evento/bilhete/EditarBilhete";
+import EstruturaOrador from "../pages/dashboard/components/Dashboard/organizador/evento/orador/EstruturaOrador";
+import CriarOrador from "../pages/dashboard/components/Dashboard/organizador/evento/orador/CriarOrador";
+import TabelaOrador from "../pages/dashboard/components/Dashboard/organizador/tabelas/TabelaOrador";
+import EstruturaPalestrante from "../pages/dashboard/components/Dashboard/organizador/evento/palestrante/EstruturaPalestrante";
+import CriarPalestrante from "../pages/dashboard/components/Dashboard/organizador/evento/palestrante/CriarPalestrante";
+import TabelaPalestrante from "../pages/dashboard/components/Dashboard/organizador/tabelas/TabelaPalestrante";
+import AdicionarFotoPalestrante from "../pages/dashboard/components/Dashboard/organizador/evento/palestrante/AdicionarFotoPalestrante";
+import PublicarEvento from "../pages/dashboard/components/Dashboard/organizador/evento/publicar/PublicarEvento";
+import Home from "../pages/dashboard/components/Dashboard/organizador/home/Home";
+import InformacaoEvento from "../pages/dashboard/components/Dashboard/organizador/evento/informacao/InformacaoEvento";
+import PerfilInfoOrganizador from "../pages/dashboard/components/Dashboard/organizador/perfilOrganizador/PerfilInfoOrganizador";
+import PerfilEditarOrganizador from "../pages/dashboard/components/Dashboard/organizador/perfilOrganizador/PerfilEditarOrganizador";
+import AlterarSenhaOrganizador from "../pages/dashboard/components/Dashboard/organizador/perfilOrganizador/AlterarSenhaOrganizador";
+import AdicionarFotoPerfilOrganizador from "../pages/dashboard/components/Dashboard/organizador/perfilOrganizador/AdicionarFotoPerfilOrganizador";
+import SairOrganizador from "../pages/dashboard/components/Dashboard/organizador/perfilOrganizador/SairOrganizador";
+import VisualizarBilhete from "../pages/Visualizar_ingresso/VisualizarBilhete";
+import InformacaoEventoAdmin from "../pages/dashboard/components/Dashboard/admin/informacaoEventoAdmin/InformacaoEventoAdmin";
+import Reservas from "../pages/Participante/reservas/Reservas";
+import NaoPagas from "../pages/Participante/reservas/components/NaoPagas";
+import Paga from "../pages/Participante/reservas/components/Paga";
+import MeusEventos from "../pages/Participante/reservas/components/MeusBilhetes";
+import InformacaoEventoParticipante from "../pages/Participante/informacao/InformacaoEventoParticipante";
 
 
 //  Context Dashboard
@@ -85,6 +108,8 @@ export default function Rotas() {
     const url = "reservaOnline/"
     const urlPrivadaOrganizador = "/reservaOnline/dashboard/organizador"
     const urlPrivadaAdmin = "/reservaOnline/dashboard/admin"
+    const urlPrivadaParticipante = "/reservaOnline/participante"
+
 
     return (
         <>
@@ -99,7 +124,7 @@ export default function Rotas() {
 
             <Routes>
 
-                <Route path="/" element={<Layout />}>
+                {/* <Route path="/" element={<Layout />}>
                     <Route index element={<PaginaPrincipal />} />
                     <Route path="concertos" element={<Concerto />} />
                     <Route path="festas" element={<Festa />} />
@@ -108,10 +133,10 @@ export default function Rotas() {
                     <Route path={"topMes"} element={<TopMes />} />
                     <Route path={"todosEventos"} element={<TodosEvento />} />
                     <Route path="palestra" element={<Palestra />}></Route>
-                </Route>
+                </Route> */}
 
-                <Route path="visualizarIngresso" element={<Visualizar_ingresso />}></Route>
-                {/* <Route path="concertos/visualizarIngresso" element={<Visualizar_ingresso />} /> */}
+                {/* <Route path="visualizarIngresso" element={<Visualizar_ingresso />}></Route>
+                <Route path="concertos/visualizarIngresso" element={<Visualizar_ingresso />} />
                 <Route path="festas/visualizarIngresso" element={<Visualizar_ingresso />} />
                 <Route path="teatro/visualizarIngresso" element={<Visualizar_ingresso />} />
                 <Route path="espetaculos/visualizarIngresso" element={<Visualizar_ingresso />} />
@@ -120,10 +145,10 @@ export default function Rotas() {
                 <Route path="concertos/visualizarIngresso" element={<Visualizar_ingresso />} >
                 </Route>
 
-                <Route path="concertos/visualizarIngresso/palestrante" element={<Palestrante />} />
+                <Route path="concertos/visualizarIngresso/palestrante" element={<Palestrante />} /> */}
 
 
-                <Route path="concertos/visualizarIngresso/palestrante/bilhete" element={<Bilhete />} />
+                {/* <Route path="concertos/visualizarIngresso/palestrante/bilhete" element={<Bilhete />} /> */}
 
 
 
@@ -139,24 +164,74 @@ export default function Rotas() {
 
                 { /* Participante*/}
                 <Route
-                    path="participante/criarContaParticipante"
+                    path={url + "participante/criarconta"}
                     element={<CriarParticipante />}
                 />
 
                 <Route
-                    path="participante/verificarContaPalestrante"
+                    path={url + "participante/autenticarConta"}
                     element={<AutenticarParticipante />}
                 />
 
                 <Route
-                    path="participante/loginParticipante"
+                    path={url + "participante/login"}
                     element={<LoginParticipante />}
                 />
 
                 <Route
-                    path="participante/recuperarSenha"
+                    path={url + "participante/recuperarSenha"}
                     element={<RecuperarSenhaParticipante />}
                 />
+
+                <Route path={urlPrivadaParticipante} element={<RotasPrivadasParticipante />}>
+                    <Route path={urlPrivadaParticipante} element={
+                        <ContextDashboard.Provider>
+                            <Layout />
+                        </ContextDashboard.Provider>
+                    }>
+
+                        <Route
+                            index
+                            element={<PaginaPrincipal />}
+                        >
+
+                        </Route>
+
+                        <Route path="visualizarBilhete/:idEvento"
+                            element={<VisualizarBilhete />}
+                        >
+                        </Route>
+
+                        <Route path="reservas"
+                            element={<Reservas />}
+                        >
+
+                            <Route path="naoPagas/:idUtilizador"
+                                element={<NaoPagas />}
+                            ></Route>
+
+                            <Route path="pagas/:idUtilizador"
+                                element={<Paga />}
+                            ></Route>
+
+                            <Route path="meusEventos/:idUtilizador"
+                                element={<MeusEventos />}
+                            ></Route>
+
+                            <Route path="informacaoEvento/:idUtilizador/:idBilhete"
+                                element={<InformacaoEventoParticipante />}
+                            ></Route>
+
+                        </Route>
+
+
+                        <Route path="todosEventos"
+                            element={<TodosEvento />}
+                        ></Route>
+
+
+                    </Route>
+                </Route>
 
 
                 { /* Organizador*/}
@@ -183,11 +258,7 @@ export default function Rotas() {
 
                 <Route path={urlPrivadaOrganizador} element={<RotasPrivadasOrganizador />}>
                     <Route path={urlPrivadaOrganizador} element={
-                        <ContextDashboard.Provider
-                            value={{
-                                CPadmin: false,
-                                CPli: ""
-                            }} >
+                        <ContextDashboard.Provider>
                             <DashboardLayout />
                         </ContextDashboard.Provider>
                     }>
@@ -195,14 +266,13 @@ export default function Rotas() {
                         <Route index
                             element={
                                 <Home
-                                    titulo="Olá, Nome do usuário"
                                 />}
+
                         />
 
                         <Route index path="home"
                             element={
                                 <Home
-                                    titulo="Olá, Nome do usuário"
                                 />}
                         />
 
@@ -228,11 +298,134 @@ export default function Rotas() {
 
                         </Route>
 
-                        <Route path="evento/listar/:idUtilizador/editar"
+                        <Route path="evento/listar/:idUtilizador/editar/:idEvento"
                             element={<EstruturaEventoEditar />}
                         >
 
+                            <Route path="evento"
+                                element={<EditarEvento />}
+                            ></Route>
+
+                            <Route path="foto"
+                                element={<AdicionarFotoEvento />}
+                            ></Route>
+
+                            <Route path="bilhete"
+                                element={<EstruturaBilhete />}
+                            >
+
+                                <Route path="criar"
+                                    element={<CriarBilhete />}
+                                ></Route>
+
+                                <Route path="listar"
+                                    element={<TabelaBilhete />}
+                                ></Route>
+
+                                <Route path="editar/:idBilhete"
+                                    element={<EditarBilhete />}
+                                ></Route>
+
+                            </Route>
+
+                            <Route path="orador"
+                                element={<EstruturaOrador />}
+                            >
+
+                                <Route path="criar"
+                                    element={<CriarOrador />}
+                                ></Route>
+
+                                <Route path="listar"
+                                    element={<TabelaOrador />}
+
+                                ></Route>
+
+
+                            </Route>
+
+                            <Route path="palestrante"
+                                element={<EstruturaPalestrante />}
+                            >
+
+                                <Route path="criar"
+                                    element={<CriarPalestrante />}
+                                ></Route>
+
+                                <Route path="listar"
+                                    element={<TabelaPalestrante />}
+                                ></Route>
+
+                                <Route path="foto/:idPalestrante"
+                                    element={<AdicionarFotoPalestrante />}
+                                ></Route>
+
+
+                            </Route>
+
+                            <Route path="informacao"
+                                element={<InformacaoEvento />}
+                            ></Route>
+
+                            <Route path="publicar"
+                                element={<PublicarEvento />}
+                            ></Route>
+
+
                         </Route>
+
+                        <Route path="perfil"
+                            element={
+                                <Estrutura
+                                    infoGeral={""}
+                                    titulo="Informação da conta"
+                                    lista1={"Informações"}
+                                    lista2={"Editar"}
+                                    lista3={"Senha"}
+                                    lista4={"Sair"}
+                                    // lista5={"Sair"}
+                                    rota1={urlPrivadaOrganizador + "/perfil/informacao"}
+                                    rota2={urlPrivadaOrganizador + "/perfil/editar"}
+                                    rota3={urlPrivadaOrganizador + "/perfil/senha"}
+                                    rota4={urlPrivadaOrganizador + "/perfil/sair"}
+                                // rota5={urlPrivadaAdmin + "/perfil/foto"}
+                                />
+                            }
+                        >
+
+                            <Route
+                                path="informacao"
+                                element={<PerfilInfoOrganizador />}
+                            />
+
+
+                            <Route
+                                path="editar"
+                                element={<PerfilEditarOrganizador />}
+                            />
+
+                            <Route
+                                path="senha"
+                                element={<AlterarSenhaOrganizador />}
+
+                            />
+
+                            <Route
+                                path="foto"
+                                element={<AdicionarFotoPerfilOrganizador />}
+
+                            />
+
+                            <Route
+                                path="sair"
+                                element={
+                                    <SairOrganizador />
+                                }
+
+                            />
+
+                        </Route>
+
 
 
                         <Route path="estatistica"
@@ -270,11 +463,7 @@ export default function Rotas() {
 
                 <Route path={urlPrivadaAdmin} element={<RotasPrivadasAdmin />}>
                     <Route path={urlPrivadaAdmin} element={
-                        <ContextDashboard.Provider
-                            value={{
-                                CPadmin: true,
-                                CPli: ""
-                            }} >
+                        <ContextDashboard.Provider>
                             <DashboardAdmin />
                         </ContextDashboard.Provider>
                     }>
@@ -461,15 +650,17 @@ export default function Rotas() {
                                     infoGeral={""}
                                     titulo="Evento"
                                     lista1="Publicados"
-                                    // lista2="Banir"
-                                    lista3="A espera"
-                                    lista4="Banidos"
-                                    // lista5="Excluir"
+                                    lista2="A espera"
+                                    lista3="Banidos"
+                                    // lista4="Informações do evento"
+                                    lista4="Pagamentos"
                                     rota1={urlPrivadaAdmin + "/evento/publicado"}
-                                    // rota2={urlPrivadaAdmin + "/evento/banir"}
-                                    rota3={urlPrivadaAdmin + "/evento/espera"}
-                                    rota4={urlPrivadaAdmin + "/evento/banidos"}
-                                // rota5={urlPrivadaAdmin + "/bilhete/excluir"}
+                                    rota2={urlPrivadaAdmin + "/evento/espera"}
+                                    rota3={urlPrivadaAdmin + "/evento/banidos"}
+                                    rota4={urlPrivadaAdmin + "/evento/pagamentos"}
+                                    rota5={urlPrivadaAdmin + "/evento/informacoes/:idEvento"}
+
+
                                 />}
                         >
 
@@ -487,6 +678,11 @@ export default function Rotas() {
                                 <TabelaEventoBanido />
                             }></Route>
 
+                            <Route path="informacoes/:idUtilizador/:idEvento" element={
+                                <InformacaoEventoAdmin />
+                                // <h1>Informações do evento</h1>
+                            }></Route>
+
                         </Route>
 
                         <Route path="estatistica"
@@ -501,13 +697,14 @@ export default function Rotas() {
                                     lista1={"Informações"}
                                     lista2={"Editar"}
                                     lista3={"Senha"}
-                                    // lista4={"foto"}
-                                    lista5={"Sair"}
+                                    lista4={"Sair"}
+                                    // lista5={"foto"}
                                     rota1={urlPrivadaAdmin + "/perfil/informacao"}
                                     rota2={urlPrivadaAdmin + "/perfil/editar"}
                                     rota3={urlPrivadaAdmin + "/perfil/senha"}
-                                    // rota4={urlPrivadaAdmin + "/perfil/foto"}
-                                    rota5={urlPrivadaAdmin + "/perfil/sair"}
+                                    rota4={urlPrivadaAdmin + "/perfil/sair"}
+                                // rota5={urlPrivadaAdmin + "/perfil/foto"}
+
                                 />
                             }
                         >

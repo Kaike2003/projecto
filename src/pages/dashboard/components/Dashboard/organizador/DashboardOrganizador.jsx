@@ -64,16 +64,17 @@ export default function DashboardOrganizador() {
                                     </NavLink>
                                 </li>
 
-                                <NavLink to={"/organizador/perfil"}>
+                                <NavLink to={url + "/perfil"}>
                                     <div className="button_span_user">
-
-
                                         {data.map(item => {
                                             console.log(nomeUtilizador)
                                             if (item.email === nomeUtilizador) {
                                                 return (
                                                     <div key={item.id} >
-                                                        <span>{item.nome}</span>
+                                                        <span 
+                                                        style={{color: "#FFF"}}
+
+                                                        >{item.nome}</span>
                                                     </div>
                                                 )
                                             }

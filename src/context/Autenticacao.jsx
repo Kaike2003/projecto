@@ -48,6 +48,42 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+  const signInParticipante = async ({ email, palavraPasse }) => {
+    try {
+      const response = await axios.post("http://localhost:3456/participante/loginParticipante",
+        {
+          palavraPasse: palavraPasse,
+          email: email,
+        })
+
+      swal("Login confirmado", "Seja bem vindo a reserva online de bilhete", "success");
+
+
+      console.log(response)
+      console.log(response.data.usuario.email)
+
+
+
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        setUser(response.data);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
+        console.log(response.data.token)
+        localStorage.setItem("@Auth:token", response.data.token);
+        localStorage.setItem("@Auth:email", response.data.usuario.email);
+
+      }
+    } catch (error) {
+      console.log(error);
+      swal("Senha errada", "Verifique sua senha ou certifica-se que sua conta está autenticada.", "warning");
+    }
+  };
+
+
   const signInOrganizador = async ({ email, palavraPasse }) => {
     try {
       const response = await axios.post("http://localhost:3456/organizador/loginOrganizador",
@@ -131,14 +167,23 @@ export const AuthProvider = ({ children }) => {
     // navigate("/reservaOnline/admin/login")
   };
 
+  const singOutOrganizador = () => {
+    localStorage.clear();
+    setUser(null);
+    return setTimeout(() => {
+      swal("Sessão terminada", "Muito obrigado por usar a aplicação. Volte sempre.", "success");
+    }, 1);
+  };
+
 
   return (
     <AuthContext.Provider
       value={{
         user,
-        signIn,
+        signInParticipante,
         signInOrganizador,
         signInAdmin,
+        singOutOrganizador,
         singOut,
         singOutAdmin,
         signed: !!user,

@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { useState, useEffect } from "react"
-import EventoCardPago_Gratis from "../../card_evento/EventoCardPago_Gratis";
 import Carousel from '../../caroucel/Carousel'
 import Paginacao from "../../Palestrante/components/Paginacao";
 import "./Concerto.css"
@@ -65,13 +64,7 @@ export default function Concerto(props) {
                         {currentItens((item) => {
                             return (
                                 <>
-                                    <EventoCardPago_Gratis
-                                        id={item.id}
-                                        image={item.image}
-                                        date={item.date}
-                                        name={item.name}
-                                        price={item.price}
-                                    ></EventoCardPago_Gratis>
+                                  
                                 </>
                             )
                         })}

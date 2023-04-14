@@ -38,7 +38,6 @@ export default function EstruturaEvento() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
 
     return (
         <>
@@ -58,7 +57,6 @@ export default function EstruturaEvento() {
 
                     {
                         utilizador.map(item => {
-                            console.log(item.email === nomeUtilizador)
                             if (item.email === nomeUtilizador) {
                                 return (
                                     <>

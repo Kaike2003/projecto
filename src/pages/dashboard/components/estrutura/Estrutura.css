@@ -1,4 +1,4 @@
-.titulo_evento_lista{
+.titulo_evento_lista {
   width: 100%;
 }
 
@@ -20,7 +20,9 @@
   border-bottom: 1px solid rgb(210, 210, 210);
   gap: 20px;
   color: gainsboro;
+  flex-wrap: wrap;
 }
+
 
 .eventos_lista .active span {
   padding: 0 0 7.4px 0;

@@ -74,9 +74,9 @@ export default function CriarEvento() {
             .max(100, "O nome do bairro deve conter 4000 ou menos caracteres")
             .required("O nome do bairro é obrigatório"),
         categoriaId: Yup.string("O id da categoria deve ser uma string")
-            .min(3, "O id da categoria deve conter 3 ou mais")
-            .max(4000, "O id da categoria deve conter 4000 ou menos caracteres")
-            .required("O id da categoria é obrigatório"),
+            .min(10, "O id da categoria deve conter 3 ou mais")
+            .max(400, "O id da categoria deve conter 4000 ou menos caracteres")
+            .required("O nome da categoria é obrigatório"),
 
     })
 
@@ -128,7 +128,7 @@ export default function CriarEvento() {
                                         console.log(sucesso)
 
                                         swal("Evento criado", `${values.nome} foi criado com sucesso. Agora podes adicionar outros detelhes.`, "success").then(async () => {
-                                            // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
+                                            navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
                                         })
                                         // alert(JSON.stringify(values, null, 2));
                                         // navigate("/reservaOnline/organizador/autenticarConta")
@@ -207,16 +207,20 @@ export default function CriarEvento() {
                                                 <select
                                                     name="categoriaId"
                                                     id=""
-                                                    defaultValue={""}
-                                                    onChange={(e) => values.categoriaId = e.target.value}
+                                                    // defaultValue={""}
+                                                    // onChange={(e) => values.categoriaId = e.target.value}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    value={values.categoriaId}
                                                 >
+                                                    <option>Selecionar categoria</option>
                                                     {data.map(item => {
                                                         return (
                                                             <>
                                                                 <option
                                                                     key={item.id + Math.random().toString(36).substring(2)}
                                                                     value={item.id}
-                                                                    selected
+                                                                    // selected
                                                                 >
                                                                     {item.nome}
                                                                 </option>
@@ -224,7 +228,9 @@ export default function CriarEvento() {
                                                             </>)
 
                                                     })}
-                                                    {errors.categoriaId && touched.categoriaId ? (
+                                                    
+                                                </select >
+                                                {errors.categoriaId && touched.categoriaId ? (
                                                         <div className="container"
                                                             style={{ color: "red" }}
                                                         >
@@ -232,7 +238,6 @@ export default function CriarEvento() {
                                                             {errors.categoriaId}
                                                         </div>
                                                     ) : null}
-                                                </select >
                                             </div>
 
 

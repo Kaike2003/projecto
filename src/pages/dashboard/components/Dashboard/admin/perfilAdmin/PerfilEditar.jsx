@@ -64,7 +64,7 @@ export default function PerfilEditar() {
                             nome: item.nome,
                             telefone: item.telefone,
                             localizacao: item.localizacao,
-                            dataNascimento: format(new Date(item.dataNascimento), "MM/dd/yyyy")
+                            dataNascimento: format(new Date(item.dataNascimento), "yyyy-MM-dd")
 
                         }
 
@@ -77,7 +77,7 @@ export default function PerfilEditar() {
                         return (
                             <>
 
-                                <div key={item.id}>
+                                <div key={Math.random().toString(36).substring(2)}>
 
 
                                     <Formik

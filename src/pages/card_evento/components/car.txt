@@ -1,0 +1,147 @@
+.CardEvento:hover {
+    box-shadow: 0px 0px 25px 0px rgb(0, 0, 0, 0.7);
+    -moz-transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+}
+
+.CardEventoTopo {
+    width: 100%;
+}
+
+
+
+
+.CardEventoBaixo {
+    width: 240px;
+    padding: 10px 5px 0 5px;
+}
+
+
+.CardEventoBaixo div h6 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.titulo_div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.CardEventoData {
+    color: sandybrown;
+    font-weight: 500;
+}
+
+.CardEventoTipo_bilhete {
+    font-size: 15px;
+}
+
+.CardEventoTipo_estado {
+    font-size: 15px;
+}
+
+.CardEventoTipo_evento {
+    color: sandybrown;
+    font-size: 14px;
+}
+
+.CardEventoTipo_detalhe {
+    bottom: 28px;
+}
+
+.CardEventoTipo_detalhe:hover {
+    background-color: white;
+    color: black;
+}
+
+.CardEvento_Img {
+    object-fit: cover;
+    width: 100%;
+    min-height: 10px;
+    height: 150px;
+    image-rendering: unset;
+}
+
+.CardEvento_Img:hover {}
+
+.link_cardEvento {
+    color: black;
+}
+
+.link_cardEvento:hover {
+    color: black;
+}
+
+.eventogratis_pago_visualizar {}
+
+.fecharModal {
+    position: relative;
+    bottom: 100px;
+    right: 0px;
+    background-color: rgb(224, 217, 217);
+    border-radius: 50%;
+    display: none;
+}
+
+
+@media screen and (min-width: 320px) and (max-width:480px) {}
+
+@media screen and (min-width: 569px) and (max-width: 991px) {
+
+    .CardEvento {
+        width: 50%;
+        display: grid;
+        grid-template-rows: 38% 25%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        flex-wrap: wrap;
+        /* width: 95%; */
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        background-color: #F0F2F5;
+        cursor: pointer;
+        transition: transform 1s, box-shadow 1s;
+    }
+
+    .CardEvento_Img {
+        object-fit: cover;
+        width: 100%;
+        min-height: 10px;
+        height: 140px;
+        image-rendering: unset;
+    }
+
+
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .CardEvento {
+        /* min-width: 150px; */
+        width: 50%;
+        display: grid;
+        grid-template-rows: 38% 25%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        flex-wrap: wrap;
+        /* width: 95%; */
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        background-color: #F0F2F5;
+        cursor: pointer;
+        transition: transform 1s, box-shadow 1s;
+    }
+
+    /* .CardEventoBaixo {
+        width: 240px;
+        padding: 10px 0px 0 0px;
+    } */
+
+
+}

@@ -71,7 +71,7 @@ export const CriarOrganizador = () => {
 								palavraPasse: values.password,
 								email: values.email,
 								localizacao: "Angola-Luanda",
-								telefone: "9xx-xxx-xxx",
+								telefone: "99999999",
 								dataNascimento: values.dataNascimento
 							}).then((sucesso) => {
 								console.log(sucesso)

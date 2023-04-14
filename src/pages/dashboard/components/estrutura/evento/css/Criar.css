@@ -37,6 +37,20 @@ form {
     margin: 0 0 1% 0;
 }
 
+.criar_estrutura_InformacaoEvento {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 10px;
+    place-content: center;
+    padding: 0 0 0 20px;
+    margin: 0 0 1% 0;
+}
+
+
+.criar_estrutura_InformacaoEvento span {
+    font-weight: 500;
+}
+
 .criar_date_time {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -69,7 +83,7 @@ form {
     font-weight: 0;
 }
 
-.error_Yup{
+.error_Yup {
     color: red;
 }
 
@@ -103,7 +117,7 @@ form {
     border-radius: 4px;
     resize: none;
     border: 1px solid #dfe0df;
-    height: 200px;
+    height: 140px;
     outline-color: black;
     padding: 10px 10px 10px;
 }
@@ -128,8 +142,8 @@ form {
 
 
 /*Mobile*/
- @media screen and (min-width: 120px) and (max-width:640px ) {
-    
+@media screen and (min-width: 120px) and (max-width:640px) {
+
     .criar_estrutura {
         width: 100%;
         display: grid;
@@ -148,12 +162,22 @@ form {
         place-content: center;
         padding: 0 0 0 20px;
         margin: 0 0 2% 0;
+    }
+
+    .criar_estrutura_InformacaoEvento {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* gap: 10px; */
+        column-gap: 70px;
+        place-content: center;
+        padding: 0 0 0 20px;
+        margin: 0 0 1% 0;
     }
 
 }
 
 /*Tablet*/
-@media screen and (min-width: 641px ) and (max-width: 1007px) {
+@media screen and (min-width: 641px) and (max-width: 1007px) {
 
     .criar_estrutura {
         width: 100%;
@@ -173,6 +197,16 @@ form {
         place-content: center;
         padding: 0 0 0 20px;
         margin: 0 0 2% 0;
+    }
+
+    .criar_estrutura_InformacaoEvento {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* gap: 10px; */
+        column-gap: 70px;
+        place-content: center;
+        padding: 0 0 0 20px;
+        margin: 0 0 1% 0;
     }
 
 }

@@ -204,7 +204,7 @@ export default function Orador({
                         to={`/organizador/detalhe/editar/${id}`}
                     >
 
-                        <span>Editar Evento</span>
+                        <span>Editar</span>
 
                     </NavLink>
 

@@ -249,7 +249,7 @@ export default function Foto({
                         to={`/organizador/detalhe/editar/${id}`}
                     >
 
-                        <span>Editar Evento</span>
+                        <span>Editar</span>
 
                     </NavLink>
 

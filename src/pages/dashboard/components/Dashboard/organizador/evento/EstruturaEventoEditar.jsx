@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom"
+import { NavLink, Navigate, Outlet, useNavigate, useParams } from "react-router-dom"
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
@@ -11,15 +11,18 @@ import swal from 'sweetalert';
 export default function EstruturaEventoEditar() {
 
     const navigate = useNavigate()
-    const { idUtilizador } = useNavigate()
+    const { idUtilizador, idEvento } = useParams()
     const urlPrivadaOrganizador = "/reservaOnline/dashboard/organizador"
-
 
     const [data, setData] = useState([]);
     const [utilizador, setUtilizador] = useState([]);
     const [nomeUtilizador, setNomeUtilizador] = useState(() => {
         return ""
     })
+
+    console.log("IdEvento", idEvento)
+    console.log("IdUtilizador", idUtilizador)
+
 
     useEffect(() => {
         async function fetchData() {
@@ -41,6 +44,7 @@ export default function EstruturaEventoEditar() {
 
     console.log("Email do utilizador", nomeUtilizador)
 
+
     return (
         <>
 
@@ -48,133 +52,77 @@ export default function EstruturaEventoEditar() {
             <div className="titulo_evento_lista container" >
                 <div className="titulo_evento container">Evento</div>
                 <div className="eventos_lista container">
-                    {
-                        utilizador.map(item => {
-                            console.log(item.email === nomeUtilizador)
-                            if (item.email === nomeUtilizador) {
-                                return (
-                                    <>
-
-                                        <NavLink
-                                            key={Math.random().toString(36).substring(2)}
-                                            to={urlPrivadaOrganizador + `/evento/listar/${item.id}/editar`}
-                                        >
-                                            <span>Editar Evento</span>
-
-                                        </NavLink>
-
-                                    </>
-                                )
-                            }
-                        })
-                    }
 
 
-                    {
-                        utilizador.map(item => {
-                            console.log(item.email === nomeUtilizador)
-                            if (item.email === nomeUtilizador) {
-                                return (
-                                    <>
 
-                                        <NavLink
-                                            key={Math.random().toString(36).substring(2)}
-                                            to={urlPrivadaOrganizador + `/evento/listar/${item.id}/editar`}
-                                        >
-                                            <span>foto</span>
+                    <NavLink
+                        key={Math.random().toString(36).substring(2)}
+                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/evento`}
+                    >
+                        <span>Editar</span>
 
-                                        </NavLink>
-
-                                    </>
-                                )
-                            }
-                        })
-                    }
+                    </NavLink>
 
 
-                    {
-                        utilizador.map(item => {
-                            console.log(item.email === nomeUtilizador)
-                            if (item.email === nomeUtilizador) {
-                                return (
-                                    <>
 
-                                        <NavLink
-                                            key={Math.random().toString(36).substring(2)}
-                                            to={urlPrivadaOrganizador + `/evento/listar/${item.id}/editar`}
-                                        >
-                                            <span>Bilhete</span>
 
-                                        </NavLink>
 
-                                    </>
-                                )
-                            }
-                        })
-                    }
+                    <NavLink
+                        key={Math.random().toString(36).substring(2)}
+                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/foto`}
+                    >
+                        <span>foto</span>
 
-                    {
-                        utilizador.map(item => {
-                            console.log(item.email === nomeUtilizador)
-                            if (item.email === nomeUtilizador) {
-                                return (
-                                    <>
+                    </NavLink>
 
-                                        <NavLink
-                                            key={Math.random().toString(36).substring(2)}
-                                            to={urlPrivadaOrganizador + `/evento/listar/${item.id}/editar`}
-                                        >
-                                            <span>Orador</span>
 
-                                        </NavLink>
 
-                                    </>
-                                )
-                            }
-                        })
-                    }
 
-                    {
-                        utilizador.map(item => {
-                            console.log(item.email === nomeUtilizador)
-                            if (item.email === nomeUtilizador) {
-                                return (
-                                    <>
 
-                                        <NavLink
-                                            key={Math.random().toString(36).substring(2)}
-                                            to={urlPrivadaOrganizador + `/evento/listar/${item.id}/editar`}
-                                        >
-                                            <span>Palestrante</span>
+                    <NavLink
+                        key={Math.random().toString(36).substring(2)}
+                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/bilhete`}
+                    >
+                        <span>Bilhete</span>
 
-                                        </NavLink>
+                    </NavLink>
 
-                                    </>
-                                )
-                            }
-                        })
-                    }
 
-                    {
-                        utilizador.map(item => {
-                            console.log(item.email === nomeUtilizador)
-                            if (item.email === nomeUtilizador) {
-                                return (
-                                    <>
 
-                                        <NavLink
-                                            key={Math.random().toString(36).substring(2)}
-                                            to={urlPrivadaOrganizador + `/evento/listar/${item.id}/editar`}
-                                        >
-                                            <span>Listar</span>
+                    <NavLink
+                        key={Math.random().toString(36).substring(2)}
+                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/orador`}
+                    >
+                        <span>Orador</span>
 
-                                        </NavLink>
+                    </NavLink>
 
-                                    </>
-                                )
-                            }
-                        })
-                    }
+
+                    <NavLink
+                        key={Math.random().toString(36).substring(2)}
+                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante`}
+                    >
+                        <span>Palestrante</span>
+
+                    </NavLink>
+
+
+                    <NavLink
+                        key={Math.random().toString(36).substring(2)}
+                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/informacao`}
+                    >
+                        <span>Informações</span>
+                    </NavLink>
+
+                    <NavLink
+                        key={Math.random().toString(36).substring(2)}
+                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/publicar`}
+                    >
+                        <span>Publicar</span>
+                    </NavLink>
+
+
+
                 </div>
             </div>
 

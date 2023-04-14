@@ -5,49 +5,41 @@ import "./Header.css"
 import Modal from "react-modal"
 import { useContext } from "react";
 import { AuthContext } from "../../context/Autenticacao";
+import axios from "axios";
 
 Modal.setAppElement("#root")
 
 export default function Header() {
 
-    const {singOut} = useContext(AuthContext)
+    const { } = useContext(AuthContext)
 
     const navigate = useNavigate()
 
-    const largura = window.innerWidth
-    let sizeIcon = 35
 
-    const [overlary, setOverlay] = useState(() => {
-        return {
-            top: "0%",
-            left: "0%",
-            right: "0%",
-            bootom: "0%"
+    const [data, setData] = useState([]);
+    const [nomeUtilizador, setNomeUtilizador] = useState(() => {
+        return ""
+    })
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get('http://localhost:3456/participante/listarParticipante');
+            const newData = response.data;
+            setData(newData);
         }
-    })
 
-    const [content, setContent] = useState(() => {
-        return {
-            left: 0, right: "0", background: ""
+        if (localStorage.getItem("@Auth:email") !== null) {
+            setNomeUtilizador(localStorage.getItem("@Auth:email"))
         }
-    })
+        fetchData();
+    }, []);
 
-    
-    const [modalIsOpen, setIsOpen] = useState(() => {
-        return false
-    })
 
-    const [offset, setOffset] = useState(() => { return 0 })
 
-    function handleOpenModal() {
-        setIsOpen(true)
-        navigate("")
-    }
 
-    function handleCloseModal() {
-        setIsOpen(false)
-    }
 
+
+ 
 
 
     return (
@@ -55,97 +47,44 @@ export default function Header() {
 
             <nav className="" id="navbar">
                 <div className="logo_input">
-                    <Link to={"/"}>
-                        <h2 className="" id="titulo">logo</h2>
+                    <Link to={"/reservaOnline/participante"}>
+                        <h2
+                            style={{ fontFamily: "Roboto, sem serifa" }}
+                            className="" id="titulo">Reserva online</h2>
                     </Link>
 
                 </div>
 
                 <ul id="menu">
-                <li className="text-white"
-                onClick={()=>{
-                    singOut()
-                }}
-                ><Link to={"/"}>Sair</Link></li>
-                    <li className="text-white"><Link to={"/"}>Home</Link></li>
-                    <li className="text-white"><Link to={"/"}>Sobre</Link></li>
+                    <li className="text-white"><Link to={"/reservaOnline/participante"}>Home</Link></li>
+                    {/* <li className="text-white"><Link to={"/"}>Sobre</Link></li> */}
                     <li className="text-white me-3">
-                        <Link to={"/"}>Contatos</Link></li>
+                        <Link to={"/reservaOnline/participante/reservas"}>Reservas</Link></li>
 
-                    {/* <Link
-                        to={""}
-                        className="btn-primary text-white"
-                        onClick={handleOpenModal}
-                    > */}
-                    <button className="btn-registra_login"
-                        onClick={handleOpenModal}
-                    >Registar-se</button>
-                    {/* </Link> */}
+                    <div className="button_span_user">
 
+                    {data.map(item => {
+                                            console.log(nomeUtilizador)
+                                            if (item.email === nomeUtilizador) {
+                                                return (
+                                                    <div key={item.id} >
+                                                        <span 
+                                                        style={{color: "#FFF"}}
+
+                                                        >{item.nome}</span>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
+
+
+                    </div>
+
+                  
                 </ul>
             </nav>
 
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={handleCloseModal}
-                style={{
-                    overlay: {
-                        position: 'fixed',
-                        top: overlary.top,
-                        left: overlary.left,
-                        right: overlary.right,
-                        bottom: overlary.bootom,
-                        backgroundColor: 'none',
-                    },
-                    content: {
-                        position: 'absolute',
-                        top: '140px',
-                        left: content.left,
-                        right: content.right,
-                        bottom: '190px',
-                        border: '1px solid #ccc',
-                        background: content.background,
-                        overflow: 'none',
-                        overflowY: "none",
-                        WebkitOverflowScrolling: 'touch',
-                        borderRadius: '15px',
-                        outline: 'none',
-                        padding: '0px',
-                        textAlign: "center",
-                    }
-                }}
-            >
-
-                <div className="conta">
-                    <X
-                        size={sizeIcon}
-                        onClick={handleCloseModal} className="btn_fechar_hidden ">Fechar</X>
-                    <span>Cria sua conta</span>
-                    <X
-                        size={sizeIcon}
-                        onClick={handleCloseModal} className="btn_fechar ">Fechar</X>
-                </div>
-
-
-                <div className="modal_botoes container">
-
-                    <Link
-                        to={"login"}
-                        target="_blank"
-                        className="btn btn-primary btn-registra text-white"
-                        onClick={handleOpenModal}
-                    >Participante</Link>
-
-                    <Link
-                        to={"login"}
-                        target="_blank"
-                        className="btn btn-primary btn-registra text-white"
-                        onClick={handleOpenModal}
-                    >Organizador de eventos</Link>
-
-                </div>
-
-            </Modal>
+          
 
         </>
     )

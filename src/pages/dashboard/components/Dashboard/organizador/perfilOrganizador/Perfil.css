@@ -1,0 +1,23 @@
+.exibir_imagem_Pai {
+    margin-bottom: 0;
+    padding: 30px 0 0 0;
+}
+
+.exibir_imagem {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #ef6837;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+.exibir_imagem img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* display: none; */
+}

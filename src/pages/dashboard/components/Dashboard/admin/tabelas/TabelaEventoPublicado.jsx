@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { format } from "date-fns";
+import { MoreHorizontal } from "lucide-react";
+import Swal from 'sweetalert2'
 
 export default function TabelaEventoPublicado() {
 
@@ -19,7 +22,7 @@ export default function TabelaEventoPublicado() {
             const response = await axios.get('http://localhost:3456/admin/eventos/publicados');
             const newData = response.data;
             setData(newData);
-           
+
         }
         fetchData();
     }, []);
@@ -35,11 +38,22 @@ export default function TabelaEventoPublicado() {
     const columns = [
         { title: "Nome", field: "nomeEventoPublicado", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "240px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
 
-        { title: "Data de inicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.dataInicio}</div> },
+        {
+            title: "Data de inicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{
+                format(new Date(rowData.dataInicio), "dd-MM-yyyy")
+            }</div>
+        },
 
-        { title: "Data de termino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.dataTermino}</div> },
+        {
+            title: "Data de termino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{
+                format(new Date(rowData.dataTermino), "dd-MM-yyyy")
+            }</div>
+        },
 
-        // { title: "Banido", field: "banido", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.banido}</div> },
+        {
+            title: "Publicado", field: "banido", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>
+                {rowData.publicado === true ? " Publicado" : "Não publicado"}</div>
+        },
 
 
 
@@ -53,9 +67,56 @@ export default function TabelaEventoPublicado() {
 
             <div className="tabela mt-3 mb-3">
                 <MaterialTable
+
+                    actions={[
+                        {
+                            icon: () => {
+                                return <MoreHorizontal></MoreHorizontal>
+                            },
+                            tooltip: "Informações do evento",
+                            onClick: (e, data) => {
+
+                                //   console.log(data, e.target.value)
+                                console.log(data)
+                                console.log("Id do utilizador", data.utilizadorId)
+
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Evento selecionado',
+                                    html: `Agora poderás ver as informações do evento ${data.nome} `,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                }).then(() => {
+                                    setTimeout(() => {
+
+                                        navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
+
+
+                                    }, 400)
+                                }).catch((error) => {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Erro',
+                                        html: `Agora poderás ver as informações do evento ${data.nome} `,
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    })
+                                })
+
+
+
+                            }
+
+                        },
+                    ]}
+
+
+
+
                     editable={{
                     }}
-                   
+
 
 
 
@@ -89,7 +150,7 @@ export default function TabelaEventoPublicado() {
                     data={data}
                     options={{
                         pageSize: 5,
-                        pageSizeOptions: [ 4 ,15, 25, 50],
+                        pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
                         exportAllData: true,

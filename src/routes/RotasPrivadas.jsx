@@ -4,12 +4,12 @@ import { Navigate, Outlet } from "react-router-dom";
 
 
 
-export const RotasPrivadas = () => {
+export const RotasPrivadasParticipante = () => {
 
     const { signed } = useContext(AuthContext)
 
     return (
-        signed ? <Outlet /> : <Navigate to={"/participante/criarContaParticipante"} />
+        signed ? <Outlet /> : <Navigate to={"/reservaOnline/participante/login"} />
     )
 
 }
@@ -25,7 +25,7 @@ export const RotasPrivadasOrganizador = () => {
 
 }
 
-export const RotasPrivadasAdmin = () =>{
+export const RotasPrivadasAdmin = () => {
 
     const { signed } = useContext(AuthContext)
     console.log(signed)
