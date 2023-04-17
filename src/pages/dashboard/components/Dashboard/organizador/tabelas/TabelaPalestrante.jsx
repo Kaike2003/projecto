@@ -240,7 +240,7 @@ export default function TabelaPalestrante() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "sandybrown",
+                            background: "#e51b15",
                             color: "#fff", fontSize: "14px",
                         }
 

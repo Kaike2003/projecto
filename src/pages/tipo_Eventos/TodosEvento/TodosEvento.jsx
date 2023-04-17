@@ -59,16 +59,16 @@ export default function TodosEvento() {
 
         setTimeout(async () => {
 
-            if (dataNovosEventos.length < data.length) {
+            // if (dataNovosEventos.length < data.length) {
 
                 const responseNovosEventos = await axios.get(`http://localhost:3456/participante/todosEventosLimite?limite=${currentePage} `)
                 const newDataNovosEventos = responseNovosEventos.data;
                 setDataNovosEventos(newDataNovosEventos);
                 setCurrentPage(() => currentePage + 8)
 
-            } else {
-                setHasMore(false)
-            }
+            // } else {
+            //     setHasMore(false)
+            // }
 
 
 
@@ -78,15 +78,15 @@ export default function TodosEvento() {
 
     return (
         <>
-            <div className="invisivel"></div>
+            <div className="invisivel_caroucel"></div>
 
             <InfiniteScroll
-
-                className=""
+    
+                className="infiniteScroll"
                 dataLength={dataNovosEventos.length}
                 next={fetchMoreData}
                 hasMore={hasMore}
-                loader={<p style={{ textAlign: 'center' }}>Carregando...</p>}
+                // loader={<p style={{ textAlign: 'center' }}>Carregando...</p>}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>
                         <b>  Sem mais evento para listar.</b>
@@ -119,7 +119,7 @@ export default function TodosEvento() {
                                             style={{ color: "black" }}
                                         >
                                             <div key={Math.random().toString(36).substring(2)}>
-                                                <h1>{index + 1}</h1>
+                                                {/* <h1>{index + 1}</h1> */}
 
                                                 <CardEvento
                                                     id={item.id}

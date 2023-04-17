@@ -34,6 +34,9 @@ import { useEffect } from "react";
 
 
 function ParallaxText({ children, baseVelocity = 150 }) {
+
+
+
     const baseX = useMotionValue(0);
     const { scrollY } = useScroll();
     const scrollVelocity = useVelocity(scrollY);
@@ -73,7 +76,7 @@ function ParallaxText({ children, baseVelocity = 150 }) {
                 <span>{children} </span>
                 <span>{children} </span>
                 <span>{children} </span>
-                <span>{children} </span>    
+                <span>{children} </span>
 
 
             </motion.div>
@@ -107,12 +110,10 @@ export default function Carousel() {
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
-                                    <Link to={"/todosEventos"}>
+                                    <Link to={"/reservaOnline/participante/todosEventos"}>
                                         <div className="link_style">
-                                            <img src={Todos} alt="" 
-                                            className="bilhete"/>
-                                            {/* <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" /> */}
+                                            <img src={Todos} alt=""
+                                                className="bilhete" />
                                             <p className="">Todos</p>
                                         </div>
                                     </Link>
@@ -123,13 +124,11 @@ export default function Carousel() {
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
-                                    <Link to={"/concertos"}>
+                                    <Link to={"/reservaOnline/participante/concerto"}>
                                         <div className="link_style">
                                             <img
-                                            className="bilhete"
-                                            src={Concerto}></img>
-                                            {/* <FontAwesomeIcon icon={faMasksTheater}
-                                                className="bilhete" /> */}
+                                                className="bilhete"
+                                                src={Concerto}></img>
                                             <p className="">Concerto</p>
                                         </div>
                                     </Link>
@@ -140,11 +139,11 @@ export default function Carousel() {
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
-                                    <Link to={"/festas"}>
+                                    <Link to={"/reservaOnline/participante/shows"}>
                                         <div className="link_style">
-                                        <img
-                                            className="bilhete"
-                                            src={Festa}></img>
+                                            <img
+                                                className="bilhete"
+                                                src={Festa}></img>
                                             {/* <FontAwesomeIcon icon={faPanorama}
                                                 className="bilhete" /> */}
                                             <p className="">Shows</p>
@@ -159,13 +158,11 @@ export default function Carousel() {
                                 className="item" >
 
                                 <div className="container_eventos_listados_div">
-                                    <Link to={"/palestra"}>
+                                    <Link to={"/reservaOnline/participante/palestra"}>
                                         <div className="link_style">
-                                        <img
-                                            className="bilhete"
-                                            src={Palestra}></img>
-                                            {/* <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" /> */}
+                                            <img
+                                                className="bilhete"
+                                                src={Palestra}></img>
                                             <p className="">Palestra</p>
                                         </div>
                                     </Link>
@@ -177,13 +174,12 @@ export default function Carousel() {
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
-                                    <Link to={"/teatro"}>
+                                    <Link to={"/reservaOnline/participante/teatro"}>
                                         <div className="link_style">
-                                        <img
-                                            className="bilhete"
-                                            src={Teatro}></img>
-                                            {/* <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" /> */}
+                                            <img
+                                                className="bilhete"
+                                                src={Teatro}>
+                                            </img>
                                             <p className="">Teatro</p>
                                         </div>
                                     </Link>
@@ -208,18 +204,17 @@ export default function Carousel() {
 
                                 className="item" >
                                 <div className="container_eventos_listados_div">
-                                    <Link to={"/"}>
+                                    <Link to={"/reservaOnline/participante/seminario"}>
                                         <div className="link_style">
-                                        <img
-                                            className="bilhete"
-                                            src={Seminario}></img>
-                                            {/* <FontAwesomeIcon icon={faTicket}
-                                                className="bilhete" /> */}
+                                            <img
+                                                className="bilhete"
+                                                src={Seminario}></img>
+                                           
                                             <p className="">Seminário</p>
                                         </div>
                                     </Link>
                                 </div>
-                            </div> 
+                            </div>
 
                         </div>
                     </div>

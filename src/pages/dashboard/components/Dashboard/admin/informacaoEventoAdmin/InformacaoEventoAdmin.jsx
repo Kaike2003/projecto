@@ -32,6 +32,7 @@ export default function InformacaoEvento() {
     })
 
 
+    const urlImage = "http://localhost:3456/public/upload/evento/"
 
 
 
@@ -128,9 +129,16 @@ export default function InformacaoEvento() {
 
             <div className="container">
                 <div className="criar mt-5">
-                    <div className="exibir_imagem">
-                        <img src={Imagem} alt="" />
-                    </div>
+                    {dataEvento.map(item => {
+                        if (item.id === idEvento) {
+                            return (<>
+                                <div className="exibir_imagem">
+                                    <img src={urlImage + item.foto} alt="" />
+                                </div>
+                            </>)
+                        }
+                    })}
+
                     {
 
                         dataEvento.map(item => {

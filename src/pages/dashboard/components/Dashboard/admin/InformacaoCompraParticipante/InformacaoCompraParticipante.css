@@ -1,4 +1,4 @@
-.spanOradorBilhetePalestrante span {
+.spanOradorBilhetePalestrante span{
     font-weight: 500;
 }
 
@@ -26,26 +26,11 @@
     /* display: none; */
 }
 
-.spanIcone {
+.spanIcone{
     display: flex;
     justify-content: start;
     align-items: center;
-    background-color: sandybrown;
+    background-color: #e51b15;
     padding: 5px 5px 5px 10px;
     color: #FFF;
-}
-
-.li_fundo {
-    width: 100%;
-    background-color: #f8f7fa;
-    list-style: none;
-    border-bottom: 1px solid rgb(236, 236, 236);
-}
-
-.li_fundo_primeiro{
-    padding-top: 10px;
-}
-
-.li_fundo_ultimo{
-    padding-bottom: 10px;
 }

@@ -68,7 +68,7 @@
 }
 
 .button_span_user {
-    background-color: sandybrown;
+    background-color: #e51b15;
     border-radius: 20px;
     height: 40px;
     min-width: 200px;
@@ -92,7 +92,7 @@
 
 
     .primeiroHeader {
-        background-color: sandybrown;
+        background-color: #e51b15;
         width: 100%;
         height: 50px;
         display: flex;

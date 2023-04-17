@@ -7,7 +7,6 @@ import swal from 'sweetalert';
 import Layout from "../components/Layout/index"
 import PaginaPrincipal from "../pages/PaginaPrincipal/PaginaPrincipal";
 import Concerto from "../pages/tipo_Eventos/Concerto/Concerto"
-import Festa from "../pages/tipo_Eventos/Festa/Festa";
 import Teatro from "../pages/tipo_Eventos/Teatro/Teatro"
 import Espetaculo from "../pages/tipo_Eventos/Espetaculo/Espetaculo";
 import Palestra from "../pages/tipo_Eventos/Palestra/Palestra";
@@ -98,6 +97,10 @@ import NaoPagas from "../pages/Participante/reservas/components/NaoPagas";
 import Paga from "../pages/Participante/reservas/components/Paga";
 import MeusEventos from "../pages/Participante/reservas/components/MeusBilhetes";
 import InformacaoEventoParticipante from "../pages/Participante/informacao/InformacaoEventoParticipante";
+import Seminario from "../pages/tipo_Eventos/Seminario/Seminario";
+import Shows from "../pages/tipo_Eventos/Shows/Shows";
+import TabelaEventoAprovarPagamentoParticipante from "../pages/dashboard/components/Dashboard/admin/tabelas/TabelaEventoAprovarPagamentoParticipante";
+import InformacaoCompraParticipante from "../pages/dashboard/components/Dashboard/admin/InformacaoCompraParticipante/InformacaoCompraParticipante";
 
 
 //  Context Dashboard
@@ -119,6 +122,8 @@ export default function Rotas() {
 
 
             {/*Página principal*/}
+
+
 
 
 
@@ -229,9 +234,52 @@ export default function Rotas() {
                             element={<TodosEvento />}
                         ></Route>
 
+                        <Route path="teatro"
+                            element={<Teatro />}
+                        ></Route>
+
+                        <Route path="concerto"
+                            element={<Concerto />}
+                        ></Route>
+
+                        <Route path="seminario"
+                            element={<Seminario />}
+                        ></Route>
+
+                        <Route path="palestra"
+                            element={<Palestra />}
+                        ></Route>
+
+                        <Route path="shows"
+                            element={<Shows />}
+                        ></Route>
+
 
                     </Route>
                 </Route>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 { /* Organizador*/}
@@ -370,6 +418,7 @@ export default function Rotas() {
                             <Route path="publicar"
                                 element={<PublicarEvento />}
                             ></Route>
+
 
 
                         </Route>
@@ -652,13 +701,14 @@ export default function Rotas() {
                                     lista1="Publicados"
                                     lista2="A espera"
                                     lista3="Banidos"
+                                    lista4="Aprovar compras"
                                     // lista4="Informações do evento"
-                                    lista4="Pagamentos"
                                     rota1={urlPrivadaAdmin + "/evento/publicado"}
                                     rota2={urlPrivadaAdmin + "/evento/espera"}
                                     rota3={urlPrivadaAdmin + "/evento/banidos"}
-                                    rota4={urlPrivadaAdmin + "/evento/pagamentos"}
+                                    rota4={urlPrivadaAdmin + "/evento/aprovarPagamento"}
                                     rota5={urlPrivadaAdmin + "/evento/informacoes/:idEvento"}
+                                    rota6={urlPrivadaAdmin + "/evento/aprovarPagamento/informacaoCompra/:idReserva"}
 
 
                                 />}
@@ -677,6 +727,15 @@ export default function Rotas() {
                             <Route path="banidos" element={
                                 <TabelaEventoBanido />
                             }></Route>
+
+                            <Route path="aprovarPagamento" element={
+                                <TabelaEventoAprovarPagamentoParticipante />
+                            }></Route>
+
+                            <Route path="informacaoCompra/:idReserva" element={
+                                <InformacaoCompraParticipante />
+                            }></Route>
+
 
                             <Route path="informacoes/:idUtilizador/:idEvento" element={
                                 <InformacaoEventoAdmin />

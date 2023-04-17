@@ -21,12 +21,13 @@
   gap: 20px;
   color: gainsboro;
   flex-wrap: wrap;
+  font-size: 19px;
 }
 
 
 .eventos_lista .active span {
   padding: 0 0 7.4px 0;
-  border-bottom: 3px solid sandybrown;
+  border-bottom: 3.4px solid #e51b15;
   cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-self-compare */
 import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
-import { useNavigate } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import axios from "axios"
 import Swal from 'sweetalert2'
 import { MoreHorizontal } from "lucide-react"
@@ -139,7 +139,7 @@ export default function TabelaEventoBanido() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "sandybrown",
+                            background: "#e51b15",
                             color: "#fff", fontSize: "14px",
                         }
 

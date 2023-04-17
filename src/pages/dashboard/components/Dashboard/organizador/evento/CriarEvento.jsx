@@ -5,8 +5,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
-import swal from 'sweetalert';
-
+import Swal from 'sweetalert2'
 
 
 export default function CriarEvento() {
@@ -127,17 +126,37 @@ export default function CriarEvento() {
                                     }).then((sucesso) => {
                                         console.log(sucesso)
 
-                                        swal("Evento criado", `${values.nome} foi criado com sucesso. Agora podes adicionar outros detelhes.`, "success").then(async () => {
+
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Evento criado',
+                                            html: `${values.nome} foi criado com sucesso. Agora podes adicionar outros detelhes.`,
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        }).then(async () => {
                                             navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
+                                        }).catch((error) => {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Errro',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
                                         })
-                                        // alert(JSON.stringify(values, null, 2));
-                                        // navigate("/reservaOnline/organizador/autenticarConta")
 
                                     }).catch((error) => {
                                         console.log(error)
-                                        swal(`${error}`, `Erro evento.`, "warning").then(async () => {
-                                            // navigate("/reservaOnline/admin/autenticarConta")
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Erro evento.',
+                                            html : `Verifique a data ou hora do evento`,
+                                            showConfirmButton: false,
+                                            timer: 1500
                                         })
+
+                                        // swal(`${error}`, `Erro evento.`, "warning").then(async () => {
+                                        //     // navigate("/reservaOnline/admin/autenticarConta")
+                                        // })
 
                                     })
 
@@ -220,7 +239,7 @@ export default function CriarEvento() {
                                                                 <option
                                                                     key={item.id + Math.random().toString(36).substring(2)}
                                                                     value={item.id}
-                                                                    // selected
+                                                                // selected
                                                                 >
                                                                     {item.nome}
                                                                 </option>
@@ -228,16 +247,16 @@ export default function CriarEvento() {
                                                             </>)
 
                                                     })}
-                                                    
+
                                                 </select >
                                                 {errors.categoriaId && touched.categoriaId ? (
-                                                        <div className="container"
-                                                            style={{ color: "red" }}
-                                                        >
+                                                    <div className="container"
+                                                        style={{ color: "red" }}
+                                                    >
 
-                                                            {errors.categoriaId}
-                                                        </div>
-                                                    ) : null}
+                                                        {errors.categoriaId}
+                                                    </div>
+                                                ) : null}
                                             </div>
 
 

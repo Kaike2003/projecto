@@ -11,12 +11,13 @@ import "./PaginaPrincipal.css"
 import Contacto from "../contacto/Contacto";
 import Carousel from "../caroucel/Carousel";
 import Perguntas from "../perguntas/Perguntas";
-import FestaFiltro from "../tipo_Eventos/Festa/FestaFiltro"
 import PalestraFiltro from "../tipo_Eventos/Palestra/PalestraFiltro"
 import ConcertoFiltro from "../tipo_Eventos/Concerto/ConcertoFiltro"
 import EspetaculoFiltro from "../tipo_Eventos/Espetaculo/EspetaculoFiltro"
 import TeatroFiltro from "../tipo_Eventos/Teatro/TeatroFiltro"
 import CardEvento from "../card_evento/components/EventoCard";
+import SeminarioFiltro from "../tipo_Eventos/Seminario/SeminarioFiltro";
+import Shows from "../tipo_Eventos/Shows/ShowsFiltro";
 
 // import Eventos from "../section_eventos/Section_eventos_teste"
 
@@ -84,13 +85,13 @@ export default function PaginaPrincipal() {
         if (categoria === "1") {
             return
         } else if (categoria === "2") {
-            return <FestaFiltro></FestaFiltro>
+            return <Shows></Shows>
         } else if (categoria === "3") {
             return <TeatroFiltro></TeatroFiltro>
         } else if (categoria === "4") {
             return <ConcertoFiltro></ConcertoFiltro>
         } else if (categoria === "5") {
-            return <EspetaculoFiltro></EspetaculoFiltro>
+            return <SeminarioFiltro></SeminarioFiltro>
         } else if (categoria === "6") {
             return <PalestraFiltro></PalestraFiltro>
         }
@@ -125,7 +126,7 @@ export default function PaginaPrincipal() {
                 <div className="container container_fundo">
                     <Carousel></Carousel>
                     <div className="container">
-                        <div className="conteudo_evento_paragrafos mt-3 mb-2 ">
+                        <div className="conteudo_evento_paragrafos mt-2 mb-1 ">
                             <p className=" sugestao text-dark ">Filtrar por:</p>
                             <div className="conteudo_categoria_p empreendedorismo">
                                 <select
@@ -133,10 +134,10 @@ export default function PaginaPrincipal() {
                                     onChange={categoriaFiltro}
                                 >
                                     <option value="1" >Categoria</option>
-                                    <option value="2" >Festa</option>
+                                    <option value="2" >Shows</option>
                                     <option value="3" >Teatro</option>
                                     <option value="4" >Concerto</option>
-                                    <option value="5" >Espetaculo</option>
+                                    <option value="5" >Seminário</option>
                                     <option value="6" >Palestra</option>
 
                                 </select>
@@ -171,7 +172,6 @@ export default function PaginaPrincipal() {
                                 <div className="conteudo_eventos_vermais">
                                     <h4 className="pb-3 pt-2 text-dark">Novos eventos</h4>
                                     <Link
-                                        style={{ backgroundColor: "sandybrown", color: "black" }}
                                         to={url + "/todosEventos"} className="btn">Ver mais</Link>
                                 </div>
                             </div>
@@ -233,7 +233,6 @@ export default function PaginaPrincipal() {
                                 <div className="conteudo_eventos_vermais">
                                     <h4 className="pb-3 pt-2 text-dark">Todos eventos</h4>
                                     <Link
-                                        style={{ backgroundColor: "sandybrown", color: "black" }}
                                         to={url + "/todosEventos"} className="btn">Ver mais</Link>
                                 </div>
                             </div>
@@ -298,7 +297,7 @@ export default function PaginaPrincipal() {
                                     <p>Crie eventos de forma gratuita.</p>
                                     <p>Ganhe dinheiro se descolocar de casa.</p>
                                     <p><button
-                                        style={{ backgroundColor: "sandybrown", color: "black" }}
+                                        style={{ backgroundColor: "#e51b15", color: "#ffffff" }}
                                         className="btn"
                                         onClick={() => {
                                             return navigate("/reservaOnline/organizador/criarConta")

@@ -8,7 +8,7 @@ import axios from "axios"
 import CardEvento from "../../card_evento/components/EventoCard"
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-export default function Teatro() {
+export default function SeminarioFiltro() {
 
 
 
@@ -31,11 +31,11 @@ export default function Teatro() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/participante/teatroEventos');
+            const response = await axios.get('http://localhost:3456/participante/seminarioEventos');
             const newData = response.data;
             setData(newData);
 
-            const responseNovosEventos = await axios.get('http://localhost:3456/participante/teatroEventosLimite?limite=8');
+            const responseNovosEventos = await axios.get('http://localhost:3456/participante/seminarioEventosLimite?limite=8');
             const newDataNovosEventos = responseNovosEventos.data;
             setDataNovosEventos(newDataNovosEventos);
 
@@ -61,10 +61,11 @@ export default function Teatro() {
 
             // if (dataNovosEventos.length < data.length) {
 
-            const responseNovosEventos = await axios.get(`http://localhost:3456/participante/teatroEventosLimite?limite=${currentePage} `)
+            const responseNovosEventos = await axios.get(`http://localhost:3456/participante/seminarioEventosLimite?limite=${currentePage} `)
             const newDataNovosEventos = responseNovosEventos.data;
             setDataNovosEventos(newDataNovosEventos);
             setCurrentPage(() => currentePage + 8)
+
             // } else {
             //     setHasMore(false)
             // }
@@ -77,6 +78,7 @@ export default function Teatro() {
 
     return (
         <>
+
             <InfiniteScroll
 
                 className="infiniteScroll"
@@ -97,9 +99,9 @@ export default function Teatro() {
                 <div className="container_conteudo">
                     <div className="conteudo_eventos">
                         <div className="conteudo_eventos_vermais">
-                            <h4 className="pb-3 pt-2 text-dark">Teatro</h4>
+                            <h4 className="pb-3 pt-2 text-dark">Seminário</h4>
                             <Link
-                                to={url + "/teatro"} className="btn">Ver mais</Link>
+                                to={url + "/seminario"} className="btn">Ver mais</Link>
                         </div>
                     </div>
                 </div>

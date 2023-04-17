@@ -72,7 +72,7 @@ export default function DashboardOrganizador() {
                                                 return (
                                                     <div key={item.id} >
                                                         <span 
-                                                        style={{color: "#FFF"}}
+                                                        style={{color: "black"}}
 
                                                         >{item.nome}</span>
                                                     </div>

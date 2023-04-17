@@ -47,7 +47,7 @@ export default function DashboardAdmin() {
 
                             <div>
                                 <NavLink to={"/reservaOnline/dashboard/admin"}>
-                                    <h2 style={{ fontFamily: "Roboto, sem serifa" }}
+                                    <h2 style={{ fontFamily: "Roboto, sem serifa", color: "#fff" }}
                                     >Reserva online</h2>
                                 </NavLink>
                             </div>
@@ -81,7 +81,7 @@ export default function DashboardAdmin() {
                                                 return (
                                                     <div key={item.id} >
                                                         <span
-                                                            style={{ color: "#FFF" }}
+                                                            
                                                         >{item.email}</span>
                                                     </div>
                                                 )

@@ -26,22 +26,84 @@
     display: flex;
     flex-direction: column;
     font-family: Roboto, "sem serifa";
+    transition: box-shadow 0.70s, transform 0.1s;
 }
 
+.previsualizarEvento:hover {
+    box-shadow: 0 4rem 4rem 0 rgba(0, 0, 0, .05), 0 2rem 2rem 0 rgba(0, 0, 0, .05), 0 1rem 1rem 0 rgba(0, 0, 0, .05), 0 0.5rem 0.5rem 0 rgba(0, 0, 0, .05), 0 0.25rem 0.25rem 0 rgba(0, 0, 0, .05), 0 0.125rem 0.125rem 0 rgba(0, 0, 0, .05);
+    -moz-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+
 .previsualizarEvento_Imagem {
+    min-width: 250px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
 }
 
 .previsualizarEvento_Img {
     width: 100%;
     height: 180px;
     object-fit: cover;
+
 }
 
 .previsualizarEvento_Informacao {
     margin-top: 10px;
 }
 
-.previsualizarEvento_Informacao p{
+.previsualizarEvento_Informacao p {
     padding: 0;
     margin: 0;
+}
+
+
+@media screen and (min-width: 320px) and (max-width:480px) {
+
+    .previsualizarEvento {
+        height: 360px;
+        width: 100%;
+        min-width: 250px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        font-family: Roboto, "sem serifa";
+        transition: box-shadow 0.70s, transform 0.1s;
+    }
+
+}
+
+@media screen and (min-width: 569px) and (max-width: 991px) {
+
+    .previsualizarEvento {
+        height: 360px;
+        width: 100%;
+        min-width: 250px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        font-family: Roboto, "sem serifa";
+        transition: box-shadow 0.70s, transform 0.1s;
+    }
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+
+    .previsualizarEvento {
+        height: 360px;
+        width: 100%;
+        min-width: 250px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        font-family: Roboto, "sem serifa";
+        transition: box-shadow 0.70s, transform 0.1s;
+    }
+
+
 }

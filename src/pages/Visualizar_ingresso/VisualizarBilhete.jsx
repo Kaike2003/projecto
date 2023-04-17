@@ -15,13 +15,14 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import * as Yup from 'yup';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 
 
-const LIMIT = 12
-
+const urlImage = "http://localhost:3456/public/upload/evento/"
 
 export default function VisualizarBilhete() {
+
 
     const { idEvento } = useParams()
     const [data, setData] = useState([]);
@@ -147,14 +148,27 @@ export default function VisualizarBilhete() {
         <>
             <div className="invisivel_visualizar"></div>
 
-            <div className="visualiarLadosPai">
+            <div className="visualiarLadosPai container">
                 <div className="visualiarLados">
 
-                    <div className="ladoFoto">
-                        <img src={Img} alt="imagem do evento" />
-                    </div>
+                    {[dataListaEvento].map(item => {
+                        return (
+                            <>
 
-                    <div className="ladoInformacao">
+                                <div className="ladoFoto">
+                                    <img src={urlImage + item.foto} alt="imagem do evento" />
+                                </div>
+
+
+
+                            </>
+                        )
+                    })}
+
+
+
+
+                    <div className="ladoInformacao container">
 
                         <div className="ladoInformacaoDiv">
 
@@ -177,7 +191,7 @@ export default function VisualizarBilhete() {
                                                             <div className="template_detalhe_2">
                                                                 <div className="icone_texto">
                                                                     <Info size={sizeIcone}></Info>
-                                                                    <p className="texto"> Estado do evento  {estadoEvento(item.estado)}</p>
+                                                                    <p className="texto"> Evento  {estadoEvento(item.estado)}</p>
                                                                 </div >
 
                                                                 <div className="icone_texto">
@@ -446,3 +460,4 @@ export default function VisualizarBilhete() {
     )
 
 }
+

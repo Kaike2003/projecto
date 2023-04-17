@@ -26,7 +26,7 @@ export default function MeusBilhetes() {
             const newData = response.data;
             setData(newData);
 
-            const responseListaEvento = await axios.get(`http://localhost:3456/participante/meusEventos/historico/${idUtilizador}`);
+            const responseListaEvento = await axios.get(`http://localhost:3456/participante/meusEventos/historico/bilhete/${idUtilizador}`);
             const newDataListaEvento = responseListaEvento.data;
             setDataListaEvento(newDataListaEvento);
 
@@ -47,17 +47,21 @@ export default function MeusBilhetes() {
     const CellRender = { fontSize: "16px" }
 
     const columns = [
-        { title: "Nome", field: "nome", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "250px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
+        { title: "Quantidade", field: "quantidade", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "250px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.quantidade}</div> },
 
         {
             title: "Data inicio", field: "dataInicio", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "200px", padding: "0", fontSize: CellRender.fontSize }}>{
-                format(new Date(rowData.dataInicio), 'dd/MM/yyyy')
+                rowData.dataInicio
+                // format(new Date(rowData.dataInicio), 'dd/MM/yyyy')
             }</div>
         },
 
         {
             title: "Data termino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "200px", padding: "0", fontSize: CellRender.fontSize }}>{
-                format(new Date(rowData.dataTermino), 'dd/MM/yyyy')}</div>
+                rowData.dataTermino
+                // format(new Date(rowData.dataTermino), 'dd/MM/yyyy')
+            }
+            </div>
         },
 
         // { title: "Banido", field: "banido", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.banido}</div> },
@@ -165,7 +169,7 @@ export default function MeusBilhetes() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "sandybrown",
+                            background: "#e51b15",
                             color: "#fff", fontSize: "14px",
                         }
 

@@ -39,7 +39,7 @@ export default function Header() {
 
 
 
- 
+
 
 
     return (
@@ -63,28 +63,28 @@ export default function Header() {
 
                     <div className="button_span_user">
 
-                    {data.map(item => {
-                                            console.log(nomeUtilizador)
-                                            if (item.email === nomeUtilizador) {
-                                                return (
-                                                    <div key={item.id} >
-                                                        <span 
-                                                        style={{color: "#FFF"}}
+                        {data.map(item => {
+                            console.log(nomeUtilizador)
+                            if (item.email === nomeUtilizador) {
+                                return (
+                                    <div key={item.id} >
+                                        <span
+                                            style={{ color: "black" }}
 
-                                                        >{item.nome}</span>
-                                                    </div>
-                                                )
-                                            }
-                                        })}
+                                        >{item.nome}</span>
+                                    </div>
+                                )
+                            }
+                        })}
 
 
                     </div>
 
-                  
+
                 </ul>
             </nav>
 
-          
+
 
         </>
     )

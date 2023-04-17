@@ -4,7 +4,7 @@ import Imagem from "../../../assets/img/palestrante.jpg"
 import axios from "axios";
 import { format } from "date-fns";
 import { useParams } from "react-router-dom";
-import "./InformacaoEvento.css"
+import "./InformacaoParticipante.css"
 import { ChevronRight } from "lucide-react";
 
 
@@ -34,7 +34,7 @@ export default function InformacaoEventoParticipante() {
     })
 
 
-
+    const urlImage = "http://localhost:3456/public/upload/evento/"
 
 
 
@@ -141,9 +141,16 @@ export default function InformacaoEventoParticipante() {
 
             <div className="container">
                 <div className="criar mt-5">
-                    <div className="exibir_imagem">
-                        <img src={Imagem} alt="" />
-                    </div>
+                    {[dataEvento].map(item => {
+                        return (
+                            <>
+                                <div className="exibir_imagem">
+                                    <img src={urlImage + item.foto} alt="" />
+                                </div>
+                            </>
+                        )
+                    })}
+
                     {
 
                         [dataEvento].map(item => {
@@ -250,7 +257,7 @@ export default function InformacaoEventoParticipante() {
                                             <div className="criar_row">
                                                 <span>Hora de inicio</span>
                                                 <div>
-                                                {item.horaInicio}
+                                                    {item.horaInicio}
 
                                                     {/* {format(new Date(item.horaInicio), "HH:mm:ss")} */}
                                                 </div>
@@ -259,13 +266,13 @@ export default function InformacaoEventoParticipante() {
 
 
                                             <div className="criar_row">
-                                                    <span>Hora de termino </span>
-                                                    <div>
+                                                <span>Hora de termino </span>
+                                                <div>
                                                     {item.horaTermino}
-                                                        {/* {format(new Date(item.horaTermino), "HH:mm:ss")} */}
-                                                    </div>
-
+                                                    {/* {format(new Date(item.horaTermino), "HH:mm:ss")} */}
                                                 </div>
+
+                                            </div>
 
                                             <div className="criar_row">
                                                 <span>Publicado </span>
