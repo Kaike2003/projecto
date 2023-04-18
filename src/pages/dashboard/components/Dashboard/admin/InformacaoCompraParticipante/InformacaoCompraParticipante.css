@@ -1,4 +1,4 @@
-.spanOradorBilhetePalestrante span{
+.spanOradorBilhetePalestrante span {
     font-weight: 500;
 }
 
@@ -7,30 +7,32 @@
     padding: 30px 0 0 0;
 }
 
-.exibir_imagem {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    background-color: #ef6837;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1%;
+.exibir_imagem_comprovativo {
+    width: 50%;
+    height: 100%;
 }
 
-.exibir_imagem img {
-    width: 130px;
-    height: 130px;
-    object-fit: cover;
-    border-radius: 50%;
-    /* display: none; */
+.exibir_imagem_comprovativo img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
 
-.spanIcone{
+.spanIcone {
     display: flex;
     justify-content: start;
     align-items: center;
     background-color: #e51b15;
     padding: 5px 5px 5px 10px;
     color: #FFF;
+}
+
+.titulo_evento_informacaoCompra {
+    font-family: 'Roboto', sem serifa;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: .5px;
+    color: #1e0a3c;
+    font-weight: 900;
+    padding: 2% 0 0 0;
 }

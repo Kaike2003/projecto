@@ -27,7 +27,7 @@ export default function CriarOrador() {
             const newData = response.data;
             setData(newData);
 
-            const responseUtilizador = await axios.get('http://localhost:3456/participante/listarParticipante');
+            const responseUtilizador = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
             const newDataUtlizador = responseUtilizador.data;
             setUtilizador(newDataUtlizador);
 

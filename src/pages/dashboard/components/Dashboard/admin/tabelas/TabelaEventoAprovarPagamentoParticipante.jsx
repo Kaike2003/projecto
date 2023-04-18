@@ -18,7 +18,7 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/admin/aprovarPagamento');
+            const response = await axios.get('http://localhost:3456/admin/listarPagamentos');
             const newData = response.data;
             setData(newData);
 
@@ -50,11 +50,11 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
                     if (item.id === rowData.utilizadorId) {
                         return <span>{item.nome}</span>
                     } else {
-                        return <span
-                            style={{
-                                color: "red"
-                            }}
-                        >Erro utilizador</span>
+                        // return <span
+                        //     style={{
+                        //         color: "red"
+                        //     }}
+                        // >Erro utilizador</span>
                     }
                 })
 
@@ -117,97 +117,6 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
 
                     actions={
                         [
-                            {
-                                icon: () => {
-                                    return <Check
-                                        size={size}
-                                    ></Check>
-                                },
-                                tooltip: "Aprovar compra",
-                                onClick: (e, data) => {
-
-                                    //   console.log(data, e.target.value)
-                                    console.log(data)
-                                    console.log("Id do utilizador", data.utilizadorId)
-
-
-
-
-                                    // Swal.fire({
-                                    //     icon: 'success',
-                                    //     title: 'Evento selecionado',
-                                    //     html: `Agora poderás ver as informações do evento ${data.nome} `,
-                                    //     showConfirmButton: false,
-                                    //     timer: 2000
-                                    // }).then(() => {
-                                    //     setTimeout(() => {
-
-                                    //         navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
-
-
-                                    //     }, 400)
-                                    // }).catch((error) => {
-                                    //     Swal.fire({
-                                    //         icon: 'warning',
-                                    //         title: 'Erro',
-                                    //         html: `${error}`,
-                                    //         showConfirmButton: false,
-                                    //         timer: 2000
-                                    //     })
-                                    // })
-
-
-
-                                }
-
-                            },
-
-                            {
-                                icon: () => {
-                                    return <Slash
-                                        size={size}
-                                    ></Slash>
-                                },
-                                tooltip: "Cancelar compra",
-                                onClick: (e, data) => {
-
-                                    //   console.log(data, e.target.value)
-                                    console.log(data)
-                                    console.log("Id do utilizador", data.utilizadorId)
-
-
-
-
-                                    // Swal.fire({
-                                    //     icon: 'success',
-                                    //     title: 'Evento selecionado',
-                                    //     html: `Agora poderás ver as informações do evento ${data.nome} `,
-                                    //     showConfirmButton: false,
-                                    //     timer: 2000
-                                    // }).then(() => {
-                                    //     setTimeout(() => {
-
-                                    //         navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
-
-
-
-                                    //     }, 400)
-                                    // }).catch((error) => {
-                                    //     Swal.fire({
-                                    //         icon: 'warning',
-                                    //         title: 'Erro',
-                                    //         html: `${error}`,
-                                    //         showConfirmButton: false,
-                                    //         timer: 2000
-                                    //     })
-                                    // })
-
-
-
-                                }
-
-                            }
-                            ,
                             {
                                 icon: () => {
                                     return <MoreHorizontal

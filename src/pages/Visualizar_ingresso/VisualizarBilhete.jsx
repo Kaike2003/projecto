@@ -65,7 +65,7 @@ export default function VisualizarBilhete() {
             const newDataListaCategoria = responseListaCategoria.data;
             setDataListaCategoria(newDataListaCategoria);
 
-            const responseUtilizador = await axios.get('http://localhost:3456/participante/listarParticipante');
+            const responseUtilizador = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
             const newDataUtlizador = responseUtilizador.data;
             setEmailUtilizador(newDataUtlizador);
 
@@ -346,7 +346,7 @@ export default function VisualizarBilhete() {
                                                                                         onChange={handleChange}
                                                                                         onBlur={handleBlur}
                                                                                     >
-                                                                                        <option value=""> Tipo de bilhete   </option>
+                                                                                        <option value=""> Tipo de bilhete - Preço  </option>
                                                                                         {dataListaBilhete.map(itemListaBilhete => {
                                                                                             return (
                                                                                                 <>
@@ -359,7 +359,7 @@ export default function VisualizarBilhete() {
 
                                                                                                                         <option value={itemListaBilhete.id}>
                                                                                                                             {itemListaBilheteAplicacao.nome}  -
-                                                                                                                            <p className="texto"> bilhetes desponiveis: {itemListaBilhete.quantidade}</p>
+                                                                                                                            <p className="texto"> bilhetes desponiveis: {itemListaBilhete.quantidade} - preço: {itemListaBilhete.preco} kz</p>
                                                                                                                         </option>
 
                                                                                                                     </>

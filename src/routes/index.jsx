@@ -101,6 +101,7 @@ import Seminario from "../pages/tipo_Eventos/Seminario/Seminario";
 import Shows from "../pages/tipo_Eventos/Shows/Shows";
 import TabelaEventoAprovarPagamentoParticipante from "../pages/dashboard/components/Dashboard/admin/tabelas/TabelaEventoAprovarPagamentoParticipante";
 import InformacaoCompraParticipante from "../pages/dashboard/components/Dashboard/admin/InformacaoCompraParticipante/InformacaoCompraParticipante";
+import AdicionarFotoComprovativo from "../pages/Participante/reservas/components/AdicionarFotoComprovativo";
 
 
 //  Context Dashboard
@@ -211,9 +212,16 @@ export default function Rotas() {
                             element={<Reservas />}
                         >
 
-                            <Route path="naoPagas/:idUtilizador"
+                            <Route
+                                path="naoPagas/:idUtilizador"
                                 element={<NaoPagas />}
                             ></Route>
+
+                            <Route path="adicionarComprovativo/:idReserva"
+                                element={<AdicionarFotoComprovativo />}
+                            ></Route>
+
+
 
                             <Route path="pagas/:idUtilizador"
                                 element={<Paga />}

@@ -2,25 +2,35 @@ import React, { useEffect, useState } from "react";
 import { useParams, Navigate, useNavigate } from "react-router-dom"
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
-import "../../../estrutura/../estrutura/evento/css/Criar.css"
+// import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
-import PrevisualizacaoImagem from "../../../estrutura/PrevisualizacaoImagem";
 import { useRef } from "react";
+import swal from 'sweetalert';
+import PrevisualizacaoImagem from "../../../dashboard/components/estrutura/PrevisualizacaoImagem";
 
 
-export default function AdicionarFotoPerfilOrganizador() {
+
+export default function AdicionarFotoComprovativo() {
 
     const navigate = useNavigate()
 
 
     const [data, setData] = useState([]);
-
+    const { idReserva } = useParams()
+    const [nomeUtilizador, setNomeUtilizador] = useState([])
 
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
             const newData = response.data;
             setData(newData);
+
+            if (localStorage.getItem("@Auth:email") !== null) {
+                setNomeUtilizador(localStorage.getItem("@Auth:email"))
+            }
+
+
+
         }
         fetchData();
     }, []);
@@ -28,12 +38,15 @@ export default function AdicionarFotoPerfilOrganizador() {
     const fileRef = useRef()
 
 
+    console.log(idReserva)
+    console.log(data)
+    console.log(nomeUtilizador)
 
-    // const EstruturaSchema = Yup.object().shape({
-    //     nomeEvento: Yup.string()
+    // const FotoSchema = Yup.object().shape({
+    //     foto: Yup.string("A foto de ser uma string")
     //         .min(5, "O nome do evento. Precisa ter menos de 5 caracteres")
     //         .max(50, "O nome do evento. Precisa ter mais de 50 caracteres")
-    //     // .required("Nome do evento é obrigatorio.")
+    //         .required("Nome do evento é obrigatorio.")
     // })
 
     return (
@@ -41,57 +54,64 @@ export default function AdicionarFotoPerfilOrganizador() {
 
 
 
-            <div>
 
+            <div>
 
                 <Formik
                     initialValues={{
-                       foto: ""
+                        foto: ""
                     }}
                     enableReinitialize
                     onSubmit={async (values) => {
-                        alert("Dados correctos")
+
+
+
+                        const form = new FormData();
+                        form.append('foto', values.file);
+
 
                         console.log(values.file.name)
 
-                        // data.map(item => {
-                        //     if (item.email === values.email) {
-                        //         alert("Já existe um nome e ou email cadastrado.");
-                        //         return;
-                        //     } else if (item.nome === values.nome) {
-                        //         alert("Já existe um nome e ou nome cadastrado.");
-                        //         return;
-                        //     } else {
+                        data.map((item, index) => {
 
-                        //         axios.post("http://localhost:3456/organizador/create",
-                        //             {
-                        //                 nome: values.nome,
-                        //                 palavraPasse: values.password,
-                        //                 email: values.email,
-                        //                 localizacao: "Zango",
-                        //                 telefone: "953164154",
-                        //                 dataNascimento: values.dataNascimento
-                        //             }).then((sucesso) => {
-                        //                 console.log(sucesso)
-                        //                 alert(JSON.stringify(values, null, 2));
-                        //                 navigate("/reservaOnline/organizador/autenticarConta")
+                            if (item.email === nomeUtilizador) {
 
-                        //             }).catch((error) => {
-                        //                 console.log(error)
-                        //             })
+                                axios.put(`http://localhost:3456/participante/adicionarComprovaito/${idReserva}/${item.id}`,
+                                    form,
+                                    {
+                                        foto: values.file.name
+                                    }).then(res => {
+                                        console.log(res)
+                                        alert("Ok - 200")
+                                    }).catch((error) => {
+                                        console.log(error)
+                                    })
+
+                            }
+
+                        })
 
 
 
-                        //     }
-                        // })
+                        try {
 
+                            // axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idUtilizador}/foto/${idEvento}`, formData).then((sucesso) => {
+                            //     console.log(sucesso)
+                            //     swal("Foto envidada com sucesso", `A foto do seu evento já foi envida.`, "success")
 
+                            // }).catch((error) => {
+                            //     console.log(error)
+                            //     swal("Erro ao enviar a imagem", `A foto do seu evento já foi envida.`, "warning")
+                            // })
 
+                        } catch (error) {
+                            console.log(error)
+                        }
 
 
                     }}
                 >
-                    {({ isSubmitting, errors, touched, values, setFieldValue }) => (
+                    {({ isSubmitting, errors, touched, values, setFieldValue, handleBlur, handleChange }) => (
 
                         <Form>
 
@@ -101,7 +121,7 @@ export default function AdicionarFotoPerfilOrganizador() {
 
                                         className="criar_info">
                                         <span>1. Informações básicas</span> <br />
-                                        <span>Edite as informações da sua conta.</span>
+                                        <span>Adicione uma foto ao seu evento</span>
                                     </div>
                                     <button
                                         className="PnomeBotao"
@@ -118,26 +138,27 @@ export default function AdicionarFotoPerfilOrganizador() {
 
                                                 <div className="criar_row">
                                                     <span>Imagem</span>
-                                                    {errors.file && touched.file ? (
-                                                        <div className="error_Yup">{errors.file}</div>
+                                                    {errors.foto && touched.foto ? (
+                                                        <div className="error_Yup">{errors.foto}</div>
                                                     ) : null}
                                                     {values.file && <PrevisualizacaoImagem
                                                         file={values.file} />}
                                                     <input
                                                         ref={fileRef}
+                                                        id="foto"
                                                         name="foto"
                                                         hidden
                                                         type="file"
                                                         value={values.foto}
+                                                        // onChange={handleChange}
+                                                        onBlur={handleBlur}
                                                         onChange={(e) => {
                                                             setFieldValue("file", e.target.files[0])
                                                             console.log((e.target.files[0]))
                                                         }}
 
                                                     />
-                                                    {/* <button
 
-                                            >Upload</button> */}
                                                     <label
                                                         onClick={() => {
                                                             fileRef.current.click()
@@ -165,7 +186,7 @@ export default function AdicionarFotoPerfilOrganizador() {
                         </Form>
                     )}
                 </Formik>
-            </div>
+            </div >
 
 
         </>

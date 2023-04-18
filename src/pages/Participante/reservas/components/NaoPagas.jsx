@@ -36,7 +36,7 @@ export default function NaoPagas() {
             const newDataListaItemBilhete = responseListaItemBilhete.data;
             setDataListaItemBilhete(newDataListaItemBilhete);
 
-            const responseUtilizador = await axios.get('http://localhost:3456/participante/listarParticipante');
+            const responseUtilizador = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
             const newDataUtlizador = responseUtilizador.data;
             setUtilizador(newDataUtlizador);
 
@@ -120,7 +120,7 @@ export default function NaoPagas() {
                                                 }).then(() => {
                                                     setTimeout(() => {
 
-                                                        navigate(`/reservaOnline/participante/reservas/informacaoEvento/${idUtilizador}/${item.bilheteId}`)
+                                                        navigate(`/reservaOnline/participante/reservas/adicionarComprovativo/${item.reservaId}`)
 
 
                                                     }, 100)

@@ -19,7 +19,7 @@ export default function PerfilEditar() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/participante/listarParticipante');
+            const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
             const newData = response.data;
             setData(newData);
         }

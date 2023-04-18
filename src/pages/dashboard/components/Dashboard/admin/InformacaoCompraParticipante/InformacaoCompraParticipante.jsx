@@ -32,7 +32,7 @@ export default function InformacaoCompraParticipante() {
     })
 
 
-    const urlImage = "http://localhost:3456/public/upload/evento/"
+    const urlImage = "http://localhost:3456/public/upload/comprovativo/"
 
 
 
@@ -45,7 +45,7 @@ export default function InformacaoCompraParticipante() {
             const newDataCategoria = responseListaCategoria.data;
             setDataListaCategoria(newDataCategoria);
 
-            const responseListaReservas = await axios.get('http://localhost:3456/admin/aprovarPagamento')
+            const responseListaReservas = await axios.get('http://localhost:3456/admin/listarPagamentos')
             const newDataListaReservas = responseListaReservas.data
             setDataListaReservas(newDataListaReservas)
 
@@ -56,7 +56,7 @@ export default function InformacaoCompraParticipante() {
 
 
 
-            const response = await axios.get('http://localhost:3456/participante/listarParticipante');
+            const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
             const newData = response.data;
             setData(newData);
 
@@ -73,16 +73,7 @@ export default function InformacaoCompraParticipante() {
 
 
 
-    function esconderOrador() {
-        setAbrirOrador((oldValor) => {
-            if (oldValor.display === "none") {
-                return oldValor = { display: "block", rotate: "90deg" }
-            } else {
-                return oldValor = { display: "none", rotate: 0 }
-            }
-        }
-        )
-    }
+   
 
     function esconderBilhete() {
         setAbrirBilhete((oldValor) => {
@@ -95,16 +86,7 @@ export default function InformacaoCompraParticipante() {
         )
     }
 
-    function esconderPalestrante() {
-        setAbrirPalestrante((oldValor) => {
-            if (oldValor.display === "none") {
-                return oldValor = { display: "block", rotate: "90deg" }
-            } else {
-                return oldValor = { display: "none", rotate: 0 }
-            }
-        }
-        )
-    }
+ 
 
     console.log(nomeUtilizador)
     console.log("Usuários participantes", dataEvento)
@@ -115,18 +97,10 @@ export default function InformacaoCompraParticipante() {
         <>
 
             <div className="container">
-                <div className="titulo_evento container">Informações da compra</div>
+                <div className="titulo_evento_informacaoCompra container">Informações da compra
+                </div>
 
-                <div className="criar mt-5">
-                    {/* {dataListaReservas.map(item => {
-                        if (item.id === idReserva) {
-                            return (<>
-                                <div className="exibir_imagem">
-                                    <img src={urlImage + item.foto} alt="" />
-                                </div>
-                            </>)
-                        }
-                    })} */}
+                <div className="criar mt-2">
 
                     {
 
@@ -214,39 +188,20 @@ export default function InformacaoCompraParticipante() {
                                                             style={
                                                                 { display: abirBilhete.display }
                                                             }>
-                                                            {dataListaBilhetes.map(item => {
-                                                                return (
-                                                                    <>
-                                                                        <li
-                                                                            className="
-                                                                li_fundo_primeiro
-                                                                li_fundo 
-                                                                container">
-                                                                            <span>Nome</span>: {item.nome}
-                                                                            <li><span>Data de inicio</span>: {format(new Date(item.dataInicio), 'MM/dd/yyyy')} - <span>hora de inicio</span>: {
+                                                            {dataListaReservas.map(item => {
+                                                                if (item.id === idReserva) {
+                                                                    return (<>
+                                                                        <div className="exibir_imagem_comprovativo mt-2 container">
 
-                                                                                format(new Date(item.horaInicio), "HH:mm:ss")
-
-                                                                            }</li>
-                                                                            <li
-                                                                            ><span>Data de termino</span>: {format(new Date(item.dataTermino), 'MM/dd/yyyy')} - <span>hora de termino</span>: {
-
-                                                                                    format(new Date(item.horaTermino), "HH:mm:ss")
-
-                                                                                }</li>
-                                                                            <li
-
-                                                                            ><span>Preço</span>: {item.preco} kz</li>
-                                                                            <li
-                                                                                className="
-                                                                    li_fundo_ultimo
-                                                                    "
-                                                                            ><span>Quantidade</span>: {item.quantidade}</li>
-                                                                        </li>
-                                                                        <li style={{ visibility: "hidden" }}></li>
-                                                                    </>
-                                                                )
+                                                                            <img src={urlImage + item.foto} alt="" /> 
+                                                                            
+                                                                        </div>
+                                                                    </>)
+                                                                }
                                                             })}
+
+
+
                                                         </ul>
                                                     </div>
 
