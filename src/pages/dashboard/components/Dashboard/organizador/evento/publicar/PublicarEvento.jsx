@@ -4,7 +4,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 
 
@@ -60,9 +60,24 @@ export default function PublicarEvento() {
                             if (item.email === nomeUtilizador) {
 
                                 axios.put(`http://localhost:3456/organizador/evento/publicar/${item.id}/${idEvento}`).then(() => {
-                                    swal("Evento Publicado", `Seu evento foi publicado com sucesso.`, "success")
-                                }).catch(() => {
-                                    swal(`Esse evento já foi publicado`, `Já não podes voltar a publicar esse evento.`, "info")
+
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Evento Publicado',
+                                        showConfirmButton: false,
+                                        timer: 2500
+                                    })
+
+                                }).catch((error) => {
+
+                                    Swal.fire({
+                                        icon: 'info',
+                                        title: 'Esse evento já foi publicado',
+                                        html: `Já não podes voltar a publicar esse evento.`,
+                                        showConfirmButton: false,
+                                        timer: 3400
+                                    })
+
                                 })
                             }
                         })
@@ -77,13 +92,14 @@ export default function PublicarEvento() {
                             <div className="criar container">
                                 <div className="criar_info_criar">
                                     <div
+                                
 
                                         className="criar_info">
                                         <span style={{ color: "red" }}>1. Informação</span> <br />
-                                        <span>Antes de publicar seu evento. Preencha todos os detalhes necessários para que seu evento seja aprovado e seja visualizado pelos participantes da aplicação. Caso contrário seu evento pode não ser aprovado ou pode ser banido da aplicação.</span>
+                                        <span style={{fontSize:"18px"}}>Antes de publicar seu evento. Preencha todos os detalhes necessários para que seu evento seja aprovado e seja visualizado pelos participantes da aplicação. Caso contrário seu evento pode não ser aprovado ou pode ser banido da aplicação.</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoOrganizador"
                                         type="submit">Publicar</button>
                                 </div>
 

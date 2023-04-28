@@ -4,6 +4,7 @@ import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom";
 
 
@@ -53,12 +54,25 @@ export default function CriarCategoria() {
                             }).then((sucesso) => {
                                 console.log(sucesso)
 
-                                swal(`Categoria ${values.nome}`, "Criada com sucesso.", "success").then(() => {
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: `Categoria ${values.nome}`,
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                }).then(() => {
                                     navigate("/reservaOnline/dashboard/admin/categoria/listar")
                                 })
 
                             }).catch((error) => {
-                                swal(`Categoria ${values.nome}`, "Já foi cadastrada na aplicação.", "warning")
+
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: `Categoria ${values.nome}`,
+                                    html: "Já foi cadastrada na aplicação.",
+                                    showConfirmButton: false,
+                                    timer: 3500
+                                })
                             })
 
                     }}
@@ -80,6 +94,7 @@ export default function CriarCategoria() {
                                         className="PnomeBotao"
                                         type="submit"
                                         disabled={isSubmitting}
+                                        style={{ background: "#7b7c7c", color: "white" }}
                                     >Criar</button>
                                 </div>
                                 <div className="criar_main ">

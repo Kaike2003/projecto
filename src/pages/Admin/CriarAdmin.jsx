@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -58,10 +59,20 @@ export const CriarAdmin = () => {
 							}).then(async (sucesso) => {
 								console.log(sucesso)
 
+
 								setTimeout(async () => {
-									await swal("Conta criada", `Enivamos para você um código para autenticar sua conta na nossa aplicação.`, "success").then(async () => {
+
+
+									Swal.fire({
+										icon: 'success',
+										title: 'Conta criada',
+										html: "Enivamos para você um código para autenticar sua conta na nossa aplicação.",
+										showConfirmButton: false,
+										timer: 2500
+									}).then(async () => {
 										navigate("/reservaOnline/admin/autenticarConta")
 									})
+
 
 								}, 800);
 

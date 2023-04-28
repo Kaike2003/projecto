@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import Swal from "sweetalert2"
 import { format } from 'date-fns'
 
 
@@ -48,32 +49,36 @@ export default function EditarBilhete() {
 
 
 
-    // const CriarEventoSchema = Yup.object().shape({
-    //     nome: Yup.string()
-    //         .min(3, "O nome deve conter 2 ou mais caracteres")
-    //         .max(100, "O nome deve conter 100 ou menos caracteres")
-    //         .required("O nome é obrigatório"),
-    //     preco: Yup.number("O preco do bilhete de ser um inteiro").integer()
-    //         .min(0, "O preco do bilhete não pode ser menor que 0 ")
-    //         .max(999999999, "O preco do bilhete não pode ser maior que 999999999")
-    //         .required("O preco do bilhete é obrigatorio."),
-    //     quantidade: Yup.number("A quantidade de bilhete deve ser um inteiro").integer()
-    //         .min(0, "O quantidade de bilhete não pode ser menor que 0 ")
-    //         .max(999999999, "O quantidade de bilhete não pode ser maior que 999999999")
-    //         .required("A quantidade de bilhete é obrigátoria."),
-    //     dataInicio: Yup.date().required("A data de inicio é obrigatória"),
-    //     dataTermino: Yup.date().required("A data de termino é obrigatória"),
-    //     horaInicio: Yup.string().required("A hora de inicio é obrigatória"),
-    //     horaTermino: Yup.string().required("A hora de termino é obrigatória"),
-    //     categoriaId: Yup.string("O id da categoria deve ser uma string")
-    //         .min(3, "O id da categoria deve conter 3 ou mais")
-    //         .max(4000, "O id da categoria deve conter 4000 ou menos caracteres")
-    //         .required("O id da categoria é obrigatório")
-    // })
+    const EditarEventoSchema = Yup.object().shape({
+        nome: Yup.string()
+            .min(4, "O nome do bilhete deve conter 2 ou mais caracteres.")
+            .max(100, "O nome do bilhete deve conter 100 ou menos caracteres.")
+            .required("O nome do bilhete é obrigatório."),
+        preco: Yup.number("O preco do bilhete de ser um inteiro.").integer()
+            .min(0, "O preco do bilhete não pode ser menor que 0.")
+            .max(999999999, "O preço do bilhete não pode ser maior que 999999999.")
+            .required("O preço do bilhete é obrigatorio."),
+        quantidade: Yup.number("A quantidade de bilhete deve ser um inteiro").integer()
+            .min(0, "O quantidade de bilhete não pode ser menor que 0.")
+            .max(999999999, "O quantidade de bilhete não pode ser maior que 999999999.")
+            .required("A quantidade de bilhete é obrigátoria."),
+        dataInicio: Yup.date().required("A data de inicio é obrigatória.").min(new Date()),
+        dataTermino: Yup.date().required("A data de termino é obrigatória."),
+        horaInicio: Yup.string().required("A hora de inicio é obrigatória."),
+        horaTermino: Yup.string().required("A hora de termino é obrigatória."),
+        categoriaId: Yup.string("O id da categoria deve ser uma string.")
+            .min(4, "O id da categoria deve conter 3 ou mais caracteres.")
+            .max(300, "O id da categoria deve conter 4000 ou menos caracteres.")
+            .required("A categoria é obrigatória.")
+    })
+
+    console.log(data)
 
 
     return (
         <>
+
+
 
             {data.map(item => {
 
@@ -88,7 +93,7 @@ export default function EditarBilhete() {
                         horaTermino: format(new Date(item.horaTermino), "HH:mm:ss.SSS"),
                         preco: item.preco,
                         quantidade: item.quantidade,
-                        tipoEvento: item.tipoEventoId,
+                        categoriaId: item.tipoEventoId,
                     }
 
                     const valoresInicias = {
@@ -99,7 +104,7 @@ export default function EditarBilhete() {
                         dataTermino: "",
                         horaInicio: "",
                         horaTermino: "",
-                        tipoEvento: ""
+                        categoriaId: ""
                     }
 
                     return (
@@ -108,7 +113,7 @@ export default function EditarBilhete() {
                             <div key={Math.random().toString(36).substring(2)} >
 
                                 <Formik
-                                    // validationSchema={CriarEventoSchema}
+                                    validationSchema={EditarEventoSchema}
                                     enableReinitialize
                                     initialValues={dadosSalvos || valoresInicias}
                                     onSubmit={async (values) => {
@@ -128,18 +133,30 @@ export default function EditarBilhete() {
                                                         dataTermino: values.dataTermino,
                                                         horaInicio: values.horaInicio,
                                                         horaTermino: values.horaTermino,
-                                                        tipoEvento: values.tipoEvento
+                                                        tipoEvento: values.categoriaId
                                                     }).then((sucesso) => {
                                                         console.log(sucesso)
 
-                                                        swal("Bilhete Atualizado", `${values.nome} foi atualizado com sucesso.`, "success").then(async () => {
-                                                            // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
+                                                        // swal("Bilhete Atualizado", `${values.nome} foi atualizado com sucesso.`, "success").then(async () => {
+                                                        //     // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
+                                                        // })
+
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Bilhete Atualizado',
+                                                            showConfirmButton: false,
+                                                            timer: 2500
                                                         })
+
 
                                                     }).catch((error) => {
                                                         console.log(error)
-                                                        swal(`${error}`, `Erro Bilhete.`, "warning").then(async () => {
-                                                            // navigate("/reservaOnline/admin/autenticarConta")
+
+                                                        Swal.fire({
+                                                            icon: 'warning',
+                                                            title: 'Erro bilhete',
+                                                            showConfirmButton: false,
+                                                            timer: 4500
                                                         })
 
                                                     })
@@ -171,8 +188,9 @@ export default function EditarBilhete() {
                                                         <span>Adicione as principais informações do bilhete</span>
                                                     </div>
                                                     <button
-                                                        className="PnomeBotao"
+                                                        className="PnomeBotaoOrganizador"
                                                         disabled={isSubmitting}
+
                                                         type="submit">Salvar</button>
                                                 </div>
                                                 <div className="criar_main ">
@@ -211,19 +229,12 @@ export default function EditarBilhete() {
                                                                 <select
                                                                     name="categoriaId"
                                                                     id=""
-                                                                    defaultValue={""}
-                                                                    onChange={(e) => {
-
-                                                                        values.tipoEvento = e.target.value
-
-                                                                        console.log(e.target.value)
-
-                                                                    }
-
-                                                                    }
+                                                                    onChange={handleChange}
+                                                                    onBlur={handleBlur}
+                                                                    value={values.categoriaId}
                                                                 >
 
-                                                                    <option value="">Tipo de bilhete</option>
+
                                                                     {dataListaTipoBilhete.map(item => {
                                                                         return (
                                                                             <>
@@ -237,15 +248,16 @@ export default function EditarBilhete() {
                                                                             </>)
 
                                                                     })}
-                                                                    {errors.tipoEvento && touched.tipoEvento ? (
-                                                                        <div className="container"
-                                                                            style={{ color: "red" }}
-                                                                        >
 
-                                                                            {errors.tipoEvento}
-                                                                        </div>
-                                                                    ) : null}
                                                                 </select >
+                                                                {errors.categoriaId && touched.categoriaId ? (
+                                                                    <div className="container"
+                                                                        style={{ color: "red" }}
+                                                                    >
+
+                                                                        {errors.categoriaId}
+                                                                    </div>
+                                                                ) : null}
                                                             </div>
 
 

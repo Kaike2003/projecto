@@ -106,7 +106,7 @@ export default function AlterarSenhaOrganizador() {
                                         <span>Edite as informações da sua conta.</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoOrganizador"
                                         type="submit">Salvar</button>
                                 </div>
                                 <div className="criar_main ">

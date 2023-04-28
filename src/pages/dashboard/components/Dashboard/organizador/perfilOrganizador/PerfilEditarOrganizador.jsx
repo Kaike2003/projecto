@@ -5,7 +5,7 @@ import * as Yup from "yup"
 import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import { format } from "date-fns";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 
 export default function PerfilEditarOrganizador() {
@@ -45,6 +45,15 @@ export default function PerfilEditarOrganizador() {
         dataNascimento: Yup.date("Data de nascimento obrigátoria")
             .max(new Date())
             .required("Data de nascimento é obrigátoria"),
+        iban: Yup.string("IBAN inválido")
+            .min(17, "IBAN muito curto")
+            .max(50, "IBAN muito longo")
+            .required("O IBAN é obrigátorio"),
+        telefone: Yup.number("Número de telefone inválido").integer()
+            .min(111111111, "Número de telefone muito curto")
+            .max(999999999, "Número telefone muito longo")
+            .required("Número de telefone é obrigátorio")
+        ,
 
     })
 
@@ -65,7 +74,8 @@ export default function PerfilEditarOrganizador() {
                             nome: item.nome,
                             telefone: item.telefone,
                             localizacao: item.localizacao,
-                            dataNascimento: format(new Date(item.dataNascimento), "yyyy-MM-dd")
+                            dataNascimento: format(new Date(item.dataNascimento), "yyyy-MM-dd"),
+                            iban: item.iban
 
                         }
 
@@ -74,8 +84,9 @@ export default function PerfilEditarOrganizador() {
                         const valoresInicias = {
                             nome: "",
                             dataNascimento: "",
-                            telefone: "",
-                            localizacao: ""
+                            telefone: 0,
+                            localizacao: "",
+                            iban: ""
                         }
                         return (
                             <>
@@ -95,13 +106,20 @@ export default function PerfilEditarOrganizador() {
                                                 {
                                                     nome: values.nome,
                                                     dataNascimento: new Date(values.dataNascimento),
-                                                    telefone: values.telefone,
-                                                    localizacao: values.localizacao
+                                                    telefone: Number(values.telefone),
+                                                    localizacao: values.localizacao,
+                                                    iban: values.iban
                                                 }).then((sucesso) => {
 
                                                     console.log(sucesso)
 
-                                                    swal("Usuário editado", `${values.nome} suas alterações foram salvas com sucesso. `, "success")
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        title: 'Usuário editado',
+                                                        html: `${values.nome} suas alterações foram salvas com sucesso.`,
+                                                        showConfirmButton: false,
+                                                        timer: 1800
+                                                    })
 
 
                                                 }).catch((error) => {
@@ -126,7 +144,7 @@ export default function PerfilEditarOrganizador() {
                                                             <span>Edite as informações da sua conta.</span>
                                                         </div>
                                                         <button
-                                                            className="PnomeBotao"
+                                                            className="PnomeBotaoOrganizador"
                                                             type="submit">Editar</button>
                                                     </div>
                                                     <div className="criar_main ">
@@ -209,6 +227,35 @@ export default function PerfilEditarOrganizador() {
 
 
                                                                 </div>
+
+
+
+
+
+                                                            </div>
+
+                                                            <div>
+
+                                                                <div className="criar_row">
+                                                                    <span>IBAN</span>
+                                                                    <Field
+                                                                        type="text"
+                                                                        name="iban"
+                                                                    />
+
+                                                                    {errors.iban && touched.iban ? (
+                                                                        <div className="container"
+                                                                            style={{ color: "red" }}
+                                                                        >
+
+                                                                            {errors.iban}
+                                                                        </div>
+                                                                    ) : null}
+
+
+
+                                                                </div>
+
 
 
 

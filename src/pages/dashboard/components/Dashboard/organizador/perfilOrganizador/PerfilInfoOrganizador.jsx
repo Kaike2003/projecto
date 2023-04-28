@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Perfil.css"
-import Imagem from "../../../../../../assets/img/palestrante.jpg"
 import axios from "axios";
 import { format } from "date-fns";
 
+const urlImageOrganizador = "http://localhost:3456/public/upload/usuarios/organizador/"
 
 
 export default function PerfilInfoOrganizador() {
@@ -32,9 +32,7 @@ export default function PerfilInfoOrganizador() {
         <>
 
             <div className="criar mt-5">
-                {/* <div className="exibir_imagem">
-                    <img src={Imagem} alt="" />
-                </div> */}
+
                 {
 
                     data.map(item => {
@@ -42,6 +40,10 @@ export default function PerfilInfoOrganizador() {
                         if (item.email === nomeUtilizador) {
                             return (
                                 <>
+
+                                    <div className="exibir_imagem">
+                                        <img src={urlImageOrganizador + item.foto} alt="" />
+                                    </div>
 
                                     <div key={Math.random().toString(36).substring(2)}>
 
@@ -81,15 +83,27 @@ export default function PerfilInfoOrganizador() {
 
                                             <div className="criar_row">
                                                 <span>Data de nascimento</span>
-                                                <div> { format(new Date(item.dataNascimento), "dd-MM-yyyy")} </div>
+                                                <div> {format(new Date(item.dataNascimento), "dd-MM-yyyy")} </div>
+
+                                            </div>
+
+                                            <div className="criar_row">
+                                                <span>IBAN</span>
+                                                <div> {
+                                                    item.iban === null ?
+                                                        <div style={{ color: "red" }}>
+                                                            Sem IBAN
+                                                        </div>
+                                                        : item.iban
+                                                } </div>
 
                                             </div>
 
                                             <div className="criar_row">
                                                 <span>Verificado</span>
-                                                <div style={{color : "green"}}> {
-                                                item.verificado === true ? 
-                                                "Conta verificada" : "Conta não verificada"} </div>
+                                                <div style={{ color: "green" }}> {
+                                                    item.verificado === true ?
+                                                        "Conta verificada" : "Conta não verificada"} </div>
 
                                             </div>
 

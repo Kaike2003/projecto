@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
+import { format } from "date-fns";
 
 
 
@@ -42,7 +43,8 @@ export const CriarOrganizador = () => {
 			.required("Senha é obrigatoria")
 		,
 		dataNascimento: Yup.date("Data de nascimento obrigátoria")
-			.max(new Date())
+			.min(new Date("1925-01-01"), "Data de nascimento minima é até 1926.")
+			.max(new Date("2004-12-31"), "Data de nascimento máxima é até 2004.")
 			.required("Data de nascimento é obrigátoria"),
 	})
 
@@ -71,15 +73,24 @@ export const CriarOrganizador = () => {
 								palavraPasse: values.password,
 								email: values.email,
 								localizacao: "Angola-Luanda",
-								telefone: "99999999",
+								telefone: 943162154,
 								dataNascimento: values.dataNascimento
 							}).then((sucesso) => {
 								console.log(sucesso)
 
 								setTimeout(async () => {
-									await swal("Conta criada", `Enivamos para você um código para autenticar sua conta na nossa aplicação.`, "success").then(async () => {
+
+
+									Swal.fire({
+										icon: 'success',
+										title: 'Conta criada',
+										html: "Enivamos para você um código para autenticar sua conta na nossa aplicação.",
+										showConfirmButton: false,
+										timer: 1500
+									}).then(async () => {
 										navigate("/reservaOnline/organizador/autenticarConta")
 									})
+
 
 								}, 800);
 

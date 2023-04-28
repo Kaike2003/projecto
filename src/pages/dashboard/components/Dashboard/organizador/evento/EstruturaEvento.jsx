@@ -43,9 +43,9 @@ export default function EstruturaEvento() {
         <>
 
 
-            <div className="titulo_evento_lista container" >
+            <div className="titulo_evento_lista titulo_evento_estrutura container" >
                 <div className="titulo_evento container">Evento</div>
-                <div className="eventos_lista container">
+                <div className="eventos_lista_organizador container">
                     <NavLink
                         to={urlPrivadaOrganizador + '/evento/criar'}
                     >

@@ -46,7 +46,7 @@ export default function AdicionarFotoPerfil() {
 
                 <Formik
                     initialValues={{
-                       foto: ""
+                        foto: ""
                     }}
                     enableReinitialize
                     onSubmit={async (values) => {
@@ -105,6 +105,7 @@ export default function AdicionarFotoPerfil() {
                                     </div>
                                     <button
                                         className="PnomeBotao"
+                                        style={{ background: "#7b7c7c", color: "white" }}
                                         type="submit">Salvar</button>
                                 </div>
                                 <div className="criar_main ">

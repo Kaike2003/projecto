@@ -17,7 +17,7 @@ export default function CardEvento({ id, categoria, nome, preco, imagem, dataIni
             case "DESPONIVEL":
                 return (
                     <>
-                        <span style={{ color: "green", fontWeight: "450" }} >DESPONIVEL</span>
+                        <span style={{ color: "green", fontWeight: "450" }} >DISPONÍVEL</span>
                     </>
                 )
                 break;
@@ -25,7 +25,7 @@ export default function CardEvento({ id, categoria, nome, preco, imagem, dataIni
             case "FINALIZADO":
                 return (
                     <>
-                        <span style={{ color: "red" }} >TERMINADO</span>
+                        <span style={{ color: "red", fontWeight: "450" }} >TERMINADO</span>
                     </>
                 )
                 break;
@@ -33,7 +33,7 @@ export default function CardEvento({ id, categoria, nome, preco, imagem, dataIni
             case "CANCELADO":
                 return (
                     <>
-                        <span style={{ color: "red" }} >TERMINADO</span>
+                        <span style={{ color: "red", fontWeight: "450" }} >TERMINADO</span>
                     </>
                 )
                 break;
@@ -41,7 +41,7 @@ export default function CardEvento({ id, categoria, nome, preco, imagem, dataIni
             case "ADECORRER":
                 return (
                     <>
-                        <span style={{ color: "red" }} >TERMINADO</span>
+                        <span style={{ color: "#ff9716", fontWeight: "450" }} >A DECORRER</span>
                     </>
                 )
                 break;
@@ -60,11 +60,11 @@ export default function CardEvento({ id, categoria, nome, preco, imagem, dataIni
             <>
 
                 <div className="previsualizarEvento">
-                    
+
                     <div className="previsualizarEvento_Imagem"
                         key={id}>
-                        <img src={imagem} alt="Imagem de um evento" 
-                        className="previsualizarEvento_Img" />
+                        <img src={imagem} alt="Imagem de um evento"
+                            className="previsualizarEvento_Img" />
                     </div>
 
                     <div className="previsualizarEvento_Informacao container">

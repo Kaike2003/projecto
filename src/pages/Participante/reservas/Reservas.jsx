@@ -39,7 +39,7 @@ export default function Reservas() {
 
 
             <div className="titulo_evento_lista container" >
-                <div className="titulo_evento container">Historico de reservas</div>
+                <div className="titulo_evento container">Historico de compras</div>
                 <div className="eventos_lista container">
                     {
                         utilizador.map(item => {

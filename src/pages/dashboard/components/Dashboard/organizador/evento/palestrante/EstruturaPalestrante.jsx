@@ -47,7 +47,7 @@ export default function EstruturaPalestrante() {
         <>
 
 
-            <div className="titulo_evento_lista container" >
+            <div className="titulo_evento_lista_subEstrutura container" >
                 <div className="eventos_lista container">
 
 
@@ -69,13 +69,13 @@ export default function EstruturaPalestrante() {
 
                     </NavLink>
 
-                    <NavLink
+                    {/* <NavLink
                         key={Math.random().toString(36).substring(2)}
                         to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/invalido`}
                     >
                         <span>Foto</span>
 
-                    </NavLink>
+                    </NavLink> */}
 
 
 

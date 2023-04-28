@@ -124,9 +124,8 @@ export default function Shows() {
                                                     imagem={urlImage + item.foto}
                                                     categoria={itemCategoria.nome}
                                                     nome={item.nome}
-                                                    // preco={item.bilhete[0]?.preco}
-                                                    // imagem={"foto"}
-                                                    // quantidade={item.bilhete[0]?.quantidade}
+                                                    preco={item.bilhete[0]?.preco}
+                                                    quantidade={item.bilhete[0]?.quantidade}
 
                                                     dataInicio={
                                                         format(new Date(item.dataInicio), 'dd/MM/yyyy')

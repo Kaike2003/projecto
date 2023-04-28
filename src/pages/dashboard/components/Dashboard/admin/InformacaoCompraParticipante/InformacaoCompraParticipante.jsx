@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, } from "react";
 import "./Perfil.css"
 import Imagem from "../../../../../../assets/img/palestrante.jpg"
 import axios from "axios";
 import { format } from "date-fns";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./InformacaoCompraParticipante.css"
 import { ChevronRight } from "lucide-react";
-
+import Swal from 'sweetalert2'
 
 
 export default function InformacaoCompraParticipante() {
@@ -20,20 +20,13 @@ export default function InformacaoCompraParticipante() {
     const [dataListaBilhetes, setDataListaBilhetes] = useState([])
     const [dataListaReservas, setDataListaReservas] = useState([])
 
-    const [abirOrador, setAbrirOrador] = useState(() => {
-        return { display: "none", rotate: 0 }
-    })
-    const [abirPalestrante, setAbrirPalestrante] = useState(() => {
-        return { display: "none", rotate: 0 }
-    })
-
     const [abirBilhete, setAbrirBilhete] = useState(() => {
         return { display: "none", rotate: 0 }
     })
 
 
     const urlImage = "http://localhost:3456/public/upload/comprovativo/"
-
+    const navigate = useNavigate()
 
 
 
@@ -73,7 +66,7 @@ export default function InformacaoCompraParticipante() {
 
 
 
-   
+
 
     function esconderBilhete() {
         setAbrirBilhete((oldValor) => {
@@ -86,7 +79,85 @@ export default function InformacaoCompraParticipante() {
         )
     }
 
- 
+    const btnAprovarCompra = async (e) => {
+
+
+        dataListaReservas.map(item => {
+
+            return data.map(itemUtilizador => {
+
+                if (item.utilizadorId === itemUtilizador.id) {
+                    console.log(item.utilizadorId === itemUtilizador.id)
+                    console.log(itemUtilizador.id)
+                    return axios.put(`http://localhost:3456/admin/aprovarPagamento/${idReserva}/${item.utilizadorId}`)
+                        .then((sucesso) => {
+                            console.log(sucesso.data)
+
+                            navigate("/reservaOnline/dashboard/admin/evento/aprovarPagamento")
+
+                        }).catch((error) => {
+                            console.log(error)
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Código QR não enviado',
+                                html: "Verifique se essa compra possui um comprovativo.",
+                                showConfirmButton: false,
+                                timer: 3500
+                            })
+
+                        })
+
+                }
+
+
+            })
+
+
+        })
+
+    }
+
+    const btnCancelarCompra = async (e) => {
+
+        dataListaReservas.map(item => {
+
+            return data.map(itemUtilizador => {
+
+                if (item.utilizadorId === itemUtilizador.id) {
+                    console.log(item.utilizadorId === itemUtilizador.id)
+                    console.log(itemUtilizador.id)
+                    return axios.delete(`http://localhost:3456/admin/cancelarPagamento/${idReserva}/${itemUtilizador.id}`)
+                        .then((sucesso) => {
+                            console.log(sucesso.data)
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Cancelamento de pagamento realizado com sucesso',
+                                showConfirmButton: false,
+                                timer: 2500
+                            }).then(() => {
+                                navigate("/reservaOnline/dashboard/admin/evento/aprovarPagamento")
+                            })
+
+
+
+                        }).catch((error) => {
+                            console.log(error)
+
+
+                        })
+
+                }
+
+
+            })
+
+
+        })
+
+    }
+
 
     console.log(nomeUtilizador)
     console.log("Usuários participantes", dataEvento)
@@ -97,7 +168,18 @@ export default function InformacaoCompraParticipante() {
         <>
 
             <div className="container">
-                <div className="titulo_evento_informacaoCompra container">Informações da compra
+                <div className="container titulo_evento_informacaoCompra_botoes">
+                    <div className="titulo_evento_informacaoCompra">
+                        Informações da compra
+                    </div>
+                    <div>
+                        <button
+                            onClick={btnAprovarCompra}
+                            className="btnAprovarCompra">Aprovar compra</button>
+                        <button
+                            onClick={btnCancelarCompra}
+                            className="btnCancelarCompra">Cancelar compra</button>
+                    </div>
                 </div>
 
                 <div className="criar mt-2">
@@ -193,8 +275,8 @@ export default function InformacaoCompraParticipante() {
                                                                     return (<>
                                                                         <div className="exibir_imagem_comprovativo mt-2 container">
 
-                                                                            <img src={urlImage + item.foto} alt="" /> 
-                                                                            
+                                                                            <img src={urlImage + item.foto} alt="" />
+
                                                                         </div>
                                                                     </>)
                                                                 }

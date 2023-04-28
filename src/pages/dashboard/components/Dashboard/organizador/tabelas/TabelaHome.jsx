@@ -6,7 +6,7 @@ import axios from "axios"
 import { format } from "date-fns";
 import { Edit, MoreHorizontal } from "lucide-react";
 import Swal from 'sweetalert2'
-
+import "./tabelasOrganizador.css"
 
 export default function TabelaHome({ idOrganizador }) {
     const navigate = useNavigate()
@@ -73,7 +73,7 @@ export default function TabelaHome({ idOrganizador }) {
     return (
         <>
 
-            <div className="tabela mt-4 mb-3 container">
+            <div className="tabela mt-4 container">
                 <MaterialTable
 
                     actions={
@@ -87,30 +87,32 @@ export default function TabelaHome({ idOrganizador }) {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
+                                    // console.log(data)
+
+                                    navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.utilizadorId}/editar/${data.id}/informacao`)
 
 
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Evento selecionado',
-                                        text: `Agora poderás ver as informações do evento ${data.nome}`,
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    }).then(() => {
-                                        setTimeout(() => {
+                                    // Swal.fire({
+                                    //     icon: 'success',
+                                    //     title: 'Evento selecionado',
+                                    //     text: `Agora poderás ver as informações do evento ${data.nome}`,
+                                    //     showConfirmButton: false,
+                                    //     timer: 2000
+                                    // }).then(() => {
+                                    //     setTimeout(() => {
 
-                                            navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.utilizadorId}/editar/${data.id}/informacao`)
 
-                                        }, 400)
-                                    }).catch((error) => {
-                                        Swal.fire({
-                                            icon: 'warning',
-                                            title: 'Erro',
-                                            text: `${error}`,
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        })
-                                    })
+
+                                    //     }, 400)
+                                    // }).catch((error) => {
+                                    //     Swal.fire({
+                                    //         icon: 'warning',
+                                    //         title: 'Erro',
+                                    //         text: `${error}`,
+                                    //         showConfirmButton: false,
+                                    //         timer: 2000
+                                    //     })
+                                    // })
 
 
 
@@ -127,32 +129,36 @@ export default function TabelaHome({ idOrganizador }) {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Evento selecionado',
-                                        text: `Adicione detalhes ao evento ${data.nome}`,
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    }).then(() => {
-
-                                        setTimeout(() => {
+                                    // console.log(data)
 
 
-                                            navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.utilizadorId}/editar/${data.id}`)
+                                    navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.utilizadorId}/editar/${data.id}`)
 
-                                        }, 400)
+                                    // Swal.fire({
+                                    //     icon: 'success',
+                                    //     title: 'Evento selecionado',
+                                    //     text: `Adicione detalhes ao evento ${data.nome}`,
+                                    //     showConfirmButton: false,
+                                    //     timer: 2000
+                                    // }).then(() => {
+
+                                    //     setTimeout(() => {
 
 
-                                    }).catch((error) => {
-                                        Swal.fire({
-                                            icon: 'warning',
-                                            title: 'Erro',
-                                            text: `${error}`,
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        })
-                                    })
+
+
+                                    //     }, 400)
+
+
+                                    // }).catch((error) => {
+                                    //     Swal.fire({
+                                    //         icon: 'warning',
+                                    //         title: 'Erro',
+                                    //         text: `${error}`,
+                                    //         showConfirmButton: false,
+                                    //         timer: 2000
+                                    //     })
+                                    // })
 
                                 }
 
@@ -225,7 +231,7 @@ export default function TabelaHome({ idOrganizador }) {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "#0DCAF0",
                             color: "#fff", fontSize: "14px",
                         }
 

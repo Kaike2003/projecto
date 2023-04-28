@@ -47,7 +47,7 @@ export default function EstruturaOrador() {
         <>
 
 
-            <div className="titulo_evento_lista container" >
+            <div className="titulo_evento_lista_subEstrutura container" >
                 <div className="eventos_lista container">
 
 

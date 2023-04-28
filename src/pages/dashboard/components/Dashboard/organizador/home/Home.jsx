@@ -44,7 +44,6 @@ export default function Home() {
                     <div className="dashboardHome_button_input">
                         <NavLink to={"/reservaOnline/dashboard/organizador/evento/criar"}>
                             <button
-                            style={{color: "#FFF"}}
                             >Criar Evento</button>
                         </NavLink>
                         {/* <input type="text" name="" id="" placeholder="Pesquisar evento" /> */}

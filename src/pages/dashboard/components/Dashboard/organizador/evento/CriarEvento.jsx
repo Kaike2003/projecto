@@ -53,8 +53,8 @@ export default function CriarEvento() {
             .max(100, "O nome do evento. Precisa ter mais de 50 caracteres")
             .required("Nome do evento é obrigatorio.").optional(),
         descricao: Yup.string("A descrição de ser uma string")
-            .min(15, "A descrição deve ter 15 ou mais caracteres")
-            .max(4000, "A descrição deve ter 200 ou menos caracteres")
+            .min(200, "A descrição deve ter 200 ou mais caracteres")
+            .max(289, "A descrição deve ter 289 ou menos caracteres")
             .required("A descrição é obrigatória"),
         dataInicio: Yup.date().min(new Date(), { message: "Data inválida" }).required("A data de inicio é obrigatória"),
         dataTermino: Yup.date().required("A data de termino é obrigatória"),
@@ -132,7 +132,7 @@ export default function CriarEvento() {
                                             title: 'Evento criado',
                                             html: `${values.nome} foi criado com sucesso. Agora podes adicionar outros detelhes.`,
                                             showConfirmButton: false,
-                                            timer: 1500
+                                            timer: 2500
                                         }).then(async () => {
                                             navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
                                         }).catch((error) => {
@@ -149,7 +149,7 @@ export default function CriarEvento() {
                                         Swal.fire({
                                             icon: 'warning',
                                             title: 'Erro evento.',
-                                            html : `Verifique a data ou hora do evento`,
+                                            html: `Verifique a data ou hora do evento`,
                                             showConfirmButton: false,
                                             timer: 1500
                                         })
@@ -187,7 +187,7 @@ export default function CriarEvento() {
                                         <span>Adicione as principais informações do evento</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoOrganizador"
                                         type="submit">Criar</button>
                                 </div>
                                 <div className="criar_main ">

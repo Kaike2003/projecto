@@ -34,5 +34,35 @@
     letter-spacing: .5px;
     color: #1e0a3c;
     font-weight: 900;
+    display: flex;
+}
+
+.titulo_evento_informacaoCompra_botoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     padding: 2% 0 0 0;
+
+}
+
+
+
+
+.titulo_evento_informacaoCompra_botoes div:last-child button {
+    margin: 5px;
+    padding: 7px 12px 7px 12px;
+}
+
+.btnAprovarCompra {
+    background-color: rgb(32, 201, 151);
+    color: white;
+    border-radius: 20px;
+}
+
+.btnCancelarCompra {
+    background-color: red;
+    color: white;
+    border-radius: 20px;
 }

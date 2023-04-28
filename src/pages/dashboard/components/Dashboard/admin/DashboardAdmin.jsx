@@ -8,6 +8,9 @@ import axios from "axios";
 export default function DashboardAdmin() {
 
 
+    const fotoAdmin = "http://localhost:3456/public/upload/usuarios/admin/"
+
+
     const [data, setData] = useState([]);
     const [nomeUtilizador, setNomeUtilizador] = useState(() => {
         return ""
@@ -40,7 +43,7 @@ export default function DashboardAdmin() {
             <main id="main h-100">
                 <div className="dashboardevento_Lados">
 
-                    <div className="dashboardevento_LadoEsquerdo">
+                    <div className="dashboardevento_LadoEsquerdo menu_dashboard_admin">
 
 
                         <ul id="menu_dashboard">
@@ -48,12 +51,14 @@ export default function DashboardAdmin() {
                             <div>
                                 <NavLink to={"/reservaOnline/dashboard/admin"}>
                                     <h2 style={{ fontFamily: "Roboto, sem serifa", color: "#fff" }}
-                                    >Reserva online</h2>
+                                    >Venda  online</h2>
                                 </NavLink>
                             </div>
 
                             <div id="menu_dashboard_last">
-                                <li>
+                                <li
+                                    style={{ color: "#fff" }}
+                                >
                                     <NavLink to={url + "evento"}>
                                         Evento
                                     </NavLink>
@@ -67,22 +72,14 @@ export default function DashboardAdmin() {
                                 <NavLink to={url + "perfil"}>
                                     <div className="button_span_user">
 
-
-                                        {/* <div>
-                                        <User
-                                        >
-                                        </User>
-                                    </div> */}
-
-
                                         {data.map(item => {
                                             console.log(nomeUtilizador)
                                             if (item.email === nomeUtilizador) {
                                                 return (
                                                     <div key={item.id} >
-                                                        <span
-                                                            
-                                                        >{item.email}</span>
+                                                        <img 
+                                                        className="fotoUsuario"
+                                                        src={fotoAdmin + item.foto} alt="" />
                                                     </div>
                                                 )
                                             }

@@ -3,13 +3,14 @@ import "./Perfil.css"
 import Imagem from "../../../../../../assets/img/palestrante.jpg"
 import axios from "axios";
 import { format } from "date-fns";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./InformacaoEvento.css"
 import { ChevronRight } from "lucide-react";
 
 
 
 export default function InformacaoEvento() {
+    const navigate = useNavigate()
     const { idUtilizador, idEvento } = useParams()
     const [dataListaCategoria, setDataListaCategoria] = useState([])
     const [data, setData] = useState([]);
@@ -118,16 +119,61 @@ export default function InformacaoEvento() {
         )
     }
 
-    console.log(nomeUtilizador)
-    console.log("Eventos do organizador", dataEvento)
-    console.log("Lista de oradores", dataListaOradores)
-    console.log("Lista de bilhetes", dataListaBilhetes)
+    // console.log(nomeUtilizador)
+    // console.log("Eventos do organizador", dataEvento)
+    // console.log("Lista de oradores", dataListaOradores)
+    // console.log("Lista de bilhetes", dataListaBilhetes)
+
+
+    const btnAprovarEvento = () => {
+        axios.put(`http://localhost:3456/admin/eventos/aprovarEventos/${idEvento}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+            }
+        }).then(sucesso => {
+            navigate("/reservaOnline/dashboard/admin/evento/publicado")
+            // console.log(`Evento apagado com sucesso. Id: ${data.id}`)
+            // console.log(sucesso)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+
+
+    const btnBanirEvento = () => {
+        axios.put(`http://localhost:3456/admin/eventos/banido/${idEvento}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+            }
+        }
+        ).then(sucesso => {
+            navigate("/reservaOnline/dashboard/admin/evento/banidos")
+
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
 
     return (
         <>
 
             <div className="container">
+                <div className="container titulo_evento_informacaoCompra_botoes">
+                    <div className="titulo_evento_informacaoCompra">
+                        Informações do evento
+                    </div>
+                    <div>
+                        <button
+                            onClick={btnAprovarEvento}
+                            className="btnAprovarCompra">Aprovar evento</button>
+                        <button
+                            onClick={btnBanirEvento}
+                            className="btnCancelarCompra">Banir evento</button>
+                    </div>
+                </div>
+
                 <div className="criar mt-5">
                     {dataEvento.map(item => {
                         if (item.id === idEvento) {

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 
 
@@ -71,18 +71,22 @@ export const CriarParticipante = () => {
 								palavraPasse: values.password,
 								email: values.email,
 								localizacao: "Angola-Luanda",
-								telefone: "99999999",
+								telefone: 943162154,
 								dataNascimento: values.dataNascimento
 							}).then((sucesso) => {
 								console.log(sucesso)
 
-								setTimeout(async () => {
-									await swal("Conta criada", `Enivamos para você um código para autenticar sua conta na nossa aplicação.`, "success").then(async () => {
-										navigate("/reservaOnline/participante/autenticarConta")
-									})
+								Swal.fire({
+									icon: 'success',
+									title: 'Conta criada',
+									html: "Enivamos para você um código para autenticar sua conta na nossa aplicação.",
+									showConfirmButton: false,
+									timer: 1500
+								}).then(async () => {
+									navigate("/reservaOnline/participante/autenticarConta")
+								})
 
-								}, 800);
-
+								
 							}).catch((error) => {
 								console.log(error)
 							})

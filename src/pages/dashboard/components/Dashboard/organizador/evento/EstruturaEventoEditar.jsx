@@ -49,9 +49,9 @@ export default function EstruturaEventoEditar() {
         <>
 
 
-            <div className="titulo_evento_lista container" >
+            <div className="titulo_evento_lista titulo_evento_estrutura container" >
                 <div className="titulo_evento container">Evento</div>
-                <div className="eventos_lista container">
+                <div className="eventos_lista_organizador container">
 
 
 
@@ -71,7 +71,7 @@ export default function EstruturaEventoEditar() {
                         key={Math.random().toString(36).substring(2)}
                         to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/foto`}
                     >
-                        <span>foto</span>
+                        <span>Foto</span>
 
                     </NavLink>
 

@@ -112,6 +112,7 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
     return (
         <>
 
+
             <div className="tabela mt-3 mb-3">
                 <MaterialTable
 
@@ -154,6 +155,38 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
                                     //     })
                                     // })
 
+
+
+                                }
+
+                            },
+
+                            {
+                                icon: () => {
+                                    return <Slash
+                                        size={size}
+                                    ></Slash>
+
+                                },
+                                tooltip: "Cancelar compra",
+                                onClick: (e, data) => {
+
+                                    //   console.log(data, e.target.value)
+                                    console.log(data)
+                                    console.log("Id do utilizador", data.utilizadorId)
+
+
+                                    axios.delete(`http://localhost:3456/admin/cancelarPagamento/${data.id}/${data.utilizadorId}`)
+                                        .then((sucesso) => {
+                                            // console.log(sucesso.data)
+
+                                            navigate("/reservaOnline/dashboard/admin/evento/aprovarPagamento")
+
+                                        }).catch((error) => {
+                                            console.log(error)
+
+
+                                        })
 
 
                                 }
@@ -212,7 +245,7 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "#ffc107",
                             color: "#fff", fontSize: "14px",
                         }
 

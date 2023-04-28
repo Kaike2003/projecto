@@ -21,7 +21,7 @@ export default function RecuperarSenhaAdmin() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
+            const response = await axios.get('http://localhost:3456/admin/administradores/listaAdministradores');
             const newData = response.data;
             setData(newData);
         }

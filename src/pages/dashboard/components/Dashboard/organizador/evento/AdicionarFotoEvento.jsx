@@ -6,7 +6,8 @@ import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import PrevisualizacaoImagem from "../../../estrutura/PrevisualizacaoImagem";
 import { useRef } from "react";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+const FORMATOS_SUPORTADOS = ["image/jpg", "image/jpeg", "image/png"]
 
 
 
@@ -33,10 +34,19 @@ export default function AdicionarFotoEvento() {
 
 
     // const FotoSchema = Yup.object().shape({
-    //     foto: Yup.string("A foto de ser uma string")
-    //         .min(5, "O nome do evento. Precisa ter menos de 5 caracteres")
-    //         .max(50, "O nome do evento. Precisa ter mais de 50 caracteres")
-    //         .required("Nome do evento é obrigatorio.")
+    //     foto: Yup.mixed().nullable().test(
+    //         "FILE_SIZE",
+    //         "Uploaded file is too big.",
+    //         // (value) => !value || (value && value.size <= 4000)
+    //         (value) => console.log("Tamnho", value)
+
+    //     ).test(
+    //         "FILE_FORMART",
+    //         "Upload file has unsupported format",
+    //         (value) => console.log("Formato", value)
+
+    //         // (value) => !value || (value && FORMATOS_SUPORTADOS.includes(value?.type))
+    //     )
     // })
 
     return (
@@ -50,26 +60,49 @@ export default function AdicionarFotoEvento() {
                     initialValues={{
                         foto: ""
                     }}
+                    // validationSchema={FotoSchema}
                     enableReinitialize
                     onSubmit={async (values) => {
 
 
+                        if (FORMATOS_SUPORTADOS.includes(values.file.type)) {
 
-                        const form = new FormData();
-                        form.append('foto', values.file);
+                            const form = new FormData();
+                            form.append('foto', values.file);
+
+                            console.log(values.file.name)
+
+                            axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idUtilizador}/foto/${idEvento}`,
+                                form,
+                                {
+                                    foto: values.file.name
+                                }).then(res => {
+                                    console.log(res)
+
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Foto adicionada',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+
+                                }).catch((error) => {
+                                    console.log(error)
+                                })
 
 
-                        console.log(values.file.name)
 
-                        axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idUtilizador}/foto/${idEvento}`,
-                            form,
-                            {
-                                foto: values.file.name
-                            }).then(res => {
-                                console.log(res)
-                            }).catch((error) => {
-                                console.log(error)
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Tipo de ficheiro não suportado',
+                                showConfirmButton: false,
+                                timer: 1500
                             })
+                        }
+
+
+
 
 
                         try {
@@ -103,7 +136,7 @@ export default function AdicionarFotoEvento() {
                                         <span>Adicione uma foto ao seu evento</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoOrganizador"
                                         type="submit">Salvar</button>
                                 </div>
                                 <div className="criar_main ">

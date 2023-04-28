@@ -141,21 +141,17 @@ export default function TabelaPalestrante() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
+                                    // console.log(data)
 
 
-                                    setTimeout(() => {
 
-                                        swal("Palestrante selecionado", `Adicione foto ao palestrante ${data.nome}`, "success");
+                                        // swal("Palestrante selecionado", `Adicione foto ao palestrante ${data.nome}`, "success");
 
                                         navigate(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/${data.id}`)
 
-                                        console.log(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/${data.id}`)
+                                        // console.log(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/${data.id}`)
 
                                         // /evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/invalido
-
-                                    }, 440)
-
 
 
                                 }
@@ -240,7 +236,7 @@ export default function TabelaPalestrante() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "#0DCAF0",
                             color: "#fff", fontSize: "14px",
                         }
 

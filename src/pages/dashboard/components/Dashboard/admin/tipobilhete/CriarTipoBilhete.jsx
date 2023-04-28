@@ -5,7 +5,7 @@ import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
-
+import Swal from "sweetalert2"
 
 
 export default function CriarTipoBilhete() {
@@ -27,9 +27,9 @@ export default function CriarTipoBilhete() {
 
     const CriarCategoria = Yup.object().shape({
         nome: Yup.string()
-            .min(3, "O nome da categoria. Precisa ter menos de 3 caracteres")
-            .max(50, "O nome da categoria. Precisa ter pelo menos 50 caracteres")
-            .required("Nome da categoria é obrigátorio.")
+            .min(3, "O nome do bilhete. Precisa ter menos de 3 caracteres")
+            .max(30, "O nome do bilhete. Precisa ter pelo menos 30 caracteres")
+            .required("Nome do bilhete é obrigátorio.")
     })
 
     return (
@@ -54,13 +54,23 @@ export default function CriarTipoBilhete() {
                             }).then((sucesso) => {
                                 console.log(sucesso)
 
-                                swal(`Bilhete ${values.nome}`, "Criado com sucesso.", "success").then(() => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: `Bilhete ${values.nome}`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }).then(() => {
                                     navigate("/reservaOnline/dashboard/admin/bilhete/listar")
                                 })
 
-
                             }).catch((error) => {
-                                swal(`Categoria ${values.nome}`, "Já foi cadastrada na aplicação.", "warning")
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: `Bilhete ${values.nome}`,
+                                    html: "Já foi cadastrado na aplicação.",
+                                    showConfirmButton: false,
+                                    timer: 4500
+                                })
                             })
                     }}
                 >
@@ -81,6 +91,7 @@ export default function CriarTipoBilhete() {
                                         className="PnomeBotao"
                                         type="submit"
                                         disabled={isSubmitting}
+                                        style={{ background: "#7b7c7c", color: "white" }}
                                     >Criar</button>
                                 </div>
                                 <div className="criar_main ">

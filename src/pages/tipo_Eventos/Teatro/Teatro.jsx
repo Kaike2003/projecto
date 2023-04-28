@@ -61,10 +61,10 @@ export default function Teatro() {
 
             // if (dataNovosEventos.length < data.length) {
 
-                const responseNovosEventos = await axios.get(`http://localhost:3456/participante/teatroEventosLimite?limite=${currentePage} `)
-                const newDataNovosEventos = responseNovosEventos.data;
-                setDataNovosEventos(newDataNovosEventos);
-                setCurrentPage(() => currentePage + 8)
+            const responseNovosEventos = await axios.get(`http://localhost:3456/participante/teatroEventosLimite?limite=${currentePage} `)
+            const newDataNovosEventos = responseNovosEventos.data;
+            setDataNovosEventos(newDataNovosEventos);
+            setCurrentPage(() => currentePage + 8)
 
             // } else {
             //     setHasMore(false)
@@ -81,7 +81,7 @@ export default function Teatro() {
             <div className="invisivel_caroucel"></div>
 
             <InfiniteScroll
-    
+
                 className="infiniteScroll"
                 dataLength={dataNovosEventos.length}
                 next={fetchMoreData}
@@ -110,6 +110,7 @@ export default function Teatro() {
                 <div className="section_eventos container">
 
                     {dataNovosEventos.map((item, index) => {
+                        console.log(dataNovosEventos)
                         return dataListaCategoria.map(itemCategoria => {
                             if (item.categoriaId === itemCategoria.id) {
                                 return (
@@ -126,9 +127,8 @@ export default function Teatro() {
                                                     imagem={urlImage + item.foto}
                                                     categoria={itemCategoria.nome}
                                                     nome={item.nome}
-                                                    // preco={item.bilhete[0]?.preco}
-                                                    // imagem={"foto"}
-                                                    // quantidade={item.bilhete[0]?.quantidade}
+                                                    preco={item.bilhete[0]?.preco}
+                                                    quantidade={item.bilhete[0]?.quantidade}
 
                                                     dataInicio={
                                                         format(new Date(item.dataInicio), 'dd/MM/yyyy')

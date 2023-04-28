@@ -16,12 +16,27 @@ import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import * as Yup from 'yup';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import Card_Palestrante from "../Palestrante/Card_Palestrante/Card_Palestrante";
 
 
 
 const urlImage = "http://localhost:3456/public/upload/evento/"
+const urlImagePalestrante = "http://localhost:3456/public/upload/palestrante/"
+
 
 export default function VisualizarBilhete() {
+
+    const [modalIsOpen, setIsOpen] = useState(() => {
+        return false
+    })
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+    function closeModal() {
+        setIsOpen(false)
+    }
 
 
     const { idEvento } = useParams()
@@ -29,6 +44,7 @@ export default function VisualizarBilhete() {
     const [dataListaBilhete, setDataListaBilhete] = useState([]);
     const [dataListaBilheteAplicaco, setDataListaBilheteAplicacao] = useState([]);
     const [dataListaEvento, setDataListaEvento] = useState([]);
+    const [dataListaPalestrante, setDataListaPalestrante] = useState([])
     const [dataListaOrador, setDataListaOrador] = useState([]);
     const [selecionar, setSelecionar] = useState(() => {
         return []
@@ -47,6 +63,11 @@ export default function VisualizarBilhete() {
             const responseListaBilhete = await axios.get(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/bilhete`);
             const newDataListaBilhete = responseListaBilhete.data;
             setDataListaBilhete(newDataListaBilhete);
+
+            const responseListaPalestrante = await axios.get(`http://localhost:3456/organizador//evento/detalhe/editar/${idEvento}/palestrante`);
+            const newDataListaPalestrante = responseListaPalestrante.data;
+            setDataListaPalestrante(newDataListaPalestrante);
+
 
             const responseListaBilheteAplicacao = await axios.get(`http://localhost:3456/admin/tipoBilhete/todosTipobilhete`);
             const newDataListaBilheteAplicacao = responseListaBilheteAplicacao.data;
@@ -102,11 +123,12 @@ export default function VisualizarBilhete() {
 
     function estadoEvento(estadoEvento) {
 
+
         switch (estadoEvento) {
             case "DESPONIVEL":
                 return (
                     <>
-                        <span style={{ color: "green", fontWeight: "450" }} >DESPONIVEL</span>
+                        <span style={{ color: "green", fontWeight: "450" }} >DISPONÍVEL</span>
                     </>
                 )
                 break;
@@ -114,7 +136,7 @@ export default function VisualizarBilhete() {
             case "FINALIZADO":
                 return (
                     <>
-                        <span style={{ color: "red" }} >TERMINADO</span>
+                        <span style={{ color: "red", fontWeight: "450" }} >TERMINADO</span>
                     </>
                 )
                 break;
@@ -122,7 +144,7 @@ export default function VisualizarBilhete() {
             case "CANCELADO":
                 return (
                     <>
-                        <span style={{ color: "red" }} >TERMINADO</span>
+                        <span style={{ color: "red", fontWeight: "450" }} >TERMINADO</span>
                     </>
                 )
                 break;
@@ -130,7 +152,7 @@ export default function VisualizarBilhete() {
             case "ADECORRER":
                 return (
                     <>
-                        <span style={{ color: "red" }} >TERMINADO</span>
+                        <span style={{ color: "#ff9716", fontWeight: "450" }} >A DECORRER</span>
                     </>
                 )
                 break;
@@ -148,14 +170,14 @@ export default function VisualizarBilhete() {
         <>
             <div className="invisivel_visualizar"></div>
 
-            <div className="visualiarLadosPai container">
-                <div className="visualiarLados">
+            <div className="visualiarLadosPaiOrganizador container">
+                <div className="visualiarLadosOrganizador">
 
                     {[dataListaEvento].map(item => {
                         return (
                             <>
 
-                                <div className="ladoFoto">
+                                <div className="ladoFotoOrganizador">
                                     <img src={urlImage + item.foto} alt="imagem do evento" />
                                 </div>
 
@@ -168,9 +190,9 @@ export default function VisualizarBilhete() {
 
 
 
-                    <div className="ladoInformacao container">
+                    <div className="ladoInformacaoOrganizador">
 
-                        <div className="ladoInformacaoDiv">
+                        <div className="ladoInformacaoDivOrganizador">
 
                             {[dataListaEvento].map(item => {
                                 if (item.id === idEvento) {
@@ -179,14 +201,14 @@ export default function VisualizarBilhete() {
                                         if (item.categoriaId === itemCategoria.id) {
                                             return (
                                                 <>
-                                                    <div className="ladoInformacaoSpan">
-                                                        <span>{item.nome}</span>
+                                                    <div className="ladoInformacaoSpanOrganizador">
+                                                        <span className="container">{item.nome}</span>
                                                         <span>{itemCategoria.nome}</span>
                                                     </div>
 
                                                     <div>
 
-                                                        <div className="template_detalhe">
+                                                        <div className="template_detalhe container">
 
                                                             <div className="template_detalhe_2">
                                                                 <div className="icone_texto">
@@ -236,36 +258,18 @@ export default function VisualizarBilhete() {
                                                             </div>
 
 
-                                                            <div className="template_detalhe_2">
-
-                                                                <div className="icone_texto">
-                                                                    <Mic size={sizeIcone}></Mic>
-                                                                    <p className="texto">{
-
-                                                                        // [item.orador[0]?.orador.nome]
-
-                                                                        dataListaOrador.map(itemOrador => {
-                                                                            return (
-                                                                                <>
-                                                                                    <span>{itemOrador.nome}, </span>
-                                                                                </>
-                                                                            )
-                                                                        })
-
-
-
-                                                                    } </p>
-                                                                </div>
-
-                                                            </div>
-
-
                                                             <div className="" id="desc">
                                                                 <p
 
                                                                     className="textoParagrafo">{item.descricao}</p>
                                                             </div>
 
+
+                                                            <div className="ibanVisualizarEvento">
+
+                                                                <span><span>IBAN</span>: AO06.0040.0000.5738.3059.1016.9 </span>
+
+                                                            </div>
 
 
                                                             <div>
@@ -283,43 +287,51 @@ export default function VisualizarBilhete() {
                                                                             if (item.email === nomeUtilizador) {
                                                                                 return (
 
-                                                                                    axios.post(`http://localhost:3456/participante/eventos/visualizarEvento/${idEvento}/reserva/${item.id}`,
+                                                                                    axios.post(`http://localhost:3456/participante/eventos/visualizarEvento/${idEvento}/reserva/${item.id}`
+                                                                                        ,
                                                                                         {
                                                                                             quantidade: values.quantidade,
-                                                                                            bilheteId: values.tipoBilheteId
+                                                                                            bilheteId: values.tipoBilheteId,
 
+                                                                                        },
+                                                                                        {
+                                                                                            headers: {
+                                                                                                Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+                                                                                            }
+                                                                                        }
+
+                                                                                    ).then(() => {
+
+                                                                                        Swal.fire({
+                                                                                            position: 'top-end',
+                                                                                            icon: 'success',
+                                                                                            title: 'Compra feita com sucesso.',
+                                                                                            showConfirmButton: false,
+                                                                                            timer: 2500
                                                                                         }).then(() => {
 
-                                                                                            Swal.fire({
-                                                                                                position: 'top-end',
-                                                                                                icon: 'success',
-                                                                                                title: 'Reserva criada com sucesso.',
-                                                                                                showConfirmButton: false,
-                                                                                                timer: 1500
-                                                                                            }).then(() => {
-
-
-                                                                                                Swal.fire({
-                                                                                                    icon: 'info',
-                                                                                                    html: `${item.nome} tens 24horas para poder fazer o pagamento da reserva. E só assim terás acesso ao código da sua reserva para poderes participar do evento. Caso contrário irás perder sua/s reserva/s.`,
-                                                                                                    showConfirmButton: true,
-                                                                                                })
-
-
-
-                                                                                            })
-
-                                                                                        }).catch((error) => {
-
 
                                                                                             Swal.fire({
-                                                                                                icon: 'warning',
-                                                                                                html: `${error.response.data}`,
+                                                                                                icon: 'info',
+                                                                                                html: `${item.nome} tens 24horas para poder fazer o pagamento da compra. E só assim terás acesso ao código do bilhete sua compra para poderes participar do evento.`,
                                                                                                 showConfirmButton: true,
                                                                                             })
 
 
+
                                                                                         })
+
+                                                                                    }).catch((error) => {
+
+
+                                                                                        Swal.fire({
+                                                                                            icon: 'warning',
+                                                                                            html: `${error.response.data}`,
+                                                                                            showConfirmButton: true,
+                                                                                        })
+
+
+                                                                                    })
 
 
                                                                                 )
@@ -338,10 +350,9 @@ export default function VisualizarBilhete() {
                                                                             <div className="formReserva">
 
                                                                                 <div>
-                                                                                    <select name="tipoBilheteId" className="selectTipoBilhete"
-                                                                                        // onChange={(e) => {
-                                                                                        //     setSelecionar(e.target.value)
-                                                                                        // }}
+                                                                                    <select
+                                                                                        name="tipoBilheteId"
+                                                                                        className={errors.tipoBilheteId && touched.tipoBilheteId ? ("selectTipoBilheteERRO") : "selectTipoBilhete"}
 
                                                                                         onChange={handleChange}
                                                                                         onBlur={handleBlur}
@@ -375,49 +386,43 @@ export default function VisualizarBilhete() {
 
                                                                                         })}
                                                                                     </select>
-                                                                                    {errors.tipoBilheteId && touched.tipoBilheteId ? (
-                                                                                        <div className="container"
-                                                                                            style={{ color: "red" }}
-                                                                                        >
 
-                                                                                            {errors.tipoBilheteId}
-                                                                                        </div>
-                                                                                    ) : null}
 
                                                                                 </div>
 
+                                                                            </div>
+
+
+
+
+                                                                            <div className="quantidadeComprarPalestranteOrador">
 
                                                                                 <div>
                                                                                     <Field
-                                                                                        className="selectTipoBilhete"
+                                                                                        className={errors.quantidade && touched.quantidade ? ("selectTipoBilheteERRO") : "selectTipoBilhete"}
+
                                                                                         type="number"
                                                                                         name="quantidade"
                                                                                         placeholder="Quantidade de bilhete"
                                                                                     />
-                                                                                    {errors.quantidade && touched.quantidade ? (
-                                                                                        <div className="container"
-                                                                                            style={{ color: "red" }}
-                                                                                        >
 
-                                                                                            {errors.quantidade}
-                                                                                        </div>
-                                                                                    ) : null}
                                                                                 </div>
 
 
-                                                                            </div>
-
-
-
-
-                                                                            <div className="botoesVisualizar">
                                                                                 <button
+                                                                                    className="btn_comprarSemSessao"
                                                                                     type="submit"
                                                                                     disabled={isSubmitting}
-                                                                                >Reservar</button>
-                                                                                <button>Lista de palestrantes</button>
-                                                                            </div>
+                                                                                >Comprar</button>
+                                                                                <button
+                                                                                    className="btn_comprarSemSessao"
+                                                                                    type="button"
+                                                                                    // onClick={ListarPalestrante}
+                                                                                    onClick={openModal}
+                                                                                >Palestrantes e Oradores</button>
 
+
+                                                                            </div>
 
 
 
@@ -427,13 +432,69 @@ export default function VisualizarBilhete() {
                                                                 </Formik>
                                                             </div>
 
+                                                            <Modal
+                                                                isOpen={modalIsOpen}
+                                                                onRequestClose={closeModal}
+                                                                className="Modal"
+                                                                overlayClassName="Overlay"
+                                                                contentLabel="Exemplo de modal"
+                                                            >
+                                                                <div className="bntFecharModal container">
+                                                                    <button
+                                                                        style={{ visibility: "hidden" }}
+                                                                        onClick={closeModal}
+                                                                    >
+                                                                        Fechar
+                                                                    </button>
+                                                                    <X
+                                                                        size={30}
+                                                                        onClick={closeModal}
+                                                                    >
+                                                                        Fechar
+                                                                    </X>
+                                                                </div>
+
+                                                                <div className="container">
+                                                                    <span className="palestrantes_oradores">Oradores</span>
+                                                                    <ul className="oradorMenu">
+                                                                        {dataListaOrador.map(item => {
+                                                                            return <li>{item.nome}</li>
+                                                                        })}
+                                                                    </ul>
+                                                                </div>
+
+                                                                <div className="container">
+                                                                    <span className="palestrantes_oradores">
+                                                                        Palestrantes
+                                                                    </span>
+                                                                    <div className="section_palestrante">
+                                                                        {dataListaPalestrante.map(item => {
+                                                                            return (
+                                                                                <>
+                                                                                    <Card_Palestrante
+                                                                                        image={urlImagePalestrante + item.foto}
+                                                                                        name={item.nome}
+                                                                                        id={item.id}
+                                                                                        key={item.id}
+                                                                                        blog={item.blog}
+                                                                                    />
+
+                                                                                </>
+                                                                            )
+                                                                        })}
+                                                                    </div>
+                                                                </div>
+
+                                                            </Modal>
+
+
 
 
 
                                                         </div>
 
 
-                                                    </div>
+                                                    </div >
 
 
                                                 </>
@@ -454,7 +515,7 @@ export default function VisualizarBilhete() {
 
 
 
-            </div>
+            </div >
 
         </>
     )

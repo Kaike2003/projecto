@@ -6,7 +6,10 @@ import "../../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import PrevisualizacaoImagem from "../../../../estrutura/PrevisualizacaoImagem";
 import { useRef } from "react";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+
+const FORMATOS_SUPORTADOS = ["image/jpg", "image/jpeg", "image/png"]
+
 
 
 
@@ -16,7 +19,7 @@ export default function AdicionarFotoPalestrante() {
 
 
     const [data, setData] = useState([]);
-    const { idUtilizador, idEvento } = useParams()
+    const { idPalestrante, idEvento } = useParams()
 
     useEffect(() => {
         async function fetchData() {
@@ -54,28 +57,42 @@ export default function AdicionarFotoPalestrante() {
                     enableReinitialize
                     onSubmit={async (values) => {
 
-                        const foto = await values.file.name
-                        console.log(foto)
-                        const formData = new FormData();
-                        formData.append('foto', foto);
-                        alert("Valores do form data", formData.append('foto', foto))
-
-                        // console.log(formData.append('foto', foto))
 
 
+                        if (FORMATOS_SUPORTADOS.includes(values.file.type)) {
+
+                            const form = new FormData();
+                            form.append('foto', values.file);
 
 
-                        axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idUtilizador}/foto/${idEvento}`, formData).then((sucesso) => {
-                            console.log(sucesso)
+                            axios.put(`http://localhost:3456/organizador//evento/detalhe/editar/${idEvento}/palestrante/${idPalestrante}/foto`,
+                                form,
+                                {
+                                    foto: values.file.name
+                                }).then((sucesso) => {
+                                    console.log(sucesso)
+
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Foto adicionada',
+                                        showConfirmButton: false,
+                                        timer: 2500
+                                    })
+                                }).catch((error) => {
+                                    console.log(error)
+                                })
 
 
-                            swal("Evento editado", `Evento foi editado com sucesso. Agora podes adicionar outros detalhes.`, "success").then(async () => {
-                                // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Tipo de ficheiro não suportado',
+                                showConfirmButton: false,
+                                timer: 3500
                             })
+                        }
 
-                        }).catch((error) => {
-                            console.log(error)
-                        })
+
 
 
 
@@ -94,7 +111,7 @@ export default function AdicionarFotoPalestrante() {
                                         <span>Adicione uma foto ao palestrante</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoOrganizador"
                                         type="submit">Salvar</button>
                                 </div>
                                 <div className="criar_main ">

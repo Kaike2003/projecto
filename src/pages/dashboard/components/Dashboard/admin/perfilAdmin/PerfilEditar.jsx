@@ -121,6 +121,7 @@ export default function PerfilEditar() {
                                                         <button
                                                             disabled
                                                             className="PnomeBotao"
+                                                            style={{ background: "#7b7c7c", color: "white" }}
                                                             type="submit">Editar</button>
                                                     </div>
                                                     <div className="criar_main ">

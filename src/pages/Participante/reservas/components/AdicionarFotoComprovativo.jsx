@@ -5,8 +5,10 @@ import * as Yup from "yup"
 // import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import { useRef } from "react";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import PrevisualizacaoImagem from "../../../dashboard/components/estrutura/PrevisualizacaoImagem";
+const FORMATOS_SUPORTADOS = ["image/jpg", "image/jpeg", "image/png"]
+
 
 
 
@@ -66,30 +68,82 @@ export default function AdicionarFotoComprovativo() {
 
 
 
-                        const form = new FormData();
-                        form.append('foto', values.file);
 
 
-                        console.log(values.file.name)
 
-                        data.map((item, index) => {
 
-                            if (item.email === nomeUtilizador) {
+                        if (FORMATOS_SUPORTADOS.includes(values.file.type)) {
 
-                                axios.put(`http://localhost:3456/participante/adicionarComprovaito/${idReserva}/${item.id}`,
-                                    form,
-                                    {
-                                        foto: values.file.name
-                                    }).then(res => {
-                                        console.log(res)
-                                        alert("Ok - 200")
-                                    }).catch((error) => {
-                                        console.log(error)
+                            // Swal.fire({
+                            //     icon: 'success',
+                            //     title: 'Comprovativo válido',
+                            //     showConfirmButton: false,
+                            //     timer: 2500
+                            // })
+
+                            if (values.file.size <= 40000) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Comprovativo válido',
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                }).then(() => {
+
+                                    const form = new FormData();
+                                    form.append('foto', values.file);
+
+
+                                    console.log(values.file.name)
+
+                                    data.map((item, index) => {
+
+
+                                        if (item.email === nomeUtilizador) {
+
+                                            axios.put(`http://localhost:3456/participante/adicionarComprovaito/${idReserva}/${item.id}`,
+                                                form,
+
+                                                {
+                                                    headers: {
+                                                        Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+                                                    }
+                                                },
+                                                {
+                                                    foto: values.file.name
+                                                }
+
+                                            ).then(res => {
+                                                console.log(res)
+                                                alert("Ok - 200")
+                                            }).catch((error) => {
+                                                console.log(error)
+                                            })
+
+                                        }
+
                                     })
 
+
+
+
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Verifique se está enviado um comprovativo de transfêrencia bancaria',
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                })
                             }
 
-                        })
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Tipo de ficheiro não suportado',
+                                showConfirmButton: false,
+                                timer: 3500
+                            })
+                        }
 
 
 

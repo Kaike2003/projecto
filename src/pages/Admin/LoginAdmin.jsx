@@ -4,7 +4,6 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
 import { AuthContext } from "../../context/Autenticacao";
-import swal from 'sweetalert';
 
 
 
@@ -21,7 +20,7 @@ export const LoginAdmin = () => {
 
 	useEffect(() => {
 		async function fetchData() {
-			const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
+			const response = await axios.get('http://localhost:3456/admin/administradores/listaAdministradores');
 			const newData = response.data;
 			setData(newData);
 		}

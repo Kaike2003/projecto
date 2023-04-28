@@ -1,7 +1,7 @@
 /* eslint-disable no-self-compare */
 import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Swal from 'sweetalert2'
 import { MoreHorizontal } from "lucide-react"
@@ -14,7 +14,11 @@ export default function TabelaEventoBanido() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/admin/eventos/banidos');
+            const response = await axios.get('http://localhost:3456/admin/eventos/banidos', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+                }
+            });
             const newData = response.data;
             setData(newData);
 
@@ -60,28 +64,8 @@ export default function TabelaEventoBanido() {
                                     console.log("Id do utilizador", data.utilizadorId)
 
 
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Evento selecionado',
-                                        html: `Agora poderás ver as informações do evento ${data.nome} `,
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    }).then(() => {
-                                        setTimeout(() => {
 
-                                            navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
-
-
-                                        }, 400)
-                                    }).catch((error) => {
-                                        Swal.fire({
-                                            icon: 'warning',
-                                            title: 'Erro',
-                                            html: `${error}`,
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        })
-                                    })
+                                    navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
 
 
 
@@ -139,7 +123,7 @@ export default function TabelaEventoBanido() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "rgb(246 31 24)",
                             color: "#fff", fontSize: "14px",
                         }
 

@@ -15,6 +15,8 @@ export default function Header() {
 
     const navigate = useNavigate()
 
+    const fotoAdmin = "http://localhost:3456/public/upload/usuarios/participante/"
+
 
     const [data, setData] = useState([]);
     const [nomeUtilizador, setNomeUtilizador] = useState(() => {
@@ -50,7 +52,7 @@ export default function Header() {
                     <Link to={"/reservaOnline/participante"}>
                         <h2
                             style={{ fontFamily: "Roboto, sem serifa" }}
-                            className="" id="titulo">Reserva online</h2>
+                            className="" id="titulo">Venda online</h2>
                     </Link>
 
                 </div>
@@ -59,25 +61,23 @@ export default function Header() {
                     <li className="text-white"><Link to={"/reservaOnline/participante"}>Home</Link></li>
                     {/* <li className="text-white"><Link to={"/"}>Sobre</Link></li> */}
                     <li className="text-white me-3">
-                        <Link to={"/reservaOnline/participante/reservas"}>Reservas</Link></li>
+                        <Link to={"/reservaOnline/participante/reservas"}>Compras</Link></li>
 
                     <div className="button_span_user">
-
-                        {data.map(item => {
-                            console.log(nomeUtilizador)
-                            if (item.email === nomeUtilizador) {
-                                return (
-                                    <div key={item.id} >
-                                        <span
-                                            style={{ color: "black" }}
-
-                                        >{item.nome}</span>
-                                    </div>
-                                )
-                            }
-                        })}
-
-
+                        <Link to={"/reservaOnline/participante/perfil"}>
+                            {data.map(item => {
+                                console.log(nomeUtilizador)
+                                if (item.email === nomeUtilizador) {
+                                    return (
+                                        <div key={item.id} >
+                                            <img
+                                                className="fotoUsuario"
+                                                src={fotoAdmin + item.foto} alt="" />
+                                        </div>
+                                    )
+                                }
+                            })}
+                        </Link>
                     </div>
 
 

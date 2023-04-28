@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import axios from "axios";
 import { Formik, Field, Form } from "formik";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 
 
@@ -26,7 +26,7 @@ export default function AutenticarParticipante() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
+            const response = await axios.get('http://localhost:3456/admin/usuarios/participante');
             const newData = response.data;
             setData(newData);
         }
@@ -71,21 +71,36 @@ export default function AutenticarParticipante() {
                                     }).then((sucesso) => {
                                         console.log(sucesso)
 
-                                        setTimeout(async () => {
-                                            await swal("Conta autenticada", `Já pode fazer login na aplicação.`, "success").then(async () => {
-                                                navigate("/reservaOnline/participante/login")
-                                            })
-
-                                        }, 800);
-
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Conta autenticada',
+                                            html: "Já pode fazer login na aplicação.",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        }).then(async () => {
+                                            navigate("/reservaOnline/participante/login")
+                                        })
 
                                     }).catch((error) => {
                                         console.log(error)
-                                        swal("Erro de autenticação", `Codigo está errado ou conta de organizador e de administrador não podem ser autenticadas aqui.`, "warning")
+                                        Swal.fire({
+                                            icon: '',
+                                            title: 'Erro de autenticação',
+                                            html: "Codigo está errado ou conta de organizador e de administrador não podem ser autenticadas aqui.",
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                        })
+                                       
                                     })
 
                             } else {
-                                swal("Erro de autenticação", `Codigo está errado ou conta de organizador e de administrador não podem ser autenticadas aqui.`, "warning")
+                                Swal.fire({
+                                    icon: '',
+                                    title: 'Erro de autenticação',
+                                    html: "Codigo está errado ou conta de organizador e de administrador não podem ser autenticadas aqui.",
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                })
                             }
                         })
 

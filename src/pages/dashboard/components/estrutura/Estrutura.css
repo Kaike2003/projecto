@@ -2,6 +2,24 @@
   width: 100%;
 }
 
+.estiloEstrutura2 {
+  margin-top: 70px;
+}
+
+.estiloEstrutura3 {
+  margin-top: 60px;
+}
+
+.estiloEstrutura {
+  margin-top: 60px;
+
+}
+
+.titulo_evento_lista_subEstrutura {
+  width: 100%;
+
+}
+
 .titulo_evento {
   font-family: 'Roboto', sem serifa;
   font-size: 52px;
@@ -9,19 +27,50 @@
   letter-spacing: .5px;
   color: #1e0a3c;
   font-weight: 900;
-  padding: 2% 0 0 0;
+  padding: 1% 0 0 0;
+}
+
+.titulo_evento_estrutura {
+  margin-top: 60px;
+
 }
 
 .eventos_lista {
   width: 100%;
   padding: 0 0 5px 0;
-  margin-top: 3%;
+  margin-top: 25px;
   display: flex;
   border-bottom: 1px solid rgb(210, 210, 210);
   gap: 20px;
   color: gainsboro;
   flex-wrap: wrap;
-  font-size: 19px;
+  font-size: 20px;
+}
+
+
+
+.eventos_lista_pagamento {
+  width: 100%;
+  padding: 0 0 5px 0;
+  margin-top: 10px;
+  display: flex;
+  border-bottom: 1px solid rgb(210, 210, 210);
+  gap: 20px;
+  color: gainsboro;
+  flex-wrap: wrap;
+  font-size: 20px;
+}
+
+.titulo_evento_perfil {
+  padding-top: 75px;
+
+}
+
+
+.titulo_evento_lista_subEstrutura .eventos_lista .active span {
+  padding: 0 0 7.4px 0;
+  border-bottom: 3.4px solid #0DCAF0;
+  cursor: pointer;
 }
 
 
@@ -31,9 +80,24 @@
   cursor: pointer;
 }
 
+
+
+
 .eventos_lista span {
   color: #1e0a3c;
+  font-weight: 500;
 
+}
+
+.eventos_lista_pagamento {
+  color: #1e0a3c;
+  font-weight: 500;
+}
+
+.eventos_lista_pagamento .active span {
+  padding: 0 0 7.4px 0;
+  border-bottom: 3.4px solid #e51b15;
+  cursor: pointer;
 }
 
 

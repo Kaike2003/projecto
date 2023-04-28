@@ -4,7 +4,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from "sweetalert2"
 
 
 
@@ -36,11 +36,11 @@ export default function AlterarSenha() {
 
     const EstruturaAlterarSenha = Yup.object().shape({
         palavraPasseAntiga: Yup.string("Palavra antiga inválida")
-            .min(3, "Palavra passe  antiga é curta")
+            .min(4, "Palavra passe  antiga é curta")
             .max(50, "Palavra passe antiga nova é muito longa")
             .required("Palavra passe antiga é obrigátorio"),
         palavraPasse: Yup.string("Palavra nova inválida")
-            .min(3, "Palavra passe  nova é curta")
+            .min(4, "Palavra passe  nova é curta")
             .max(50, "Palavra passe nova nova é muito longa")
             .required("Palavra passe nova é obrigátorio"),
 
@@ -63,7 +63,7 @@ export default function AlterarSenha() {
                     enableReinitialize
                     onSubmit={async (values) => {
 
-                        console.log(values)
+                        // console.log(values)
 
                         data.map(item => {
                             if (item.email === nomeUtilizador) {
@@ -72,19 +72,31 @@ export default function AlterarSenha() {
                                         palavraPasseAntiga: values.palavraPasseAntiga,
                                         palavraPasse: values.palavraPasse
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
-
-                                        console.log(sucesso.status === "400")
+                                        // console.log(sucesso)
 
 
-                                        swal("Senha alterada", "Agora podes sempre iniciar sessão com a tua senha nova.", "success").then(() => {
+
+
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Senha alterada',
+                                            html: 'Agora podes iniciar sessão com a tua senha nova.',
+                                            showConfirmButton: false,
+                                            timer: 2500
+                                        }).then(() => {
                                             navigate("/reservaOnline/dashboard/admin/perfil/informacao")
                                         })
 
                                     }).catch((error) => {
-                                        swal("Senha não alterada", "Verifique sua senha antiga ou podes pedir uma senha nova por email.", "warning").then(() => {
-                                            navigate("/reservaOnline/dashboard/admin/perfil/senha")
+
+                                        Swal.fire({
+                                            icon: 'info',
+                                            title: 'Senha não alterada',
+                                            html: "Insira a sua senha antiga para poder trocar para uma senha nova ou podes pedir uma senha nova por email.",
+                                            showConfirmButton: false,
+                                            timer: 3500
                                         })
+
                                     })
 
 
@@ -107,6 +119,7 @@ export default function AlterarSenha() {
                                     </div>
                                     <button
                                         className="PnomeBotao"
+                                        style={{ background: "#7b7c7c", color: "white" }}
                                         type="submit">Salvar</button>
                                 </div>
                                 <div className="criar_main ">

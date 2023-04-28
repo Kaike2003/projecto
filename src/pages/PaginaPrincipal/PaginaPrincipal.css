@@ -16,6 +16,17 @@
 
   .paginaPrincipal {
       background-color: #f6f6f6;
+      height: 100%;
+  }
+
+  .imagemEventoPrincipal {
+      background: url("../../assets//img/event.jpg");
+      margin-top: 5px;
+      height: 300px;
+      border-radius: 5px;
+      margin-bottom: 0px;
+      background-blend-mode: color;
+      color: white;
   }
 
   .btn-vermais {
@@ -159,14 +170,14 @@
   }
 
   .conteudo_eventos_vermais a {
-      background: #e51b15;
+      background: #141414;
       color: #ffffff;
 
   }
 
   .conteudo_eventos_vermais a:hover {
       background: #ffffff;
-      color: #141414;
+      color: #000000;
 
   }
 

@@ -1,6 +1,6 @@
 .dashboardevento_Lados {
     display: grid;
-    grid-template-rows: 5% 90%;
+    grid-template-rows: 90%;
     height: 100%;
 }
 
@@ -10,16 +10,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e51b15;
     color: white;
     border-bottom: 1px solid rgb(236, 236, 236);
     z-index: 99;
     height: 45px;
 }
 
+.menu_dashboard_admin {
+    background-color: #7b7c7c;
+}
+
+.menu_dashboard_organizador {
+    background-color: #0DCAF0;
+}
 
 .dashboardevento_LadoDireito {
-    margin-top: 75px;
+    /* margin-top: 75px; */
 }
 
 #menu_dashboard {
@@ -38,26 +44,39 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 #menu_dashboard_last li {
+    color: white;
+    font-size: 18px;
     list-style: none;
 }
 
 
-.button_span_user {
+#menu_dashboard_last li a {
+    color: white;
+    font-size: 18px;
+    list-style: none;
+}
+
+
+/* .button_span_user {
     background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 50%;
     height: 40px;
-    /* min-width: 200px; */
-    width: auto;
+    width: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0px 20px 0px 20px;
     font-size: 20px;
+} */
+
+.fotoUsuario {
+    width: 35px;
+    height: 35px;
 }
+
 
 .button_span_user button {
     background-color: #f8f7fa;
@@ -89,11 +108,12 @@
     background-color: white;
 }
 
-a img {
-    width: 34px;
-    height: 34px;
-    color: red;
-}
+/* a img {
+   
+    padding: 0 2px ;
+    width: 45px;
+    height: 45px;
+} */
 
 .home_icones {
     color: #1e0a3c;

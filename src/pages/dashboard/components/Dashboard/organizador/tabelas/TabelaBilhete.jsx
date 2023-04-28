@@ -79,8 +79,8 @@ export default function TabelaBilhete() {
 
             <div className="tabela mt-3 mb-3 container">
                 <MaterialTable
-               
-               
+
+
                     editable={{
 
 
@@ -113,18 +113,20 @@ export default function TabelaBilhete() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
+                                    // console.log(data)
 
 
-                                    setTimeout(() => {
+                                    navigate(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/${data.id}`)
 
-                                        swal("Evento selecionado", `Adicione detalhes ao evento ${data.nome}`, "success");
 
-                                        navigate(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/${data.id}`)
+                                    // setTimeout(() => {
 
-                                        // /evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/invalido
+                                    //     swal("Evento selecionado", `Adicione detalhes ao evento ${data.nome}`, "success");
 
-                                    }, 440)
+
+                                    //     // /evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/invalido
+
+                                    // }, 440)
 
 
 
@@ -209,7 +211,7 @@ export default function TabelaBilhete() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "#0DCAF0",
                             color: "#fff", fontSize: "14px",
                         }
 

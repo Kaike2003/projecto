@@ -26,7 +26,7 @@ export const LoginParticipante = () => {
 
 	useEffect(() => {
 		async function fetchData() {
-			const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
+			const response = await axios.get('http://localhost:3456/admin/usuarios/participante');
 			const newData = response.data;
 			setData(newData);
 		}
@@ -64,6 +64,7 @@ export const LoginParticipante = () => {
 							dataNascimento: ""
 						}}
 						onSubmit={async (values) => {
+
 
 							data.map(item => {
 								if (item.email === values.email && item.utilizador === utilizador) {

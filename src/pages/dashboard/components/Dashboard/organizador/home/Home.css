@@ -45,7 +45,7 @@
 } */
 
 .dashboardHome {
-    margin-top: 15px;
+    margin-top: 90px;
 }
 
 
@@ -56,14 +56,15 @@
     width: 150px;
     border-radius: 0.25rem;
     border: none;
-    background-color: #e51b15;
+    background-color: #0DCAF0;
     margin-right: 60px;
+    color: white;
 }
 
 .dashboardHome_button_input input {
     padding: 6px 6px 6px 12px;
     width: 70%;
-    min-width: 900px ;
+    min-width: 900px;
     border-radius: 5px;
     border: 1px solid #1e0a3c;
     outline-color: none;

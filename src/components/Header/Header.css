@@ -9,13 +9,13 @@
     position: fixed;
     display: flex;
     width: 100%;
-    background: #e51b15;
-    color: #ffffff;
+    background: #fff;
+    color: black;
     z-index: 10;
 }
 
 #titulo {
-    color: #ffffff;
+    color: black;
 }
 
 #menu {
@@ -32,7 +32,7 @@
 
 
 #menu a {
-    color: #ffffff;
+    color: black;
     font-weight: 480;
     font-size: 14px;
     text-decoration: none;
@@ -43,6 +43,20 @@ a {
     text-decoration: none;
 }
 
+.fotoUsuario {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+
+
+.button_span_user button {
+    background-color: #f8f7fa;
+    border: none;
+    margin: 0;
+    padding: 0 2px 0 0px;
+}
 
 .btn-registra_login {
     background-color: #2896ff;

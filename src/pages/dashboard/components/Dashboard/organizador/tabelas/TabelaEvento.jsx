@@ -77,7 +77,7 @@ export default function TabelaEvento() {
     return (
         <>
 
-            <div className="tabela mt-3 mb-3 container">
+            <div className="tabela mt-3 mb-2 container">
                 <MaterialTable
                     editable={{
 
@@ -115,11 +115,11 @@ export default function TabelaEvento() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
+                                    // console.log(data)
 
 
 
-                                    swal("Evento selecionado", `Agora poderás ver as informações do evento ${data.nome}`, "success")
+                                    // swal("Evento selecionado", `Agora poderás ver as informações do evento ${data.nome}`, "success")
 
                                     setTimeout(() => {
 
@@ -144,7 +144,7 @@ export default function TabelaEvento() {
 
                                     setTimeout(() => {
 
-                                        swal("Evento selecionado", `Adicione detalhes ao evento ${data.nome}`, "success");
+                                        // swal("Evento selecionado", `Adicione detalhes ao evento ${data.nome}`, "success");
 
                                         navigate(`/reservaOnline/dashboard/organizador/evento/listar/${data.utilizadorId}/editar/${data.id}`)
 
@@ -203,7 +203,7 @@ export default function TabelaEvento() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "#0DCAF0",
                             color: "#fff", fontSize: "14px",
                         }
 

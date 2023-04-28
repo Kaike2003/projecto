@@ -278,6 +278,14 @@ export default function InformacaoEvento() {
 
                                                 </div>
 
+                                                <div className="criar_row">
+                                                    <span>Pagamento </span>
+                                                    <div>
+                                                        {item.pagamento === true ? "Feito" : "Não feito"}
+                                                    </div>
+
+                                                </div>
+
 
                                                 <div className="criar_row">
                                                     <span>Visualizações </span>
@@ -300,7 +308,7 @@ export default function InformacaoEvento() {
                                                     onClick={esconderOrador}
                                                     style={{ cursor: "pointer" }}
                                                 >
-                                                    <div className="spanIcone">
+                                                    <div className="spanIconeOrganizador">
                                                         Oradores
                                                         <ChevronRight
                                                             style={{
@@ -341,7 +349,7 @@ export default function InformacaoEvento() {
 
                                             <div className="spanOradorBilhetePalestrante">
                                                 <span>
-                                                    <div className="spanIcone"
+                                                    <div className="spanIconeOrganizador"
                                                         onClick={esconderBilhete}
                                                         style={{ cursor: "pointer" }}
                                                     >
@@ -398,7 +406,7 @@ export default function InformacaoEvento() {
                                                     onClick={esconderPalestrante}
                                                     style={{ cursor: "pointer" }}
                                                 >
-                                                    <div className="spanIcone"
+                                                    <div className="spanIconeOrganizador"
                                                     >
                                                         Palestrantes<ChevronRight
                                                             style={{

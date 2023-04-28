@@ -102,6 +102,34 @@ import Shows from "../pages/tipo_Eventos/Shows/Shows";
 import TabelaEventoAprovarPagamentoParticipante from "../pages/dashboard/components/Dashboard/admin/tabelas/TabelaEventoAprovarPagamentoParticipante";
 import InformacaoCompraParticipante from "../pages/dashboard/components/Dashboard/admin/InformacaoCompraParticipante/InformacaoCompraParticipante";
 import AdicionarFotoComprovativo from "../pages/Participante/reservas/components/AdicionarFotoComprovativo";
+import TabelaPagamentoAprovado from "../pages/dashboard/components/Dashboard/admin/tabelas/TabelaPagamentoAprovado";
+import EstatisticaHome from "../pages/dashboard/components/Dashboard/admin/estatistica/EstatisticaHome";
+import LayoutSemSessao from "../components/Layout/LayoutSemSessao";
+import HeaderSemSessao from "../components/Header/HeaderSemSessao";
+import PaginaPrincipalOrganizador from "../pages/PaginaPrincipal/PaginaPrincipalOrganizador";
+import TodosEventoOrganizador from "../pages/tipo_Eventos/TodosEvento/TodosEventoOrganizador";
+import TeatroOrganizador from "../pages/tipo_Eventos/Teatro/TeatroOrganizador";
+import ConcertoOrganizador from "../pages/tipo_Eventos/Concerto/ConcertoOrganizador";
+import SeminarioOrganizador from "../pages/tipo_Eventos/Seminario/SeminarioOrganizador";
+import PalestraOrganizador from "../pages/tipo_Eventos/Palestra/PalestraOrganizador";
+import ShowsOrganizador from "../pages/tipo_Eventos/Shows/ShowsOrganizador";
+import VisualizarBilheteOrganizador from "../pages/Visualizar_ingresso/VisualizarBilheteOrganizador";
+import PaginaPrincipalSemSessao from "../pages/PaginaPrincipal/PaginaPrincipalSemSessao";
+import TodosEventoSemSessao from "../pages/tipo_Eventos/TodosEvento/TodosEventoSemSessao";
+import TeatroSemSessao from "../pages/tipo_Eventos/Teatro/TeatroSemSessao";
+import ConcertoOrganizadorSemSessao from "../pages/tipo_Eventos/Concerto/ConcertoSemSessao";
+import SeminarioSemSessao from "../pages/tipo_Eventos/Seminario/SeminarioSemSessao";
+import PalestraSemSessao from "../pages/tipo_Eventos/Palestra/PalestraSemSessao";
+import ShowsSemSessao from "../pages/tipo_Eventos/Shows/ShowsSemSessao";
+import VisualizarBilheteSemSessao from "../pages/Visualizar_ingresso/VisualizarBilheteSemSessao";
+import EstruturaPerfil from "../pages/dashboard/components/estrutura/EstruturaPerfil";
+import PerfilInfoParticipante from "../pages/Participante/perfilParticipante/PerfilInfoParticipante";
+import PerfilEditarParticipante from "../pages/Participante/perfilParticipante/PerfilEditarParticipante";
+import AlterarSenhaParticipante from "../pages/Participante/perfilParticipante/AlterarSenhaParticipante";
+import AdicionarFotoPerfilParticipante from "../pages/Participante/perfilParticipante/AdicionarFotoPerfilParticpante";
+import PagamentoNaoFeito from "../pages/dashboard/components/Dashboard/admin/pagamento/pagamentoNaoFeito";
+import PagamentoFeito from "../pages/dashboard/components/Dashboard/admin/pagamento/pagamentoFeito";
+import EstruturaPagamento from "../pages/dashboard/components/estrutura/EstruturaPagamento";
 
 
 //  Context Dashboard
@@ -111,6 +139,7 @@ export default function Rotas() {
 
     const url = "reservaOnline/"
     const urlPrivadaOrganizador = "/reservaOnline/dashboard/organizador"
+    const urlPrivadaOrganizadorMenuPrincipal = "/reservaOnline.com/organizador"
     const urlPrivadaAdmin = "/reservaOnline/dashboard/admin"
     const urlPrivadaParticipante = "/reservaOnline/participante"
 
@@ -129,6 +158,50 @@ export default function Rotas() {
 
 
             <Routes>
+
+                <Route path="/vendaOnline.com"
+                    element={<LayoutSemSessao />}
+                >
+
+                    <Route
+                        index
+                        element={<PaginaPrincipalSemSessao />}
+                    >
+                    </Route>
+
+                    <Route path="visualizarBilhete/:idEvento"
+                        element={<VisualizarBilheteSemSessao />}
+                    >
+                    </Route>
+
+                    <Route
+                        path="todosEventos"
+                        element={<TodosEventoSemSessao />}
+                    ></Route>
+
+                    <Route path="teatro"
+                        element={<TeatroSemSessao />}
+                    ></Route>
+
+                    <Route path="concerto"
+                        element={<ConcertoOrganizadorSemSessao />}
+                    ></Route>
+
+                    <Route path="seminario"
+                        element={<SeminarioSemSessao />}
+                    ></Route>
+
+                    <Route path="palestra"
+                        element={<PalestraSemSessao />}
+                    ></Route>
+
+                    <Route path="shows"
+                        element={<ShowsSemSessao />}
+                    ></Route>
+
+
+
+                </Route>
 
                 {/* <Route path="/" element={<Layout />}>
                     <Route index element={<PaginaPrincipal />} />
@@ -222,7 +295,6 @@ export default function Rotas() {
                             ></Route>
 
 
-
                             <Route path="pagas/:idUtilizador"
                                 element={<Paga />}
                             ></Route>
@@ -261,6 +333,64 @@ export default function Rotas() {
                         <Route path="shows"
                             element={<Shows />}
                         ></Route>
+
+
+
+                        <Route path="perfil"
+                            element={
+                                <EstruturaPerfil
+                                    estilo={""}
+                                    infoGeral={""}
+                                    titulo="Informação da conta"
+                                    lista1={"Informações"}
+                                    lista2={"Foto"}
+                                    lista3={"Editar"}
+                                    lista4={"Senha"}
+                                    lista5={"Sair"}
+                                    rota1={urlPrivadaParticipante + "/perfil/informacao"}
+                                    rota2={urlPrivadaParticipante + "/perfil/foto"}
+                                    rota3={urlPrivadaParticipante + "/perfil/editar"}
+                                    rota4={urlPrivadaParticipante + "/perfil/senha"}
+                                    rota5={urlPrivadaParticipante + "/perfil/sair"}
+                                />
+                            }
+                        >
+
+                            <Route
+                                path="informacao"
+                                element={<PerfilInfoParticipante />}
+                            />
+
+
+                            <Route
+                                path="editar"
+                                element={<PerfilEditarParticipante />}
+                            />
+
+                            <Route
+                                path="senha"
+                                element={<AlterarSenhaParticipante />}
+
+                            />
+
+                            <Route
+                                path="foto"
+                                element={<AdicionarFotoPerfilParticipante />}
+
+                            />
+
+                            <Route
+                                path="sair"
+                                element={
+                                    <SairOrganizador />
+                                }
+
+                            />
+
+                        </Route>
+
+
+
 
 
                     </Route>
@@ -322,16 +452,12 @@ export default function Rotas() {
                         <Route index
                             element={
                                 <Home
-                                />}
-
-                        />
+                                />} />
 
                         <Route index path="home"
                             element={
                                 <Home
-                                />}
-                        />
-
+                                />} />
 
 
                         <Route path="evento"
@@ -434,6 +560,7 @@ export default function Rotas() {
                         <Route path="perfil"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura"}
                                     infoGeral={""}
                                     titulo="Informação da conta"
                                     lista1={"Informações"}
@@ -483,13 +610,50 @@ export default function Rotas() {
 
                         </Route>
 
-
-
-                        <Route path="estatistica"
+                        {/* <Route path="estatistica"
                             element="Olá mundo"
                         >
 
+                        </Route> */}
+
+                        <Route path="paginaPrincipal/visualizarBilhete/:idEvento"
+                            element={<VisualizarBilheteOrganizador />}
+                        >
                         </Route>
+
+
+                        <Route
+                            path="paginaPrincipal"
+                            element={<PaginaPrincipalOrganizador />}>
+
+                        </Route>
+
+
+
+                        <Route
+                            path="paginaPrincipal/todosEventos"
+                            element={<TodosEventoOrganizador />}
+                        ></Route>
+
+                        <Route path="paginaPrincipal/teatro"
+                            element={<TeatroOrganizador />}
+                        ></Route>
+
+                        <Route path="paginaPrincipal/concerto"
+                            element={<ConcertoOrganizador />}
+                        ></Route>
+
+                        <Route path="paginaPrincipal/seminario"
+                            element={<SeminarioOrganizador />}
+                        ></Route>
+
+                        <Route path="paginaPrincipal/palestra"
+                            element={<PalestraOrganizador />}
+                        ></Route>
+
+                        <Route path="paginaPrincipal/shows"
+                            element={<ShowsOrganizador />}
+                        ></Route>
 
                     </Route>
                 </Route>
@@ -528,6 +692,7 @@ export default function Rotas() {
                         <Route index
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura2"}
                                     infoGeral={""}
                                     titulo=""
                                     lista1="Categoria"
@@ -554,6 +719,7 @@ export default function Rotas() {
                         <Route path="categoria"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura3"}
                                     infoGeral={""}
                                     titulo="Categoria"
                                     lista1="Criar"
@@ -589,6 +755,7 @@ export default function Rotas() {
                         <Route path="bilhete"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura3"}
                                     infoGeral={""}
                                     titulo="Bilhete"
                                     lista1="Criar"
@@ -604,9 +771,11 @@ export default function Rotas() {
                                 />}
                         >
 
-                            <Route path="criar" element={
-                                <CriarTipoBilhete />
-                            }>
+                            <Route
+                                path="criar"
+                                element={
+                                    <CriarTipoBilhete />
+                                }>
 
                             </Route>
 
@@ -622,6 +791,7 @@ export default function Rotas() {
                         <Route path="administradores"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura3"}
                                     infoGeral={""}
                                     titulo="Administradores"
                                     lista1="Listar"
@@ -650,6 +820,7 @@ export default function Rotas() {
                         <Route path="participantes"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura3"}
                                     infoGeral={""}
                                     titulo="Participantes"
                                     lista1="Listar"
@@ -677,6 +848,7 @@ export default function Rotas() {
                         <Route path="organizadores"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura3"}
                                     infoGeral={""}
                                     titulo="Organizadores"
                                     lista1="Listar"
@@ -704,19 +876,24 @@ export default function Rotas() {
                         <Route path="evento"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura3"}
                                     infoGeral={""}
                                     titulo="Evento"
                                     lista1="Publicados"
                                     lista2="A espera"
                                     lista3="Banidos"
                                     lista4="Aprovar compras"
+                                    lista5={"Compras aprovadas"}
+                                    lista8={"Pagamento"}
                                     // lista4="Informações do evento"
                                     rota1={urlPrivadaAdmin + "/evento/publicado"}
                                     rota2={urlPrivadaAdmin + "/evento/espera"}
                                     rota3={urlPrivadaAdmin + "/evento/banidos"}
                                     rota4={urlPrivadaAdmin + "/evento/aprovarPagamento"}
-                                    rota5={urlPrivadaAdmin + "/evento/informacoes/:idEvento"}
+                                    rota5={urlPrivadaAdmin + "/evento/pagamentosAprovados"}
                                     rota6={urlPrivadaAdmin + "/evento/aprovarPagamento/informacaoCompra/:idReserva"}
+                                    rota7={urlPrivadaAdmin + "/evento/informacoes/:idEvento"}
+                                    rota8={urlPrivadaAdmin + "/evento/pagamento"}
 
 
                                 />}
@@ -725,6 +902,29 @@ export default function Rotas() {
                             <Route path="publicado" element={
                                 <TabelaEventoPublicado />
                             }></Route>
+
+
+                            <Route path="pagamento" element={
+                                <EstruturaPagamento
+                                    estilo={""}
+                                    lista1={"Não feito"}
+                                    lista2={"Feito"}
+                                    rota1={urlPrivadaAdmin + "/evento/pagamento/naoFeito"}
+                                    rota2={urlPrivadaAdmin + "/evento/pagamento/feito"}
+                                ></EstruturaPagamento>
+                            }>
+
+
+                                <Route path="naoFeito"
+                                    element={<PagamentoNaoFeito />}>
+                                </Route>
+
+                                <Route path="feito"
+                                    element={<PagamentoFeito />}>
+                                </Route>
+
+                            </Route>
+
 
 
 
@@ -740,6 +940,10 @@ export default function Rotas() {
                                 <TabelaEventoAprovarPagamentoParticipante />
                             }></Route>
 
+                            <Route path="pagamentosAprovados" element={
+                                <TabelaPagamentoAprovado />
+                            }></Route>
+
                             <Route path="informacaoCompra/:idReserva" element={
                                 <InformacaoCompraParticipante />
                             }></Route>
@@ -753,24 +957,29 @@ export default function Rotas() {
                         </Route>
 
                         <Route path="estatistica"
-                            element="Olá mundo"
+                            element={<EstatisticaHome />}
                         ></Route>
 
                         <Route path="perfil"
                             element={
                                 <Estrutura
+                                    estilo={"estiloEstrutura"}
                                     infoGeral={""}
                                     titulo="Informação da conta"
                                     lista1={"Informações"}
                                     lista2={"Editar"}
                                     lista3={"Senha"}
                                     lista4={"Sair"}
-                                    // lista5={"foto"}
+                                    // lista5={"Foto"}
+
+
+
                                     rota1={urlPrivadaAdmin + "/perfil/informacao"}
                                     rota2={urlPrivadaAdmin + "/perfil/editar"}
                                     rota3={urlPrivadaAdmin + "/perfil/senha"}
                                     rota4={urlPrivadaAdmin + "/perfil/sair"}
                                 // rota5={urlPrivadaAdmin + "/perfil/foto"}
+
 
                                 />
                             }

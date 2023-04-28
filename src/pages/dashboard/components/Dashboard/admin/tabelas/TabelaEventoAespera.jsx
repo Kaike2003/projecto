@@ -17,14 +17,22 @@ export default function TabelaEventoAespera() {
 
 
 
-
     useEffect(() => {
+
+
+
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/admin/eventos/eventosEspera');
+            const response = await axios.get('http://localhost:3456/admin/eventos/eventosEspera', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+                }
+            });
             const newData = response.data;
             setData(newData);
 
         }
+
+
         fetchData();
     }, []);
 
@@ -87,95 +95,95 @@ export default function TabelaEventoAespera() {
 
 
 
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Evento selecionado',
-                                        html: `Agora poderás ver as informações do evento ${data.nome} `,
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    }).then(() => {
-                                        setTimeout(() => {
+                                    // Swal.fire({
+                                    //     icon: 'success',
+                                    //     title: 'Evento selecionado',
+                                    //     html: `Agora poderás ver as informações do evento ${data.nome} `,
+                                    //     showConfirmButton: false,
+                                    //     timer: 2000
+                                    // }).then(() => {
+                                    //     setTimeout(() => {
 
-                                            navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
-
-
-                                        }, 400)
-                                    }).catch((error) => {
-                                        Swal.fire({
-                                            icon: 'warning',
-                                            title: 'Erro',
-                                            html: `Agora poderás ver as informações do evento ${data.nome} `,
-                                            showConfirmButton: false,
-                                            timer: 2000
-                                        })
-                                    })
+                                    navigate(`/reservaOnline/dashboard/admin/evento/informacoes/${data.utilizadorId}/${data.id}`)
 
 
-                                }
-
-                            },
-
-                            {
-                                icon: () => {
-                                    return <Check></Check>
-                                },
-                                tooltip: "Aprovar evento",
-                                onClick: (e, data) => {
-
-                                    //   console.log(data, e.target.value)
-                                    console.log(data)
-
-
-                                    setTimeout(() => {
-
-
-                                        axios.put(`http://localhost:3456/admin/eventos/aprovarEventos/${data.id}`
-                                        ).then(sucesso => {
-                                            navigate("/reservaOnline/dashboard/admin/evento/publicado")
-                                            console.log(`Evento apagado com sucesso. Id: ${data.id}`)
-                                            console.log(sucesso)
-                                        }).catch(error => {
-                                            console.log(error)
-                                        })
-
-                                    }, 1540)
-
+                                    //     }, 400)
+                                    // }).catch((error) => {
+                                    //     Swal.fire({
+                                    //         icon: 'warning',
+                                    //         title: 'Erro',
+                                    //         html: `Agora poderás ver as informações do evento ${data.nome} `,
+                                    //         showConfirmButton: false,
+                                    //         timer: 2000
+                                    //     })
+                                    // })
 
 
                                 }
 
                             },
 
-                            {
-                                icon: () => {
-                                    return <Slash></Slash>
-                                },
-                                tooltip: "Banir evento",
-                                onClick: (e, data) => {
+                            // {
+                            //     icon: () => {
+                            //         return <Check></Check>
+                            //     },
+                            //     tooltip: "Aprovar evento",
+                            //     onClick: (e, data) => {
 
-                                    //   console.log(data, e.target.value)
-                                    console.log(data)
-
-
-                                    setTimeout(() => {
+                            //         //   console.log(data, e.target.value)
+                            //         console.log(data)
 
 
-                                        axios.put(`http://localhost:3456/admin/eventos/banido/${data.id}`
-                                        ).then(sucesso => {
-                                            navigate("/reservaOnline/dashboard/admin/evento/banidos")
-                                            console.log(`Evento banido com sucesso. Id: ${data.id}`)
-                                            console.log(sucesso)
-                                        }).catch(error => {
-                                            console.log(error)
-                                        })
-
-                                    }, 1540)
+                            //         setTimeout(() => {
 
 
+                            //             axios.put(`http://localhost:3456/admin/eventos/aprovarEventos/${data.id}`
+                            //             ).then(sucesso => {
+                            //                 navigate("/reservaOnline/dashboard/admin/evento/publicado")
+                            //                 // console.log(`Evento apagado com sucesso. Id: ${data.id}`)
+                            //                 // console.log(sucesso)
+                            //             }).catch(error => {
+                            //                 console.log(error)
+                            //             })
 
-                                }
+                            //         }, 1540)
 
-                            }
+
+
+                            //     }
+
+                            // },
+
+                            // {
+                            //     icon: () => {
+                            //         return <Slash></Slash>
+                            //     },
+                            //     tooltip: "Banir evento",
+                            //     onClick: (e, data) => {
+
+                            //         //   console.log(data, e.target.value)
+                            //         console.log(data)
+
+
+                            //         setTimeout(() => {
+
+
+                            //             axios.put(`http://localhost:3456/admin/eventos/banido/${data.id}`
+                            //             ).then(sucesso => {
+                            //                 navigate("/reservaOnline/dashboard/admin/evento/banidos")
+                            //                 // console.log(`Evento banido com sucesso. Id: ${data.id}`)
+                            //                 // console.log(sucesso)
+                            //             }).catch(error => {
+                            //                 console.log(error)
+                            //             })
+
+                            //         }, 1540)
+
+
+
+                            //     }
+
+                            // }
 
 
 
@@ -223,7 +231,7 @@ export default function TabelaEventoAespera() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "#ffc107",
                             color: "#fff", fontSize: "14px",
                         }
 

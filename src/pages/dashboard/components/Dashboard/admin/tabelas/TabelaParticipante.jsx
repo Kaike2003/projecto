@@ -99,7 +99,7 @@ export default function TabelaParticipante() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#e51b15",
+                            background: "#7b7c7c",
                             color: "#fff", fontSize: "14px",
                         }
 

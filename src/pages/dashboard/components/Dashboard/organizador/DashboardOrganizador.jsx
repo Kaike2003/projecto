@@ -7,6 +7,8 @@ import axios from "axios";
 
 export default function DashboardOrganizador() {
 
+    const fotoAdmin = "http://localhost:3456/public/upload/usuarios/organizador/"
+
 
     const [data, setData] = useState([]);
     const [nomeUtilizador, setNomeUtilizador] = useState(() => {
@@ -40,41 +42,53 @@ export default function DashboardOrganizador() {
             <main id="main h-100">
                 <div className="dashboardevento_Lados">
 
-                    <div className="dashboardevento_LadoEsquerdo">
+                    <div className="dashboardevento_LadoEsquerdo menu_dashboard_organizador">
 
 
                         <ul id="menu_dashboard">
 
                             <div>
                                 <NavLink to={url}>
-                                    <h2 style={{ fontFamily: "Roboto, sem serifa" }}
-                                    >Reserva online</h2>
+                                    <h2 style={{ fontFamily: "Roboto, sem serifa", color: "#ffffff" }}
+                                    >Venda online</h2>
                                 </NavLink>
                             </div>
 
                             <div id="menu_dashboard_last">
                                 <li>
-                                    <NavLink to={url + "/evento"}>
-                                        Evento
+                                    <NavLink
+                                        style={{ color: "#ffffff" }}
+                                        to={url + "/paginaPrincipal"}>
+                                        Página principal
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={url + "/estatistica"}>
-                                        Estatística
+                                    <NavLink
+                                        style={{ color: "#ffffff" }}
+                                        to={url + "/home"}>
+                                        Evento
                                     </NavLink>
                                 </li>
+                                {/* <li>
+                                    <NavLink
+                                        style={{ color: "#ffffff" }}
+                                        to={url + "/estatistica"}>
+                                        Estatística
+                                    </NavLink>
+                                </li> */}
 
-                                <NavLink to={url + "/perfil"}>
+                                <NavLink
+                                    style={{ color: "#000000" }}
+                                    to={url + "/perfil"}>
                                     <div className="button_span_user">
                                         {data.map(item => {
                                             console.log(nomeUtilizador)
                                             if (item.email === nomeUtilizador) {
                                                 return (
                                                     <div key={item.id} >
-                                                        <span 
-                                                        style={{color: "black"}}
-
-                                                        >{item.nome}</span>
+                                                        <img
+                                                            className="fotoUsuario"
+                                                            src={fotoAdmin + item.foto} alt="" />
                                                     </div>
                                                 )
                                             }

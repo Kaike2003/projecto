@@ -26,7 +26,7 @@ export const LoginOrganizador = () => {
 
 	useEffect(() => {
 		async function fetchData() {
-			const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
+			const response = await axios.get('http://localhost:3456/admin/usuarios/organizador');
 			const newData = response.data;
 			setData(newData);
 		}
@@ -70,7 +70,7 @@ export const LoginOrganizador = () => {
 								if (item.email === values.email && item.utilizador === utilizador) {
 									const email = values.email
 									const palavraPasse = values.password
-									
+
 									const data = {
 										email, palavraPasse
 									}
@@ -115,7 +115,7 @@ export const LoginOrganizador = () => {
 													<span className
 														="focus-input100" ></span>
 													{data.map(item => {
-														if (item.email === values.email) {
+														if (item.email === values.email && item.utilizador === utilizador) {
 															return (
 																<div key={item.id} >
 																	<p className="container" style={{ color: "green" }}>Email correcto</p>

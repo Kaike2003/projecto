@@ -143,7 +143,7 @@ export default function PaginaPrincipal() {
                                 </select>
                             </div>
 
-                            <div className="conteudo_categoria_p">
+                            {/* <div className="conteudo_categoria_p">
                                 <select className="conteudo_categoria_select">
                                     <option value="6" >Mês</option>
                                     <option value="7" >Janeiro</option>
@@ -151,7 +151,7 @@ export default function PaginaPrincipal() {
                                     <option value="9" >Março</option>
                                     <option value="10" >Abril</option>
                                 </select>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -166,67 +166,7 @@ export default function PaginaPrincipal() {
 
                     <div className="container_conteudo">
 
-
-                        <div className="container_conteudo">
-                            <div className="conteudo_eventos">
-                                <div className="conteudo_eventos_vermais">
-                                    <h4 className="pb-3 pt-2 text-dark">Novos eventos</h4>
-                                    <Link
-                                        to={url + "/todosEventos"} className="btn">Ver mais</Link>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div className="container_conteudo">
-                            <div className="section_eventos">
-
-                                {data.map((item) => {
-
-                                    return dataListaCategoria.map(itemCategoria => {
-                                        if (item.categoriaId === itemCategoria.id) {
-                                            return (
-                                                <>
-
-                                                    <Link
-                                                        to={url + `/visualizarBilhete/${item.id}`}
-                                                        style={{ color: "black" }}
-                                                    >
-                                                        <div key={Math.random().toString(36).substring(2)}>
-                                                            <CardEvento
-                                                                imagem={urlImage + item.foto}
-                                                                id={item.id}
-                                                                categoria={itemCategoria.nome}
-                                                                nome={item.nome}
-                                                                preco={item.bilhete[0]?.preco}
-                                                                // imagem={"foto"}
-                                                                quantidade={item.bilhete[0]?.quantidade}
-
-                                                                dataInicio={
-                                                                    format(new Date(item.dataInicio), 'dd/MM/yyyy')
-                                                                }
-                                                                dataTermino={
-                                                                    format(new Date(item.dataTermino), 'dd/MM/yyyy')
-                                                                }
-                                                                estado={item.estado}
-                                                            />
-                                                        </div>
-
-                                                    </Link>
-                                                </>
-                                            )
-                                        }
-                                    })
-
-                                })}
-
-
-                            </div>
-                        </div>
-
-
-
+                    <div className="imagemEventoPrincipal"></div>
 
                         <div className="container_conteudo">
                             <div className="conteudo_eventos">

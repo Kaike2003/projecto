@@ -47,7 +47,7 @@ export default function EstruturaBilhete() {
         <>
 
 
-            <div className="titulo_evento_lista container" >
+            <div className="titulo_evento_lista_subEstrutura container" >
                 <div className="eventos_lista container">
 
 
@@ -69,48 +69,16 @@ export default function EstruturaBilhete() {
 
                     </NavLink>
 
-
+{/* 
                     <NavLink
                         key={Math.random().toString(36).substring(2)}
                         to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/invalido`}
                     >
                         <span>Editar</span>
 
-                    </NavLink>
-
-
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/orador`}
-                    >
-                        <span>Orador</span>
-
                     </NavLink> */}
 
 
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante`}
-                    >
-                        <span>Palestrante</span>
-
-                    </NavLink> */}
-
-
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/listar`}
-                    >
-                    </NavLink> */}
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/publicar`}
-                    >
-                        <span>Publicar</span>
-                    </NavLink> */}
 
 
 

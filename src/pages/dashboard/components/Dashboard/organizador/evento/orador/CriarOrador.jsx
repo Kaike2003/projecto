@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import Swal from "sweetalert2"
 
 
 
@@ -75,15 +76,24 @@ export default function CriarOrador() {
                                     }).then((sucesso) => {
                                         console.log(sucesso)
 
-                                        swal("Orador criado", `${values.nome} foi criado com sucesso.`, "success").then(async () => {
-                                            navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}/editar/${idEvento}/orador/listar`)
+
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Orador criado',
+                                            showConfirmButton: false,
+                                            timer: 2500
                                         })
 
                                     }).catch((error) => {
                                         console.log(error)
-                                        swal(`${error}`, `Erro evento.`, "warning").then(async () => {
-                                            // navigate("/reservaOnline/admin/autenticarConta")
+
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Erro evento',
+                                            showConfirmButton: false,
+                                            timer: 3500
                                         })
+
 
                                     })
 
@@ -116,6 +126,7 @@ export default function CriarOrador() {
                                     <button
                                         className="PnomeBotao"
                                         disabled={isSubmitting}
+                                        style={{ background: "#0DCAF0", color: "white" }}
                                         type="submit">Criar</button>
                                 </div>
                                 <div className="criar_main ">

@@ -5,7 +5,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import { format } from 'date-fns'
 
 
@@ -61,8 +61,8 @@ export default function EditarEvento() {
             .max(100, "O nome do evento. Precisa ter mais de 50 caracteres")
             .required("Nome do evento é obrigatorio.").optional(),
         descricao: Yup.string("A descrição de ser uma string")
-            .min(15, "A descrição deve ter 15 ou mais caracteres")
-            .max(4000, "A descrição deve ter 200 ou menos caracteres")
+            .min(200, "A descrição deve ter 200 ou mais caracteres")
+            .max(289, "A descrição deve ter 289 ou menos caracteres")
             .required("A descrição é obrigatória"),
         dataInicio: Yup.date().min(new Date(), { message: "Data inválida" }).required("A data de inicio é obrigatória"),
         dataTermino: Yup.date().required("A data de termino é obrigatória"),
@@ -103,12 +103,13 @@ export default function EditarEvento() {
                         dataTermino: format(new Date(item.dataTermino), "yyyy-MM-dd"),
                         horaInicio: format(new Date(item.horaInicio), "HH:mm:ss.SSS"),
                         horaTermino: format(new Date(item.horaTermino), "HH:mm:ss.SSS"),
-                        foto: "",
+                        foto: item.foto,
                         provincia: item.provincia,
                         municipio: item.municipio,
                         bairro: item.bairro,
                         categoriaId: item.categoriaId,
                     }
+
 
                     const valoresInicias = {
                         nome: "",
@@ -117,7 +118,7 @@ export default function EditarEvento() {
                         dataTermino: "",
                         horaInicio: "",
                         horaTermino: "",
-                        foto: "",
+                        foto: item.foto,
                         provincia: "",
                         municipio: "",
                         bairro: "",
@@ -144,7 +145,7 @@ export default function EditarEvento() {
                                         utilizador.map(item => {
                                             if (item.email === nomeUtilizador) {
 
-                    axios.put(`http://localhost:3456/organizador/evento/detalhe/editarEvento/${idUtilizador}/${idEvento}`,
+                                                axios.put(`http://localhost:3456/organizador/evento/detalhe/editarEvento/${idUtilizador}/${idEvento}`,
                                                     {
                                                         nome: values.nome,
                                                         descricao: values.descricao,
@@ -152,7 +153,7 @@ export default function EditarEvento() {
                                                         dataTermino: values.dataTermino,
                                                         horaInicio: values.horaInicio,
                                                         horaTermino: values.horaTermino,
-                                                        foto: "",
+                                                        foto: valoresInicias.foto,
                                                         provincia: values.provincia,
                                                         municipio: values.municipio,
                                                         bairro: values.bairro,
@@ -161,17 +162,24 @@ export default function EditarEvento() {
                                                     }).then((sucesso) => {
                                                         console.log(sucesso)
 
-                                                        swal("Evento editado", `${values.nome} foi editado com sucesso. Agora podes adicionar outros detalhes.`, "success").then(async () => {
-                                                            // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Evento editado com sucesso',
+                                                            showConfirmButton: false,
+                                                            timer: 2500
                                                         })
-                                                        // alert(JSON.stringify(values, null, 2));
-                                                        // navigate("/reservaOnline/organizador/autenticarConta")
 
                                                     }).catch((error) => {
-                                                        console.log(error)
-                                                        swal(`${error}`, `Erro evento.`, "warning").then(async () => {
-                                                            // navigate("/reservaOnline/admin/autenticarConta")
+
+                                                        Swal.fire({
+                                                            icon: 'warning',
+                                                            title: 'Evento editado com sucesso',
+                                                            html: `${error}`,
+                                                            showConfirmButton: false,
+                                                            timer: 3500
                                                         })
+
+
 
                                                     })
 
@@ -202,7 +210,8 @@ export default function EditarEvento() {
                                                         <span>Adicione as principais informações do evento</span>
                                                     </div>
                                                     <button
-                                                        className="PnomeBotao"
+                                                        className="PnomeBotaoOrganizador"
+
                                                         type="submit">Editar</button>
                                                 </div>
                                                 <div className="criar_main ">

@@ -5,8 +5,7 @@ import * as Yup from "yup"
 import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
-
-
+import Swal from "sweetalert2"
 
 export default function CriarPalestrante() {
 
@@ -45,11 +44,11 @@ export default function CriarPalestrante() {
 
     const CriarPalestranteSchema = Yup.object().shape({
         nome: Yup.string()
-            .min(3, "O nome deve conter 2 ou mais caracteres")
+            .min(4, "O nome deve conter 2 ou mais caracteres")
             .max(100, "O nome deve conter 100 ou menos caracteres")
             .required("O nome do palestrante é obrigatório"),
         blog: Yup.string()
-            .min(3, "O blog palestrante deve conter 2 ou mais caracteres")
+            .min(4, "O blog palestrante deve conter 2 ou mais caracteres")
             .max(100, "O blog do palestrante deve conter 100 ou menos caracteres").optional(),
     })
 
@@ -80,14 +79,23 @@ export default function CriarPalestrante() {
                                     }).then((sucesso) => {
                                         console.log(sucesso)
 
-                                        swal("Palestrante criado", `${values.nome} foi criado com sucesso.`, "success").then(async () => {
-                                            // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}/editar/${idEvento}/orador/listar`)
+                                        // swal("Palestrante criado", `${values.nome} foi criado com sucesso.`, "success").then(async () => {
+                                        //     // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}/editar/${idEvento}/orador/listar`)
+                                        // })
+
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Palestrante criado',
+                                            showConfirmButton: false,
+                                            timer: 2500
                                         })
 
                                     }).catch((error) => {
-                                        console.log(error)
-                                        swal(`${error}`, `Erro evento.`, "warning").then(async () => {
-                                            // navigate("/reservaOnline/admin/autenticarConta")
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: `${error}`,
+                                            showConfirmButton: false,
+                                            timer: 3500
                                         })
 
                                     })
@@ -119,8 +127,9 @@ export default function CriarPalestrante() {
                                         <span>Adicione as principais informações do palestrante</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoOrganizador"
                                         disabled={isSubmitting}
+
                                         type="submit">Criar</button>
                                 </div>
                                 <div className="criar_main ">

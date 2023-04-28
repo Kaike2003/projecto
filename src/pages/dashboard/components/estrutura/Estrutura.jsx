@@ -4,6 +4,7 @@ import { NavLink, Outlet } from "react-router-dom"
 
 export default function Estrutura(
     {
+        estilo,
         titulo,
         lista1,
         lista2,
@@ -11,12 +12,17 @@ export default function Estrutura(
         lista4,
         lista5,
         lista6,
+        lista7,
+        lista8,
         rota1,
         rota2,
         rota3,
         rota4,
         rota5,
         rota6,
+        rota7,
+        rota8,
+
         infoGeral
 
     }
@@ -24,9 +30,9 @@ export default function Estrutura(
 
     return (
         <>
-            <div className="titulo_evento_lista container" style={{ display: `${infoGeral}` }}>
+            <div className={`${estilo} titulo_evento_lista container `}>
                 <div className="titulo_evento container">{titulo}</div>
-                <div className="eventos_lista container">
+                <div className="eventos_lista  container">
                     <NavLink
                         to={`${rota1}`}
                     >
@@ -70,6 +76,17 @@ export default function Estrutura(
 
                     </NavLink>
 
+
+                    <NavLink
+                        to={`${rota8}`}
+                    >
+
+                        <span>{lista8}</span>
+
+                    </NavLink>
+
+
+
                     <NavLink
                         to={`${rota6}`}
                     >
@@ -77,7 +94,16 @@ export default function Estrutura(
                         <span>{lista6}</span>
 
                     </NavLink>
-                  
+
+                    <NavLink
+                        to={`${rota7}`}
+                    >
+
+                        <span>{lista7}</span>
+
+                    </NavLink>
+
+
                 </div>
             </div>
 

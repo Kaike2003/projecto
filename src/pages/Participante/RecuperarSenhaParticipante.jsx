@@ -20,7 +20,7 @@ export default function RecuperarSenhaParticipante() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
+            const response = await axios.get('http://localhost:3456/admin/usuarios/participante');
             const newData = response.data;
             setData(newData);
         }

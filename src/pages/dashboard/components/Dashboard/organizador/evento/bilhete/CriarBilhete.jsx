@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import Swal from "sweetalert2"
 
 
 
@@ -43,28 +44,28 @@ export default function CriarBilhete() {
 
 
 
-    // const CriarEventoSchema = Yup.object().shape({
-    //     nome: Yup.string()
-    //         .min(3, "O nome deve conter 2 ou mais caracteres")
-    //         .max(100, "O nome deve conter 100 ou menos caracteres")
-    //         .required("O nome é obrigatório"),
-    //     preco: Yup.number("O preco do bilhete de ser um inteiro").integer()
-    //         .min(0, "O preco do bilhete não pode ser menor que 0 ")
-    //         .max(999999999, "O preco do bilhete não pode ser maior que 999999999")
-    //         .required("O preco do bilhete é obrigatorio."),
-    //     quantidade: Yup.number("A quantidade de bilhete deve ser um inteiro").integer()
-    //         .min(0, "O quantidade de bilhete não pode ser menor que 0 ")
-    //         .max(999999999, "O quantidade de bilhete não pode ser maior que 999999999")
-    //         .required("A quantidade de bilhete é obrigátoria."),
-    //     dataInicio: Yup.date().required("A data de inicio é obrigatória"),
-    //     dataTermino: Yup.date().required("A data de termino é obrigatória"),
-    //     horaInicio: Yup.string().required("A hora de inicio é obrigatória"),
-    //     horaTermino: Yup.string().required("A hora de termino é obrigatória"),
-    //     categoriaId: Yup.string("O id da categoria deve ser uma string")
-    //         .min(3, "O id da categoria deve conter 3 ou mais")
-    //         .max(4000, "O id da categoria deve conter 4000 ou menos caracteres")
-    //         .required("O id da categoria é obrigatório")
-    // })
+    const CriarBilheteSchema = Yup.object().shape({
+        nome: Yup.string()
+            .min(4, "O nome do bilhete deve conter 2 ou mais caracteres.")
+            .max(100, "O nome do bilhete deve conter 100 ou menos caracteres.")
+            .required("O nome do bilhete é obrigatório."),
+        preco: Yup.number("O preco do bilhete de ser um inteiro.").integer()
+            .min(0, "O preco do bilhete não pode ser menor que 0.")
+            .max(999999999, "O preço do bilhete não pode ser maior que 999999999.")
+            .required("O preço do bilhete é obrigatorio."),
+        quantidade: Yup.number("A quantidade de bilhete deve ser um inteiro").integer()
+            .min(0, "O quantidade de bilhete não pode ser menor que 0.")
+            .max(999999999, "O quantidade de bilhete não pode ser maior que 999999999.")
+            .required("A quantidade de bilhete é obrigátoria."),
+        dataInicio: Yup.date().required("A data de inicio é obrigatória.").min(new Date()),
+        dataTermino: Yup.date().required("A data de termino é obrigatória."),
+        horaInicio: Yup.string().required("A hora de inicio é obrigatória."),
+        horaTermino: Yup.string().required("A hora de termino é obrigatória."),
+        categoriaId: Yup.string("O id da categoria deve ser uma string.")
+            .min(4, "O id da categoria deve conter 3 ou mais caracteres.")
+            .max(300, "O id da categoria deve conter 4000 ou menos caracteres.")
+            .required("A categoria é obrigatória.")
+    })
 
 
     return (
@@ -74,7 +75,7 @@ export default function CriarBilhete() {
 
 
                 <Formik
-                    // validationSchema={CriarEventoSchema}
+                    validationSchema={CriarBilheteSchema}
                     initialValues={{
                         nome: "",
                         preco: "",
@@ -83,7 +84,7 @@ export default function CriarBilhete() {
                         dataTermino: "",
                         horaInicio: "",
                         horaTermino: "",
-                        tipoEvento: ""
+                        categoriaId: ""
                     }}
                     onSubmit={async (values) => {
 
@@ -102,21 +103,30 @@ export default function CriarBilhete() {
                                         dataTermino: values.dataTermino,
                                         horaInicio: values.horaInicio,
                                         horaTermino: values.horaTermino,
-                                        tipoEvento: values.tipoEvento
+                                        tipoEvento: values.categoriaId
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
-                                        swal("Bilhete criado", `${values.nome} foi criado com sucesso. Agora podes adicionar outros detelhes.`, "success").then(async () => {
-                                            navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Bilhete criado',
+                                            showConfirmButton: false,
+                                            timer: 2500
                                         })
-                                        // alert(JSON.stringify(values, null, 2));
-                                        // navigate("/reservaOnline/organizador/autenticarConta")
 
                                     }).catch((error) => {
                                         console.log(error)
-                                        swal(`${error}`, `Erro evento.`, "warning").then(async () => {
-                                            // navigate("/reservaOnline/admin/autenticarConta")
+
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Erro Bilhete.',
+                                            showConfirmButton: false,
+                                            timer: 3500
                                         })
+
+                                        // swal(`${error}`, `Erro evento.`, "warning").then(async () => {
+                                        //     // navigate("/reservaOnline/admin/autenticarConta")
+                                        // })
 
                                     })
 
@@ -147,8 +157,9 @@ export default function CriarBilhete() {
                                         <span>Adicione as principais informações do evento</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoOrganizador"
                                         disabled={isSubmitting}
+
                                         type="submit">Criar</button>
                                 </div>
                                 <div className="criar_main ">
@@ -187,16 +198,9 @@ export default function CriarBilhete() {
                                                 <select
                                                     name="categoriaId"
                                                     id=""
-                                                    defaultValue={""}
-                                                    onChange={(e) => {
-
-                                                        values.tipoEvento = e.target.value
-
-                                                        console.log(e.target.value)
-
-                                                    }
-
-                                                    }
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    value={values.categoriaId}
                                                 >
 
                                                     <option value="">Tipo de bilhete</option>
@@ -213,15 +217,15 @@ export default function CriarBilhete() {
                                                             </>)
 
                                                     })}
-                                                    {errors.tipoEvento && touched.tipoEvento ? (
-                                                        <div className="container"
-                                                            style={{ color: "red" }}
-                                                        >
-
-                                                            {errors.tipoEvento}
-                                                        </div>
-                                                    ) : null}
                                                 </select >
+                                                {errors.categoriaId && touched.categoriaId ? (
+                                                    <div className="container"
+                                                        style={{ color: "red" }}
+                                                    >
+
+                                                        {errors.categoriaId}
+                                                    </div>
+                                                ) : null}
                                             </div>
 
 

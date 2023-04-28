@@ -2,7 +2,7 @@ import axios from "axios"
 import React, { createContext, useState, useEffect } from "react"
 import { Navigate, useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
-
+import Swal from "sweetalert2"
 
 export const AuthContext = createContext()
 
@@ -57,7 +57,14 @@ export const AuthProvider = ({ children }) => {
           email: email,
         })
 
-      swal("Login confirmado", "Seja bem vindo a reserva online de bilhete", "success");
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Login confirmado',
+        html: "Seja bem vindo a Venda online de bilhetes.",
+        showConfirmButton: false,
+        timer: 3500
+      })
 
 
       console.log(response)
@@ -79,7 +86,15 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
-      swal("Senha errada", "Verifique sua senha ou certifica-se que sua conta está autenticada.", "warning");
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Senha errada',
+        html: "Verifique sua senha ou certifica-se que sua conta está autenticada.",
+        showConfirmButton: false,
+        timer: 3500
+      })
+
     }
   };
 
@@ -92,7 +107,15 @@ export const AuthProvider = ({ children }) => {
           email: email,
         })
 
-      swal("Login confirmado", "Seja bem vindo a reserva online de bilhete", "success");
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Login confirmado',
+        html: "Seja bem vindo a Venda online de bilhetes.",
+        showConfirmButton: false,
+        timer: 3500
+      })
+
 
 
       console.log(response)
@@ -114,7 +137,14 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
-      swal("Senha errada", "Verifique sua senha ou certifica-se que sua conta está autenticada.", "warning");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Senha errada',
+        html: "Verifique sua senha ou certifica-se que sua conta está autenticada.",
+        showConfirmButton: false,
+        timer: 3500
+      })
+
     }
   };
 
@@ -126,7 +156,15 @@ export const AuthProvider = ({ children }) => {
           email: email,
         })
 
-      swal("Login confirmado", "Seja bem vindo a reserva online de bilhete", "success");
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Login confirmado',
+        html: "Seja bem vindo a Venda online de bilhetes.",
+        showConfirmButton: false,
+        timer: 3500
+      })
+
 
       console.log(response)
       console.log(response.data.usuario.email)
@@ -147,7 +185,15 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error)
-      swal("Senha errada", "Verifique sua senha ou certifica-se que sua conta está autenticada.", "warning");
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Senha errada',
+        html: "Verifique sua senha ou certifica-se que sua conta está autenticada.",
+        showConfirmButton: false,
+        timer: 4500
+      })
+
       // alert("Senha incorreta")
     }
   };
@@ -161,18 +207,41 @@ export const AuthProvider = ({ children }) => {
   const singOutAdmin = () => {
     localStorage.clear();
     setUser(null);
-    return setTimeout(() => {
-      swal("Sessão terminada", "Muito obrigado por usar a aplicação. Volte sempre.", "success");
-    }, 1);
+
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sessão terminada',
+      html: "Muito obrigado por usar a aplicação. Volte sempre.",
+      showConfirmButton: false,
+      timer: 4500
+    })
+    // navigate("/reservaOnline/admin/login")
+  };
+
+  const singOutParticpante = () => {
+    localStorage.clear();
+    setUser(null);
+
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sessão terminada',
+      html: "Muito obrigado por usar a aplicação. Volte sempre.",
+      showConfirmButton: false,
+      timer: 4500
+    })
     // navigate("/reservaOnline/admin/login")
   };
 
   const singOutOrganizador = () => {
     localStorage.clear();
     setUser(null);
-    return setTimeout(() => {
-      swal("Sessão terminada", "Muito obrigado por usar a aplicação. Volte sempre.", "success");
-    }, 1);
+    Swal.fire({
+      icon: 'success',
+      title: 'Sessão terminada',
+      html: "Muito obrigado por usar a aplicação. Volte sempre..",
+      showConfirmButton: false,
+      timer: 3500
+    })
   };
 
 
@@ -184,6 +253,8 @@ export const AuthProvider = ({ children }) => {
         signInOrganizador,
         signInAdmin,
         singOutOrganizador,
+        singOutParticpante,
+
         singOut,
         singOutAdmin,
         signed: !!user,
