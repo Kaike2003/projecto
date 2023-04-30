@@ -4,8 +4,8 @@ import MaterialTable from 'material-table'
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { format } from "date-fns";
-import { Edit } from "lucide-react";
-import swal from 'sweetalert';
+import { Edit, Trash } from "lucide-react";
+import Swal from "sweetalert2";
 
 
 export default function TabelaBilhete() {
@@ -81,27 +81,27 @@ export default function TabelaBilhete() {
                 <MaterialTable
 
 
-                    editable={{
+                    // editable={{
 
 
-                        onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
+                    //     onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
 
-                            axios.delete(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/bilhete/${selectedRow.id}`
-                            ).then(sucesso => {
-                                console.log(sucesso)
-                                // navigate("/reservaOnline/dashboard/admin/categoria/listar")
-                                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
-                            }).catch(error => {
-                                console.log(error)
-                            })
+                    //         axios.delete(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/bilhete/${selectedRow.id}`
+                    //         ).then(sucesso => {
+                    //             console.log(sucesso)
+                    //             // navigate("/reservaOnline/dashboard/admin/categoria/listar")
+                    //             // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+                    //         }).catch(error => {
+                    //             console.log(error)
+                    //         })
 
-                            setTimeout(() => { resolve() }, 1500)
+                    //         setTimeout(() => { resolve() }, 1500)
 
-                        })
+                    //     })
 
 
 
-                    }}
+                    // }}
 
                     actions={
                         [
@@ -119,51 +119,42 @@ export default function TabelaBilhete() {
                                     navigate(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/${data.id}`)
 
 
-                                    // setTimeout(() => {
+                                }
 
-                                    //     swal("Evento selecionado", `Adicione detalhes ao evento ${data.nome}`, "success");
+                            },
+
+                            {
+                                icon: () => {
+                                    return <Trash></Trash>
+                                },
+                                tooltip: "Excluir",
+                                onClick: (e, data) => {
+
+                                    //   console.log(data, e.target.value)
+                                    console.log(data)
 
 
-                                    //     // /evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/invalido
 
-                                    // }, 440)
+
+                                    axios.delete(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/bilhete/${data.id}`
+                                    ).then(sucesso => {
+                                        
+                                        Swal.fire({
+                                            icon: "success",
+                                            html: "Bilhete excluido",
+                                            timer: 2500
+                                        })
+
+                                    }).catch(error => {
+                                        console.log(error)
+                                    })
+
 
 
 
                                 }
 
-                            },
-
-                            // {
-                            //     icon: () => {
-                            //         return <></>
-                            //     },
-                            //     tooltip: "Editar",
-                            //     onClick: (e, data) => {
-
-                            //         //   console.log(data, e.target.value)
-                            //         console.log(data)
-
-
-                            //         setTimeout(() => {
-
-
-                            //             axios.put(`http://localhost:3456/admin/eventos/banido/${data.id}`
-                            //             ).then(sucesso => {
-                            //                 navigate("/reservaOnline/dashboard/admin/evento/banidos")
-                            //                 console.log(`Evento banido com sucesso. Id: ${data.id}`)
-                            //                 console.log(sucesso)
-                            //             }).catch(error => {
-                            //                 console.log(error)
-                            //             })
-
-                            //         }, 1540)
-
-
-
-                            //     }
-
-                            // }
+                            }
 
 
 
@@ -200,7 +191,7 @@ export default function TabelaBilhete() {
                     columns={columns}
                     data={dataEvento}
                     options={{
-                        pageSize: 5,
+                        pageSize: 4,
                         pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
@@ -211,7 +202,7 @@ export default function TabelaBilhete() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#0DCAF0",
+                            background: "rgb(32, 201, 151)",
                             color: "#fff", fontSize: "14px",
                         }
 

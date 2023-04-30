@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Home.css"
 import TabelaHome from "../tabelas/TabelaHome";
 import axios from "axios";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 export default function Home() {
     const [data, setData] = useState([])
@@ -17,7 +18,7 @@ export default function Home() {
 
 
 
-            const response = await axios.get('http://localhost:3456/admin/listarTodosUsuarios');
+            const response = await axios.get('http://localhost:3456/admin/usuarios/organizador');
             const newData = response.data;
             setData(newData);
 
@@ -33,8 +34,9 @@ export default function Home() {
 
     }, []);
 
-    console.log("Lista de utilizadores", data)
 
+
+    InatividadePagina()
 
     return (
         <>

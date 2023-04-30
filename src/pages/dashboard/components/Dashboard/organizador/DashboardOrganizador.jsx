@@ -4,6 +4,7 @@ import "../css/Dashboard.css"
 import { Outlet, NavLink, Link } from "react-router-dom"
 import { User } from "lucide-react";
 import axios from "axios";
+import InatividadePagina from "../../../../../middlewares/TerminarSessao";
 
 export default function DashboardOrganizador() {
 
@@ -30,12 +31,13 @@ export default function DashboardOrganizador() {
 
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const url = "/reservaOnline/dashboard/organizador"
-    console.log(url)
 
+
+    InatividadePagina()
 
     return (
         <>
@@ -82,7 +84,6 @@ export default function DashboardOrganizador() {
                                     to={url + "/perfil"}>
                                     <div className="button_span_user">
                                         {data.map(item => {
-                                            console.log(nomeUtilizador)
                                             if (item.email === nomeUtilizador) {
                                                 return (
                                                     <div key={item.id} >

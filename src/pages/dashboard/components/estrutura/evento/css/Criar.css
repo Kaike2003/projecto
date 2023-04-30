@@ -24,12 +24,13 @@ form {
 
 .PnomeBotaoOrganizador {
     color: white;
-    background-color: #0DCAF0;
+    background-color: rgb(32, 201, 151);
+
 }
 
 .eventos_lista_organizador .active span {
     padding: 0 0 7.4px 0;
-    border-bottom: 3.4px solid #0DCAF0;
+    border-bottom: 3.4px solid rgb(32, 201, 151);
     cursor: pointer;
 }
 

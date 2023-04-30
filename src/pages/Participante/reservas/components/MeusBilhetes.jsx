@@ -7,8 +7,11 @@ import axios from "axios"
 import { format } from "date-fns";
 import { Edit, MoreHorizontal } from "lucide-react";
 import swal from 'sweetalert';
+import InatividadePagina from "../../../../middlewares/TerminarSessao";
 
 export default function MeusBilhetes() {
+
+
 
     const { idUtilizador } = useParams()
     const navigate = useNavigate()
@@ -29,7 +32,7 @@ export default function MeusBilhetes() {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
                     }
-                }   
+                }
             );
             const newData = response.data;
             setData(newData);
@@ -114,6 +117,7 @@ export default function MeusBilhetes() {
 
 
 
+    InatividadePagina()
 
     return (
         <>

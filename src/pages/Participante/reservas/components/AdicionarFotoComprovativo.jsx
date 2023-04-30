@@ -7,12 +7,15 @@ import axios from "axios";
 import { useRef } from "react";
 import Swal from 'sweetalert2';
 import PrevisualizacaoImagem from "../../../dashboard/components/estrutura/PrevisualizacaoImagem";
+import InatividadePagina from "../../../../middlewares/TerminarSessao";
 const FORMATOS_SUPORTADOS = ["image/jpg", "image/jpeg", "image/png"]
 
 
 
 
 export default function AdicionarFotoComprovativo() {
+
+
 
     const navigate = useNavigate()
 
@@ -44,12 +47,7 @@ export default function AdicionarFotoComprovativo() {
     console.log(data)
     console.log(nomeUtilizador)
 
-    // const FotoSchema = Yup.object().shape({
-    //     foto: Yup.string("A foto de ser uma string")
-    //         .min(5, "O nome do evento. Precisa ter menos de 5 caracteres")
-    //         .max(50, "O nome do evento. Precisa ter mais de 50 caracteres")
-    //         .required("Nome do evento é obrigatorio.")
-    // })
+    InatividadePagina()
 
     return (
         <>
@@ -69,17 +67,8 @@ export default function AdicionarFotoComprovativo() {
 
 
 
-
-
-
                         if (FORMATOS_SUPORTADOS.includes(values.file.type)) {
 
-                            // Swal.fire({
-                            //     icon: 'success',
-                            //     title: 'Comprovativo válido',
-                            //     showConfirmButton: false,
-                            //     timer: 2500
-                            // })
 
                             if (values.file.size <= 40000) {
                                 Swal.fire({

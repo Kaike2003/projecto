@@ -7,6 +7,7 @@ import axios from "axios";
 import PrevisualizacaoImagem from "../../../estrutura/PrevisualizacaoImagem";
 import { useRef } from "react";
 import Swal from 'sweetalert2';
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 const FORMATOS_SUPORTADOS = ["image/jpg", "image/jpeg", "image/png"]
 
 
@@ -48,6 +49,8 @@ export default function AdicionarFotoEvento() {
     //         // (value) => !value || (value && FORMATOS_SUPORTADOS.includes(value?.type))
     //     )
     // })
+
+    InatividadePagina()
 
     return (
         <>

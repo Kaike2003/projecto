@@ -7,9 +7,11 @@ import "../../../pages/dashboard/components/estrutura/evento/css/Criar.css"
 import axios from "axios";
 import { format } from "date-fns";
 import Swal from 'sweetalert2';
+import InatividadePagina from "../../../middlewares/TerminarSessao";
 
 
 export default function PerfilEditarParticipante() {
+
 
     const navigate = useNavigate()
 
@@ -51,7 +53,7 @@ export default function PerfilEditarParticipante() {
 
     console.log(data)
 
-
+    InatividadePagina()
 
     return (
         <>

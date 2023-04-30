@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./EstatisticaHome.css"
 import axios from "axios";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 export default function EstatisticaHome() {
 
@@ -50,6 +51,8 @@ export default function EstatisticaHome() {
     }, [])
 
     console.log(data)
+
+    InatividadePagina()
 
     return (
         <>

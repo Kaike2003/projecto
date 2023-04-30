@@ -6,6 +6,7 @@ import axios from "axios"
 import { Check, Slash, MoreHorizontal } from "lucide-react"
 import { format } from "date-fns";
 import Swal from 'sweetalert2'
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 
 export default function TabelaEventoAespera() {
@@ -67,6 +68,7 @@ export default function TabelaEventoAespera() {
     ]
 
 
+    InatividadePagina()
 
 
     return (

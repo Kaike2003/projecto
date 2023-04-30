@@ -6,6 +6,7 @@ import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import Swal from 'sweetalert2'
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function CriarEvento() {
@@ -78,6 +79,8 @@ export default function CriarEvento() {
             .required("O nome da categoria é obrigatório"),
 
     })
+
+    InatividadePagina()
 
 
     return (

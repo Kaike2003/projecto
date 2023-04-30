@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Outlet, NavLink } from "react-router-dom";
+import InatividadePagina from "../../../middlewares/TerminarSessao";
 
 
 export default function Reservas() {
@@ -31,6 +32,7 @@ export default function Reservas() {
 
     const urlPrivadaParticipante = "/reservaOnline/participante/reservas/"
 
+    InatividadePagina()
 
     return (
         <>

@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -45,6 +46,8 @@ export default function AlterarSenhaOrganizador() {
             .required("Palavra passe nova é obrigátorio"),
 
     })
+
+    InatividadePagina()
 
     return (
         <>

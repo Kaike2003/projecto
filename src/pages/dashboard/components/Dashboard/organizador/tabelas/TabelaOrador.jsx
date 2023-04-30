@@ -27,9 +27,9 @@ export default function TabelaOrador() {
 
 
 
-            const responseUtilizador = await axios.get(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/orador`);
-            const newDataUtilizador = responseUtilizador.data;
-            setDataEvento(newDataUtilizador);
+            const response = await axios.get(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/orador`);
+            const newData = response.data;
+            setDataEvento(newData);
 
             if (localStorage.getItem("@Auth:email") !== null) {
                 setNomeUtilizador(localStorage.getItem("@Auth:email"))
@@ -41,10 +41,6 @@ export default function TabelaOrador() {
         fetchData();
 
     }, []);
-
-    console.log("Lista de bilhetes de um evento", dataEvento)
-
-
 
 
     const CellStyle = { fontSize: "12px", width: "800px" }
@@ -60,7 +56,7 @@ export default function TabelaOrador() {
     return (
         <>
 
-            <div className="tabela mt-3 mb-3 container">
+            <div className="tabela mt-3 container">
                 <MaterialTable
                     editable={{
 
@@ -70,15 +66,12 @@ export default function TabelaOrador() {
                             console.log(newRow.nome)
                             console.log(newRow)
 
-                            // console.log(oldRow)
-
                             axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/orador/${newRow.id}`, {
                                 nome: newRow.nome
                             }
                             ).then(sucesso => {
 
                                 swal("Orador editado", `O orador ${newRow.nome} foi editado com sucesso.`, "success");
-                                // navigate("/reservaOnline/dashboard/admin/categoria/listar")
 
                                 console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
                                 console.log(sucesso)
@@ -93,14 +86,13 @@ export default function TabelaOrador() {
 
                         onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
 
+
+
                             axios.delete(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/orador/${selectedRow.id}`
                             ).then(sucesso => {
 
                                 swal("Orador excluido", `O orador ${selectedRow.nome} foi excluido com sucesso.`, "info");
 
-                                console.log(sucesso)
-                                // navigate("/reservaOnline/dashboard/admin/categoria/listar")
-                                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
                             }).catch(error => {
                                 console.log(error)
                             })
@@ -126,10 +118,12 @@ export default function TabelaOrador() {
                             emptyDataSourceMessage: "Não há registros a serem exibidos.",
                             addTooltip: "Adicionar",
                             editTooltip: "Editar",
+                            deleteTooltip: "Excluir",
                             editRow: {
                                 cancelTooltip: "Cancelar",
                                 saveTooltip: "Confirmar",
-                                deleteText: "Tem certeza de excluir esta linha?"
+                                deleteText: "Tem certeza de excluir esta linha?",
+
                             }
                         },
                         pagination: {
@@ -147,7 +141,7 @@ export default function TabelaOrador() {
                     columns={columns}
                     data={dataEvento}
                     options={{
-                        pageSize: 5,
+                        pageSize: 4,
                         pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
@@ -158,7 +152,7 @@ export default function TabelaOrador() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#0DCAF0",
+                            background: "rgb(32, 201, 151)",
                             color: "#fff", fontSize: "14px",
                         }
 

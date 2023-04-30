@@ -6,10 +6,12 @@ import { format } from "date-fns";
 import { useParams } from "react-router-dom";
 import "./InformacaoParticipante.css"
 import { ChevronRight } from "lucide-react";
+import InatividadePagina from "../../../middlewares/TerminarSessao";
 
 
 
 export default function InformacaoEventoParticipante() {
+
     const { idUtilizador, idBilhete } = useParams()
     const [dataListaCategoria, setDataListaCategoria] = useState([])
     const [data, setData] = useState([]);
@@ -133,7 +135,7 @@ export default function InformacaoEventoParticipante() {
         )
     }
 
-
+    InatividadePagina()
 
 
     return (

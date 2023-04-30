@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./Perfil.css"
 import axios from "axios";
 import { format } from "date-fns";
+import InatividadePagina from "../../../middlewares/TerminarSessao";
 
 
 
 export default function PerfilInfoParticipante() {
+
+
 
     const [data, setData] = useState([]);
     const [nomeUtilizador, setNomeUtilizador] = useState(() => {
@@ -29,6 +32,8 @@ export default function PerfilInfoParticipante() {
 
     const urlImageParticipante = "http://localhost:3456/public/upload/usuarios/participante/"
 
+
+    InatividadePagina()
 
     return (
         <>

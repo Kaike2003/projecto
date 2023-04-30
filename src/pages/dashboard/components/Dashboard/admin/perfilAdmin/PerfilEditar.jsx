@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import { format } from "date-fns";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function PerfilEditar() {
@@ -48,6 +49,8 @@ export default function PerfilEditar() {
     })
 
     console.log(data)
+
+    InatividadePagina()
 
 
 

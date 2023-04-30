@@ -6,6 +6,7 @@ import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
 import Swal from "sweetalert2"
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 export default function CriarPalestrante() {
 
@@ -38,7 +39,6 @@ export default function CriarPalestrante() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
 
 
 
@@ -52,6 +52,7 @@ export default function CriarPalestrante() {
             .max(100, "O blog do palestrante deve conter 100 ou menos caracteres").optional(),
     })
 
+    InatividadePagina()
 
     return (
         <>
@@ -67,7 +68,7 @@ export default function CriarPalestrante() {
                     }}
                     onSubmit={async (values) => {
 
-                        console.log("Dados do palestrante", values)
+                        // console.log("Dados do palestrante", values)
 
                         utilizador.map(item => {
                             if (item.email === nomeUtilizador) {
@@ -77,7 +78,7 @@ export default function CriarPalestrante() {
                                         nome: values.nome,
                                         blog: values.blog
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
                                         // swal("Palestrante criado", `${values.nome} foi criado com sucesso.`, "success").then(async () => {
                                         //     // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}/editar/${idEvento}/orador/listar`)

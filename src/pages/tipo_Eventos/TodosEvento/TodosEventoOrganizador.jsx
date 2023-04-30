@@ -8,6 +8,7 @@ import axios from "axios"
 import CardEvento from "../../card_evento/components/EventoCard"
 import InfiniteScroll from 'react-infinite-scroll-component';
 import CarouselOrganizador from "../../caroucel/CarouselOrganizador"
+import InatividadePagina from "../../../middlewares/TerminarSessao"
 
 export default function TodosEventoOrganizador() {
 
@@ -53,7 +54,6 @@ export default function TodosEventoOrganizador() {
     }, []);
 
 
-    console.log(data)
 
 
     const fetchMoreData = () => {
@@ -76,6 +76,8 @@ export default function TodosEventoOrganizador() {
 
         }, 200);
     }
+
+    InatividadePagina()
 
     return (
         <>

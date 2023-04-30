@@ -203,7 +203,7 @@ export default function TabelaEvento() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#0DCAF0",
+                            background: "rgb(32, 201, 151)",
                             color: "#fff", fontSize: "14px",
                         }
 

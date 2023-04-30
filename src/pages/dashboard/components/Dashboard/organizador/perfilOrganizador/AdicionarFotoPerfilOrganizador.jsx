@@ -6,6 +6,8 @@ import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import PrevisualizacaoImagem from "../../../estrutura/PrevisualizacaoImagem";
 import { useRef } from "react";
+import Swal from "sweetalert2"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function AdicionarFotoPerfilOrganizador() {
@@ -14,7 +16,7 @@ export default function AdicionarFotoPerfilOrganizador() {
 
 
     const [data, setData] = useState([]);
-
+    const [nomeUtilizador, setNomeUtilizador] = ([])
 
     useEffect(() => {
         async function fetchData() {
@@ -22,6 +24,11 @@ export default function AdicionarFotoPerfilOrganizador() {
             const newData = response.data;
             setData(newData);
         }
+
+        if (localStorage.getItem("@Auth:email") !== null) {
+            setNomeUtilizador(localStorage.getItem("@Auth:email"))
+        }
+
         fetchData();
     }, []);
 
@@ -36,6 +43,8 @@ export default function AdicionarFotoPerfilOrganizador() {
     //     // .required("Nome do evento é obrigatorio.")
     // })
 
+    InatividadePagina()
+
     return (
         <>
 
@@ -46,44 +55,43 @@ export default function AdicionarFotoPerfilOrganizador() {
 
                 <Formik
                     initialValues={{
-                       foto: ""
+                        foto: ""
                     }}
                     enableReinitialize
                     onSubmit={async (values) => {
-                        alert("Dados correctos")
-
-                        console.log(values.file.name)
-
-                        // data.map(item => {
-                        //     if (item.email === values.email) {
-                        //         alert("Já existe um nome e ou email cadastrado.");
-                        //         return;
-                        //     } else if (item.nome === values.nome) {
-                        //         alert("Já existe um nome e ou nome cadastrado.");
-                        //         return;
-                        //     } else {
-
-                        //         axios.post("http://localhost:3456/organizador/create",
-                        //             {
-                        //                 nome: values.nome,
-                        //                 palavraPasse: values.password,
-                        //                 email: values.email,
-                        //                 localizacao: "Zango",
-                        //                 telefone: "953164154",
-                        //                 dataNascimento: values.dataNascimento
-                        //             }).then((sucesso) => {
-                        //                 console.log(sucesso)
-                        //                 alert(JSON.stringify(values, null, 2));
-                        //                 navigate("/reservaOnline/organizador/autenticarConta")
-
-                        //             }).catch((error) => {
-                        //                 console.log(error)
-                        //             })
+                        const form = new FormData();
+                        form.append('foto', values.file);
 
 
+                        data.map(item => {
+                            if (item.email === nomeUtilizador) {
+                                return axios.put(`http://localhost:3456/organizador/perfil/${item.id}/adicionarFotoOrganizador`,
+                                    form,
+                                    {
+                                        headers: {
+                                            Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+                                        }
+                                    }
+                                    ,
+                                    {
+                                        foto: values.file.name
+                                    }).then((sucesso) => {
+                                        console.log(sucesso)
 
-                        //     }
-                        // })
+
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Foto alterada com sucesso',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+
+
+                                    }).catch((error) => {
+                                        console.log(error)
+                                    })
+                            }
+                        })
 
 
 

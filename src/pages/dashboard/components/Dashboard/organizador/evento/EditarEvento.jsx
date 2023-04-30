@@ -7,6 +7,7 @@ import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { format } from 'date-fns'
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function EditarEvento() {
@@ -87,7 +88,7 @@ export default function EditarEvento() {
 
     })
 
-
+    InatividadePagina()
 
     return (
         <>
@@ -140,7 +141,7 @@ export default function EditarEvento() {
                                     onSubmit={async (values) => {
 
 
-                                        console.log(values)
+                                        // console.log(values)
 
                                         utilizador.map(item => {
                                             if (item.email === nomeUtilizador) {
@@ -160,7 +161,7 @@ export default function EditarEvento() {
                                                         categoriaId: values.categoriaId,
 
                                                     }).then((sucesso) => {
-                                                        console.log(sucesso)
+                                                        // console.log(sucesso)
 
                                                         Swal.fire({
                                                             icon: 'success',

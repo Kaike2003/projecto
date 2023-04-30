@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { useParams } from "react-router-dom";
 import "./InformacaoEvento.css"
 import { ChevronRight } from "lucide-react";
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -118,11 +119,14 @@ export default function InformacaoEvento() {
         )
     }
 
-    console.log(nomeUtilizador)
-    console.log("Eventos do organizador", dataEvento)
-    console.log("Lista de oradores", dataListaOradores)
-    console.log("Lista de bilhetes", dataListaBilhetes)
+    // console.log(nomeUtilizador)
+    // console.log("Eventos do organizador", dataEvento)
+    // console.log("Lista de oradores", dataListaOradores)
+    // console.log("Lista de bilhetes", dataListaBilhetes)
 
+
+    InatividadePagina()
+    
 
     return (
         <>

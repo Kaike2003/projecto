@@ -7,9 +7,9 @@ import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import CardEvento from "../../card_evento/components/EventoCard"
 import InfiniteScroll from 'react-infinite-scroll-component';
+import InatividadePagina from "../../../middlewares/TerminarSessao"
 
 export default function TodosEvento() {
-
 
 
     const url = "/reservaOnline/participante"
@@ -61,10 +61,10 @@ export default function TodosEvento() {
 
             // if (dataNovosEventos.length < data.length) {
 
-                const responseNovosEventos = await axios.get(`http://localhost:3456/participante/todosEventosLimite?limite=${currentePage} `)
-                const newDataNovosEventos = responseNovosEventos.data;
-                setDataNovosEventos(newDataNovosEventos);
-                setCurrentPage(() => currentePage + 8)
+            const responseNovosEventos = await axios.get(`http://localhost:3456/participante/todosEventosLimite?limite=${currentePage} `)
+            const newDataNovosEventos = responseNovosEventos.data;
+            setDataNovosEventos(newDataNovosEventos);
+            setCurrentPage(() => currentePage + 8)
 
             // } else {
             //     setHasMore(false)
@@ -76,12 +76,15 @@ export default function TodosEvento() {
         }, 200);
     }
 
+
+    InatividadePagina()
+
     return (
         <>
             <div className="invisivel_caroucel"></div>
 
             <InfiniteScroll
-    
+
                 className="infiniteScroll"
                 dataLength={dataNovosEventos.length}
                 next={fetchMoreData}

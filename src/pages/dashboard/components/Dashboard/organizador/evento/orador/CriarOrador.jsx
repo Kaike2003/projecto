@@ -6,6 +6,7 @@ import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
 import Swal from "sweetalert2"
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -51,6 +52,8 @@ export default function CriarOrador() {
             .required("O nome é obrigatório"),
     })
 
+
+    InatividadePagina()
 
     return (
         <>

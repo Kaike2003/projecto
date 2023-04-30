@@ -7,9 +7,11 @@ import axios from "axios";
 import { useRef } from "react";
 import PrevisualizacaoImagem from "../../dashboard/components/estrutura/PrevisualizacaoImagem";
 import Swal from "sweetalert2"
+import InatividadePagina from "../../../middlewares/TerminarSessao";
 
 
 export default function AdicionarFotoPerfilParticipante() {
+
 
     const navigate = useNavigate()
 
@@ -44,6 +46,8 @@ export default function AdicionarFotoPerfilParticipante() {
     //         .max(50, "O nome do evento. Precisa ter mais de 50 caracteres")
     //     // .required("Nome do evento é obrigatorio.")
     // })
+
+    InatividadePagina()
 
     return (
         <>
@@ -84,7 +88,7 @@ export default function AdicionarFotoPerfilParticipante() {
                                             title: 'Foto alterada com sucesso',
                                             showConfirmButton: false,
                                             timer: 1500
-                                          })
+                                        })
 
 
                                     }).catch((error) => {

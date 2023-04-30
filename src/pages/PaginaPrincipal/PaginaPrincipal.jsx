@@ -18,10 +18,12 @@ import TeatroFiltro from "../tipo_Eventos/Teatro/TeatroFiltro"
 import CardEvento from "../card_evento/components/EventoCard";
 import SeminarioFiltro from "../tipo_Eventos/Seminario/SeminarioFiltro";
 import Shows from "../tipo_Eventos/Shows/ShowsFiltro";
+import InatividadePagina from "../../middlewares/TerminarSessao";
 
 // import Eventos from "../section_eventos/Section_eventos_teste"
 
 export default function PaginaPrincipal() {
+
 
     const url = "/reservaOnline/participante"
     const navigate = useNavigate()
@@ -98,23 +100,8 @@ export default function PaginaPrincipal() {
 
     }
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const result = await
-    //             fetch('http://localhost:3000/static/eventos.json')
-    //                 .then((response) => response.json())
-    //                 .then(setData);
 
-    //     }
-    //     fetchData()
-
-    //     console.log(categoria)
-
-    // }, [categoria]);
-
-
-
-
+    InatividadePagina()
 
 
     return (
@@ -143,16 +130,6 @@ export default function PaginaPrincipal() {
                                 </select>
                             </div>
 
-                            {/* <div className="conteudo_categoria_p">
-                                <select className="conteudo_categoria_select">
-                                    <option value="6" >Mês</option>
-                                    <option value="7" >Janeiro</option>
-                                    <option value="8" >Fevereiro</option>
-                                    <option value="9" >Março</option>
-                                    <option value="10" >Abril</option>
-                                </select>
-                            </div> */}
-
                         </div>
                     </div>
 
@@ -166,7 +143,7 @@ export default function PaginaPrincipal() {
 
                     <div className="container_conteudo">
 
-                    <div className="imagemEventoPrincipal"></div>
+                        <div className="imagemEventoPrincipal"></div>
 
                         <div className="container_conteudo">
                             <div className="conteudo_eventos">
@@ -191,6 +168,7 @@ export default function PaginaPrincipal() {
                                                 <>
 
                                                     <Link
+                                                        key={Math.random().toString(36).substring(2)}
                                                         to={url + `/visualizarBilhete/${item.id}`}
                                                         style={{ color: "black" }}
                                                     >
@@ -213,7 +191,7 @@ export default function PaginaPrincipal() {
                                                             />
                                                         </div>
 
-                                                    </Link>
+                                                    </Link >
                                                 </>
                                             )
                                         }
@@ -253,15 +231,12 @@ export default function PaginaPrincipal() {
                     <Perguntas></Perguntas>
                 </div>
 
-                <div className="">
-                    <>
-                        <Contacto></Contacto>
-                    </>
-
+                <div>
+                    <Contacto></Contacto>
                 </div>
 
 
-            </div>
+            </div >
 
 
         </>

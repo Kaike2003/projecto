@@ -5,6 +5,7 @@ import axios from "axios"
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 export default function PagamentoNaoFeito() {
 
@@ -78,7 +79,7 @@ export default function PagamentoNaoFeito() {
                 dataListarTodosBilhetes.map(itemBilhetes => {
                     if (rowData.estado === "FINALIZADO" && rowData.id === itemBilhetes.eventoId) {
                         const receberTotal = []
-                   
+
                         return dataListaItemBilhete.map(itemItemBilhete => {
                             if (itemItemBilhete.bilheteId === itemBilhetes.id && rowData.id === itemBilhetes.eventoId) {
 
@@ -121,6 +122,8 @@ export default function PagamentoNaoFeito() {
         },
 
     ]
+
+    InatividadePagina()
 
     return (
         <>

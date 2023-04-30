@@ -38,7 +38,7 @@ export default function Perguntas() {
               </li>
 
               <li data-aos="fade-up" data-aos-delay="200">
-                <BsQuestionOctagon className="icon-help"></BsQuestionOctagon> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">O que é preciso para fazer uma compra online?
+                <BsQuestionOctagon className="icon-help"></BsQuestionOctagon> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" className="collapsed">O que é preciso para fazer uma compra online?
                   <FiChevronDown className="icon-show"></FiChevronDown>
                   <BsX className="icon-close"></BsX>
                 </a>
@@ -50,7 +50,7 @@ export default function Perguntas() {
               </li>
 
               <li data-aos="fade-up" data-aos-delay="300">
-                <BsQuestionOctagon className="icon-help"></BsQuestionOctagon> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Como realizar compras online de forma segura?
+                <BsQuestionOctagon className="icon-help"></BsQuestionOctagon> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" className="collapsed">Como realizar compras online de forma segura?
                   <FiChevronDown className="icon-show"></FiChevronDown>
                   <BsX className="icon-close"></BsX></a>
                 <div id="faq-list-3" className="collapse" data-bs-parent=".faq-list">
@@ -66,7 +66,7 @@ export default function Perguntas() {
                   <FiChevronDown className="icon-show"></FiChevronDown>
                   <BsX className="icon-close"></BsX>
                 </a>
-                <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <div id="faq-list-4" className="collapse" data-bs-parent=".faq-list">
                   <p> Você acessa sua conta do banco pelo celular ou computador, vai na opção pagamentos. Você pode usar sua câmera do celular como leitor de código de barras ou digitar os números do boleto. Assim que confirmar o pagamento, o valor será debitado de sua conta corrente.
                   </p>
                 </div>
@@ -74,7 +74,7 @@ export default function Perguntas() {
 
               <li data-aos="fade-up" data-aos-delay="500">
                 <BsQuestionOctagon className="icon-help"></BsQuestionOctagon>
-                <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Quais são as vantagens e desvantagens de compras online?
+                <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" className="collapsed">Quais são as vantagens e desvantagens de compras online?
                   <FiChevronDown className="icon-show"></FiChevronDown>
                   <BsX className="icon-close"></BsX>
                 </a>

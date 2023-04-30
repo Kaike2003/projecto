@@ -6,6 +6,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export const RotasPrivadasParticipante = () => {
 
+  
     const { signed } = useContext(AuthContext)
 
     return (

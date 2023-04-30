@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 export default function TabelaOrganizador() {
 
@@ -44,7 +45,7 @@ export default function TabelaOrganizador() {
     ]
 
 
-
+    InatividadePagina()
 
     return (
         <>
@@ -53,7 +54,7 @@ export default function TabelaOrganizador() {
                 <MaterialTable
                     editable={{
                     }}
-                   
+
 
 
 
@@ -87,7 +88,7 @@ export default function TabelaOrganizador() {
                     data={data}
                     options={{
                         pageSize: 5,
-                        pageSizeOptions: [ 4 ,15, 25, 50],
+                        pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
                         exportAllData: true,

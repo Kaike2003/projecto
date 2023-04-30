@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 export default function TabelaAdministradores() {
 
@@ -33,13 +34,16 @@ export default function TabelaAdministradores() {
         { title: "Email", field: "nomeCategoria", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "500px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.email}</div> },
     ]
 
+
+    InatividadePagina()
+
     return (
         <>
 
             <div className="tabela mt-3 mb-3">
                 <MaterialTable
                     editable={{
-        
+
                         // onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
                         //     console.log(newRow.nomeCategoria)
@@ -73,7 +77,7 @@ export default function TabelaAdministradores() {
 
                         // })
                     }}
-                   
+
 
 
 
@@ -107,7 +111,7 @@ export default function TabelaAdministradores() {
                     data={data}
                     options={{
                         pageSize: 5,
-                        pageSizeOptions: [ 4 ,15, 25, 50],
+                        pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
                         exportAllData: true,

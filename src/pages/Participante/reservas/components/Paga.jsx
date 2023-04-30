@@ -7,8 +7,12 @@ import axios from "axios"
 import { format } from "date-fns";
 import { MoreHorizontal, Check } from "lucide-react";
 import Swal from 'sweetalert2'
+import InatividadePagina from "../../../../middlewares/TerminarSessao";
 
 export default function Paga() {
+
+
+
 
     const { idUtilizador } = useParams()
     const navigate = useNavigate()
@@ -101,7 +105,7 @@ export default function Paga() {
     console.log("Evento ==>", dataListaEvento)
 
 
-
+    InatividadePagina()
 
     return (
         <>

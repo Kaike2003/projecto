@@ -7,6 +7,7 @@ import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import CardEvento from "../../card_evento/components/EventoCard"
 import InfiniteScroll from 'react-infinite-scroll-component';
+import InatividadePagina from "../../../middlewares/TerminarSessao"
 
 export default function Concerto() {
 
@@ -75,6 +76,9 @@ export default function Concerto() {
 
         }, 200);
     }
+
+
+    InatividadePagina()
 
     return (
         <>

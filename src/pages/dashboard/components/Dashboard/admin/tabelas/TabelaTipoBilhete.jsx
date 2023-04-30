@@ -4,6 +4,7 @@ import MaterialTable from 'material-table'
 import { Edit } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 export default function TabelaTipoBilhete() {
 
@@ -35,7 +36,7 @@ export default function TabelaTipoBilhete() {
     ]
 
 
-
+    InatividadePagina()
 
     return (
         <>

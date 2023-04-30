@@ -4,6 +4,7 @@ import MaterialTable from 'material-table'
 import { Edit } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 export default function TabelaCategoria() {
 
@@ -35,6 +36,7 @@ export default function TabelaCategoria() {
     ]
 
 
+    InatividadePagina()
 
 
     return (
@@ -43,13 +45,13 @@ export default function TabelaCategoria() {
             <div className="tabela mt-4 mb-4">
                 <MaterialTable
                     editable={{
-                      
+
                         onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
                             console.log(newRow.nomeCategoria)
                             // console.log(oldRow)
 
-                            axios.put(`http://localhost:3456/admin/categoria/atualizarCategoria/${newRow.id}`,{
+                            axios.put(`http://localhost:3456/admin/categoria/atualizarCategoria/${newRow.id}`, {
                                 nome: newRow.nomeCategoria
                             }
                             ).then(sucesso => {
@@ -77,7 +79,7 @@ export default function TabelaCategoria() {
 
                         })
                     }}
-                   
+
 
 
 

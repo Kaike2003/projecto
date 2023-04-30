@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 import Swal from "sweetalert2"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function CriarTipoBilhete() {
@@ -31,6 +32,9 @@ export default function CriarTipoBilhete() {
             .max(30, "O nome do bilhete. Precisa ter pelo menos 30 caracteres")
             .required("Nome do bilhete é obrigátorio.")
     })
+
+
+    InatividadePagina()
 
     return (
         <>

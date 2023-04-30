@@ -7,6 +7,7 @@ import axios from "axios";
 import swal from 'sweetalert';
 import Swal from "sweetalert2"
 import { format } from 'date-fns'
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -74,6 +75,8 @@ export default function EditarBilhete() {
 
     console.log(data)
 
+    InatividadePagina()
+    
 
     return (
         <>

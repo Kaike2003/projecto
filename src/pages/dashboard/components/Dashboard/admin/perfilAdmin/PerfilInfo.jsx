@@ -3,6 +3,7 @@ import "./Perfil.css"
 import Imagem from "../../../../../../assets/img/palestrante.jpg"
 import axios from "axios";
 import { format } from "date-fns";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function PerfilInfo() {
@@ -26,6 +27,9 @@ export default function PerfilInfo() {
     }, []);
 
     console.log(nomeUtilizador)
+
+    InatividadePagina()
+    
 
     return (
         <>

@@ -6,6 +6,7 @@ import axios from "axios";
 import swal from 'sweetalert';
 import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function CriarCategoria() {
@@ -30,6 +31,8 @@ export default function CriarCategoria() {
             .max(50, "O nome da categoria. Precisa ter pelo menos 50 caracteres")
             .required("Nome da categoria é obrigátorio.")
     })
+
+    InatividadePagina()
 
     return (
         <>

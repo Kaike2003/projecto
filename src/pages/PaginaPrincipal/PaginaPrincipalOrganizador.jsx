@@ -19,10 +19,13 @@ import CardEvento from "../card_evento/components/EventoCard";
 import SeminarioFiltro from "../tipo_Eventos/Seminario/SeminarioFiltro";
 import Shows from "../tipo_Eventos/Shows/ShowsFiltro";
 import CarouselOrganizador from "../caroucel/CarouselOrganizador";
+import InatividadePagina from "../../middlewares/TerminarSessao";
 
 // import Eventos from "../section_eventos/Section_eventos_teste"
 
 export default function PaginaPrincipalOrganizador() {
+
+
 
     const url = "/reservaOnline/dashboard/organizador/paginaPrincipal"
     const navigate = useNavigate()
@@ -99,21 +102,8 @@ export default function PaginaPrincipalOrganizador() {
 
     }
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const result = await
-    //             fetch('http://localhost:3000/static/eventos.json')
-    //                 .then((response) => response.json())
-    //                 .then(setData);
 
-    //     }
-    //     fetchData()
-
-    //     console.log(categoria)
-
-    // }, [categoria]);
-
-
+    InatividadePagina()
 
 
 
@@ -127,7 +117,7 @@ export default function PaginaPrincipalOrganizador() {
                 <div className="container container_fundo">
                     <CarouselOrganizador />
                     <div className="container">
-                       
+
                     </div>
 
 
@@ -141,8 +131,8 @@ export default function PaginaPrincipalOrganizador() {
                     <div className="container_conteudo">
 
 
-                    <div className="imagemEventoPrincipal"></div>
-                    
+                        <div className="imagemEventoPrincipal"></div>
+
 
 
                         <div className="container_conteudo">

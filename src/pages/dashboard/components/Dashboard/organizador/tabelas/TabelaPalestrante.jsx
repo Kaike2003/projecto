@@ -4,8 +4,8 @@ import MaterialTable from 'material-table'
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { format } from "date-fns";
-import { ImagePlus } from "lucide-react";
-import swal from 'sweetalert';
+import { ImagePlus, Trash } from "lucide-react";
+import Swal from 'sweetalert2';
 
 
 export default function TabelaPalestrante() {
@@ -14,11 +14,12 @@ export default function TabelaPalestrante() {
 
 
     const [dataEvento, setDataEvento] = useState([]);
-    const [nomeUtilizador, setNomeUtilizador] = useState(() => {
+    const [dataListaOrganizador, setDataListaOrganizador] = useState([]);
+
+    const [emailUtilizador, setEmailUtilizador] = useState(() => {
         return ""
     })
 
-    console.log("Id do utilizador", idEvento)
 
 
     useEffect(() => {
@@ -27,13 +28,18 @@ export default function TabelaPalestrante() {
 
 
 
-            const responseUtilizador = await axios.get(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/palestrante`);
-            const newDataUtilizador = responseUtilizador.data;
-            setDataEvento(newDataUtilizador);
+            const response = await axios.get(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/palestrante`);
+            const newData = response.data;
+            setDataEvento(newData);
+
+            const responseListaOrganizador = await axios.get(`http://localhost:3456/admin/usuarios/organizador`)
+            const newDataListaOrganizador = responseListaOrganizador.data
+            setDataListaOrganizador(newDataListaOrganizador)
+
 
 
             if (localStorage.getItem("@Auth:email") !== null) {
-                setNomeUtilizador(localStorage.getItem("@Auth:email"))
+                setEmailUtilizador(localStorage.getItem("@Auth:email"))
 
             }
 
@@ -43,7 +49,6 @@ export default function TabelaPalestrante() {
 
     }, []);
 
-    console.log("Lista de palestrante de um evento", dataEvento)
 
 
 
@@ -60,7 +65,7 @@ export default function TabelaPalestrante() {
             }</div>
         },
         {
-            title: "Imagem", field: "blog", cellStyle: CellStyle, render: (rowData) => <div style={{
+            title: "Imagem", field: "foto", cellStyle: CellStyle, render: (rowData) => <div style={{
                 width: "100px",
                 padding: "0",
                 fontSize: CellRender.fontSize,
@@ -89,6 +94,8 @@ export default function TabelaPalestrante() {
                 <MaterialTable
                     editable={{
 
+
+
                         onRowUpdate: (selectedRow) => new Promise((resolve, reject) => {
 
                             axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/palestrante/${selectedRow.id}`, {
@@ -96,11 +103,16 @@ export default function TabelaPalestrante() {
                                 blog: selectedRow.blog
                             }
                             ).then(sucesso => {
-                                console.log(sucesso)
+                                // console.log(sucesso)
 
-                                swal("Palestrante editado", `O palestrante ${selectedRow.nome} foi editado com sucesso.`, "success");
-                                // navigate("/reservaOnline/dashboard/admin/categoria/listar")
-                                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Palestrante editado",
+                                    html: `O palestrante ${selectedRow.nome} foi editado com sucesso.`,
+                                    timer: 2500
+
+                                })
+
                             }).catch(error => {
                                 console.log(error)
                             })
@@ -108,25 +120,6 @@ export default function TabelaPalestrante() {
                             setTimeout(() => { resolve() }, 1500)
 
                         }),
-
-                        onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
-
-                            axios.delete(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/palestrante/${selectedRow.id}`
-                            ).then(sucesso => {
-                                console.log(sucesso)
-
-
-                                swal("Palestrante excluido", `O palestrante ${selectedRow.nome} foi excluido.`, "info");
-                                // navigate("/reservaOnline/dashboard/admin/categoria/listar")
-                                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
-                            }).catch(error => {
-                                console.log(error)
-                            })
-
-                            setTimeout(() => { resolve() }, 1500)
-
-                        })
-
 
 
                     }}
@@ -144,50 +137,91 @@ export default function TabelaPalestrante() {
                                     // console.log(data)
 
 
+                                    navigate(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/${data.id}`)
 
-                                        // swal("Palestrante selecionado", `Adicione foto ao palestrante ${data.nome}`, "success");
-
-                                        navigate(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/${data.id}`)
-
-                                        // console.log(`/reservaOnline/dashboard/organizador/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/${data.id}`)
-
-                                        // /evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/invalido
 
 
                                 }
 
                             },
 
-                            // {
-                            //     icon: () => {
-                            //         return <></>
-                            //     },
-                            //     tooltip: "Editar",
-                            //     onClick: (e, data) => {
+                            {
+                                icon: () => {
+                                    return <Trash></Trash>
+                                },
+                                tooltip: "Excluir",
+                                onClick: (e, data) => {
 
-                            //         //   console.log(data, e.target.value)
-                            //         console.log(data)
-
-
-                            //         setTimeout(() => {
-
-
-                            //             axios.put(`http://localhost:3456/admin/eventos/banido/${data.id}`
-                            //             ).then(sucesso => {
-                            //                 navigate("/reservaOnline/dashboard/admin/evento/banidos")
-                            //                 console.log(`Evento banido com sucesso. Id: ${data.id}`)
-                            //                 console.log(sucesso)
-                            //             }).catch(error => {
-                            //                 console.log(error)
-                            //             })
-
-                            //         }, 1540)
+                                    //   console.log(data, e.target.value)
+                                    // console.log(data)
 
 
 
-                            //     }
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: 'Deseja excluir esse palestrante ?',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Sim',
+                                        cancelButtonText: 'Não',
+                                        cancelButtonColor: "red",
+                                        confirmButtonColor: "rgb(32, 201, 151)"
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
 
-                            // }
+
+                                            axios.delete(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/palestrante/${data.id}`
+                                            ).then(sucesso => {
+
+
+                                                Swal.fire({
+                                                    icon: "info",
+                                                    title: "Palestrante excluido",
+                                                    showConfirmButton: false,
+                                                    timer: 2500
+
+                                                }).then(() => {
+                                                  return  dataListaOrganizador.map(item => {
+
+                                                        if (item.email === emailUtilizador) {
+                                                            return navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}/editar/${idEvento}/palestrante/listar`)
+                                                        }
+
+                                                    })
+                                                })
+
+
+
+
+
+
+
+                                            }).catch(error => {
+                                                console.error(error.response.data);
+                                                console.error(error.response.status);
+                                                console.error(error.response.headers);
+
+                                                Swal.fire({
+                                                    icon: "info",
+                                                    title: error.response.data,
+
+                                                })
+
+                                            })
+
+
+                                        }
+                                    })
+
+
+
+                                   
+                                    
+
+
+
+                                }
+
+                            }
 
 
 
@@ -225,7 +259,7 @@ export default function TabelaPalestrante() {
                     columns={columns}
                     data={dataEvento}
                     options={{
-                        pageSize: 5,
+                        pageSize: 4,
                         pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
@@ -236,7 +270,7 @@ export default function TabelaPalestrante() {
                         selection: false,
                         rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                         headerStyle: {
-                            background: "#0DCAF0",
+                            background: "rgb(32, 201, 151)",
                             color: "#fff", fontSize: "14px",
                         }
 

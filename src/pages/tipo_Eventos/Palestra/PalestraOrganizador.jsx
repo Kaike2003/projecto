@@ -8,9 +8,9 @@ import axios from "axios"
 import CardEvento from "../../card_evento/components/EventoCard"
 import InfiniteScroll from 'react-infinite-scroll-component';
 import CarouselOrganizador from "../../caroucel/CarouselOrganizador"
+import InatividadePagina from "../../../middlewares/TerminarSessao"
 
 export default function PalestraOrganizador() {
-
 
 
     const url = "/reservaOnline/dashboard/organizador/paginaPrincipal"
@@ -77,6 +77,8 @@ export default function PalestraOrganizador() {
 
         }, 200);
     }
+
+    InatividadePagina()
 
     return (
         <>

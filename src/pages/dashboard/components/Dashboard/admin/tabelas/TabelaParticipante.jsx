@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import MaterialTable from 'material-table'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 export default function TabelaParticipante() {
 
@@ -19,7 +20,7 @@ export default function TabelaParticipante() {
             const response = await axios.get('http://localhost:3456/admin/usuarios/participante');
             const newData = response.data;
             setData(newData);
-           
+
         }
         fetchData();
     }, []);
@@ -45,7 +46,7 @@ export default function TabelaParticipante() {
 
     ]
 
-
+    InatividadePagina()
 
 
     return (
@@ -55,7 +56,7 @@ export default function TabelaParticipante() {
                 <MaterialTable
                     editable={{
                     }}
-                   
+
 
 
 
@@ -89,7 +90,7 @@ export default function TabelaParticipante() {
                     data={data}
                     options={{
                         pageSize: 5,
-                        pageSizeOptions: [ 4 ,15, 25, 50],
+                        pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
                         exportAllData: true,

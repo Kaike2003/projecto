@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Swal from 'sweetalert2'
 import { MoreHorizontal } from "lucide-react"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 export default function TabelaEventoBanido() {
 
@@ -42,7 +43,7 @@ export default function TabelaEventoBanido() {
     ]
 
 
-
+    InatividadePagina()
 
     return (
         <>

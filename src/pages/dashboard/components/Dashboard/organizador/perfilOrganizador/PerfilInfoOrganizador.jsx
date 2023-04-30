@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Perfil.css"
 import axios from "axios";
 import { format } from "date-fns";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 const urlImageOrganizador = "http://localhost:3456/public/upload/usuarios/organizador/"
 
@@ -27,6 +28,8 @@ export default function PerfilInfoOrganizador() {
     }, []);
 
     console.log(nomeUtilizador)
+
+    InatividadePagina()
 
     return (
         <>

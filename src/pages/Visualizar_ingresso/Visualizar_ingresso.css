@@ -1,11 +1,12 @@
 .visualiarLadosPai {
-    margin-top: 50px;
+    margin-top: 40px;
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
 }
 
 .visualiarLados {
@@ -107,8 +108,8 @@
 }
 
 .ibanVisualizarEvento {
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 12px;
+    margin-bottom: 10px;
 }
 
 .ibanVisualizarEvento span span {
@@ -206,7 +207,9 @@
     padding: 0px 20px 0px 20px;
 }
 
-
+#selecteBilhetePreco {
+    margin-top: 10px
+}
 
 .selectTipoBilhete {
     width: 100%;
@@ -236,7 +239,7 @@
     display: grid;
     grid-template-columns: 35% 20% 40%;
     /* background-color: red; */
-    margin-top: 15px;
+    margin-top: 20px;
     gap: 10px;
 }
 
@@ -298,8 +301,7 @@
 }
 
 .visualiarLadosPaiOrganizador {
-    margin-top: 50px;
-    /* background-color: #e51b15; */
+    margin-top: 30px;
     width: 100%;
     height: 100%;
 }
@@ -312,10 +314,10 @@
 .ladoInformacaoSpanOrganizador {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-bottom: 2px;
 }
 
-.ladoInformacaoSpanOrganizador span:first-child {
+.tituloEvento {
     font-size: 35px;
     font-weight: 300px;
     padding-bottom: 5px;
@@ -333,6 +335,17 @@
     padding-left: 10px;
 }
 
+.spanEstadoEvento {
+    position: relative;
+    bottom: 15px;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    padding-left: 10px;
+    font-size: 10px;
+}
+
+
 .ladoFotoOrganizador {
     display: flex;
     justify-content: center;
@@ -347,4 +360,216 @@
     height: 500px;
     width: 100%;
     object-fit: cover;
+}
+
+
+
+/*Mobile*/
+
+
+@media screen and (min-width: 320px) and (max-width:568px) {
+
+    .tituloEvento {
+        margin-top: -4px;
+    }
+
+
+    .visualiarLadosPaiOrganizador {
+        margin-top: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .visualiarLadosOrganizador {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ladoFotoOrganizador img {
+        height: 280px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .ladoInformacaoSpanOrganizador {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .textoParagrafo {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: justify;
+        margin: 0;
+        height: 200px;
+    }
+
+    .sizeIcone {
+        font-size: 50px;
+    }
+
+
+
+
+}
+
+@media screen and (min-width: 569px) and (max-width:767px) {
+
+
+    .tituloEvento {
+        margin-top: -4px;
+    }
+
+
+    .visualiarLadosPaiOrganizador {
+        margin-top: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .visualiarLadosOrganizador {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ladoFotoOrganizador img {
+        height: 280px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .ladoInformacaoSpanOrganizador {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .textoParagrafo {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: justify;
+        margin: 0;
+        height: 200px;
+    }
+
+    .sizeIcone {
+        font-size: 50px;
+    }
+
+
+
+}
+
+/*Tablet*/
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+
+    .tituloEvento {
+        margin-top: -4px;
+    }
+
+
+    .visualiarLadosPaiOrganizador {
+        margin-top: 30px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .visualiarLadosOrganizador {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ladoFotoOrganizador img {
+        height: 500px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .ladoInformacaoSpanOrganizador {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .textoParagrafo {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: justify;
+        margin: 0;
+        height: 128px;
+    }
+
+    .sizeIcone {
+        font-size: 50px;
+    }
+
+    .quantidadeComprarPalestranteOrador{
+        margin-bottom: 3px;
+    }
+}
+
+/*Laptops*/
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .tituloEvento {
+        margin-top: -4px;
+    }
+
+
+    .visualiarLadosPaiOrganizador {
+        margin-top: 30px;
+        width: 100%;
+        height: 100%;
+        background-color: #e51b15;
+
+    }
+
+    .visualiarLadosOrganizador {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .ladoFotoOrganizador img {
+        height: 500px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .ladoInformacaoSpanOrganizador {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .textoParagrafo {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: justify;
+        margin: 0;
+        height: 128px;
+    }
+
+    .sizeIcone {
+        font-size: 50px;
+    }
+
+    .quantidadeComprarPalestranteOrador{
+        margin-bottom: 0px;
+    }
+
+    .ibanVisualizarEvento {
+        margin-top: 25px;
+        margin-bottom: 0px;
+    }
 }

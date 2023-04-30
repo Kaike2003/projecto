@@ -6,6 +6,7 @@ import "../../../estrutura/../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import { format } from "date-fns";
 import Swal from 'sweetalert2';
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function PerfilEditarOrganizador() {
@@ -60,6 +61,7 @@ export default function PerfilEditarOrganizador() {
     console.log(data)
 
 
+    InatividadePagina()
 
     return (
         <>

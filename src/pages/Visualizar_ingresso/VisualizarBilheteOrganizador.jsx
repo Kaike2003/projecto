@@ -19,6 +19,7 @@ import { format } from "date-fns";
 import * as Yup from 'yup';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Card_Palestrante from "../Palestrante/Card_Palestrante/Card_Palestrante";
+import InatividadePagina from "../../middlewares/TerminarSessao";
 
 
 
@@ -203,6 +204,8 @@ export default function VisualizarBilheteOrganizador() {
     }
 
     const sizeIcone = 28
+
+    InatividadePagina()
 
     return (
         <>

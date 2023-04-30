@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -37,6 +38,9 @@ export default function EstruturaEvento() {
         }
         fetchData();
     }, []);
+
+    InatividadePagina()
+
 
 
     return (

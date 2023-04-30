@@ -6,6 +6,7 @@ import "../../../pages/dashboard/components/estrutura/evento/css/Criar.css"
 
 import axios from "axios";
 import Swal from 'sweetalert2';
+import InatividadePagina from "../../../middlewares/TerminarSessao";
 
 
 
@@ -46,6 +47,8 @@ export default function AlterarSenhaParticipante() {
             .required("Palavra passe nova é obrigátorio"),
 
     })
+
+    InatividadePagina()
 
     return (
         <>

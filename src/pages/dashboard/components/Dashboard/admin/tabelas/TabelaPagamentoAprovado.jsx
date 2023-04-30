@@ -6,6 +6,7 @@ import axios from "axios"
 import Swal from 'sweetalert2'
 import { MoreHorizontal, Check, Slash } from "lucide-react"
 import { format } from "date-fns"
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao"
 
 export default function TabelaPagamentoAprovado() {
 
@@ -107,7 +108,7 @@ export default function TabelaPagamentoAprovado() {
     ]
 
 
-
+    InatividadePagina()
 
     return (
         <>

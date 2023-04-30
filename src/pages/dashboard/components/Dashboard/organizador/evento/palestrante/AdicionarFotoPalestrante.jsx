@@ -7,6 +7,7 @@ import axios from "axios";
 import PrevisualizacaoImagem from "../../../../estrutura/PrevisualizacaoImagem";
 import { useRef } from "react";
 import Swal from 'sweetalert2';
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 const FORMATOS_SUPORTADOS = ["image/jpg", "image/jpeg", "image/png"]
 
@@ -42,6 +43,8 @@ export default function AdicionarFotoPalestrante() {
     //         .required("Nome do evento é obrigatorio.")
     // })
 
+    InatividadePagina()
+
     return (
         <>
 
@@ -70,7 +73,7 @@ export default function AdicionarFotoPalestrante() {
                                 {
                                     foto: values.file.name
                                 }).then((sucesso) => {
-                                    console.log(sucesso)
+                                    // console.log(sucesso)
 
                                     Swal.fire({
                                         icon: 'success',

@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { useNavigate, useParams } from "react-router-dom";
 import "./InformacaoEvento.css"
 import { ChevronRight } from "lucide-react";
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -155,6 +156,8 @@ export default function InformacaoEvento() {
         })
     }
 
+
+    InatividadePagina()
 
     return (
         <>

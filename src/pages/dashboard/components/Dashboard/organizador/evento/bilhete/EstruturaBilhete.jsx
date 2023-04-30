@@ -3,6 +3,7 @@ import { NavLink, Navigate, Outlet, useNavigate, useParams } from "react-router-
 // import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -42,6 +43,7 @@ export default function EstruturaBilhete() {
 
     console.log("Email do utilizador", nomeUtilizador)
 
+    InatividadePagina()
 
     return (
         <>
@@ -69,7 +71,7 @@ export default function EstruturaBilhete() {
 
                     </NavLink>
 
-{/* 
+                    {/* 
                     <NavLink
                         key={Math.random().toString(36).substring(2)}
                         to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/bilhete/editar/invalido`}

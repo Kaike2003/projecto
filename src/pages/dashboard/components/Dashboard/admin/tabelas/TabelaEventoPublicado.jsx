@@ -6,6 +6,7 @@ import axios from "axios"
 import { format } from "date-fns";
 import { MoreHorizontal } from "lucide-react";
 import Swal from 'sweetalert2'
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 export default function TabelaEventoPublicado() {
 
@@ -27,11 +28,11 @@ export default function TabelaEventoPublicado() {
 
         async function fetchData() {
             const response = await axios.get('http://localhost:3456/admin/eventos/publicados'
-            , {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+                , {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("@Auth:token")}`
+                    }
                 }
-            }
             );
             const newData = response.data;
             setData(newData);
@@ -73,7 +74,7 @@ export default function TabelaEventoPublicado() {
     ]
 
 
-
+    InatividadePagina()
 
     return (
         <>

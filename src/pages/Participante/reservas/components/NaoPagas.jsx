@@ -7,8 +7,11 @@ import axios from "axios"
 import { format } from "date-fns";
 import { ImagePlus, MoreHorizontal } from "lucide-react";
 import Swal from 'sweetalert2'
+import InatividadePagina from "../../../../middlewares/TerminarSessao";
 
 export default function NaoPagas() {
+
+
 
     const { idUtilizador } = useParams()
     const navigate = useNavigate()
@@ -88,7 +91,7 @@ export default function NaoPagas() {
 
 
 
-
+    InatividadePagina()
 
     return (
         <>

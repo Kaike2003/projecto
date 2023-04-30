@@ -5,6 +5,7 @@ import * as Yup from "yup"
 import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import Swal from 'sweetalert2';
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -43,7 +44,7 @@ export default function PublicarEvento() {
     console.log("Email do utilizador", nomeUtilizador)
 
 
-
+    InatividadePagina()
 
 
     return (
@@ -92,11 +93,11 @@ export default function PublicarEvento() {
                             <div className="criar container">
                                 <div className="criar_info_criar">
                                     <div
-                                
+
 
                                         className="criar_info">
                                         <span style={{ color: "red" }}>1. Informação</span> <br />
-                                        <span style={{fontSize:"18px"}}>Antes de publicar seu evento. Preencha todos os detalhes necessários para que seu evento seja aprovado e seja visualizado pelos participantes da aplicação. Caso contrário seu evento pode não ser aprovado ou pode ser banido da aplicação.</span>
+                                        <span style={{ fontSize: "18px" }}>Antes de publicar seu evento. Preencha todos os detalhes necessários para que seu evento seja aprovado e seja visualizado pelos participantes da aplicação. Caso contrário seu evento pode não ser aprovado ou pode ser banido da aplicação.</span>
                                     </div>
                                     <button
                                         className="PnomeBotaoOrganizador"

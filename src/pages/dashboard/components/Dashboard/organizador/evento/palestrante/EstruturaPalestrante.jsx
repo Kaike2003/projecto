@@ -3,6 +3,7 @@ import { NavLink, Navigate, Outlet, useNavigate, useParams } from "react-router-
 // import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -14,14 +15,11 @@ export default function EstruturaPalestrante() {
 
     const [data, setData] = useState([]);
     const [utilizador, setUtilizador] = useState([]);
-    const [nomeUtilizador, setNomeUtilizador] = useState(() => {
+    const [emailUtilizador, setEmailUtilizador] = useState(() => {
         return ""
     })
 
-    console.log("IdEvento", idEvento)
-    console.log("IdUtilizador", idUtilizador)
-
-
+   
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get('http://localhost:3456/admin/categoria/todasCategoria');
@@ -34,14 +32,15 @@ export default function EstruturaPalestrante() {
 
 
             if (localStorage.getItem("@Auth:email") !== null) {
-                setNomeUtilizador(localStorage.getItem("@Auth:email"))
+                setEmailUtilizador(localStorage.getItem("@Auth:email"))
             }
         }
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
 
+
+    InatividadePagina()
 
     return (
         <>
@@ -69,57 +68,7 @@ export default function EstruturaPalestrante() {
 
                     </NavLink>
 
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/foto/invalido`}
-                    >
-                        <span>Foto</span>
-
-                    </NavLink> */}
-
-
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante/editar/invalido`}
-                    >
-                        <span>Editar</span>
-
-                    </NavLink> */}
-
-
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/orador`}
-                    >
-                        <span>Orador</span>
-
-                    </NavLink> */}
-
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/palestrante`}
-                    >
-                        <span>Palestrante</span>
-
-                    </NavLink> */}
-
-
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/listar`}
-                    >
-                    </NavLink> */}
-
-                    {/* <NavLink
-                        key={Math.random().toString(36).substring(2)}
-                        to={urlPrivadaOrganizador + `/evento/listar/${idUtilizador}/editar/${idEvento}/publicar`}
-                    >
-                        <span>Publicar</span>
-                    </NavLink> */}
+                  
 
 
 

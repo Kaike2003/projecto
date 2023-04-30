@@ -3,6 +3,7 @@ import { NavLink, Navigate, Outlet, useNavigate, useParams } from "react-router-
 // import "../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
 import swal from 'sweetalert';
+import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
 
 
 
@@ -42,6 +43,7 @@ export default function EstruturaOrador() {
 
     console.log("Email do utilizador", nomeUtilizador)
 
+    InatividadePagina()
 
     return (
         <>

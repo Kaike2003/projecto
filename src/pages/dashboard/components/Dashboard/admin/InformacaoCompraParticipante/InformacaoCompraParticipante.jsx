@@ -7,6 +7,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./InformacaoCompraParticipante.css"
 import { ChevronRight } from "lucide-react";
 import Swal from 'sweetalert2'
+import InatividadePagina from "../../../../../../middlewares/TerminarSessao";
 
 
 export default function InformacaoCompraParticipante() {
@@ -163,6 +164,9 @@ export default function InformacaoCompraParticipante() {
     console.log("Usuários participantes", dataEvento)
     console.log("Lista de bilhetes", dataListaReservas)
 
+
+
+    InatividadePagina()
 
     return (
         <>

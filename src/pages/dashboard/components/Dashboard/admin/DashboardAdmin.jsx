@@ -4,6 +4,7 @@ import "../css/Dashboard.css"
 import { Outlet, NavLink, Link } from "react-router-dom"
 import { User } from "lucide-react";
 import axios from "axios";
+import InatividadePagina from "../../../../../middlewares/TerminarSessao";
 
 export default function DashboardAdmin() {
 
@@ -36,6 +37,8 @@ export default function DashboardAdmin() {
 
     const url = "/reservaOnline/dashboard/admin/"
     console.log(url)
+
+    InatividadePagina()
 
 
     return (
