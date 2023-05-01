@@ -69,7 +69,7 @@
 
 .titulo_evento_lista_subEstrutura .eventos_lista .active span {
   padding: 0 0 7.4px 0;
-  border-bottom: 3.4px solid #0DCAF0;
+  border-bottom: 3.4px solid rgb(32, 201, 151);
   cursor: pointer;
 }
 

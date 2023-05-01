@@ -76,7 +76,7 @@ export default function EditarBilhete() {
     console.log(data)
 
     InatividadePagina()
-    
+
 
     return (
         <>
@@ -154,12 +154,15 @@ export default function EditarBilhete() {
 
                                                     }).catch((error) => {
                                                         console.log(error)
+                                                        console.error(error.response.data);
+                                                        console.error(error.response.status);
+                                                        console.error(error.response.headers);
 
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             title: 'Erro bilhete',
-                                                            showConfirmButton: false,
-                                                            timer: 4500
+                                                            html: error.response.data,
+                                                            showConfirmButton: true,
                                                         })
 
                                                     })
@@ -203,7 +206,7 @@ export default function EditarBilhete() {
                                                         <div>
 
                                                             <div className="criar_row">
-                                                                <span>Nome do evento</span>
+                                                                <span>Nome do bilhete</span>
                                                                 <Field
                                                                     type="text"
                                                                     name="nome"

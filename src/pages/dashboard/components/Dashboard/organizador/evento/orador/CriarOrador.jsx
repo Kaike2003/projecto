@@ -127,9 +127,8 @@ export default function CriarOrador() {
                                         <span>Adicione as principais informações do orador</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
-                                        disabled={isSubmitting}
-                                        style={{ background: "#0DCAF0", color: "white" }}
+                                        className="PnomeBotaoOrganizador"
+                                        
                                         type="submit">Criar</button>
                                 </div>
                                 <div className="criar_main ">

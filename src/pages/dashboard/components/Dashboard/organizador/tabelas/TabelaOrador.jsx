@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { format } from "date-fns";
 import { Edit } from "lucide-react";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 
 export default function TabelaOrador() {
@@ -14,7 +14,7 @@ export default function TabelaOrador() {
 
 
     const [dataEvento, setDataEvento] = useState([]);
-    const [nomeUtilizador, setNomeUtilizador] = useState(() => {
+    const [emailUtilizador, setEmailUtilizador] = useState(() => {
         return ""
     })
 
@@ -32,7 +32,7 @@ export default function TabelaOrador() {
             setDataEvento(newData);
 
             if (localStorage.getItem("@Auth:email") !== null) {
-                setNomeUtilizador(localStorage.getItem("@Auth:email"))
+                setEmailUtilizador(localStorage.getItem("@Auth:email"))
 
             }
 
@@ -65,21 +65,48 @@ export default function TabelaOrador() {
 
                             console.log(newRow.nome)
                             console.log(newRow)
+                            console.log()
 
-                            axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/orador/${newRow.id}`, {
-                                nome: newRow.nome
+
+                            if (!newRow.nome) {
+
+                                Swal.fire(
+                                    {
+                                        icon: "info",
+                                        title: "Nome do orador é obrigátorio",
+                                        showConfirmButton: false,
+                                        timer: 4500
+                                    })
+
+                                setTimeout(() => { resolve() }, 1500)
+
+
+
+                            } else {
+
+                                axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/orador/${newRow.id}`, {
+                                    nome: newRow.nome
+                                }
+                                ).then(sucesso => {
+
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Orador editado"
+                                    })
+
+                                    setTimeout(() => { resolve() }, 1500)
+
+                                    console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
+                                    console.log(sucesso)
+                                }).catch(error => {
+                                    console.log(error)
+                                })
+
+
                             }
-                            ).then(sucesso => {
 
-                                swal("Orador editado", `O orador ${newRow.nome} foi editado com sucesso.`, "success");
 
-                                console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
-                                console.log(sucesso)
-                            }).catch(error => {
-                                console.log(error)
-                            })
 
-                            setTimeout(() => { resolve() }, 1500)
 
                         }),
 
@@ -91,7 +118,13 @@ export default function TabelaOrador() {
                             axios.delete(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/orador/${selectedRow.id}`
                             ).then(sucesso => {
 
-                                swal("Orador excluido", `O orador ${selectedRow.nome} foi excluido com sucesso.`, "info");
+                                Swal.fire(
+                                    {
+                                        icon: "info",
+                                        title: "Orador excluido",
+                                        showConfirmButton: false,
+                                        timer: 4500
+                                    })
 
                             }).catch(error => {
                                 console.log(error)

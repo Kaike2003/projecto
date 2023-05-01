@@ -61,6 +61,8 @@ export default function TabelaHome({ idOrganizador }) {
                 format(new Date(rowData.dataTermino), 'dd/MM/yyyy')}</div>
         },
 
+        
+
         // { title: "Banido", field: "banido", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.banido}</div> },
 
 

@@ -53,7 +53,7 @@ export default function TabelaPalestrante() {
 
 
 
-    const CellStyle = { fontSize: "12px", width: "200px" }
+    const CellStyle = { fontSize: "14px", width: "200px" }
     const CellRender = { fontSize: "16px" }
 
     const columns = [
@@ -65,7 +65,7 @@ export default function TabelaPalestrante() {
             }</div>
         },
         {
-            title: "Imagem", field: "foto", cellStyle: CellStyle, render: (rowData) => <div style={{
+            title: "Imagem", field: "", cellStyle: CellStyle, render: (rowData) => <div style={{
                 width: "100px",
                 padding: "0",
                 fontSize: CellRender.fontSize,
@@ -98,26 +98,40 @@ export default function TabelaPalestrante() {
 
                         onRowUpdate: (selectedRow) => new Promise((resolve, reject) => {
 
-                            axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/palestrante/${selectedRow.id}`, {
-                                nome: selectedRow.nome,
-                                blog: selectedRow.blog
-                            }
-                            ).then(sucesso => {
-                                // console.log(sucesso)
+                            if (!selectedRow.nome) {
+                                Swal.fire(
+                                    {
+                                        icon: "info",
+                                        title: "Nome do palestrante é obrigátorio",
+                                        showConfirmButton: false,
+                                        timer: 4500
+                                    })
 
-                                Swal.fire({
-                                    icon: "success",
-                                    title: "Palestrante editado",
-                                    html: `O palestrante ${selectedRow.nome} foi editado com sucesso.`,
-                                    timer: 2500
+                                setTimeout(() => { resolve() }, 1500)
+                            } else {
 
+                                axios.put(`http://localhost:3456/organizador/evento/detalhe/editar/${idEvento}/palestrante/${selectedRow.id}`, {
+                                    nome: selectedRow.nome,
+                                    blog: selectedRow.blog
+                                }
+                                ).then(sucesso => {
+                                    // console.log(sucesso)
+
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Palestrante editado",
+                                        timer: 2500
+                                    })
+
+                                }).catch(error => {
+                                    console.log(error)
                                 })
 
-                            }).catch(error => {
-                                console.log(error)
-                            })
+                                setTimeout(() => { resolve() }, 1500)
 
-                            setTimeout(() => { resolve() }, 1500)
+                            }
+
+
 
                         }),
 
@@ -180,7 +194,7 @@ export default function TabelaPalestrante() {
                                                     timer: 2500
 
                                                 }).then(() => {
-                                                  return  dataListaOrganizador.map(item => {
+                                                    return dataListaOrganizador.map(item => {
 
                                                         if (item.email === emailUtilizador) {
                                                             return navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}/editar/${idEvento}/palestrante/listar`)
@@ -214,8 +228,8 @@ export default function TabelaPalestrante() {
 
 
 
-                                   
-                                    
+
+
 
 
 
