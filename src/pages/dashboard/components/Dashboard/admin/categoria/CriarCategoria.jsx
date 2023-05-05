@@ -32,7 +32,6 @@ export default function CriarCategoria() {
             .required("Nome da categoria é obrigátorio.")
     })
 
-    InatividadePagina()
 
     return (
         <>
@@ -49,13 +48,13 @@ export default function CriarCategoria() {
                     }}
                     onSubmit={async (values) => {
 
-                        console.log(values)
+                        // console.log(values)
 
                         axios.post("http://localhost:3456/admin/categoria",
                             {
                                 nome: values.nome,
                             }).then((sucesso) => {
-                                console.log(sucesso)
+                                // console.log(sucesso)
 
 
                                 Swal.fire({

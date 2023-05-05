@@ -41,7 +41,7 @@ export default function CriarBilhete() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
+    // console.log("Email do utilizador", nomeUtilizador)
 
 
 
@@ -58,7 +58,7 @@ export default function CriarBilhete() {
             .min(0, "O quantidade de bilhete não pode ser menor que 0.")
             .max(999999999, "O quantidade de bilhete não pode ser maior que 999999999.")
             .required("A quantidade de bilhete é obrigátoria."),
-        dataInicio: Yup.date().required("A data de inicio é obrigatória."),
+        dataInicio: Yup.date().required("A data de inicio é obrigatória.").min(new Date()),
         dataTermino: Yup.date().required("A data de termino é obrigatória."),
         horaInicio: Yup.string().required("A hora de inicio é obrigatória."),
         horaTermino: Yup.string().required("A hora de termino é obrigatória."),
@@ -68,7 +68,6 @@ export default function CriarBilhete() {
             .required("A categoria é obrigatória.")
     })
 
-    InatividadePagina()
 
     return (
         <>
@@ -89,9 +88,13 @@ export default function CriarBilhete() {
                         categoriaId: ""
                     }}
                     onSubmit={async (values) => {
+ 
+
+               
+                        
 
 
-                        console.log("Dados do bilhete", values)
+                        // console.log("Dados do bilhete", values)
 
                         utilizador.map(item => {
                             if (item.email === nomeUtilizador) {
@@ -117,10 +120,10 @@ export default function CriarBilhete() {
                                         })
 
                                     }).catch((error) => {
-                                        console.log(error)
-                                        console.error(error.response.data);
-                                        console.error(error.response.status);
-                                        console.error(error.response.headers);
+                                        // console.log(error)
+                                        // console.error(error.response.data);
+                                        // console.error(error.response.status);
+                                        // console.error(error.response.headers);
 
                                         Swal.fire({
                                             icon: 'warning',

@@ -4,7 +4,6 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup"
 import "../../../../estrutura/evento/css/Criar.css"
 import axios from "axios";
-import swal from 'sweetalert';
 import Swal from "sweetalert2"
 import { format } from 'date-fns'
 import InatividadePagina from "../../../../../../../middlewares/TerminarSessao";
@@ -73,9 +72,8 @@ export default function EditarBilhete() {
             .required("A categoria é obrigatória.")
     })
 
-    console.log(data)
+    // console.log(data)
 
-    InatividadePagina()
 
 
     return (
@@ -122,7 +120,7 @@ export default function EditarBilhete() {
                                     onSubmit={async (values) => {
 
 
-                                        console.log("Dados do bilhete", values)
+                                        // console.log("Dados do bilhete", values)
 
                                         utilizador.map(item => {
                                             if (item.email === nomeUtilizador) {
@@ -138,7 +136,7 @@ export default function EditarBilhete() {
                                                         horaTermino: values.horaTermino,
                                                         tipoEvento: values.categoriaId
                                                     }).then((sucesso) => {
-                                                        console.log(sucesso)
+                                                        // console.log(sucesso)
 
                                                         // swal("Bilhete Atualizado", `${values.nome} foi atualizado com sucesso.`, "success").then(async () => {
                                                         //     // navigate(`/reservaOnline/dashboard/organizador/evento/listar/${item.id}`)
@@ -153,10 +151,10 @@ export default function EditarBilhete() {
 
 
                                                     }).catch((error) => {
-                                                        console.log(error)
-                                                        console.error(error.response.data);
-                                                        console.error(error.response.status);
-                                                        console.error(error.response.headers);
+                                                        // console.log(error)
+                                                        // console.error(error.response.data);
+                                                        // console.error(error.response.status);
+                                                        // console.error(error.response.headers);
 
                                                         Swal.fire({
                                                             icon: 'warning',

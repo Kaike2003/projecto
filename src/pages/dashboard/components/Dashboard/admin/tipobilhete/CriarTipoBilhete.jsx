@@ -23,7 +23,7 @@ export default function CriarTipoBilhete() {
         fetchData();
     }, []);
 
-    console.log("Tipo de bilhetes registrados", data)
+    // console.log("Tipo de bilhetes registrados", data)
 
 
     const CriarCategoria = Yup.object().shape({
@@ -34,7 +34,6 @@ export default function CriarTipoBilhete() {
     })
 
 
-    InatividadePagina()
 
     return (
         <>
@@ -56,7 +55,7 @@ export default function CriarTipoBilhete() {
                             {
                                 nome: values.nome,
                             }).then((sucesso) => {
-                                console.log(sucesso)
+                                // console.log(sucesso)
 
                                 Swal.fire({
                                     icon: 'success',

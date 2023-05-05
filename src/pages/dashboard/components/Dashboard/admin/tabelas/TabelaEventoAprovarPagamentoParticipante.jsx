@@ -32,8 +32,8 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
         fetchData();
     }, []);
 
-    console.log("Lista de de eventos a que foram banidos", data)
-    console.log("Lista de participante", dataListaParticipante)
+    // console.log("Lista de de eventos a que foram banidos", data)
+    // console.log("Lista de participante", dataListaParticipante)
 
 
 
@@ -108,7 +108,6 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
     ]
 
 
-    InatividadePagina()
 
     return (
         <>
@@ -129,8 +128,8 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
-                                    console.log("Id do utilizador", data.utilizadorId)
+                                    // console.log(data)
+                                    // console.log("Id do utilizador", data.utilizadorId)
 
 
                                     // Swal.fire({
@@ -173,8 +172,8 @@ export default function TabelaEventoAprovarPagamentoParticipante() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
-                                    console.log("Id do utilizador", data.utilizadorId)
+                                    // console.log(data)
+                                    // console.log("Id do utilizador", data.utilizadorId)
 
 
                                     axios.delete(`http://localhost:3456/admin/cancelarPagamento/${data.id}/${data.utilizadorId}`)

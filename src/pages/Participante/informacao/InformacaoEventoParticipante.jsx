@@ -92,10 +92,11 @@ export default function InformacaoEventoParticipante() {
     }, []);
 
 
-    console.log("Bilhete", dataEvento)
-    console.log("Lista de bilhetes", dataListaBilhetes)
-    console.log("Lista de orador", dataListaOradores)
-    console.log("Lista de oradores Id", dataListaOradoresId)
+    
+    // console.log("Bilhete", dataEvento)
+    // console.log("Lista de bilhetes", dataListaBilhetes)
+    // console.log("Lista de orador", dataListaOradores)
+    // console.log("Lista de oradores Id", dataListaOradoresId)
 
 
 
@@ -135,7 +136,6 @@ export default function InformacaoEventoParticipante() {
         )
     }
 
-    InatividadePagina()
 
 
     return (

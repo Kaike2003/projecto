@@ -30,7 +30,7 @@ export default function Evento() {
 
     }
 
-    console.log(alterar)
+    // console.log(alterar)
 
     // return (
 

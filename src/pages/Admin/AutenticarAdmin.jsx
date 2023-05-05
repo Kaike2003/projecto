@@ -63,7 +63,7 @@ export default function AutenticarAdmin() {
                                     {
                                         codigoVerificacao: values.codigo
                                     }).then(async (sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
 
 
@@ -84,7 +84,7 @@ export default function AutenticarAdmin() {
                                         //     // alert(JSON.stringify(values, null, 2));
                                         // }, 400);
                                     }).catch((error) => {
-                                        console.log(error)
+                                        // console.log(error)
 
                                         Swal.fire({
                                             icon: 'warning',

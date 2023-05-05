@@ -50,9 +50,8 @@ export default function EstatisticaHome() {
 
     }, [])
 
-    console.log(data)
+    // console.log(data)
 
-    InatividadePagina()
 
     return (
         <>

@@ -107,7 +107,7 @@ export default function BilheteEstrutura({
     const { id } = useParams()
     const navigate = useNavigate()
 
-    console.log(typeof (id))
+    // console.log(typeof (id))
 
     const url = "http://localhost:3001/"
 
@@ -274,7 +274,7 @@ export default function BilheteEstrutura({
                 // validationSchema={EstruturaSchema}
                 onSubmit={values => {
 
-                    console.log(values)
+                    // console.log(values)
 
 
                     axios.post(url + "bilhete", {
@@ -287,7 +287,7 @@ export default function BilheteEstrutura({
                         dataTerminoBilhete: values.dataTerminoBilhete
                     }).then((response) => {
                         setTimeout(() => {
-                            console.log(response)
+                            // console.log(response)
                             // navigate('/organizador/evento/listar')
                             // handleOpenModal()
                             // alert("olá mundo")

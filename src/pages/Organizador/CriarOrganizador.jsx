@@ -65,7 +65,7 @@ export const CriarOrganizador = () => {
 					}}
 					onSubmit={async (values) => {
 
-						console.log(values)
+						// console.log(values)
 
 						axios.post("http://localhost:3456/organizador/create",
 							{
@@ -76,9 +76,8 @@ export const CriarOrganizador = () => {
 								telefone: 943162154,
 								dataNascimento: values.dataNascimento
 							}).then((sucesso) => {
-								console.log(sucesso)
+								// console.log(sucesso)
 
-								setTimeout(async () => {
 
 
 									Swal.fire({
@@ -92,7 +91,6 @@ export const CriarOrganizador = () => {
 									})
 
 
-								}, 800);
 
 							}).catch((error) => {
 								console.log(error)

@@ -112,7 +112,7 @@ export default function Foto({
     // Formatos suportados
     const FORMATOSUPORTADO = ["image/jpg", "image/jpeg", "image/png"]
 
-    console.log(typeof (id))
+    // console.log(typeof (id))
 
     const url = "http://localhost:3001/"
 
@@ -312,7 +312,7 @@ export default function Foto({
                 validationSchema={EstruturaSchema}
                 onSubmit={values => {
 
-                    console.log(values)
+                    // console.log(values)
 
                     // axios.put(url + "eventos/" + id, {
                     //     id: values.id,

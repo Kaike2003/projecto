@@ -28,6 +28,11 @@ form {
 
 }
 
+.PnomeBotaoAdicionarComprovativo {
+    color: white;
+    background-color: black;
+}
+
 .eventos_lista_organizador .active span {
     padding: 0 0 7.4px 0;
     border-bottom: 3.4px solid rgb(32, 201, 151);

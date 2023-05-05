@@ -18,7 +18,7 @@ export default function TabelaBilhete() {
         return ""
     })
 
-    console.log("Id do evento", idEvento)
+    // console.log("Id do evento", idEvento)
 
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function TabelaBilhete() {
 
     }, []);
 
-    console.log("Lista de bilhetes de um evento", dataEvento)
+    // console.log("Lista de bilhetes de um evento", dataEvento)
 
 
 
@@ -77,7 +77,7 @@ export default function TabelaBilhete() {
     return (
         <>
 
-            <div className="tabela mt-3 mb-3 container">
+            <div className="tabela mt-2  container">
                 <MaterialTable
 
 
@@ -131,7 +131,7 @@ export default function TabelaBilhete() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
+                                    // console.log(data)
 
 
 

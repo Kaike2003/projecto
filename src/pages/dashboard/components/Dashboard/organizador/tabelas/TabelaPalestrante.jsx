@@ -90,7 +90,7 @@ export default function TabelaPalestrante() {
     return (
         <>
 
-            <div className="tabela mt-3 mb-3 container">
+            <div className="tabela mt-2  container">
                 <MaterialTable
                     editable={{
 

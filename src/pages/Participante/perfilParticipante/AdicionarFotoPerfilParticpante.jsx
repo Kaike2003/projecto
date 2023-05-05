@@ -47,7 +47,6 @@ export default function AdicionarFotoPerfilParticipante() {
     //     // .required("Nome do evento é obrigatorio.")
     // })
 
-    InatividadePagina()
 
     return (
         <>
@@ -80,7 +79,7 @@ export default function AdicionarFotoPerfilParticipante() {
                                     {
                                         foto: values.file.name
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
 
                                         Swal.fire({
@@ -116,8 +115,8 @@ export default function AdicionarFotoPerfilParticipante() {
                                         <span>Adicione uma foto ao seu perfil</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
-                                        style={{ background: "#0DCAF0", color: "white" }}
+                                        className="PnomeBotaoAdicionarComprovativo"
+                                        
                                         type="submit">Salvar</button>
                                 </div>
                                 <div className="criar_main ">

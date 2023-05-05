@@ -53,7 +53,7 @@ export default function Concerto() {
     }, []);
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const fetchMoreData = () => {
@@ -78,7 +78,6 @@ export default function Concerto() {
     }
 
 
-    InatividadePagina()
 
     return (
         <>

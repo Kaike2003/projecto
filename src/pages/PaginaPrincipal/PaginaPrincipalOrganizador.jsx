@@ -13,13 +13,13 @@ import Carousel from "../caroucel/Carousel";
 import Perguntas from "../perguntas/Perguntas";
 import PalestraFiltro from "../tipo_Eventos/Palestra/PalestraFiltro"
 import ConcertoFiltro from "../tipo_Eventos/Concerto/ConcertoFiltro"
-import EspetaculoFiltro from "../tipo_Eventos/Espetaculo/EspetaculoFiltro"
 import TeatroFiltro from "../tipo_Eventos/Teatro/TeatroFiltro"
 import CardEvento from "../card_evento/components/EventoCard";
 import SeminarioFiltro from "../tipo_Eventos/Seminario/SeminarioFiltro";
 import Shows from "../tipo_Eventos/Shows/ShowsFiltro";
 import CarouselOrganizador from "../caroucel/CarouselOrganizador";
 import InatividadePagina from "../../middlewares/TerminarSessao";
+import Footer from "../footer/Footer";
 
 // import Eventos from "../section_eventos/Section_eventos_teste"
 
@@ -67,9 +67,9 @@ export default function PaginaPrincipalOrganizador() {
         fetchData();
     }, []);
 
-    console.log("Eventos publicados", data)
-    console.log("Todas categorias", dataListaCategoria)
-    console.log("novos eventos", dataNovosEventos)
+    // console.log("Eventos publicados", data)
+    // console.log("Todas categorias", dataListaCategoria)
+    // console.log("novos eventos", dataNovosEventos)
 
 
 
@@ -103,7 +103,6 @@ export default function PaginaPrincipalOrganizador() {
     }
 
 
-    InatividadePagina()
 
 
 
@@ -195,35 +194,11 @@ export default function PaginaPrincipalOrganizador() {
                     </div>
                 </div>
 
-                <div className="section_org_img">
-                    <div className="container_conteudo">
-                        <div className="conteudo_eventos">
-                            <div className="conteudo_eventos_vermais">
-                                <div className=" container section_org_img_evento">
-                                    <p>Se torne um produtor de Eventos na nossa App.</p>
-                                    <p>Crie eventos de forma gratuita.</p>
-                                    <p>Ganhe dinheiro se descolocar de casa.</p>
-                                    <p><button
-                                        style={{ backgroundColor: "#e51b15", color: "#ffffff" }}
-                                        className="btn"
-                                        onClick={() => {
-                                            return navigate("/reservaOnline/organizador/criarConta")
-                                        }}>Registra-se</button></p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            
                 <div>
                     <Perguntas></Perguntas>
-                </div>
-
-                <div className="">
-                    <>
-                        <Contacto></Contacto>
-                    </>
+                    <Contacto></Contacto>
+                    <Footer />
 
                 </div>
 

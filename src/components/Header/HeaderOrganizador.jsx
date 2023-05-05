@@ -55,7 +55,7 @@ export default function HeaderOrganizador() {
 
                     <div className="button_span_user">
                         {data.map(item => {
-                            console.log(nomeUtilizador)
+                            // console.log(nomeUtilizador)
                             if (item.email === nomeUtilizador) {
                                 return (
                                     <div key={item.id} >

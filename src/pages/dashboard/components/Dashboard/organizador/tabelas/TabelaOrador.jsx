@@ -18,7 +18,7 @@ export default function TabelaOrador() {
         return ""
     })
 
-    console.log("Id do utilizador", idEvento)
+    // console.log("Id do utilizador", idEvento)
 
 
     useEffect(() => {
@@ -56,16 +56,16 @@ export default function TabelaOrador() {
     return (
         <>
 
-            <div className="tabela mt-3 container">
+            <div className="tabela mt-2 container">
                 <MaterialTable
                     editable={{
 
 
                         onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
-                            console.log(newRow.nome)
-                            console.log(newRow)
-                            console.log()
+                            // console.log(newRow.nome)
+                            // console.log(newRow)
+                            // console.log()
 
 
                             if (!newRow.nome) {
@@ -96,8 +96,8 @@ export default function TabelaOrador() {
 
                                     setTimeout(() => { resolve() }, 1500)
 
-                                    console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
-                                    console.log(sucesso)
+                                    // console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
+                                    // console.log(sucesso)
                                 }).catch(error => {
                                     console.log(error)
                                 })

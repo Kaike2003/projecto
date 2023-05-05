@@ -52,7 +52,6 @@ export default function VisualizarBilheteSemSessao() {
         return []
     })
     const [dataListaCategoria, setDataListaCategoria] = useState([]);
-    const [nomeUtilizador, setNomeUtilizador] = useState([]);
     const [emailUtilizador, setEmailUtilizador] = useState([])
 
 
@@ -95,7 +94,7 @@ export default function VisualizarBilheteSemSessao() {
 
 
             if (localStorage.getItem("@Auth:email") !== null) {
-                setNomeUtilizador(localStorage.getItem("@Auth:email"))
+                setEmailUtilizador(localStorage.getItem("@Auth:email"))
             }
 
 
@@ -124,7 +123,7 @@ export default function VisualizarBilheteSemSessao() {
 
 
 
-    console.log("Estado do evento", estadoEvento)
+    //console.log("Estado do evento", estadoEvento)
 
 
 
@@ -135,7 +134,7 @@ export default function VisualizarBilheteSemSessao() {
             case "DESPONIVEL":
                 return (
                     <>
-                        <span style={{ color: "green", fontWeight: "450" }} >DISPONÍVEL</span>
+                        <span style={{ color: "rgb(7, 145, 104)", fontWeight: "450" }} >DISPONÍVEL</span>
                     </>
                 )
                 break;
@@ -177,8 +176,8 @@ export default function VisualizarBilheteSemSessao() {
         <>
             <div className="invisivel_visualizar"></div>
 
-            <div className="visualiarLadosPaiOrganizador container">
-                <div className="visualiarLados">
+            <div className="visualizarLadosPaiOrganizador container">
+                <div className="visualiarLadosOrganizador">
 
                     {[dataListaEvento].map(item => {
                         return (
@@ -197,7 +196,7 @@ export default function VisualizarBilheteSemSessao() {
 
 
 
-                    <div className="ladoInformacaoOrganizador ">
+                    <div className="ladoInformacaoOrganizador">
 
                         <div className="ladoInformacaoDivOrganizador">
 
@@ -208,9 +207,11 @@ export default function VisualizarBilheteSemSessao() {
                                         if (item.categoriaId === itemCategoria.id) {
                                             return (
                                                 <>
+
                                                     <div className="ladoInformacaoSpanOrganizador">
-                                                        <span>{item.nome}</span>
-                                                        <span>{itemCategoria.nome}</span>
+                                                        <span className="container tituloEvento">{item.nome}</span>
+                                                        <span>{itemCategoria.nome} - Evento {estadoEvento(item.estado)}</span>
+
                                                     </div>
 
                                                     <div>
@@ -218,17 +219,6 @@ export default function VisualizarBilheteSemSessao() {
                                                         <div className="template_detalhe container">
 
                                                             <div className="template_detalhe_2">
-                                                                <div className="icone_texto">
-                                                                    <Info size={sizeIcone}></Info>
-                                                                    <p className="texto"> Evento  {estadoEvento(item.estado)}</p>
-                                                                </div >
-
-                                                                <div className="icone_texto">
-                                                                    <MapPin size={sizeIcone}>
-                                                                    </MapPin>
-                                                                    <p className="texto">{item.provincia} - {item.municipio} -{item.bairro}</p>
-                                                                </div >
-
 
                                                             </div>
 
@@ -264,6 +254,11 @@ export default function VisualizarBilheteSemSessao() {
 
                                                             </div>
 
+                                                            <div className="icone_texto">
+                                                                <MapPin size={sizeIcone}>
+                                                                </MapPin>
+                                                                <p className="texto">{item.provincia} - {item.municipio} -{item.bairro}</p>
+                                                            </div >
 
 
                                                             <div className="" id="desc">
@@ -361,6 +356,7 @@ export default function VisualizarBilheteSemSessao() {
                                                                                         className={errors.quantidade && touched.quantidade ? ("selectTipoBilheteERRO") : "selectTipoBilhete"}
                                                                                         type="number"
                                                                                         name="quantidade"
+                                                                                        min="0"
                                                                                         placeholder="Quantidade de bilhete"
                                                                                     />
 

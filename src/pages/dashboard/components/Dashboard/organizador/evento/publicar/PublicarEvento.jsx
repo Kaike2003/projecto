@@ -21,7 +21,7 @@ export default function PublicarEvento() {
         return ""
     })
 
-    console.log(idEvento)
+    // console.log(idEvento)
 
     useEffect(() => {
         async function fetchData() {
@@ -41,10 +41,9 @@ export default function PublicarEvento() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
+    // console.log("Email do utilizador", nomeUtilizador)
 
 
-    InatividadePagina()
 
 
     return (

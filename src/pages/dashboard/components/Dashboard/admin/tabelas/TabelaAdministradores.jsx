@@ -20,7 +20,7 @@ export default function TabelaAdministradores() {
             const response = await axios.get('http://localhost:3456/admin/administradores/listaAdministradores');
             const newData = response.data;
             setData(newData);
-            console.log(response.data)
+            // console.log(response.data)
         }
         fetchData();
     }, []);
@@ -35,7 +35,6 @@ export default function TabelaAdministradores() {
     ]
 
 
-    InatividadePagina()
 
     return (
         <>

@@ -50,7 +50,6 @@ export default function AdicionarFotoEvento() {
     //     )
     // })
 
-    InatividadePagina()
 
     return (
         <>

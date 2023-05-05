@@ -45,7 +45,6 @@ export default function EstruturaEventoEditar() {
 
     // console.log("Email do utilizador", nomeUtilizador)
 
-    InatividadePagina()
 
     return (
         <>

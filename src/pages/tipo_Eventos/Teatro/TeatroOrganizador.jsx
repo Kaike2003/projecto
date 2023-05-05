@@ -55,7 +55,7 @@ export default function TeatroOrganizador() {
     }, []);
 
 
-    console.log(data)
+    //console.log(data)
 
 
     const fetchMoreData = () => {
@@ -79,7 +79,6 @@ export default function TeatroOrganizador() {
         }, 200);
     }
 
-    InatividadePagina()
 
     return (
         <>

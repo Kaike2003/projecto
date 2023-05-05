@@ -125,7 +125,6 @@ export default function InformacaoEvento() {
     // console.log("Lista de bilhetes", dataListaBilhetes)
 
 
-    InatividadePagina()
     
 
     return (

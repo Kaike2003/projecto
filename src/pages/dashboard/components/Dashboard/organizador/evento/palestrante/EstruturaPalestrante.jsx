@@ -40,7 +40,6 @@ export default function EstruturaPalestrante() {
 
 
 
-    InatividadePagina()
 
     return (
         <>

@@ -36,7 +36,6 @@ export default function TabelaTipoBilhete() {
     ]
 
 
-    InatividadePagina()
 
     return (
         <>
@@ -47,15 +46,15 @@ export default function TabelaTipoBilhete() {
                     
                         onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
-                            console.log(newRow.nomeCategoria)
+                            // console.log(newRow.nomeCategoria)
 
                             axios.put(`http://localhost:3456/admin/tipoBilhete/atualizarTipobilhete/${newRow.id}`,{
                                 nome: newRow.nomeTipoBilhete
                             }
                             ).then(sucesso => {
                                 navigate("/reservaOnline/dashboard/admin/bilhete/listar")
-                                console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
-                                console.log(sucesso)
+                                // console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
+                                // console.log(sucesso)
                             }).catch(error => {
                                 console.log(error)
                             })
@@ -68,7 +67,7 @@ export default function TabelaTipoBilhete() {
                             axios.delete(`http://localhost:3456/admin/tipoBilhete/apagarTipoBilhete/${selectedRow.id}`
                             ).then(sucess => {
                                 navigate("/reservaOnline/dashboard/admin/bilhete/listar")
-                                console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+                                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
                             }).catch(error => {
                                 console.log(error)
                             })
@@ -110,7 +109,7 @@ export default function TabelaTipoBilhete() {
                     columns={columns}
                     data={data}
                     options={{
-                        pageSize: 4,
+                        pageSize: 5,
                         pageSizeOptions: [15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,

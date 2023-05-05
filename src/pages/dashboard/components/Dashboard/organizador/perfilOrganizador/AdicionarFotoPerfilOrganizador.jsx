@@ -43,7 +43,6 @@ export default function AdicionarFotoPerfilOrganizador() {
     //     // .required("Nome do evento é obrigatorio.")
     // })
 
-    InatividadePagina()
 
     return (
         <>
@@ -76,7 +75,7 @@ export default function AdicionarFotoPerfilOrganizador() {
                                     {
                                         foto: values.file.name
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
 
                                         Swal.fire({
@@ -139,7 +138,7 @@ export default function AdicionarFotoPerfilOrganizador() {
                                                         value={values.foto}
                                                         onChange={(e) => {
                                                             setFieldValue("file", e.target.files[0])
-                                                            console.log((e.target.files[0]))
+                                                            // console.log((e.target.files[0]))
                                                         }}
 
                                                     />

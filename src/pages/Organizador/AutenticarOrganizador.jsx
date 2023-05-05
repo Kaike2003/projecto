@@ -42,7 +42,7 @@ export default function AutenticarOrganizador() {
     })
 
 
-    console.log(data)
+    // console.log(data)
 
     return (
         <>
@@ -57,7 +57,7 @@ export default function AutenticarOrganizador() {
                     }}
                     onSubmit={async (values) => {
 
-                        console.log(values.codigo)
+                        // console.log(values.codigo)
 
                         data.map(item => {
                             if (

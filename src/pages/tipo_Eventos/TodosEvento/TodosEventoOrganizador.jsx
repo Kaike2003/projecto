@@ -77,7 +77,6 @@ export default function TodosEventoOrganizador() {
         }, 200);
     }
 
-    InatividadePagina()
 
     return (
         <>

@@ -52,7 +52,7 @@ export default function TodosEvento() {
     }, []);
 
 
-    console.log(data)
+    //console.log(data)
 
 
     const fetchMoreData = () => {
@@ -77,7 +77,6 @@ export default function TodosEvento() {
     }
 
 
-    InatividadePagina()
 
     return (
         <>

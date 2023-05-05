@@ -52,7 +52,7 @@ export default function PalestraFiltroSemSessao() {
     }, []);
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const fetchMoreData = () => {

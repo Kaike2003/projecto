@@ -63,7 +63,7 @@ export default function RecuperarSenhaOrganizador() {
                                     {
                                         email: values.email
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
                                         setTimeout(() => {
                                             // alert(JSON.stringify(values, null, 2));
                                             navigate("/reservaOnline/organizador/login")

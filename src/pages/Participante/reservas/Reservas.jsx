@@ -32,7 +32,6 @@ export default function Reservas() {
 
     const urlPrivadaParticipante = "/reservaOnline/participante/reservas/"
 
-    InatividadePagina()
 
     return (
         <>

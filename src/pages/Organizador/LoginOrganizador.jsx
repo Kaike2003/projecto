@@ -20,7 +20,7 @@ export const LoginOrganizador = () => {
 	const utilizador = "ORGANIZADOR"
 
 
-	console.log(data)
+	// console.log(data)
 
 
 
@@ -33,7 +33,7 @@ export const LoginOrganizador = () => {
 		fetchData();
 	}, []);
 
-	console.log(data)
+	// console.log(data)
 
 	// Validações com o yup
 	const CriarContaSchema = Yup.object().shape({

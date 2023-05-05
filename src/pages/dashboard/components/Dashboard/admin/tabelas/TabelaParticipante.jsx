@@ -25,7 +25,7 @@ export default function TabelaParticipante() {
         fetchData();
     }, []);
 
-    console.log("Lista de organizadores", data)
+    // console.log("Lista de organizadores", data)
 
 
 
@@ -46,7 +46,6 @@ export default function TabelaParticipante() {
 
     ]
 
-    InatividadePagina()
 
 
     return (

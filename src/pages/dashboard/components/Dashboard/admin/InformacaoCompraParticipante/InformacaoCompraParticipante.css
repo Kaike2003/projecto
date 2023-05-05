@@ -22,7 +22,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    background-color: #e51b15;
+    background-color: #7b7c7c;
     padding: 5px 5px 5px 10px;
     color: #FFF;
 }
@@ -32,7 +32,7 @@
     font-size: 32px;
     line-height: 40px;
     letter-spacing: .5px;
-    color: #1e0a3c;
+    color: black;
     font-weight: 900;
     display: flex;
 }

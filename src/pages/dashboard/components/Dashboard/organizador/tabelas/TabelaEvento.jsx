@@ -4,8 +4,8 @@ import MaterialTable from 'material-table'
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { format } from "date-fns";
-import { Edit, MoreHorizontal } from "lucide-react";
-import swal from 'sweetalert';
+import { Edit, MoreHorizontal, Trash } from "lucide-react";
+import Swal from 'sweetalert2';
 
 
 export default function TabelaEvento() {
@@ -18,7 +18,7 @@ export default function TabelaEvento() {
         return ""
     })
 
-    console.log("Id do utilizador", idUtilizador)
+    // console.log("Id do utilizador", idUtilizador)
 
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function TabelaEvento() {
 
     }, []);
 
-    console.log("Lista de eventos de um organizador", dataEvento)
+    // console.log("Lista de eventos de um organizador", dataEvento)
 
 
 
@@ -83,19 +83,19 @@ export default function TabelaEvento() {
 
 
 
-                        onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
+                        // onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
 
-                            axios.delete(`http://localhost:3456/admin/categoria/apagarCategoria/${selectedRow.id}`
-                            ).then(sucess => {
-                                navigate("/reservaOnline/dashboard/admin/categoria/listar")
-                                console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
-                            }).catch(error => {
-                                console.log(error)
-                            })
+                        //     axios.delete(`http://localhost:3456/admin/categoria/apagarCategoria/${selectedRow.id}`
+                        //     ).then(sucess => {
+                        //         navigate("/reservaOnline/dashboard/admin/categoria/listar")
+                        //         // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+                        //     }).catch(error => {
+                        //         console.log(error)
+                        //     })
 
-                            setTimeout(() => { resolve() }, 1500)
+                        //     setTimeout(() => { resolve() }, 1500)
 
-                        })
+                        // })
 
 
 
@@ -139,7 +139,7 @@ export default function TabelaEvento() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
+                                    // console.log(data)
 
 
                                     setTimeout(() => {
@@ -156,6 +156,64 @@ export default function TabelaEvento() {
 
                             },
 
+                            {
+                                icon: () => {
+                                    return <Trash></Trash>
+                                },
+                                tooltip: "Excluir",
+                                onClick: (e, data) => {
+
+                                    console.log(data)
+
+
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: 'Deseja excluir esse evento ?',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Sim',
+                                        cancelButtonText: 'Não',
+                                        cancelButtonColor: "red",
+                                        confirmButtonColor: "rgb(32, 201, 151)"
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+
+
+                                            axios.delete(`http://localhost:3456/organizador/evento/detalhe/apagarEvento/${data.utilizadorId}/${data.id}`
+                                            ).then(sucesso => {
+
+                                                navigate("/reservaOnline/dashboard/organizador")
+
+
+                                            }).catch(error => {
+                                                console.error(error.response.data);
+                                                console.error(error.response.status);
+                                                console.error(error.response.headers);
+
+                                                Swal.fire({
+                                                    icon: "info",
+                                                    title: error.response.data,
+                                                    html: `Eventos que estão em estado de "A DECORRER, TERMINADO, ESGOTADO " não podem ser excluidos.`
+                                                })
+
+                                            })
+
+
+                                        }
+                                    })
+
+                                    // axios.delete(`http://localhost:3456/organizador/evento/detalhe/apagarEvento/${data.utilizadorId}/${data.id}`
+                                    // ).then(sucesso => {
+
+                                    //     navigate("/reservaOnline/dashboard/organizador")
+
+                                    // }).catch(error => {
+                                    //     console.log(error)
+                                    // })
+
+
+                                }
+
+                            }
 
 
 

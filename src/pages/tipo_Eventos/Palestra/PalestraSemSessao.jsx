@@ -59,8 +59,8 @@ export default function PalestraSemSessao() {
     }, []);
 
 
-    console.log(data)
-    console.log(dataListaBilhete)
+    //console.log(data)
+    //console.log(dataListaBilhete)
 
     const fetchMoreData = () => {
 

@@ -53,7 +53,7 @@ export default function SeminarioFiltro() {
     }, []);
 
 
-    console.log(data)
+    //console.log(data)
 
 
     const fetchMoreData = () => {
@@ -76,8 +76,6 @@ export default function SeminarioFiltro() {
 
         }, 200);
     }
-
-    InatividadePagina()
 
     return (
         <>

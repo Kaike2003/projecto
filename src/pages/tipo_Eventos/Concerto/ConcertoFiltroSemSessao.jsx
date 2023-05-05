@@ -52,7 +52,7 @@ export default function ConcertoFiltroSemSessao() {
     }, []);
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const fetchMoreData = () => {

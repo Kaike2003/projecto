@@ -110,7 +110,7 @@ export default function TabelaBilhete() {
 
               axios.delete(url + "orador/" + selectedRow.id,
               ).then(sucess => {
-                console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
               }).catch(error => {
                 console.log(error)
               })
@@ -133,7 +133,7 @@ export default function TabelaBilhete() {
                   const id = tableData.find((value) => {
                     if (value.id === data.id) {
                       valor = value.id
-                      console.log(typeof (value.id))
+                      // console.log(typeof (value.id))
                     }
                   })
 

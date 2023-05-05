@@ -66,7 +66,7 @@ export default function Header() {
                     <div className="button_span_user">
                         <Link to={"/reservaOnline/participante/perfil"}>
                             {data.map(item => {
-                                console.log(nomeUtilizador)
+                                // console.log(nomeUtilizador)
                                 if (item.email === nomeUtilizador) {
                                     return (
                                         <div key={item.id} >

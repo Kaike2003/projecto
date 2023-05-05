@@ -88,16 +88,16 @@ export default function InformacaoCompraParticipante() {
             return data.map(itemUtilizador => {
 
                 if (item.utilizadorId === itemUtilizador.id) {
-                    console.log(item.utilizadorId === itemUtilizador.id)
-                    console.log(itemUtilizador.id)
+                    // console.log(item.utilizadorId === itemUtilizador.id)
+                    // console.log(itemUtilizador.id)
                     return axios.put(`http://localhost:3456/admin/aprovarPagamento/${idReserva}/${item.utilizadorId}`)
                         .then((sucesso) => {
-                            console.log(sucesso.data)
+                            // console.log(sucesso.data)
 
                             navigate("/reservaOnline/dashboard/admin/evento/aprovarPagamento")
 
                         }).catch((error) => {
-                            console.log(error)
+                            // console.log(error)
 
                             Swal.fire({
                                 icon: 'error',
@@ -126,11 +126,11 @@ export default function InformacaoCompraParticipante() {
             return data.map(itemUtilizador => {
 
                 if (item.utilizadorId === itemUtilizador.id) {
-                    console.log(item.utilizadorId === itemUtilizador.id)
-                    console.log(itemUtilizador.id)
+                    // console.log(item.utilizadorId === itemUtilizador.id)
+                    // console.log(itemUtilizador.id)
                     return axios.delete(`http://localhost:3456/admin/cancelarPagamento/${idReserva}/${itemUtilizador.id}`)
                         .then((sucesso) => {
-                            console.log(sucesso.data)
+                            // console.log(sucesso.data)
 
                             Swal.fire({
                                 icon: 'success',
@@ -160,13 +160,12 @@ export default function InformacaoCompraParticipante() {
     }
 
 
-    console.log(nomeUtilizador)
-    console.log("Usuários participantes", dataEvento)
-    console.log("Lista de bilhetes", dataListaReservas)
+    // console.log(nomeUtilizador)
+    // console.log("Usuários participantes", dataEvento)
+    // console.log("Lista de bilhetes", dataListaReservas)
 
 
 
-    InatividadePagina()
 
     return (
         <>
@@ -195,7 +194,7 @@ export default function InformacaoCompraParticipante() {
                             if (itemReservas.id === idReserva) {
 
                                 return data.map(itemUtilizador => {
-                                    console.log(itemUtilizador.id === itemReservas.utilizadorId)
+                                    // console.log(itemUtilizador.id === itemReservas.utilizadorId)
 
                                     if (itemUtilizador.id === itemReservas.utilizadorId) {
                                         return (

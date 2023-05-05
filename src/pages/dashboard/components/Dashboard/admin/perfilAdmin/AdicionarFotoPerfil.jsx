@@ -50,9 +50,9 @@ export default function AdicionarFotoPerfil() {
                     }}
                     enableReinitialize
                     onSubmit={async (values) => {
-                        alert("Dados correctos")
+                        // alert("Dados correctos")
 
-                        console.log(values.file.name)
+                        // console.log(values.file.name)
 
                         // data.map(item => {
                         //     if (item.email === values.email) {
@@ -132,7 +132,7 @@ export default function AdicionarFotoPerfil() {
                                                         value={values.foto}
                                                         onChange={(e) => {
                                                             setFieldValue("file", e.target.files[0])
-                                                            console.log((e.target.files[0]))
+                                                            // console.log((e.target.files[0]))
                                                         }}
 
                                                     />

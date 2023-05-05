@@ -41,7 +41,7 @@ export default function CriarOrador() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
+    // console.log("Email do utilizador", nomeUtilizador)
 
 
 
@@ -53,7 +53,6 @@ export default function CriarOrador() {
     })
 
 
-    InatividadePagina()
 
     return (
         <>
@@ -68,7 +67,7 @@ export default function CriarOrador() {
                     }}
                     onSubmit={async (values) => {
 
-                        console.log("Dados do orador", values)
+                        // console.log("Dados do orador", values)
 
                         utilizador.map(item => {
                             if (item.email === nomeUtilizador) {
@@ -77,7 +76,7 @@ export default function CriarOrador() {
                                     {
                                         nome: values.nome
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
 
                                         Swal.fire({
@@ -88,7 +87,7 @@ export default function CriarOrador() {
                                         })
 
                                     }).catch((error) => {
-                                        console.log(error)
+                                        // console.log(error)
 
                                         Swal.fire({
                                             icon: 'warning',

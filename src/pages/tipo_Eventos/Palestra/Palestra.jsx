@@ -52,7 +52,7 @@ export default function Palestra() {
     }, []);
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const fetchMoreData = () => {
@@ -76,7 +76,7 @@ export default function Palestra() {
         }, 200);
     }
 
-    InatividadePagina()
+  
 
     return (
         <>
@@ -120,6 +120,7 @@ export default function Palestra() {
                                             to={url + `/visualizarBilhete/${item.id}`}
                                             style={{ color: "black" }}
                                         >
+
                                             <div key={Math.random().toString(36).substring(2)}>
                                                 {/* <h1>{index + 1}</h1> */}
 
@@ -130,7 +131,7 @@ export default function Palestra() {
                                                     nome={item.nome}
                                                     preco={item.bilhete[0]?.preco}
                                                     quantidade={item.bilhete[0]?.quantidade}
-
+                                                  
                                                     dataInicio={
                                                         format(new Date(item.dataInicio), 'dd/MM/yyyy')
                                                     }

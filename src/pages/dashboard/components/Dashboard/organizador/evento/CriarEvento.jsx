@@ -39,7 +39,7 @@ export default function CriarEvento() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
+    // console.log("Email do utilizador", nomeUtilizador)
 
 
 
@@ -80,7 +80,6 @@ export default function CriarEvento() {
 
     })
 
-    InatividadePagina()
 
 
     return (
@@ -107,7 +106,7 @@ export default function CriarEvento() {
                     onSubmit={async (values) => {
 
 
-                        console.log(values)
+                        // console.log(values)
 
                         utilizador.map(item => {
                             if (item.email === nomeUtilizador) {
@@ -127,7 +126,7 @@ export default function CriarEvento() {
                                         categoriaId: values.categoriaId,
 
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
 
                                         Swal.fire({
@@ -148,7 +147,7 @@ export default function CriarEvento() {
                                         })
 
                                     }).catch((error) => {
-                                        console.log(error)
+                                        // console.log(error)
                                         Swal.fire({
                                             icon: 'warning',
                                             title: 'Erro evento.',

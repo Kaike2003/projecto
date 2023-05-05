@@ -70,8 +70,6 @@ export const AuthProvider = ({ children }) => {
       console.log(response)
       console.log(response.data.usuario.email)
 
-
-
       if (response.data.error) {
         alert(response.data.error);
       } else {

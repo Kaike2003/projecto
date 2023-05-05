@@ -48,9 +48,8 @@ export default function PerfilEditar() {
 
     })
 
-    console.log(data)
+    // console.log(data)
 
-    InatividadePagina()
 
 
 
@@ -71,7 +70,7 @@ export default function PerfilEditar() {
 
                         }
 
-                        console.log(dadosSalvos.dataNascimento)
+                        // console.log(dadosSalvos.dataNascimento)
 
                         const valoresInicias = {
                             nome: "",
@@ -89,15 +88,15 @@ export default function PerfilEditar() {
                                         enableReinitialize
                                         onSubmit={async (values) => {
 
-                                            console.log(values)
+                                            // console.log(values)
 
                                             axios.put(`http://localhost:3456/admin/perfil/${item.id}/atualizarInformacaoBasica`,
                                                 {
                                                     nome: values.nome,
                                                     dataNascimento: new Date(values.dataNascimento)
                                                 }).then((sucesso) => {
-                                                    console.log(sucesso)
-                                                    alert(JSON.stringify(values, null, 2));
+                                                    // console.log(sucesso)
+                                                    // alert(JSON.stringify(values, null, 2));
                                                     navigate("/reservaOnline/dashboard/admin/perfil/informacao")
 
                                                 }).catch((error) => {

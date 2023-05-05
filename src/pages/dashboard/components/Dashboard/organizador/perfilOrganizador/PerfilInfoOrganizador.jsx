@@ -27,9 +27,8 @@ export default function PerfilInfoOrganizador() {
         fetchData();
     }, []);
 
-    console.log(nomeUtilizador)
+    // console.log(nomeUtilizador)
 
-    InatividadePagina()
 
     return (
         <>

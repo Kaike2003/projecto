@@ -9,23 +9,15 @@ import "./PaginaPrincipal.css"
 // Componentes
 
 import Contacto from "../contacto/Contacto";
-import Carousel from "../caroucel/Carousel";
 import Perguntas from "../perguntas/Perguntas";
-import PalestraFiltro from "../tipo_Eventos/Palestra/PalestraFiltro"
-import ConcertoFiltro from "../tipo_Eventos/Concerto/ConcertoFiltro"
-import EspetaculoFiltro from "../tipo_Eventos/Espetaculo/EspetaculoFiltro"
-import TeatroFiltro from "../tipo_Eventos/Teatro/TeatroFiltro"
 import CardEvento from "../card_evento/components/EventoCard";
-import SeminarioFiltro from "../tipo_Eventos/Seminario/SeminarioFiltro";
-import Shows from "../tipo_Eventos/Shows/ShowsFiltro";
-import CarouselOrganizador from "../caroucel/CarouselOrganizador";
 import CarouselSemSessao from "../caroucel/CarouselSemSessao";
 import ShowsFiltroSemSessao from "../tipo_Eventos/Shows/ShowsFiltroSemSessao";
-import TeatroSemSessao from "../tipo_Eventos/Teatro/TeatroSemSessao";
 import ConcertoFiltroSemSessao from "../tipo_Eventos/Concerto/ConcertoFiltroSemSessao";
 import SeminarioFiltroSemSessao from "../tipo_Eventos/Seminario/SeminarioFiltroSemSessao";
 import PalestraFiltroSemSessao from "../tipo_Eventos/Palestra/PalestraFiltroSemSessao";
 import TeatroFiltroSemSessao from "../tipo_Eventos/Teatro/TeatroFiltroSemSessao";
+import Footer from "../footer/Footer";
 
 // import Eventos from "../section_eventos/Section_eventos_teste"
 
@@ -71,9 +63,9 @@ export default function PaginaPrincipalSemSessao() {
         fetchData();
     }, []);
 
-    console.log("Eventos publicados", data)
-    console.log("Todas categorias", dataListaCategoria)
-    console.log("novos eventos", dataNovosEventos)
+    // console.log("Eventos publicados", data)
+    // console.log("Todas categorias", dataListaCategoria)
+    // console.log("novos eventos", dataNovosEventos)
 
 
 
@@ -175,8 +167,8 @@ export default function PaginaPrincipalSemSessao() {
                     <div className="container_conteudo">
 
 
-                    <div className="imagemEventoPrincipal"></div>
-                       
+                        <div className="imagemEventoPrincipal"></div>
+
 
 
 
@@ -266,14 +258,12 @@ export default function PaginaPrincipalSemSessao() {
 
                 <div>
                     <Perguntas></Perguntas>
+                    <Contacto></Contacto>
+                    <Footer />
                 </div>
 
-                <div className="">
-                    <>
-                        <Contacto></Contacto>
-                    </>
 
-                </div>
+
 
 
             </div>

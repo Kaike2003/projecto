@@ -19,8 +19,8 @@ export default function EstruturaOrador() {
         return ""
     })
 
-    console.log("IdEvento", idEvento)
-    console.log("IdUtilizador", idUtilizador)
+    // console.log("IdEvento", idEvento)
+    // console.log("IdUtilizador", idUtilizador)
 
 
     useEffect(() => {
@@ -41,9 +41,8 @@ export default function EstruturaOrador() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
+    // console.log("Email do utilizador", nomeUtilizador)
 
-    InatividadePagina()
 
     return (
         <>

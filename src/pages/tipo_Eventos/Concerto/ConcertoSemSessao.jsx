@@ -14,7 +14,7 @@ export default function ConcertoOrganizadorSemSessao() {
 
 
 
-    const url = "/reservaOnline/dashboard/organizador/paginaPrincipal"
+    const url = "/vendaOnline.com"
 
     const navigate = useNavigate()
     const [data, setData] = useState([]);
@@ -55,7 +55,7 @@ export default function ConcertoOrganizadorSemSessao() {
     }, []);
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const fetchMoreData = () => {

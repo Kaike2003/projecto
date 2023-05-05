@@ -32,14 +32,13 @@ export default function DashboardAdmin() {
 
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const url = "/reservaOnline/dashboard/admin/"
-    console.log(url)
+    // console.log(url)
 
     InatividadePagina()
-
 
     return (
         <>
@@ -76,7 +75,7 @@ export default function DashboardAdmin() {
                                     <div className="button_span_user">
 
                                         {data.map(item => {
-                                            console.log(nomeUtilizador)
+                                            // console.log(nomeUtilizador)
                                             if (item.email === nomeUtilizador) {
                                                 return (
                                                     <div key={item.id} >

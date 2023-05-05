@@ -58,13 +58,13 @@ export default function RecuperarSenhaParticipante() {
                                     {
                                         email: values.email
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
                                         setTimeout(() => {
                                             // alert(JSON.stringify(values, null, 2));
                                             navigate("/reservaOnline/participante/login")
                                         }, 400);
                                     }).catch((error) => {
-                                        console.log(error)
+                                        // console.log(error)
                                     })
                             } else {
                                 return

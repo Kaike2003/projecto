@@ -34,7 +34,7 @@ export default function PerfilEditarParticipante() {
         fetchData();
     }, []);
 
-    console.log(nomeUtilizador)
+    // console.log(nomeUtilizador)
 
 
 
@@ -53,7 +53,6 @@ export default function PerfilEditarParticipante() {
 
     console.log(data)
 
-    InatividadePagina()
 
     return (
         <>
@@ -72,7 +71,7 @@ export default function PerfilEditarParticipante() {
 
                         }
 
-                        console.log(dadosSalvos.telefone)
+                        // console.log(dadosSalvos.telefone)
 
                         const valoresInicias = {
                             nome: "",
@@ -92,7 +91,7 @@ export default function PerfilEditarParticipante() {
                                         enableReinitialize
                                         onSubmit={async (values) => {
 
-                                            console.log(values)
+                                            // console.log(values)
 
                                             axios.put(`http://localhost:3456/participante/perfil/${item.id}/atualizarInformacaoBasica`,
                                                 {
@@ -109,7 +108,7 @@ export default function PerfilEditarParticipante() {
 
                                             ).then((sucesso) => {
 
-                                                console.log(sucesso)
+                                                // console.log(sucesso)
 
                                                 Swal.fire({
                                                     icon: 'success',
@@ -142,7 +141,7 @@ export default function PerfilEditarParticipante() {
                                                             <span>Edite as informações da sua conta.</span>
                                                         </div>
                                                         <button
-                                                            className="PnomeBotao"
+                                                            className="PnomeBotaoAdicionarComprovativo"
                                                             type="submit">Editar</button>
                                                     </div>
                                                     <div className="criar_main ">

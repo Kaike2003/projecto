@@ -28,12 +28,11 @@ export default function PerfilInfoParticipante() {
         fetchData();
     }, []);
 
-    console.log(nomeUtilizador)
+    // console.log(nomeUtilizador)
 
     const urlImageParticipante = "http://localhost:3456/public/upload/usuarios/participante/"
 
 
-    InatividadePagina()
 
     return (
         <>

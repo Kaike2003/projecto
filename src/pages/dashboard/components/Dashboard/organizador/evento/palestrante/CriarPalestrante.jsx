@@ -52,7 +52,6 @@ export default function CriarPalestrante() {
             .max(100, "O blog do palestrante deve conter 100 ou menos caracteres").optional(),
     })
 
-    InatividadePagina()
 
     return (
         <>

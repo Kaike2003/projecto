@@ -33,7 +33,7 @@ export default function AlterarSenha() {
         fetchData();
     }, []);
 
-    console.log(nomeUtilizador)
+    // console.log(nomeUtilizador)
 
     const EstruturaAlterarSenha = Yup.object().shape({
         palavraPasseAntiga: Yup.string("Palavra antiga inválida")
@@ -47,7 +47,6 @@ export default function AlterarSenha() {
 
     })
 
-    InatividadePagina()
 
     return (
         <>

@@ -55,7 +55,7 @@ export default function ShowsSemSessao() {
     }, []);
 
 
-    console.log(data)
+    //console.log(data)
 
 
     const fetchMoreData = () => {

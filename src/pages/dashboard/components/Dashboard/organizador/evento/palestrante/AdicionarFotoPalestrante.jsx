@@ -43,7 +43,6 @@ export default function AdicionarFotoPalestrante() {
     //         .required("Nome do evento é obrigatorio.")
     // })
 
-    InatividadePagina()
 
     return (
         <>

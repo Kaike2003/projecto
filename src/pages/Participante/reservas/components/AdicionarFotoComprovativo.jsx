@@ -43,11 +43,10 @@ export default function AdicionarFotoComprovativo() {
     const fileRef = useRef()
 
 
-    console.log(idReserva)
-    console.log(data)
-    console.log(nomeUtilizador)
+    // console.log(idReserva)
+    // console.log(data)
+    // console.log(nomeUtilizador)
 
-    InatividadePagina()
 
     return (
         <>
@@ -82,7 +81,7 @@ export default function AdicionarFotoComprovativo() {
                                     form.append('foto', values.file);
 
 
-                                    console.log(values.file.name)
+                                    // console.log(values.file.name)
 
                                     data.map((item, index) => {
 
@@ -102,8 +101,7 @@ export default function AdicionarFotoComprovativo() {
                                                 }
 
                                             ).then(res => {
-                                                console.log(res)
-                                                alert("Ok - 200")
+                                                // console.log(res)
                                             }).catch((error) => {
                                                 console.log(error)
                                             })
@@ -164,10 +162,10 @@ export default function AdicionarFotoComprovativo() {
 
                                         className="criar_info">
                                         <span>1. Informações básicas</span> <br />
-                                        <span>Adicione uma foto ao seu evento</span>
+                                        <span>Adicione o comprovativo da transfêrencia bancária.</span>
                                     </div>
                                     <button
-                                        className="PnomeBotao"
+                                        className="PnomeBotaoAdicionarComprovativo"
                                         type="submit">Salvar</button>
                                 </div>
                                 <div className="criar_main ">
@@ -197,7 +195,7 @@ export default function AdicionarFotoComprovativo() {
                                                         onBlur={handleBlur}
                                                         onChange={(e) => {
                                                             setFieldValue("file", e.target.files[0])
-                                                            console.log((e.target.files[0]))
+                                                            // console.log((e.target.files[0]))
                                                         }}
 
                                                     />

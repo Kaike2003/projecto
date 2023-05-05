@@ -107,7 +107,7 @@ export default function TabelaPalestrante() {
 
               axios.delete(url + "palestrante/" + selectedRow.id,
               ).then(sucess => {
-                console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
               }).catch(error => {
                 console.log(error)
               })
@@ -130,7 +130,7 @@ export default function TabelaPalestrante() {
                   const id = tableData.find((value) => {
                     if (value.id === data.id) {
                       valor = value.id
-                      console.log(typeof (value.id))
+                      // console.log(typeof (value.id))
                     }
                   })
                   

@@ -52,7 +52,7 @@ export default function SeminarioFiltroSemSessao() {
     }, []);
 
 
-    console.log(data)
+    //console.log(data)
 
 
     const fetchMoreData = () => {

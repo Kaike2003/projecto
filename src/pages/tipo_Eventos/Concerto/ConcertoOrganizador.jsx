@@ -56,7 +56,7 @@ export default function ConcertoOrganizador() {
     }, []);
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const fetchMoreData = () => {
@@ -81,7 +81,6 @@ export default function ConcertoOrganizador() {
     }
 
 
-    InatividadePagina()
 
     return (
         <>

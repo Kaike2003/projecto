@@ -36,7 +36,6 @@ export default function TabelaCategoria() {
     ]
 
 
-    InatividadePagina()
 
 
     return (
@@ -48,7 +47,7 @@ export default function TabelaCategoria() {
 
                         onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
 
-                            console.log(newRow.nomeCategoria)
+                            // console.log(newRow.nomeCategoria)
                             // console.log(oldRow)
 
                             axios.put(`http://localhost:3456/admin/categoria/atualizarCategoria/${newRow.id}`, {
@@ -56,8 +55,8 @@ export default function TabelaCategoria() {
                             }
                             ).then(sucesso => {
                                 navigate("/reservaOnline/dashboard/admin/categoria/listar")
-                                console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
-                                console.log(sucesso)
+                                // console.log(`Evento apagado com sucesso. Id: ${newRow.id}`)
+                                // console.log(sucesso)
                             }).catch(error => {
                                 console.log(error)
                             })
@@ -70,7 +69,7 @@ export default function TabelaCategoria() {
                             axios.delete(`http://localhost:3456/admin/categoria/apagarCategoria/${selectedRow.id}`
                             ).then(sucess => {
                                 navigate("/reservaOnline/dashboard/admin/categoria/listar")
-                                console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
+                                // console.log(`Evento apagado com sucesso. Id: ${selectedRow.id}`)
                             }).catch(error => {
                                 console.log(error)
                             })
@@ -112,7 +111,7 @@ export default function TabelaCategoria() {
                     columns={columns}
                     data={data}
                     options={{
-                        pageSize: 4,
+                        pageSize: 5,
                         pageSizeOptions: [15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,

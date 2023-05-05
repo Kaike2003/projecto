@@ -57,28 +57,37 @@ export const CriarAdmin = () => {
 								palavraPasse: values.password,
 								email: values.email,
 							}).then(async (sucesso) => {
-								console.log(sucesso)
+								// console.log(sucesso)
 
 
-								setTimeout(async () => {
 
 
-									Swal.fire({
-										icon: 'success',
-										title: 'Conta criada',
-										html: "Enivamos para você um código para autenticar sua conta na nossa aplicação.",
-										showConfirmButton: false,
-										timer: 2500
-									}).then(async () => {
-										navigate("/reservaOnline/admin/autenticarConta")
-									})
+								Swal.fire({
+									icon: 'success',
+									title: 'Conta criada',
+									html: "Enivamos para você um código para autenticar sua conta na nossa aplicação.",
+									showConfirmButton: false,
+									timer: 2500
+								}).then(async () => {
+									navigate("/reservaOnline/admin/autenticarConta")
+								})
 
 
-								}, 800);
 
 
 							}).catch((error) => {
 								console.log(error)
+
+								Swal.fire({
+									icon: 'error',
+									title: 'Conta não  criada',
+									html: error.response.data,
+									showConfirmButton: false,
+									timer: 3500
+								}).then(async () => {
+								})
+
+
 							})
 
 

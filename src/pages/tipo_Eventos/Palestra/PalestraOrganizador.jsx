@@ -54,7 +54,7 @@ export default function PalestraOrganizador() {
     }, []);
 
 
-    console.log(data)
+     //console.log(data) 
 
 
     const fetchMoreData = () => {
@@ -78,7 +78,6 @@ export default function PalestraOrganizador() {
         }, 200);
     }
 
-    InatividadePagina()
 
     return (
         <>

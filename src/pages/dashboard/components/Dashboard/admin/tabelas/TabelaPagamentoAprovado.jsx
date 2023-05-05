@@ -32,8 +32,8 @@ export default function TabelaPagamentoAprovado() {
         fetchData();
     }, []);
 
-    console.log("Lista de de eventos a que foram banidos", data)
-    console.log("Lista de participante", dataListaParticipante)
+    // console.log("Lista de de eventos a que foram banidos", data)
+    // console.log("Lista de participante", dataListaParticipante)
 
 
 
@@ -108,7 +108,6 @@ export default function TabelaPagamentoAprovado() {
     ]
 
 
-    InatividadePagina()
 
     return (
         <>

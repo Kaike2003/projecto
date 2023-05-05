@@ -88,7 +88,6 @@ export default function EditarEvento() {
 
     })
 
-    InatividadePagina()
 
     return (
         <>

@@ -27,7 +27,7 @@ export default function TabelaEventoBanido() {
         fetchData();
     }, []);
 
-    console.log("Lista de de eventos a que foram banidos", data)
+    // console.log("Lista de de eventos a que foram banidos", data)
 
 
 
@@ -43,7 +43,6 @@ export default function TabelaEventoBanido() {
     ]
 
 
-    InatividadePagina()
 
     return (
         <>
@@ -61,8 +60,8 @@ export default function TabelaEventoBanido() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
-                                    console.log("Id do utilizador", data.utilizadorId)
+                                    // console.log(data)
+                                    // console.log("Id do utilizador", data.utilizadorId)
 
 
 

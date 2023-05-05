@@ -19,6 +19,7 @@ import CardEvento from "../card_evento/components/EventoCard";
 import SeminarioFiltro from "../tipo_Eventos/Seminario/SeminarioFiltro";
 import Shows from "../tipo_Eventos/Shows/ShowsFiltro";
 import InatividadePagina from "../../middlewares/TerminarSessao";
+import Footer from "../footer/Footer";
 
 // import Eventos from "../section_eventos/Section_eventos_teste"
 
@@ -65,9 +66,9 @@ export default function PaginaPrincipal() {
         fetchData();
     }, []);
 
-    console.log("Eventos publicados", data)
-    console.log("Todas categorias", dataListaCategoria)
-    console.log("novos eventos", dataNovosEventos)
+    // console.log("Eventos publicados", data)
+    // console.log("Todas categorias", dataListaCategoria)
+    // console.log("novos eventos", dataNovosEventos)
 
 
 
@@ -102,7 +103,6 @@ export default function PaginaPrincipal() {
 
 
     InatividadePagina()
-
 
     return (
         <>
@@ -160,13 +160,14 @@ export default function PaginaPrincipal() {
                         <div className="container_conteudo">
                             <div className="section_eventos">
 
-                                {data.map((item) => {
+                                {data.map((item, index) => {
 
                                     return dataListaCategoria.map(itemCategoria => {
                                         if (item.categoriaId === itemCategoria.id) {
                                             return (
                                                 <>
 
+                                                    {/* {console.log(item.bilhete[index]?.quantidade)} */}
                                                     <Link
                                                         key={Math.random().toString(36).substring(2)}
                                                         to={url + `/visualizarBilhete/${item.id}`}
@@ -180,6 +181,7 @@ export default function PaginaPrincipal() {
                                                                 preco={item.bilhete[0]?.preco}
                                                                 imagem={urlImage + item.foto}
                                                                 quantidade={item.bilhete[0]?.quantidade}
+
 
                                                                 dataInicio={
                                                                     format(new Date(item.dataInicio), 'dd/MM/yyyy')
@@ -228,11 +230,9 @@ export default function PaginaPrincipal() {
                 </div>
 
                 <div>
-                    <Perguntas></Perguntas>
-                </div>
-
-                <div>
-                    <Contacto></Contacto>
+                    <Perguntas />
+                    <Contacto />
+                    <Footer />
                 </div>
 
 

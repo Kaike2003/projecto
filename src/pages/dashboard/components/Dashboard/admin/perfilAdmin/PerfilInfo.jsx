@@ -26,9 +26,8 @@ export default function PerfilInfo() {
         fetchData();
     }, []);
 
-    console.log(nomeUtilizador)
+    // console.log(nomeUtilizador)
 
-    InatividadePagina()
     
 
     return (

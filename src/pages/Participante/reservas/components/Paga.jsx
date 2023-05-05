@@ -66,7 +66,7 @@ export default function Paga() {
     }, []);
 
 
-    console.log("Item bilhetes", dataListaItemBilhete)
+    // console.log("Item bilhetes", dataListaItemBilhete)
 
     const CellStyle = { fontSize: "12px", width: "200px" }
     const CellRender = { fontSize: "16px" }
@@ -102,15 +102,14 @@ export default function Paga() {
     ]
 
 
-    console.log("Evento ==>", dataListaEvento)
+    // console.log("Evento ==>", dataListaEvento)
 
 
-    InatividadePagina()
 
     return (
         <>
 
-            <div className="tabela mt-4 mb-2 pb-2 container">
+            <div className="tabela mt-4 container">
                 <MaterialTable
                     actions={
                         [
@@ -123,7 +122,7 @@ export default function Paga() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log("Valores do data", data)
+                                    // console.log("Valores do data", data)
 
                                     {
                                         utilizador.map(item => {

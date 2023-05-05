@@ -24,7 +24,7 @@ export default function TabelaOrganizador() {
         fetchData();
     }, []);
 
-    console.log("Lista de organizadores", data)
+    // console.log("Lista de organizadores", data)
 
 
 
@@ -45,7 +45,6 @@ export default function TabelaOrganizador() {
     ]
 
 
-    InatividadePagina()
 
     return (
         <>

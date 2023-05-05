@@ -36,7 +36,6 @@ export default function DashboardOrganizador() {
 
     const url = "/reservaOnline/dashboard/organizador"
 
-
     InatividadePagina()
 
     return (

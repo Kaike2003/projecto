@@ -12,6 +12,7 @@ export default function LayoutSemSessao() {
 
             <main className="main_layout_principal">
                 <Outlet />
+                
             </main>
 
         </>

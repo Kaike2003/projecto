@@ -4,7 +4,7 @@ import { BsFacebook, BsGithub } from "react-icons/bs";
 import { AiFillInstagram } from "react-icons/ai";
 
 
-export default function footer() {
+export default function Footer() {
 
 
     return (
@@ -12,11 +12,12 @@ export default function footer() {
 
             <footer id="footer" className="container-fuild">
 
+
                 <div className="container-fuild container_filho">
 
                     <div className="container_filho_1">
                         <h4>Sobre nós</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum iusto officiis nam dicta, nulla asperiores atque ullam. Reprehenderit ipsum dicta velit laborum hic earum aspernatur aut recusandae, ab, quibusdam quia! Aspernatur hic quasi aut deserunt iusto quaerat fuga commodi, harum neque sapiente vero pariatur doloribus expedita sit at quam labore!</p>
+                        <p>Somos um web site especializado para venda de bilhetes para eventos culturais e educacionais e compra de bilhetes. Nosso web site existe desde 2020 no mercado Angolano.</p>
                     </div>
 
                     <div className="container_filho_2">
@@ -27,10 +28,10 @@ export default function footer() {
                     </div>
                 </div>
 
-            
+
             </footer>
 
-           
+
 
 
         </>

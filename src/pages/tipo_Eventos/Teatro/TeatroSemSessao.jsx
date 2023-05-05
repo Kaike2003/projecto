@@ -62,8 +62,8 @@ export default function TeatroSemSessao() {
     }, []);
 
 
-    console.log("Lista de evento", data)
-    console.log("Lista de evento 2", dataNovosEventos)
+    //console.log("Lista de evento", data)
+    //console.log("Lista de evento 2", dataNovosEventos)
 
     const fetchMoreData = () => {
 
@@ -122,7 +122,7 @@ export default function TeatroSemSessao() {
 
                     {dataNovosEventos.map((item, index) => {
                         return dataListaCategoria.map(itemCategoria => {
-                            console.log(item)
+                            //console.log(item)
                             if (item.categoriaId === itemCategoria.id) {
                                 return (
                                     <>

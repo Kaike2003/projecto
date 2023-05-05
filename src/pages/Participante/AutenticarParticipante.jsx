@@ -69,7 +69,7 @@ export default function AutenticarParticipante() {
                                     {
                                         codigoVerificacao: values.codigo
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
                                         Swal.fire({
                                             icon: 'success',
@@ -82,7 +82,7 @@ export default function AutenticarParticipante() {
                                         })
 
                                     }).catch((error) => {
-                                        console.log(error)
+                                        // console.log(error)
                                         Swal.fire({
                                             icon: '',
                                             title: 'Erro de autenticação',

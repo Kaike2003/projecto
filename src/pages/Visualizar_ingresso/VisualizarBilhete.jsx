@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Visualizar_ingresso.css"
-import { CalendarDays, Timer, Mic, MapPin, Ticket, Info, AlignJustify } from 'lucide-react';
+import { CalendarDays, Timer, Mic, MapPin,  } from 'lucide-react';
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
-import Img from "../../assets/img/palestra.jpg"
 import { X } from "lucide-react"
 import Swal from 'sweetalert2'
 
 import Palestrante from "../Palestrante/Palestrante";
-import Header from "../../components/Header/Header";
 import Modal from "react-modal"
 import Compra from "./components/Compra";
 import axios from "axios";
@@ -129,9 +127,9 @@ export default function VisualizarBilhete() {
             case "DESPONIVEL":
                 return (
                     <>
-                        <span 
-                        className="estadoEventoVisualizarBilhete"
-                        style={{ color: "green", fontWeight: "450", fontSize: "14px" }} >DISPONÍVEL</span>
+                        <span
+                            className="estadoEventoVisualizarBilhete"
+                            style={{ color: "rgb(7, 145, 104)", fontWeight: "450", fontSize: "14px" }} >DISPONÍVEL</span>
                     </>
                 )
                 break;
@@ -140,9 +138,9 @@ export default function VisualizarBilhete() {
                 return (
                     <>
                         <span
-                        className="estadoEventoVisualizarBilhete"
-                        
-                        style={{ color: "red", fontWeight: "450", fontSize: "14px" }} >TERMINADO</span>
+                            className="estadoEventoVisualizarBilhete"
+
+                            style={{ color: "red", fontWeight: "450", fontSize: "14px" }} >TERMINADO</span>
                     </>
                 )
                 break;
@@ -151,9 +149,9 @@ export default function VisualizarBilhete() {
                 return (
                     <>
                         <span
-                        className="estadoEventoVisualizarBilhete"
-                        
-                        style={{ color: "red", fontWeight: "450", fontSize: "14px" }} >TERMINADO</span>
+                            className="estadoEventoVisualizarBilhete"
+
+                            style={{ color: "red", fontWeight: "450", fontSize: "14px" }} >TERMINADO</span>
                     </>
                 )
                 break;
@@ -162,8 +160,8 @@ export default function VisualizarBilhete() {
                 return (
                     <>
                         <span
-                        className="estadoEventoVisualizarBilhete"
-                        style={{ color: "#ff9716", fontWeight: "450", fontSize: "14px" }} >A DECORRER</span>
+                            className="estadoEventoVisualizarBilhete"
+                            style={{ color: "#ff9716", fontWeight: "450", fontSize: "14px" }} >A DECORRER</span>
                     </>
                 )
                 break;
@@ -178,14 +176,13 @@ export default function VisualizarBilhete() {
     const sizeIcone = 28
 
 
-    InatividadePagina()
 
 
     return (
         <>
             <div className="invisivel_visualizar"></div>
 
-            <div className="visualiarLadosPaiOrganizador container">
+            <div className="visualizarLadosPaiOrganizador container">
                 <div className="visualiarLadosOrganizador">
 
                     {[dataListaEvento].map(item => {
@@ -219,29 +216,29 @@ export default function VisualizarBilhete() {
                                                     <div className="ladoInformacaoSpanOrganizador">
                                                         <span className="container tituloEvento">{item.nome}</span>
                                                         <span>{itemCategoria.nome} - Evento {estadoEvento(item.estado)}</span>
-                                                        
+
                                                     </div>
 
                                                     <div>
 
                                                         <div className="template_detalhe container">
 
-                                                            
+
 
                                                             <div className="template_detalhe_2">
                                                                 <div className="icone_texto">
                                                                     <CalendarDays
-                                                                    className="sizeIcone"
-                                                                     size={sizeIcone}>
+                                                                        className="sizeIcone"
+                                                                        size={sizeIcone}>
                                                                     </CalendarDays>
                                                                     <p className="texto">
                                                                         {format(new Date(item.dataInicio), 'dd/MM/yyyy')} </p>
                                                                 </div >
 
                                                                 <div className="icone_texto">
-                                                                    <CalendarDays 
-                                                                    className="sizeIcone"
-                                                                    size={sizeIcone} >
+                                                                    <CalendarDays
+                                                                        className="sizeIcone"
+                                                                        size={sizeIcone} >
                                                                     </CalendarDays>
                                                                     <p className="texto">
                                                                         {format(new Date(item.dataTermino), 'dd/MM/yyyy')}
@@ -252,27 +249,27 @@ export default function VisualizarBilhete() {
                                                             <div className="template_detalhe_2">
 
                                                                 <div className="icone_texto">
-                                                                    <Timer 
-                                                                    className="sizeIcone"
-                                                                    size={sizeIcone}></Timer>
+                                                                    <Timer
+                                                                        className="sizeIcone"
+                                                                        size={sizeIcone}></Timer>
                                                                     <p className="texto">
                                                                         {format(new Date(item.horaInicio), "HH:mm")}</p>
                                                                 </div>
 
                                                                 <div className="icone_texto">
-                                                                    <Timer 
-                                                                    className="sizeIcone"
-                                                                    size={sizeIcone}></Timer>
+                                                                    <Timer
+                                                                        className="sizeIcone"
+                                                                        size={sizeIcone}></Timer>
                                                                     <p className="texto"> {format(new Date(item.horaTermino), "HH:mm")}</p>
                                                                 </div>
 
                                                             </div>
 
                                                             <div className="icone_texto">
-                                                                    <MapPin size={sizeIcone}>
-                                                                    </MapPin>
-                                                                    <p className="texto">{item.provincia} - {item.municipio} -{item.bairro}</p>
-                                                                </div >
+                                                                <MapPin size={sizeIcone}>
+                                                                </MapPin>
+                                                                <p className="texto">{item.provincia} - {item.municipio} -{item.bairro}</p>
+                                                            </div >
 
 
                                                             <div className="" id="desc">
@@ -298,7 +295,7 @@ export default function VisualizarBilhete() {
                                                                     }}
                                                                     onSubmit={async (values) => {
 
-                                                                        console.log("Valores da valicação", values)
+                                                                        //console.log("Valores da valicação", values)
 
                                                                         emailUtilizador.map(item => {
                                                                             if (item.email === nomeUtilizador) {
@@ -418,7 +415,7 @@ export default function VisualizarBilhete() {
                                                                                 <div>
                                                                                     <Field
                                                                                         className={errors.quantidade && touched.quantidade ? ("selectTipoBilheteERRO") : "selectTipoBilhete"}
-
+                                                                                        min="0"
                                                                                         type="number"
                                                                                         name="quantidade"
                                                                                         placeholder="Quantidade de bilhete"
@@ -435,6 +432,7 @@ export default function VisualizarBilhete() {
                                                                                 <button
                                                                                     className="btn_comprarSemSessao"
                                                                                     type="button"
+
                                                                                     // onClick={ListarPalestrante}
                                                                                     onClick={openModal}
                                                                                 >Palestrantes e Oradores</button>

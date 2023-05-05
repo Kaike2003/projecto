@@ -41,7 +41,7 @@ export default function TabelaEventoPublicado() {
         fetchData();
     }, []);
 
-    console.log("Lista de de eventos publicados", data)
+    // console.log("Lista de de eventos publicados", data)
 
 
 
@@ -74,7 +74,6 @@ export default function TabelaEventoPublicado() {
     ]
 
 
-    InatividadePagina()
 
     return (
         <>

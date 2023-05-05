@@ -54,7 +54,7 @@ export default function TodosEventoSemSessao() {
     }, []);
 
 
-    console.log(data)
+    //console.log(data)
 
 
     const fetchMoreData = () => {

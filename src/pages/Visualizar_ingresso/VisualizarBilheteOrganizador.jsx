@@ -56,7 +56,7 @@ export default function VisualizarBilheteOrganizador() {
     const [nomeUtilizador, setNomeUtilizador] = useState([]);
     const [emailUtilizador, setEmailUtilizador] = useState([])
 
-    console.log("Lista de palestrante", dataListaPalestrante)
+    //console.log("Lista de palestrante", dataListaPalestrante)
 
     useEffect(() => {
         async function fetchData() {
@@ -106,10 +106,10 @@ export default function VisualizarBilheteOrganizador() {
         fetchData();
     }, []);
 
-    console.log("Evento selecionando", dataListaEvento)
-    console.log("Bilhetes do evento selecionado", dataListaBilhete)
-    console.log("Lista de oradores", dataListaOrador)
-    console.log("Selecionar", selecionar)
+    //console.log("Evento selecionando", dataListaEvento)
+    //console.log("Bilhetes do evento selecionado", dataListaBilhete)
+    //console.log("Lista de oradores", dataListaOrador)
+    //console.log("Selecionar", selecionar)
 
     // Validações com o yup
     const CriarReservaEvento = Yup.object().shape({
@@ -141,7 +141,7 @@ export default function VisualizarBilheteOrganizador() {
             return (
                 <>
                     <div key={item.id}>
-                        {console.log(item.nome)}
+                         
                         <p>{`${item.nome}` - `${item.blog}`}</p>
                     </div>
                 </>
@@ -167,7 +167,7 @@ export default function VisualizarBilheteOrganizador() {
             case "DESPONIVEL":
                 return (
                     <>
-                        <span style={{ color: "green", fontWeight: "450" }} >DISPONÍVEL</span>
+                        <span style={{ color: "rgb(7, 145, 104)", fontWeight: "450" }} >DISPONÍVEL</span>
                     </>
                 )
                 break;
@@ -205,13 +205,12 @@ export default function VisualizarBilheteOrganizador() {
 
     const sizeIcone = 28
 
-    InatividadePagina()
 
     return (
         <>
             <div className="invisivel_visualizar"></div>
 
-            <div className="visualiarLadosPaiOrganizador container">
+            <div className="visualizarLadosPaiOrganizador container">
                 <div className="visualiarLadosOrganizador">
 
                     {[dataListaEvento].map(item => {
@@ -243,28 +242,15 @@ export default function VisualizarBilheteOrganizador() {
                                             return (
                                                 <>
                                                     <div className="ladoInformacaoSpanOrganizador">
-                                                        <span>{item.nome}</span>
-                                                        <span>{itemCategoria.nome}</span>
+                                                        <span className="container tituloEvento">{item.nome}</span>
+                                                        <span>{itemCategoria.nome} - Evento {estadoEvento(item.estado)}</span>
+
                                                     </div>
 
                                                     <div>
 
                                                         <div className="template_detalhe container">
 
-                                                            <div className="template_detalhe_2">
-                                                                <div className="icone_texto">
-                                                                    <Info size={sizeIcone}></Info>
-                                                                    <p className="texto"> Evento  {estadoEvento(item.estado)}</p>
-                                                                </div >
-
-                                                                <div className="icone_texto">
-                                                                    <MapPin size={sizeIcone}>
-                                                                    </MapPin>
-                                                                    <p className="texto">{item.provincia} - {item.municipio} -{item.bairro}</p>
-                                                                </div >
-
-
-                                                            </div>
 
                                                             <div className="template_detalhe_2">
                                                                 <div className="icone_texto">
@@ -299,28 +285,12 @@ export default function VisualizarBilheteOrganizador() {
                                                             </div>
 
 
-                                                            <div className="template_detalhe_2">
+                                                            <div className="icone_texto">
+                                                                <MapPin size={sizeIcone}>
+                                                                </MapPin>
+                                                                <p className="texto">{item.provincia} - {item.municipio} -{item.bairro}</p>
+                                                            </div >
 
-                                                                <div className="icone_texto">
-                                                                    {/* <Mic size={sizeIcone}></Mic> */}
-                                                                    {/* <p className="texto">{
-
-                                                                        // [item.orador[0]?.orador.nome]
-
-                                                                        dataListaOrador.map(itemOrador => {
-                                                                            return (
-                                                                                <>
-                                                                                    <span>{itemOrador.nome}, </span>
-                                                                                </>
-                                                                            )
-                                                                        })
-
-
-
-                                                                    } </p> */}
-                                                                </div>
-
-                                                            </div>
 
 
                                                             <div className="" id="desc">
@@ -346,53 +316,12 @@ export default function VisualizarBilheteOrganizador() {
                                                                     }}
                                                                     onSubmit={async (values) => {
 
-                                                                        console.log("Valores da valicação", values)
-
-                                                                        emailUtilizador.map(item => {
-                                                                            if (item.email === nomeUtilizador) {
-                                                                                return (
-
-                                                                                    axios.post(`http://localhost:3456/participante/eventos/visualizarEvento/${idEvento}/reserva/${item.id}`,
-                                                                                        {
-                                                                                            quantidade: values.quantidade,
-                                                                                            bilheteId: values.tipoBilheteId
-
-                                                                                        }).then(() => {
-
-                                                                                            Swal.fire({
-                                                                                                position: 'top-end',
-                                                                                                icon: 'success',
-                                                                                                title: 'Compra feita com sucesso.',
-                                                                                                showConfirmButton: false,
-                                                                                                timer: 2500
-                                                                                            }).then(() => {
 
 
-                                                                                                Swal.fire({
-                                                                                                    icon: 'info',
-                                                                                                    html: `${item.nome} TTens 24horas para poder fazer o pagamento da sua compra.`,
-                                                                                                    showConfirmButton: true,
-                                                                                                })
-
-
-
-                                                                                            })
-
-                                                                                        }).catch((error) => {
-
-
-                                                                                            Swal.fire({
-                                                                                                icon: 'warning',
-                                                                                                html: `${error.response.data}`,
-                                                                                                showConfirmButton: true,
-                                                                                            })
-
-
-                                                                                        })
-
-
-                                                                                )
-                                                                            }
+                                                                        Swal.fire({
+                                                                            icon: 'warning',
+                                                                            title: 'Organizadores de evento só podem visualizar eventos.',
+                                                                            showConfirmButton: true,
                                                                         })
 
 
@@ -454,7 +383,7 @@ export default function VisualizarBilheteOrganizador() {
                                                                                 <div>
                                                                                     <Field
                                                                                         className={errors.quantidade && touched.quantidade ? ("selectTipoBilheteERRO") : "selectTipoBilhete"}
-
+                                                                                        min="0"
                                                                                         type="number"
                                                                                         name="quantidade"
                                                                                         placeholder="Quantidade de bilhete"
@@ -466,11 +395,14 @@ export default function VisualizarBilheteOrganizador() {
                                                                                 <button
                                                                                     className="btn_comprarSemSessao"
                                                                                     type="submit"
+                                                                                    style={{ backgroundColor: "#20c997" }}
+
                                                                                     disabled={isSubmitting}
                                                                                 >Comprar</button>
                                                                                 <button
                                                                                     className="btn_comprarSemSessao"
                                                                                     type="button"
+                                                                                    style={{ backgroundColor: "#20c997" }}
                                                                                     // onClick={ListarPalestrante}
                                                                                     onClick={openModal}
                                                                                 >Palestrantes e Oradores</button>

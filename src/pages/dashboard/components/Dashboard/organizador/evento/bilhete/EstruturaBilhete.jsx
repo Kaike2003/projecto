@@ -19,8 +19,8 @@ export default function EstruturaBilhete() {
         return ""
     })
 
-    console.log("IdEvento", idEvento)
-    console.log("IdUtilizador", idUtilizador)
+    // console.log("IdEvento", idEvento)
+    // console.log("IdUtilizador", idUtilizador)
 
 
     useEffect(() => {
@@ -41,9 +41,8 @@ export default function EstruturaBilhete() {
         fetchData();
     }, []);
 
-    console.log("Email do utilizador", nomeUtilizador)
+    // console.log("Email do utilizador", nomeUtilizador)
 
-    InatividadePagina()
 
     return (
         <>

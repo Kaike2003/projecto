@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 
-export default function CardEvento({ id, categoria, nome, preco, imagem, dataInicio, dataTermino, estado, quantidade }) {
+export default function CardEvento({ id, categoria, nome, preco, imagem, dataInicio, dataTermino, estado, quantidade, quantidadeTotal }) {
 
     const url = "/reservaOnline/participante"
 
@@ -76,7 +76,8 @@ export default function CardEvento({ id, categoria, nome, preco, imagem, dataIni
                         <p>
                             {preco > 0 ? `Preço: ${preco}kz` : 'Grátis'}
                         </p>
-                        {quantidade > 0 ? `Bilhetes desponiveis: ${quantidade}` : 'Entrada livre'}
+                        {quantidade > 0 ? `Bilhetes desponiveis: ${quantidade}` : `Bilhetes desponiveis: ${quantidade}`}
+                        <p>{quantidadeTotal}</p>
                         <p className="CardEventoTipo_bilhete"></p>
                         <p className="CardEventoTipo_estado">{estadoEvento(estado)}</p>
 

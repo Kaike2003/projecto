@@ -20,7 +20,7 @@ export const LoginParticipante = () => {
 	const utilizador = "PARTICIPANTE"
 
 
-	console.log(data)
+	// console.log(data)
 
 
 

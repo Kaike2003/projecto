@@ -37,7 +37,7 @@ export default function TabelaEventoAespera() {
         fetchData();
     }, []);
 
-    console.log("Lista de de eventos a espera", data)
+    // console.log("Lista de de eventos a espera", data)
 
 
 
@@ -68,7 +68,6 @@ export default function TabelaEventoAespera() {
     ]
 
 
-    InatividadePagina()
 
 
     return (
@@ -92,8 +91,8 @@ export default function TabelaEventoAespera() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
-                                    console.log("Id do utilizador", data.utilizadorId)
+                                    // console.log(data)
+                                    // console.log("Id do utilizador", data.utilizadorId)
 
 
 

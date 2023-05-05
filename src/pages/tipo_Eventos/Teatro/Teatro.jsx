@@ -52,7 +52,7 @@ export default function Teatro() {
     }, []);
 
 
-    console.log(data)
+    //console.log(data)
 
 
     const fetchMoreData = () => {
@@ -76,7 +76,6 @@ export default function Teatro() {
         }, 200);
     }
 
-    InatividadePagina()
 
     return (
         <>

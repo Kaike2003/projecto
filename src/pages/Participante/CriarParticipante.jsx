@@ -63,7 +63,7 @@ export const CriarParticipante = () => {
 					}}
 					onSubmit={async (values) => {
 
-						console.log(values)
+						// console.log(values)
 
 						axios.post("http://localhost:3456/participante/create",
 							{
@@ -74,7 +74,7 @@ export const CriarParticipante = () => {
 								telefone: 943162154,
 								dataNascimento: values.dataNascimento
 							}).then((sucesso) => {
-								console.log(sucesso)
+								// console.log(sucesso)
 
 								Swal.fire({
 									icon: 'success',
@@ -86,9 +86,19 @@ export const CriarParticipante = () => {
 									navigate("/reservaOnline/participante/autenticarConta")
 								})
 
-								
+
 							}).catch((error) => {
-								console.log(error)
+								// console.log(error)
+
+								Swal.fire({
+									icon: 'error',
+									title: 'Conta não criada',
+									html: error.response.data,
+									showConfirmButton: false,
+									timer: 3500
+								}).then(async () => {
+									
+								})
 							})
 
 

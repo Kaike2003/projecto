@@ -61,7 +61,7 @@ export default function TabelaHome({ idOrganizador }) {
                 format(new Date(rowData.dataTermino), 'dd/MM/yyyy')}</div>
         },
 
-        
+
 
         // { title: "Banido", field: "banido", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.banido}</div> },
 
@@ -124,6 +124,8 @@ export default function TabelaHome({ idOrganizador }) {
                                 },
                                 tooltip: "Excluir",
                                 onClick: (e, data) => {
+
+                                    console.log(data)
 
 
                                     Swal.fire({
@@ -211,7 +213,7 @@ export default function TabelaHome({ idOrganizador }) {
                     data={dataEvento}
                     options={{
                         pageSize: 6,
-                        pageSizeOptions: [4, 15, 25, 50],
+                        pageSizeOptions: [6, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,
                         exportAllData: true,

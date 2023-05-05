@@ -54,7 +54,7 @@ export default function Palestra() {
     }, []);
 
 
-    console.log(data)
+    // console.log(data)
 
 
     const fetchMoreData = () => {
@@ -78,7 +78,6 @@ export default function Palestra() {
         }, 200);
     }
 
-    InatividadePagina()
 
     return (
         <>

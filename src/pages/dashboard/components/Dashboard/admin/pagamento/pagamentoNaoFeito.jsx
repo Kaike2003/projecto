@@ -58,8 +58,10 @@ export default function PagamentoNaoFeito() {
         fetchData();
     }, []);
 
-    console.log("Compras pagas", dataListarTodasComprasPagas)
-    console.log("Item bilhete", dataListaItemBilhete)
+    // console.log("Compras pagas", dataListarTodasComprasPagas)
+    // console.log("Item bilhete", dataListaItemBilhete)
+
+
 
 
 
@@ -67,7 +69,7 @@ export default function PagamentoNaoFeito() {
     const CellRender = { fontSize: "16px" }
 
     const columns = [
-        { title: "Nome", field: "nome", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "90px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
+        { title: "Nome", field: "nome", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "120px", padding: "0", fontSize: CellRender.fontSize }}>{rowData.nome}</div> },
         {
             title: "Data de termino", field: "dataTermino", cellStyle: CellStyle, render: (rowData) => <div style={{ width: "90px", padding: "0", fontSize: CellRender.fontSize }}>{
                 format(new Date(rowData.dataTermino), "dd-MM-yyyy")
@@ -92,7 +94,7 @@ export default function PagamentoNaoFeito() {
                                             return total + quantidade
                                         })
 
-                                        console.log(total)
+                                        // console.log(total)
 
                                         valorApagar = total
 
@@ -123,12 +125,11 @@ export default function PagamentoNaoFeito() {
 
     ]
 
-    InatividadePagina()
 
     return (
         <>
 
-            <div className="tabela mt-3 mb-3">
+            <div className="tabela mt-3">
                 <MaterialTable
 
                     actions={
@@ -194,7 +195,7 @@ export default function PagamentoNaoFeito() {
                     columns={columns}
                     data={data}
                     options={{
-                        pageSize: 5,
+                        pageSize: 4,
                         pageSizeOptions: [4, 15, 25, 50],
                         paginationType: "stepped",
                         exportButton: true,

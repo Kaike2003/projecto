@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from "sweetalert2"
 
 
 
@@ -60,15 +60,18 @@ export default function RecuperarSenhaAdmin() {
                                     {
                                         email: values.email
                                     }).then((sucesso) => {
-                                        console.log(sucesso)
+                                        // console.log(sucesso)
 
 
-                                        setTimeout(async () => {
-                                            await swal("Senha alterada", `Enviamos para o seu email a sua palavra passe nova.`, "success").then(async () => {
-                                                navigate("/reservaOnline/admin/login")
-                                            })
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Senha alterada",
+                                            html: `Enviamos para o seu email a sua palavra passe nova.`
+                                        }).then(async () => {
+                                            navigate("/reservaOnline/admin/login")
+                                        })
 
-                                        }, 800);
+
 
                                     }).catch((error) => {
                                         console.log(error)
@@ -76,12 +79,15 @@ export default function RecuperarSenhaAdmin() {
 
 
                             } else {
-                                setTimeout(async () => {
-                                    await swal("Email errado", `Aqui só autentica-se email que foram cadastrado para conta de Administrador.`, "warning").then(async () => {
-                                        navigate("/reservaOnline/admin/recuperarSenha")
-                                    })
 
-                                }, 800);
+                                Swal.fire({
+                                    icon: "warning",
+                                    title: "Email errado",
+                                    html: `Aqui só autentica-se email que foram cadastrado para conta de Administrador.`
+                                }).then(async () => {
+                                    navigate("/reservaOnline/admin/recuperarSenha")
+                                })
+
                             }
                         })
 

@@ -91,12 +91,11 @@ export default function NaoPagas() {
 
 
 
-    InatividadePagina()
 
     return (
         <>
 
-            <div className="tabela mt-4 mb-2 pb-2 container">
+            <div className="tabela mt-4 container">
                 <MaterialTable
                     actions={
                         [
@@ -109,7 +108,7 @@ export default function NaoPagas() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log(data)
+                                    // console.log(data)
 
                                     {
                                         dataListaItemBilhete.map(item => {
@@ -184,7 +183,7 @@ export default function NaoPagas() {
 
                         }
                     }}
-                    title={"Não pagas"}
+                    title={"IBAN: AO06.0040.0000.5738.3059.1016.9"}
                     columns={columns}
                     data={data}
                     options={{

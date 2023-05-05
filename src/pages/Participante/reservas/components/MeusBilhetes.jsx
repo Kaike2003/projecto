@@ -59,7 +59,7 @@ export default function MeusBilhetes() {
     }, []);
 
 
-    console.log("Data lista bilhete", dataListaBilhete)
+    //console.log("Data lista bilhete", dataListaBilhete)
 
     const CellStyle = { fontSize: "12px", width: "300px" }
     const CellRender = { fontSize: "16px" }
@@ -112,17 +112,16 @@ export default function MeusBilhetes() {
     ]
 
 
-    console.log("Lista de eventos ==>", dataListaEvento)
-    console.log("Bilhete =>", data)
+    //console.log("Lista de eventos ==>", dataListaEvento)
+    //console.log("Bilhete =>", data)
 
 
 
-    InatividadePagina()
 
     return (
         <>
 
-            <div className="tabela mt-4 mb-2 pb-2 container">
+            <div className="tabela mt-4 container">
                 <MaterialTable
                     actions={
                         [
@@ -137,7 +136,7 @@ export default function MeusBilhetes() {
                                 onClick: (e, data) => {
 
                                     //   console.log(data, e.target.value)
-                                    console.log("Valores do data", data)
+                                    //console.log("Valores do data", data)
 
 
 

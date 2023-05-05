@@ -32,7 +32,7 @@ export default function PerfilEditarOrganizador() {
         fetchData();
     }, []);
 
-    console.log(nomeUtilizador)
+    // console.log(nomeUtilizador)
 
 
 
@@ -58,10 +58,9 @@ export default function PerfilEditarOrganizador() {
 
     })
 
-    console.log(data)
+    // console.log(data)
 
 
-    InatividadePagina()
 
     return (
         <>
@@ -81,7 +80,7 @@ export default function PerfilEditarOrganizador() {
 
                         }
 
-                        console.log(dadosSalvos.telefone)
+                        // console.log(dadosSalvos.telefone)
 
                         const valoresInicias = {
                             nome: "",
@@ -102,7 +101,7 @@ export default function PerfilEditarOrganizador() {
                                         enableReinitialize
                                         onSubmit={async (values) => {
 
-                                            console.log(values)
+                                            // console.log(values)
 
                                             axios.put(`http://localhost:3456/organizador/perfil/${item.id}/atualizarInformacaoBasica`,
                                                 {
@@ -113,7 +112,7 @@ export default function PerfilEditarOrganizador() {
                                                     iban: values.iban
                                                 }).then((sucesso) => {
 
-                                                    console.log(sucesso)
+                                                    // console.log(sucesso)
 
                                                     Swal.fire({
                                                         icon: 'success',
