@@ -34,11 +34,11 @@ export default function ShowsOrganizador() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('http://localhost:3456/participante/concertoEventos');
+            const response = await axios.get('http://localhost:3456/participante/showsEventos');
             const newData = response.data;
             setData(newData);
 
-            const responseNovosEventos = await axios.get('http://localhost:3456/participante/concertoEventosLimite?limite=8');
+            const responseNovosEventos = await axios.get('http://localhost:3456/participante/showsEventosLimite?limite=8');
             const newDataNovosEventos = responseNovosEventos.data;
             setDataNovosEventos(newDataNovosEventos);
 

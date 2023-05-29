@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
 
 
@@ -15,8 +14,6 @@ export default function InatividadePagina() {
     // document.touchmove = resetTimer
     // document.touchstart = resetTimer
 
-
-
     function doSomething() {
         localStorage.clear();
 
@@ -26,7 +23,6 @@ export default function InatividadePagina() {
             html: `Sua sessão foi terminada automaticamente pela aplicação, por questão de segurança. E por favor atualize a página e faça login de novo na aplicação.`,
             showConfirmButton: true,
         })
-
 
         console.log("Sessão terminada, dentro de 5 minutos")
     }
@@ -38,9 +34,6 @@ export default function InatividadePagina() {
         console.log("Testando")
 
     }
-
-
-
 
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import "./Footer.css"
 import { BsFacebook, BsGithub } from "react-icons/bs";
 import { AiFillInstagram } from "react-icons/ai";
-
+import { Link } from "react-router-dom";
 
 export default function Footer() {
 
@@ -22,9 +22,26 @@ export default function Footer() {
 
                     <div className="container_filho_2">
                         <h4>Links</h4>
-                        <BsFacebook className="icone_1 me-3"></BsFacebook>
-                        <AiFillInstagram className="icone_2 me-3"></AiFillInstagram>
-                        <BsGithub className="icone_1"></BsGithub>
+
+                        <Link
+                            target="_blank"
+                            style={{ color: "white" }}
+                            to={"https://www.facebook.com/kaikebartolomeuu/"} >
+                            <BsFacebook className="icone_1 me-3" />
+                        </Link>
+                        <Link
+                            target="_blank"
+                            style={{ color: "white" }}
+                            to={"https://www.instagram.com/kaikebartolomeu/"}>
+                            <AiFillInstagram className="icone_2 me-3" />
+                        </Link>
+                        <Link
+                            target="_blank"
+                            style={{ color: "white" }}
+                            to={"https://github.com/Kaike2003"}>
+                            <BsGithub className="icone_1" />
+                        </Link>
+
                     </div>
                 </div>
 
